@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Meridian Digital: diseño y desarrollo de páginas web desde Venezuela. Planes con precios claros y cotizador por WhatsApp.">
+<meta name="theme-color" content="#03071f"><meta name="referrer" content="strict-origin-when-cross-origin">
+<meta property="og:type" content="website"><meta property="og:title" content="Meridian Digital | Páginas web desde Venezuela"><meta property="og:description" content="Diseño y desarrollo de páginas web con precios claros y cotizador por WhatsApp.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2303071f'/%3E%3Cpath d='M14 46V18l18 20 18-20v28' fill='none' stroke='white' stroke-width='5' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E">
+<title>Meridian Digital | Páginas web desde Venezuela</title>
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<style>
+:root{box-sizing:border-box;color-scheme:dark;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#03071f;--fg:#fff;--mut:#a3adc2;--cy:#dfe5ff;--bl:#0428cb}
+html,body{overflow-x:hidden;max-width:100%}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:Inter,system-ui,-apple-system,'Segoe UI',sans-serif;overflow-x:hidden}
+@property --a{syntax:'<angle>';initial-value:0deg;inherits:false}
+@keyframes rot{to{--a:360deg}}@keyframes fl{to{transform:translate(70px,50px) scale(1.15)}}@keyframes pu{50%{opacity:.3}}
+.orb{position:fixed;border-radius:50%;filter:blur(110px);z-index:0;animation:fl 16s ease-in-out infinite alternate;pointer-events:none}
+#gl{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+#root{position:relative;z-index:10}
+
+.glass{background:rgba(10,20,72,.42);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid rgba(214,220,235,.15);transition:border-color .2s ease-out,box-shadow .2s ease-out,background .2s ease-out}
+.glass:hover{border-color:rgba(230,235,250,.5);box-shadow:0 0 44px -12px rgba(214,222,255,.35);background:rgba(14,26,90,.5)}
+.featured{border:1.5px solid transparent;background:linear-gradient(#070e40,#070e40) padding-box,conic-gradient(from var(--a),#0428cb,#dfe5ff,#7fb0ff,#0428cb) border-box;animation:rot 5s linear infinite;box-shadow:0 0 70px -12px rgba(214,222,255,.4)}
+.featured:hover{background:linear-gradient(#0a1450,#0a1450) padding-box,conic-gradient(from var(--a),#0428cb,#dfe5ff,#7fb0ff,#0428cb) border-box}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+:focus-visible{outline:2px solid #fff;outline-offset:3px;border-radius:6px}
+.skip{position:absolute;left:-999px;top:8px;z-index:100;background:#fff;color:#03071f;padding:10px 16px;border-radius:8px}.skip:focus{left:8px}
+input[type=checkbox]{accent-color:#dfe5ff}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="orb" style="width:520px;height:520px;left:-160px;top:-120px;background:rgba(4,40,203,.55)"></div>
+<div class="orb" style="width:440px;height:440px;right:-140px;top:38%;background:rgba(214,222,255,.22);animation-delay:-6s"></div>
+<div class="orb" style="width:480px;height:480px;left:25%;bottom:-200px;background:rgba(4,40,203,.4);animation-delay:-11s"></div>
+<canvas id="gl" aria-hidden="true"></canvas>
+<div id="root"></div>
+<noscript><p style="padding:96px 24px;text-align:center;color:#fff">Meridian Digital necesita JavaScript para mostrarse. Escríbenos por WhatsApp: +58-422-6335576.</p></noscript>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/framer-motion@10.16.4/dist/framer-motion.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/htm@3.1.1/dist/htm.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const {useState,useEffect}=React,html=htm.bind(React.createElement);
+/* Framer Motion; si no cargara, las animaciones se omiten pero el contenido se ve igual */
+const FM=window.Motion||{};
+const motion=FM.motion||new Proxy({},{get:(_,t)=>React.forwardRef(({initial,animate,whileInView,whileHover,whileTap,viewport,transition,...p},r)=>React.createElement(t,{...p,ref:r}))});
+const WA=m=>'https://wa.me/584226335576?text='+encodeURIComponent(m);
+const ease=[.22,1,.36,1];
+const WAI=html`<svg className="h-5 w-5" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>`;
+
+/* Aparición desde abajo al hacer scroll */
+const Rv=({d=0,className='',children})=>html`<${motion.div} className=${className} initial=${{opacity:0,y:48}} whileInView=${{opacity:1,y:0}} viewport=${{once:true,margin:'-70px'}} transition=${{duration:.5,delay:d,ease}}>${children}<//>`;
+
+/* Botón con borde de gradiente animado, brillo y efecto magnético */
+const Glow=({href,children})=>{const [o,setO]=useState({x:0,y:0});
+ return html`<${motion.a} href=${href} target="_blank" rel="noopener" animate=${o} transition=${{type:'spring',stiffness:220,damping:14}} whileTap=${{scale:.97}} onClick=${()=>{window.gtag&&window.gtag("event","cta_whatsapp")}}
+  onMouseMove=${e=>{const r=e.currentTarget.getBoundingClientRect();setO({x:(e.clientX-r.left-r.width/2)*.22,y:(e.clientY-r.top-r.height/2)*.3})}} onMouseLeave=${()=>setO({x:0,y:0})}
+  className="group relative inline-flex max-w-full overflow-hidden rounded-full p-[1.5px] transition-shadow duration-500 hover:shadow-[0_0_46px_rgba(214,222,255,.45)]">
+  <span className="absolute inset-[-150%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0_55%,#dfe5ff_80%,#0428cb_100%)]"></span>
+  <span className="relative flex items-center justify-center gap-3 rounded-full text-center bg-[#050b2e] px-7 py-3.5 text-sm font-medium text-white transition-colors group-hover:bg-[#0a1450]">${WAI}${children}<span className="transition-transform group-hover:translate-x-1">→</span></span><//>`};
+
+const H=({k,t,s})=>html`<${Rv} className="mb-14 max-w-2xl"><p className="mono mb-4 text-xs uppercase tracking-[.22em] text-slate-400">${k}</p><h2 className="text-4xl font-semibold tracking-tight md:text-6xl">${t}</h2>${s&&html`<p className="mt-5 text-lg text-[var(--mut)]">${s}</p>`}<//>`;
+
+/* Imágenes: mockups vectoriales incrustados (las URLs externas como Unsplash se bloquean en páginas publicadas; para usar fotos, cambia cualquier valor de IMG por su URL) */
+const svg=s=>'data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1c66"/><stop offset="1" stop-color="#03071f"/></linearGradient><linearGradient id="c" x1="0" x2="1"><stop offset="0" stop-color="#5f74d8"/><stop offset="1" stop-color="#e6ebff"/></linearGradient><radialGradient id="r"><stop offset="0" stop-color="#7f8fd6" stop-opacity=".5"/><stop offset="1" stop-color="#7f8fd6" stop-opacity="0"/></radialGradient></defs><rect width="800" height="500" fill="url(#g)"/><circle cx="400" cy="250" r="300" fill="url(#r)"/>'+s+'</svg>');
+const lap=(x,y,k)=>`<g transform="translate(${x} ${y}) scale(${k})"><rect width="560" height="340" rx="22" fill="#050b2e" stroke="#5a68b8" stroke-width="3"/><rect x="16" y="16" width="528" height="308" rx="12" fill="#0b1650"/><rect x="30" y="30" width="86" height="280" rx="8" fill="#fff" opacity=".07"/>${[0,1,2].map(i=>`<rect x="${132+i*134}" y="30" width="122" height="62" rx="8" fill="#fff" opacity=".1"/>`).join('')}${[0,1,2,3,4,5,6].map(i=>`<rect x="${134+i*56}" y="${268-i*14}" width="30" height="${34+i*14}" rx="4" fill="#fff" opacity=".12"/>`).join('')}<polyline points="132,290 200,236 262,254 330,180 400,204 470,124 526,146" fill="none" stroke="url(#c)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M-40 350h640l-30 26H-10z" fill="#1b2670"/></g>`;
+const pho=(x,y,k)=>`<g transform="translate(${x} ${y}) scale(${k})"><rect width="190" height="390" rx="36" fill="#03071f" stroke="#6b78c8" stroke-width="3"/><rect x="10" y="10" width="170" height="370" rx="28" fill="#0b1a5c"/><rect x="70" y="18" width="50" height="12" rx="6" fill="#03071f"/><rect x="24" y="52" width="142" height="110" rx="14" fill="url(#c)" opacity=".85"/><rect x="24" y="180" width="110" height="10" rx="5" fill="#fff" opacity=".8"/><rect x="24" y="200" width="142" height="8" rx="4" fill="#fff" opacity=".3"/><rect x="24" y="216" width="100" height="8" rx="4" fill="#fff" opacity=".3"/><rect x="24" y="250" width="142" height="40" rx="20" fill="#fff"/><rect x="24" y="310" width="66" height="50" rx="12" fill="#fff" opacity=".1"/><rect x="100" y="310" width="66" height="50" rx="12" fill="#fff" opacity=".1"/></g>`;
+const IMG={
+hero:svg(lap(90,50,1)+pho(575,120,.82)),
+about:svg(lap(250,90,.85)+pho(90,70,1)),
+pres:svg(pho(305,50,1)),
+web:svg(`<rect x="100" y="60" width="600" height="380" rx="18" fill="#050b2e" stroke="#5a68b8" stroke-width="3"/><rect x="100" y="60" width="600" height="40" rx="18" fill="#fff" opacity=".08"/>${[0,1,2].map(i=>`<circle cx="${128+i*20}" cy="80" r="6" fill="#fff" opacity=".4"/>`).join('')}<rect x="130" y="122" width="540" height="130" rx="12" fill="url(#c)" opacity=".85"/><rect x="150" y="146" width="230" height="16" rx="8" fill="#03071f" opacity=".7"/><rect x="150" y="176" width="170" height="10" rx="5" fill="#03071f" opacity=".45"/><rect x="150" y="208" width="90" height="26" rx="13" fill="#03071f" opacity=".8"/>${[0,1,2].map(i=>`<rect x="${130+i*186}" y="276" width="168" height="140" rx="10" fill="#fff" opacity=".09"/>`).join('')}`),
+cat:svg([0,1,2,3,4,5].map(i=>`<g transform="translate(${70+(i%3)*224} ${70+Math.floor(i/3)*200})"><rect width="200" height="180" rx="14" fill="#fff" opacity=".09" stroke="#fff" stroke-opacity=".15"/><rect x="14" y="14" width="172" height="100" rx="10" fill="url(#c)" opacity="${.35+i*.1}"/><rect x="14" y="130" width="80" height="10" rx="5" fill="#fff" opacity=".7"/><rect x="14" y="150" width="50" height="14" rx="7" fill="#fff" opacity=".3"/></g>`).join('')),
+shop:svg(`<path d="M310 170V120a90 90 0 0 1 180 0v50" fill="none" stroke="#e6ebff" stroke-width="14" stroke-linecap="round"/><rect x="220" y="160" width="360" height="280" rx="30" fill="url(#c)" opacity=".92"/><rect x="110" y="90" width="120" height="46" rx="23" fill="#fff"/><rect x="590" y="210" width="110" height="46" rx="23" fill="#fff" opacity=".8"/><rect x="130" y="330" width="100" height="46" rx="23" fill="#fff" opacity=".5"/>`),
+help:svg(`<rect x="120" y="90" width="380" height="90" rx="30" fill="#fff" opacity=".14"/><rect x="150" y="125" width="220" height="12" rx="6" fill="#fff" opacity=".6"/><rect x="300" y="210" width="380" height="90" rx="30" fill="url(#c)"/><rect x="330" y="245" width="240" height="12" rx="6" fill="#03071f" opacity=".6"/><rect x="120" y="330" width="300" height="90" rx="30" fill="#fff" opacity=".14"/><rect x="150" y="365" width="160" height="12" rx="6" fill="#fff" opacity=".6"/>`)};
+
+const NEEDS=[
+['Presencia digital','Tu marca en el celular','Desde $250','lg:col-span-2 lg:row-span-2','Hola Meridian Digital, necesito una landing page (plan Presencia Digital) para mi negocio. ¿Me pueden dar más información?',IMG.pres],
+['Web para tu negocio','Sitio multipágina','Desde $400','lg:col-span-2','Hola Meridian Digital, quiero una web de hasta 5 páginas con botón de WhatsApp (plan Negocio Activo). ¿Cómo empezamos?',IMG.web],
+['Catálogo','Vende por WhatsApp','Desde $450','','Hola Meridian Digital, quiero un catálogo de productos con WhatsApp (plan Catálogo Pro). ¿Me cuentan los detalles?',IMG.cat],
+['Tienda online','Carrito y pagos','Desde $800','','Hola Meridian Digital, quiero una tienda online con carrito y pasarela de pagos (plan E-commerce). ¿Me pueden asesorar?',IMG.shop],
+['Tengo dudas','Te orientamos','Sin costo','sm:col-span-2 lg:col-span-4','Hola Meridian Digital, tengo una idea para mi negocio y no sé qué plan me conviene. ¿Me pueden orientar?',IMG.help]];
+
+const T=[['Páginas incluidas','1 landing','Hasta 5','Hasta 10','Ilimitadas'],['Diseño personalizado',1,1,1,1],['Formulario de contacto',1,1,1,1],['Botón WhatsApp',0,1,1,1],['Catálogo de productos',0,0,1,1],['Carrito de compras',0,0,0,1],['Pasarela de pagos',0,0,0,1],['Configuración básica de SEO',1,1,1,1],['SSL / HTTPS',1,1,1,1],['100% adaptable a celular',1,1,1,1],['Soporte por WhatsApp',1,1,1,1]];
+const P=[{n:'Presencia Digital',p:250,m:30},{n:'Negocio Activo',p:400,m:30},{n:'Catálogo Pro',p:450,m:30,f:1},{n:'E-commerce',p:800,m:50,pl:'+'}];
+const feat=i=>['Páginas: '+T[0][i+1],...T.slice(1).filter(r=>r[i+1]===1).map(r=>r[0]),'Soporte mensual $'+P[i].m];
+
+const Nav=()=>html`<${motion.header} initial=${{y:-60,opacity:0}} animate=${{y:0,opacity:1}} transition=${{duration:.9,ease}} className="fixed inset-x-0 top-4 z-50 mx-auto w-fit max-w-[94vw]">
+ <nav aria-label="Principal" className="glass flex items-center gap-2 rounded-full py-2 pl-6 pr-2 md:gap-7">
+  <a href="#inicio" className="text-[15px] font-semibold tracking-tight">Meridian <span className="font-light text-[var(--mut)]">Digital</span></a>
+  <div className="hidden gap-6 text-sm text-[var(--mut)] md:flex">${[['Servicios','#servicios'],['Empresa','#empresa'],['Planes','#planes'],['Cotizador','#cotizar']].map(l=>html`<a key=${l[0]} href=${l[1]} className="transition-colors hover:text-white">${l[0]}</a>`)}</div>
+  <a href=${WA('Hola Meridian Digital, quiero más información sobre sus servicios.')} target="_blank" rel="noopener" className="rounded-full bg-white px-4 py-2 text-sm font-medium text-[#03071f] transition hover:bg-white">WhatsApp</a>
+ </nav><//>`;
+
+const Hero=()=>{const w='Tu negocio merece una página web que impresione'.split(' ');
+ return html`<section id="inicio" className="mx-auto flex max-w-6xl flex-col items-center px-5 pb-20 pt-28 text-center md:pt-40">
+  <h1 className="max-w-5xl text-[2.6rem] font-semibold leading-[1.06] tracking-tight sm:text-6xl lg:text-8xl">${w.map((x,i)=>html`<${motion.span} key=${i} className=${'mr-[.22em] inline-block '+(i>4?'bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent':'')} initial=${{opacity:0,y:70,filter:'blur(16px)'}} animate=${{opacity:1,y:0,filter:'blur(0px)'}} transition=${{duration:1.1,delay:.25+i*.09,ease}}>${x}<//>`)}</h1>
+  <${motion.p} initial=${{opacity:0,y:24}} animate=${{opacity:1,y:0}} transition=${{duration:.9,delay:1.2,ease}} className="mt-7 max-w-md text-lg text-[var(--mut)]">Sitios web profesionales desde Venezuela.<//>
+  <${motion.div} initial=${{opacity:0,y:24}} animate=${{opacity:1,y:0}} transition=${{duration:.9,delay:1.35,ease}} className="mt-9 flex flex-wrap items-center justify-center gap-4">
+   <${Glow} href=${WA('Hola Meridian Digital, quiero más información sobre sus servicios.')}>Escribir por WhatsApp<//><//>
+  <${motion.div} initial=${{opacity:0,y:180}} animate=${{opacity:1,y:0}} transition=${{duration:1.5,delay:1.5,ease}} className="glass mt-16 w-full rounded-[2rem] p-2.5 md:p-3">
+   <${motion.div} animate=${{y:[0,-12,0]}} transition=${{duration:6,repeat:Infinity,ease:'easeInOut'}} className="overflow-hidden rounded-[1.5rem]"><img src=${IMG.hero} alt="Mockup de laptop y celular con dashboard" className="aspect-[16/9] w-full object-cover"/><//><//>
+ </section>`};
+
+const Bento=()=>html`<section id="servicios" className="mx-auto max-w-6xl px-5 py-24 md:py-36">
+ <${H} k="01 / Servicios" t="¿Qué necesitas?"/>
+ <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:auto-rows-[260px] lg:grid-cols-4">${NEEDS.map((c,i)=>html`<${Rv} key=${i} d=${i*.07} className=${'flex '+c[3]}>
+  <${motion.a} href=${WA(c[4])} target="_blank" rel="noopener" whileHover=${{scale:1.02}} transition=${{type:'spring',stiffness:300,damping:22}} className="glass group flex min-h-[300px] lg:min-h-0 flex-1 flex-col gap-3 overflow-hidden rounded-3xl p-3">
+   <div className="min-h-0 flex-[7] overflow-hidden rounded-2xl"><img src=${c[5]} alt=${c[0]+': imagen ilustrativa de ejemplo'} loading="lazy" className="h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-110"/></div>
+   <div className="flex flex-[3] flex-wrap items-end justify-between gap-3 px-3 pb-2"><div><h3 className=${(i==0?'text-2xl':'text-lg')+' font-semibold tracking-tight'}>${c[0]}</h3><p className="text-xs text-[var(--mut)]">${c[1]}</p></div><span className="mono whitespace-nowrap rounded-full border border-white/15 px-3 py-1 text-[11px] uppercase tracking-widest text-slate-200">${c[2]}</span></div>
+  <//><//>`)}</div>
+</section>`;
+
+const About=()=>html`<section id="empresa" className="mx-auto max-w-6xl px-5 py-24 md:py-36">
+ <${H} k="02 / Empresa" t="Ingeniería web con estándares corporativos" s="Diseño, desarrollo y soporte continuo para negocios que quieren crecer en línea. *Plazo estimado, sujeto al alcance del plan."/>
+ <div className="grid gap-5 lg:grid-cols-[1.5fr_1fr]">
+  <${Rv} className="flex"><${motion.div} whileHover=${{scale:1.015}} transition=${{type:'spring',stiffness:300,damping:22}} className="glass group flex-1 overflow-hidden rounded-[2rem] p-2.5 md:p-3"><div className="h-full min-h-[300px] overflow-hidden rounded-[1.5rem]"><img src=${IMG.about} alt="Mockup de sitio web en laptop y celular" loading="lazy" className="h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-110"/></div><//><//>
+  <div className="grid grid-cols-2 gap-4">${[['24–48 h*','Entrega estimada'],['100%','Diseño adaptable'],['WhatsApp','Atención directa'],['USD','Precios publicados']].map((s,i)=>html`<${Rv} key=${i} d=${i*.08} className="flex min-w-0"><${motion.div} whileHover=${{scale:1.04}} className="glass flex min-w-0 flex-1 flex-col justify-end rounded-3xl p-5 sm:p-7"><div className="break-words text-2xl font-semibold tracking-tight sm:text-3xl lg:text-2xl xl:text-3xl">${s[0]}</div><div className="mt-2 text-xs text-[var(--mut)] sm:text-sm">${s[1]}</div><//><//>`)}</div>
+ </div></section>`;
+
+const Plans=()=>html`<section id="planes" className="mx-auto max-w-6xl px-5 py-24 md:py-36">
+ <${H} k="03 / Planes" t="Compara y elige el tuyo" s="Precios en USD. Soporte mensual obligatorio: $30 al mes en los tres primeros planes y $50 al mes en E-commerce. Ver Términos y Condiciones."/>
+ <div className="grid items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:items-center">${P.map((p,i)=>html`<${Rv} key=${i} d=${i*.08} className="flex">
+  <${motion.div} whileHover=${{scale:1.035}} transition=${{type:'spring',stiffness:280,damping:20}} className=${'glass relative flex w-full flex-col rounded-3xl p-8 '+(p.f?'featured lg:-my-8 lg:py-14':'')}>
+   ${p.f&&html`<span className="mono absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-slate-200 px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-[#03071f]">Recomendado</span>`}
+   <h3 className="text-lg font-medium">${p.n}</h3>
+   <div className="my-4 text-5xl font-semibold tracking-tight">$${p.p}${p.pl||''}</div>
+   <ul className="mb-8 flex-1 space-y-2.5 text-sm text-[var(--mut)]">${feat(i).slice(0,8).map(f=>html`<li key=${f} className="flex gap-3"><span className="text-slate-200">✓</span>${f}</li>`)}</ul>
+   <a href=${WA('Hola Meridian Digital, me interesa el plan '+p.n+' ($'+p.p+(p.pl||'')+'). ¿Cómo empezamos?')} target="_blank" rel="noopener" className=${'rounded-full px-5 py-3 text-center text-sm font-medium transition '+(p.f?'bg-white text-[#03071f] hover:bg-white':'border border-white/15 hover:bg-white/10')}>Elegir plan</a><//><//>`)}</div>
+</section>`;
+
+const Quote=()=>{const [i,setI]=useState(2),[dom,setDom]=useState(false),[ok,setOk]=useState(false),p=P[i],tot=p.p+(dom?20:0);
+ const msg='Hola Meridian Digital, quiero cotizar el plan '+p.n+(dom?'. Extra: Dominio personalizado':'')+'. Total inicial: $'+tot+(p.pl?' (desde)':'')+'. Soporte mensual: $'+p.m+'/mes.';
+ return html`<section id="cotizar" className="mx-auto max-w-6xl px-5 py-24 md:py-36">
+ <${H} k="04 / Cotizador" t="Calcula tu inversión en segundos" s="Elige un plan, suma extras y envía tu cotización por WhatsApp."/>
+ <${Rv}><div className="glass grid gap-10 rounded-[2rem] p-6 hover:!shadow-none md:p-10 lg:grid-cols-[1.2fr_1fr]">
+  <div><p className="mono mb-4 text-xs uppercase tracking-widest text-[var(--mut)]">Plan</p>
+   <div role="group" aria-label="Elige un plan" className="grid gap-3 sm:grid-cols-2">${P.map((x,k)=>html`<${motion.button} key=${k} whileHover=${{scale:1.03}} whileTap=${{scale:.98}} onClick=${()=>setI(k)} aria-pressed=${k==i} className=${'rounded-2xl border p-5 text-left transition-colors '+(k==i?'border-white/60 bg-slate-200/10 shadow-[0_0_30px_-8px_rgba(214,222,255,.5)]':'border-white/10 hover:border-white/30')}><div className="text-sm font-medium">${x.n}</div><div className="mt-1 text-3xl font-semibold tracking-tight">$${x.p}${x.pl||''}</div><div className="mt-1 text-xs text-[var(--mut)]">Soporte $${x.m}/mes</div><//>`)}</div>
+   <p className="mono mb-3 mt-8 text-xs uppercase tracking-widest text-[var(--mut)]">Extras</p>
+   <label className="flex cursor-pointer items-center gap-3 rounded-2xl border border-white/10 p-4 text-sm transition hover:border-white/30"><input type="checkbox" className="h-5 w-5" checked=${dom} onChange=${()=>setDom(!dom)}/><span className="flex-1">Dominio personalizado</span><span className="text-[var(--mut)]">+$20/año</span></label></div>
+  <div className="flex flex-col rounded-3xl border border-white/10 bg-black/25 p-7"><p className="mono text-xs uppercase tracking-widest text-[var(--mut)]">Resumen</p>
+   <div className="mt-5 flex justify-between border-b border-white/10 py-3 text-sm"><span className="text-[var(--mut)]">Plan</span><span>${p.n}</span></div>
+   <div className="flex justify-between border-b border-white/10 py-3 text-sm"><span className="text-[var(--mut)]">Soporte mensual</span><span>$${p.m}/mes</span></div>
+   <div className="flex-1 pt-6"><div className="text-sm text-[var(--mut)]">Total inicial</div><${motion.div} key=${tot} initial=${{opacity:0,y:14}} animate=${{opacity:1,y:0}} transition=${{duration:.4,ease}} className="text-6xl font-semibold tracking-tight">$${tot}${p.pl||''}<//></div>
+   <label className="mt-6 flex cursor-pointer items-start gap-3 text-xs leading-relaxed text-[var(--mut)]"><input type="checkbox" className="mt-0.5 h-5 w-5 shrink-0" checked=${ok} onChange=${()=>setOk(!ok)}/><span>He leído y acepto la <a href="#/privacidad" className="text-white underline">Política de Privacidad</a> y los <a href="#/terminos" className="text-white underline">Términos y Condiciones</a>. Entiendo que se abrirá WhatsApp con el mensaje de mi cotización. Aquí no se pide nombre, correo ni datos de pago.</span></label>
+   <div className="mt-5">${ok?html`<${Glow} href=${WA(msg)}>Enviar cotización<//>`:html`<button disabled className="w-full cursor-not-allowed rounded-full border border-white/20 px-5 py-3.5 text-sm text-[var(--mut)] sm:w-auto">Acepta para enviar la cotización</button>`}</div></div>
+ </div><//></section>`};
+
+/* Google Analytics 4: se activa solo si pegas tu ID de medición y la persona pulsa Aceptar */
+const GA_ID=''; // ejemplo: 'G-XXXXXXXXXX'
+const gaLoad=()=>{if(!GA_ID||window.gtag)return;window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config',GA_ID,{anonymize_ip:true});const e=document.createElement('script');e.async=true;e.src='https://www.googletagmanager.com/gtag/js?id='+GA_ID;document.head.appendChild(e)};
+const Consent=()=>{const [v,setV]=useState(()=>{try{return localStorage.getItem('mdc')}catch(e){return null}});useEffect(()=>{if(v==='1')gaLoad()},[v]);if(!GA_ID||v)return null;const set=x=>{try{localStorage.setItem('mdc',x)}catch(e){}setV(x)};
+ return html`<div role="dialog" aria-label="Preferencias de analítica" className="glass fixed inset-x-4 bottom-4 z-[60] mx-auto max-w-xl rounded-2xl p-5 text-sm"><p className="text-[var(--mut)]">Usamos Google Analytics para medir visitas de forma anónima. Solo se activa si lo aceptas. <a href="#/cookies" className="text-white underline">Más información</a></p><div className="mt-4 flex gap-3"><button onClick=${()=>set('1')} className="flex-1 rounded-full bg-white px-4 py-2.5 font-medium text-[#03071f]">Aceptar</button><button onClick=${()=>set('0')} className="flex-1 rounded-full border border-white/40 px-4 py-2.5 font-medium">Rechazar</button></div></div>`};
+const NF=()=>html`<main id="main" className="mx-auto flex min-h-[75vh] max-w-2xl flex-col items-center justify-center px-5 pb-24 pt-32 text-center"><p className="mono text-sm text-[var(--mut)]">Error 404</p><h1 className="mt-4 text-5xl font-semibold tracking-tight md:text-7xl">Página no encontrada</h1><p className="mt-5 text-lg text-[var(--mut)]">El enlace que abriste no existe o fue movido.</p><a href="#inicio" className="mt-10 rounded-full bg-white px-7 py-3.5 text-sm font-medium text-[#03071f]">Volver al inicio</a></main>`;
+const LEGAL={
+privacidad:{t:"Política de Privacidad",s:[
+["Responsable","Meridian Digital, representada por Maricruz del Valle Garcia Barreto. Contacto: WhatsApp +58-422-6335576."],
+["Datos que tratamos","Este sitio no tiene formularios de registro ni pide nombre, correo o datos de pago. Al usar el cotizador o un botón de WhatsApp se abre una conversación con un mensaje precargado (plan, extras y total). Solo recibimos lo que decidas enviar en esa conversación, incluidos tu número de teléfono y nombre de perfil."],
+["Finalidad y base legal","Responder tu consulta, preparar una cotización y, si contratas, prestar el servicio. Base: tu consentimiento y la ejecución del servicio que solicites."],
+["Terceros","WhatsApp (Meta Platforms) procesa la conversación según su propia política. El sitio carga librerías técnicas desde redes de distribución de contenido (cdnjs, jsDelivr y Tailwind CDN), que pueden recibir tu dirección IP y datos técnicos del navegador."+(GA_ID?" Con tu consentimiento usamos Google Analytics 4 (Google LLC) para medir visitas.":" No usamos analítica, píxeles ni publicidad.")],
+["Conservación","Conservamos las conversaciones solo el tiempo necesario para atender tu solicitud y cumplir el servicio; luego las eliminamos o archivamos de forma segura."],
+["Tus derechos","Puedes acceder, rectificar, actualizar o pedir la eliminación de tus datos y retirar tu consentimiento escribiéndonos por WhatsApp. Respetamos el derecho de acceso a los datos personales del artículo 28 de la Constitución venezolana y, si resides en otra jurisdicción (por ejemplo UE/EEE o California), los derechos que tu ley local te reconozca."],
+["Menores de edad","Este sitio no está dirigido a menores de 18 años. Quien sea menor necesita autorización de su representante legal para contratar."],
+["Seguridad y cambios","Aplicamos medidas razonables de seguridad. Publicaremos los cambios de esta política en esta página, con su fecha."]]},
+terminos:{t:"Términos y Condiciones",s:[
+["Aceptación y prestador","Al usar este sitio o contratar un servicio aceptas estos términos. El servicio lo presta Meridian Digital, representada por Maricruz del Valle Garcia Barreto."],
+["Servicios y precios","Diseño y desarrollo de sitios web según el plan elegido; el alcance es el indicado en la tabla de planes. Los precios están en dólares estadounidenses (USD) y se confirman por escrito en WhatsApp antes de iniciar el trabajo."],
+["Soporte mensual","Cada plan incluye un cargo mensual de soporte ($30; $50 en E-commerce). Puedes cancelarlo en cualquier momento avisando por WhatsApp antes del siguiente cobro."],
+["Plazos","Los plazos, como 24 a 48 horas, son estimados y dependen del plan y de que entregues textos, imágenes y aprobaciones a tiempo."],
+["Contenido y propiedad","Declaras tener derecho a usar los textos, imágenes y marcas que nos entregues. Tras el pago total recibes el derecho de uso del sitio entregado. Los componentes de terceros conservan sus licencias."],
+["Limitación de responsabilidad","Prestamos el servicio con diligencia profesional, pero no garantizamos resultados comerciales como ventas o posicionamiento en buscadores. Nuestra responsabilidad se limita al monto pagado por el servicio afectado, en lo que la ley permita."],
+["Marcas","WhatsApp es una marca de Meta Platforms, Inc. Meridian Digital no está afiliada a Meta."],
+["Ley aplicable","Estos términos se rigen por las leyes de la República Bolivariana de Venezuela, sin perjuicio de los derechos imperativos del consumidor de otras jurisdicciones."]]},
+cookies:{t:"Política de Cookies",s:[
+["Qué son","Las cookies son archivos pequeños que un sitio guarda en tu navegador para recordar información o medir el uso."],
+["Qué usamos",GA_ID?"Con tu consentimiento usamos Google Analytics 4 para medir visitas de forma agregada (cookies de analítica de Google) y guardamos tu elección en el almacenamiento de tu navegador. Los servidores que entregan archivos técnicos (CDN) y la plataforma de alojamiento pueden registrar tu dirección IP y datos técnicos por seguridad y funcionamiento.":"Este sitio no instala cookies propias, ni de analítica ni de publicidad, y no guarda datos en tu navegador. Los servidores que entregan archivos técnicos (CDN) y la plataforma de alojamiento pueden registrar tu dirección IP y datos técnicos por seguridad y funcionamiento."],
+["Consentimiento",GA_ID?"Las cookies de analítica solo se activan si pulsas Aceptar en el aviso. Puedes rechazar sin perder acceso al sitio. Para cambiar tu decisión, borra los datos del sitio en tu navegador y vuelve a entrar.":"Como no usamos cookies no esenciales, no mostramos un banner. Si en el futuro agregamos analítica o publicidad, pediremos tu consentimiento antes de activarlas y actualizaremos esta política."],
+["Enlaces externos","Al abrir WhatsApp sales de este sitio y aplican sus propias cookies y políticas."]]},
+reembolso:{t:"Política de Reembolso",s:[
+["Antes de iniciar","Si cancelas antes de que comencemos el trabajo, reembolsamos el 100% de lo pagado."],
+["Trabajo en curso","Si cancelas con el trabajo iniciado, retenemos la parte proporcional al avance realizado y reembolsamos el resto."],
+["Sitio entregado","Una vez entregado y aprobado el sitio, el pago no es reembolsable. Corregimos sin costo los errores atribuibles a nosotros que reportes dentro de los 15 días siguientes a la entrega."],
+["Soporte mensual","No se reembolsan los meses ya iniciados. Puedes cancelar para los meses siguientes."],
+["Dominios y terceros","Los dominios y servicios de terceros no son reembolsables una vez adquiridos."],
+["Cómo solicitarlo","Escríbenos por WhatsApp. Si procede, devolvemos el pago por el mismo medio en un plazo de 10 días hábiles."]]}};
+const Legal=({d})=>html`<main id="main" className="mx-auto min-h-[75vh] max-w-3xl px-5 pb-24 pt-32"><a href="#inicio" className="mb-8 inline-block text-sm text-[var(--mut)] hover:text-white">← Volver al inicio</a><h1 className="text-4xl font-semibold tracking-tight md:text-5xl">${d.t}</h1><p className="mt-3 text-sm text-[var(--mut)]">Última actualización: 1 de octubre de 2026</p><div className="glass mt-10 space-y-8 rounded-3xl p-7 md:p-10">${d.s.map(x=>html`<section key=${x[0]}><h2 className="mb-2 text-lg font-semibold">${x[0]}</h2><p className="leading-relaxed text-[var(--mut)]">${x[1]}</p></section>`)}</div></main>`;
+const useHash=()=>{const [h,setH]=useState(location.hash),p=React.useRef(false);
+ useEffect(()=>{const f=()=>setH(location.hash);addEventListener('hashchange',f);return()=>removeEventListener('hashchange',f)},[]);
+ useEffect(()=>{const L=h.startsWith('#/');if(L||p.current){const r=document.documentElement,id=h.slice(1),el=!L&&id&&document.getElementById(id);r.style.scrollBehavior='auto';if(el)el.scrollIntoView();else window.scrollTo(0,0);requestAnimationFrame(()=>{r.style.scrollBehavior=''})}p.current=L},[h]);return h};
+const MC=FM.MotionConfig||(({children})=>children);
+const App=()=>{const h=useHash(),doc=h.startsWith('#/')&&LEGAL[h.slice(2)],W0=WA('Hola Meridian Digital, quiero más información sobre sus servicios.');
+ return html`<${MC} reducedMotion="user"><div><a href="#main" className="skip">Saltar al contenido</a><${Nav}/><${Consent}/>
+ ${doc?html`<${Legal} d=${doc}/>`:h.startsWith("#/")?html`<${NF}/>`:html`<main id="main"><${Hero}/><${Bento}/><${About}/><${Plans}/><${Quote}/>
+  <section className="mx-auto max-w-4xl px-5 py-28 text-center"><${Rv}><h2 className="text-4xl font-semibold tracking-tight md:text-6xl">Hablemos de <span className="bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">tu proyecto</span></h2><p className="mx-auto mb-10 mt-5 max-w-lg text-lg text-[var(--mut)]">Cuéntanos qué necesitas y recibe una propuesta clara.</p><${Glow} href=${W0}>Escribir por WhatsApp<//><//></section></main>`}
+ <footer className="border-t border-white/10 px-5 py-14 text-center text-sm text-[var(--mut)]"><div className="text-lg font-semibold text-white">Meridian <span className="font-light text-[var(--mut)]">Digital</span></div><p className="mt-3">Negocio digital de Venezuela. Atención por WhatsApp e Instagram.</p><a href=${W0} className="mt-4 inline-block text-white hover:underline">+58-422-6335576</a>
+  <nav aria-label="Legal" className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2">${[['Privacidad','privacidad'],['Términos y condiciones','terminos'],['Cookies','cookies'],['Reembolsos','reembolso']].map(l=>html`<a key=${l[1]} href=${'#/'+l[1]} className="hover:text-white">${l[0]}</a>`)}</nav>
+  <p className="mx-auto mt-6 max-w-xl text-xs">WhatsApp es una marca de Meta Platforms, Inc.; Meridian Digital no está afiliada a Meta. Las imágenes del sitio son ilustraciones propias de ejemplo.</p><p className="mt-3 text-xs">© 2026 Meridian Digital. Todos los derechos reservados.</p></footer>
+ <a href=${W0} target="_blank" rel="noopener" aria-label="Escribir por WhatsApp" className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#0428cb] text-white shadow-[0_0_30px_rgba(4,40,203,.6)] transition-transform duration-200 ease-out hover:scale-110 active:scale-95">${WAI}</a></div><//>`};
+ReactDOM.createRoot(document.getElementById('root')).render(html`<${App}/>`);
+
+/* Esfera de partículas 3D: gira con el scroll y se inclina con el mouse */
+(function(){try{
+const cv=document.getElementById('gl'),R=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});R.setPixelRatio(Math.min(devicePixelRatio,2));
+const S=new THREE.Scene(),C=new THREE.PerspectiveCamera(45,1,.1,100);C.position.z=9;
+const G=new THREE.Group();S.add(G);
+const cols=[new THREE.Color(0x34fcff),new THREE.Color(0x0428cb),new THREE.Color(0xafb4db)];
+function cloud(n,r,size,sp){const p=new Float32Array(n*3),c=new Float32Array(n*3),ga=Math.PI*(3-Math.sqrt(5));
+ for(let i=0;i<n;i++){const y=1-2*(i+.5)/n,q=Math.sqrt(1-y*y),a=i*ga,k=r*(1+(Math.random()-.5)*sp),m=Math.random(),o=cols[m<.6?0:m<.85?1:2];
+  p.set([Math.cos(a)*q*k,y*k,Math.sin(a)*q*k],i*3);c.set([o.r,o.g,o.b],i*3)}
+ const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(p,3));g.setAttribute('color',new THREE.BufferAttribute(c,3));
+ return new THREE.Points(g,new THREE.PointsMaterial({size,vertexColors:true,transparent:true,opacity:.95,depthWrite:false,blending:THREE.AdditiveBlending}))}
+const core=cloud(3400,2.4,.042,.05),shell=cloud(700,3.5,.03,.5);G.add(core,shell);
+let W,Hh,px=0,py=0;
+const rs=()=>{W=innerWidth;Hh=innerHeight;R.setSize(W,Hh,false);C.aspect=W/Hh;C.updateProjectionMatrix();G.scale.setScalar(W>900?1:.68)};
+rs();addEventListener('resize',rs);
+addEventListener('pointermove',e=>{px=e.clientX/W-.5;py=e.clientY/Hh-.5});
+const rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+(function tick(t){
+ const p=scrollY/Math.max(1,document.body.scrollHeight-Hh),k=rm?1:.06;
+ G.rotation.y+=(p*Math.PI*8+px*.5+(rm?0:t*.00008)-G.rotation.y)*k;
+ G.rotation.x+=(py*.3+.25-G.rotation.x)*k;
+ if(!rm)shell.rotation.y=-t/9000;
+ cv.style.opacity=.3+.7*Math.max(0,1-scrollY/Hh);
+ R.render(S,C);requestAnimationFrame(tick)})(0);
+}catch(e){document.getElementById('gl').style.display='none'}})();
+</script>
+</body>
+</html>
