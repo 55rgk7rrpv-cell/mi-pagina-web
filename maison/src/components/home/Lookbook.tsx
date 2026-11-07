@@ -7,11 +7,11 @@ import { useShop } from "@/context/ShopContext";
 import { PRODUCTS } from "@/lib/products";
 
 const LOOKS = [
-  { id: "maison-coat", title: "After Hours", note: "Wrap Coat over Vesper Slip" },
-  { id: "noir-blazer", title: "The Negotiator", note: "Sculpted Blazer, Sable Trouser" },
-  { id: "aurore-corset", title: "Velvet Rope", note: "Aurore Corset, Goutte d'Or" },
-  { id: "reverie-gown", title: "Entrance", note: "Rêverie Gown" },
-  { id: "minuit-bag", title: "Minuit", note: "Minuit Bag in burgundy" },
+  { id: "maison-coat", title: "Noche cerrada", note: "Abrigo Cruzado sobre Vestido Vesper" },
+  { id: "noir-blazer", title: "La negociadora", note: "Blazer Escultural, Pantalón Sable" },
+  { id: "aurore-corset", title: "Lista VIP", note: "Corsé Aurore, Dije Goutte d'Or" },
+  { id: "reverie-gown", title: "La entrada", note: "Vestido Rêverie" },
+  { id: "minuit-bag", title: "Medianoche", note: "Bolso Minuit en vinotinto" },
 ];
 
 export function Lookbook() {
@@ -26,9 +26,9 @@ export function Lookbook() {
       <div className={reduce ? "" : "sticky top-0 flex h-[100svh] flex-col justify-center overflow-hidden"}>
         <div className="mx-auto mb-10 flex w-full max-w-[1600px] items-end justify-between px-5 md:px-10">
           <h2 className="font-serif text-[clamp(2.6rem,7vw,6rem)] leading-[0.9] text-champagne">
-            The <em className="text-sand">Lookbook</em>
+            El <em className="text-sand">Lookbook</em>
           </h2>
-          <p className="hidden max-w-xs text-sm text-champagne/60 md:block">Five looks, shot after dark. Select a look to shop the piece.</p>
+          <p className="hidden max-w-xs text-sm text-champagne/60 md:block">Cinco looks, fotografiados de noche. Elige uno para comprar la pieza.</p>
         </div>
         <motion.ul
           style={reduce ? undefined : { x }}
@@ -41,7 +41,7 @@ export function Lookbook() {
                 <button
                   type="button"
                   onClick={() => openQuickView(p.id)}
-                  data-cursor="Shop"
+                  data-cursor="Comprar"
                   className="group block w-[72vw] text-left sm:w-[44vw] lg:w-[30vw]"
                 >
                   <div className="relative aspect-[4/5] overflow-hidden rounded-sm">

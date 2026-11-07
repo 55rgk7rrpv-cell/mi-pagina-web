@@ -54,21 +54,21 @@ export function validateCard(f: CardFields, now = new Date()) {
   const brand = detectBrand(digits);
   const len = brand === "amex" ? 15 : 16;
 
-  if (f.name.trim().length < 2) errors.name = "Enter the name as it appears on the card.";
-  if (digits.length !== len) errors.number = "Card number looks incomplete.";
-  else if (!luhn(digits)) errors.number = "That card number isn't valid. Check the digits.";
+  if (f.name.trim().length < 2) errors.name = "Escribe el nombre tal como aparece en la tarjeta.";
+  if (digits.length !== len) errors.number = "Al número de tarjeta le faltan dígitos.";
+  else if (!luhn(digits)) errors.number = "Ese número de tarjeta no es válido. Revisa los dígitos.";
 
   const m = f.expiry.replace(/\D/g, "");
   const month = Number(m.slice(0, 2));
   const year = 2000 + Number(m.slice(2, 4));
-  if (m.length !== 4 || month < 1 || month > 12) errors.expiry = "Use MM / YY.";
+  if (m.length !== 4 || month < 1 || month > 12) errors.expiry = "Usa el formato MM / AA.";
   else if (year < now.getFullYear() || (year === now.getFullYear() && month < now.getMonth() + 1)) {
     // Cards are valid through the last day of their expiry month.
-    errors.expiry = "This card has expired.";
+    errors.expiry = "Esta tarjeta está vencida.";
   }
 
   const cvcLen = brand === "amex" ? 4 : 3;
-  if (f.cvc.replace(/\D/g, "").length !== cvcLen) errors.cvc = `Enter the ${cvcLen}-digit security code.`;
+  if (f.cvc.replace(/\D/g, "").length !== cvcLen) errors.cvc = `Escribe el código de seguridad de ${cvcLen} dígitos.`;
 
   return errors;
 }

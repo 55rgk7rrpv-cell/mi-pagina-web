@@ -35,7 +35,7 @@ type Action =
   | { type: "clear" };
 
 const MAX_QTY = 5;
-const STORAGE_KEY = "otrapinta.bag.v1";
+const STORAGE_KEY = "otrapinta.bag.v2";
 
 function reducer(state: State, action: Action): State {
   switch (action.type) {
@@ -174,11 +174,11 @@ export function ShopProvider({ children }: { children: ReactNode }) {
   const applyPromo = useCallback(
     (raw: string) => {
       const code = raw.trim().toUpperCase();
-      if (!code) return { ok: false, message: "Enter a code." };
+      if (!code) return { ok: false, message: "Escribe un código." };
       const found = PROMOS[code];
-      if (!found) return { ok: false, message: "That code isn't recognised." };
+      if (!found) return { ok: false, message: "Ese código no existe. Revisa cómo lo escribiste." };
       if (found.min && subtotal < found.min) {
-        return { ok: false, message: `This code unlocks at a subtotal of $${found.min.toLocaleString()}.` };
+        return { ok: false, message: `Este código funciona en compras desde $${found.min.toLocaleString("en-US")}.` };
       }
       dispatch({ type: "promo", code });
       return { ok: true, message: found.label };

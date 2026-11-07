@@ -9,20 +9,20 @@ import { ProductCard } from "./ProductCard";
 import { DropCountdown } from "./DropCountdown";
 
 const SORTS = {
-  featured: "Featured",
-  newest: "Newest",
-  "price-asc": "Price, low to high",
-  "price-desc": "Price, high to low",
-  rarest: "Rarest first",
+  featured: "Destacados",
+  newest: "Más nuevos",
+  "price-asc": "Precio: menor a mayor",
+  "price-desc": "Precio: mayor a menor",
+  rarest: "Más exclusivos primero",
 } as const;
 type SortKey = keyof typeof SORTS;
 
 export function Collection() {
-  const [category, setCategory] = useState<(typeof CATEGORIES)[number]>("All");
+  const [category, setCategory] = useState<(typeof CATEGORIES)[number]>("Todo");
   const [sort, setSort] = useState<SortKey>("featured");
 
   const items = useMemo(() => {
-    const list = PRODUCTS.filter((p) => category === "All" || p.category === category);
+    const list = PRODUCTS.filter((p) => category === "Todo" || p.category === category);
     const sorted = [...list];
     switch (sort) {
       case "newest": sorted.sort((a, b) => b.arrival - a.arrival); break;
@@ -35,7 +35,7 @@ export function Collection() {
   }, [category, sort]);
 
   const counts = useMemo(
-    () => Object.fromEntries(CATEGORIES.map((c) => [c, c === "All" ? PRODUCTS.length : PRODUCTS.filter((p) => p.category === c).length])),
+    () => Object.fromEntries(CATEGORIES.map((c) => [c, c === "Todo" ? PRODUCTS.length : PRODUCTS.filter((p) => p.category === c).length])),
     [],
   );
 
@@ -45,11 +45,11 @@ export function Collection() {
         <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="mb-6 flex items-center gap-4 text-[11px] font-semibold uppercase tracking-[0.32em] text-burgundy">
-              <span className="h-px w-10 bg-burgundy" /> The Drop
+              <span className="h-px w-10 bg-burgundy" /> El lanzamiento
             </p>
             <SplitHeading
               className="font-serif text-[clamp(3rem,8vw,7.5rem)] leading-[0.9] tracking-[-0.02em]"
-              lines={["Collection", <em key="n" className="text-burgundy">Nº 07</em>]}
+              lines={["Colección", <em key="n" className="text-burgundy">Nº 07</em>]}
             />
           </div>
           <DropCountdown />
@@ -59,7 +59,7 @@ export function Collection() {
         <div className="sticky top-[76px] z-30 -mx-5 mt-14 border-y border-wine/10 bg-champagne/85 px-5 py-4 backdrop-blur-xl md:top-[88px] md:-mx-10 md:px-10">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <LayoutGroup id="filters">
-              <div role="tablist" aria-label="Filter by category" className="no-scrollbar -mx-1 flex gap-1 overflow-x-auto px-1">
+              <div role="tablist" aria-label="Filtrar por categoría" className="no-scrollbar -mx-1 flex gap-1 overflow-x-auto px-1">
                 {CATEGORIES.map((c) => {
                   const active = category === c;
                   return (
@@ -91,7 +91,7 @@ export function Collection() {
             </LayoutGroup>
 
             <label className="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-maroon/70">
-              Sort
+              Ordenar
               <span className="relative">
                 <select
                   value={sort}
@@ -108,7 +108,7 @@ export function Collection() {
           </div>
         </div>
 
-        <p className="sr-only" aria-live="polite">{items.length} pieces shown</p>
+        <p className="sr-only" aria-live="polite">{items.length} piezas</p>
 
         <motion.div layout className="mt-12 grid grid-cols-1 gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-10 lg:gap-y-20">
           <AnimatePresence mode="popLayout">

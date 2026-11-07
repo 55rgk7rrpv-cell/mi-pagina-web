@@ -18,12 +18,12 @@ export function InnerCircle() {
     <section id="inner-circle" className="relative overflow-hidden bg-champagne px-5 py-28 text-wine md:px-10 md:py-40">
       <div aria-hidden className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(242,217,160,0.9),transparent_60%)]" />
       <div className="relative mx-auto max-w-4xl text-center">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-burgundy">The Inner Circle</p>
+        <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-burgundy">El Círculo</p>
         <h2 className="mt-6 font-serif text-[clamp(2.6rem,7vw,6rem)] leading-[0.95]">
-          First access. <em className="text-burgundy">Always.</em>
+          Primero tú. <em className="text-burgundy">Siempre.</em>
         </h2>
         <p className="mx-auto mt-6 max-w-lg text-base leading-relaxed text-maroon/80">
-          Members see each drop 48 hours early and receive private styling invitations. Join and take 10% off your first piece.
+          Las miembros ven cada lanzamiento 48 horas antes y reciben invitaciones a asesorías privadas. Únete y llévate 10% de descuento en tu primera pieza.
         </p>
 
         <form onSubmit={submit} noValidate className="mx-auto mt-12 max-w-xl">
@@ -36,18 +36,18 @@ export function InnerCircle() {
                 className="flex items-center justify-center gap-3 font-serif text-2xl italic text-burgundy"
                 role="status"
               >
-                <CheckIcon /> Welcome in. Your code is <span className="not-italic font-sans text-base font-semibold tracking-[0.2em]">INNERCIRCLE</span>
+                <CheckIcon /> Bienvenida. Tu código es <span className="not-italic font-sans text-base font-semibold tracking-[0.2em]">BIENVENIDA</span>
               </motion.p>
             ) : (
               <motion.div key="form" exit={{ opacity: 0, y: -10 }}>
                 <div className={`flex items-center gap-3 border-b pb-3 transition-colors ${state === "error" ? "border-burgundy" : "border-wine/30 focus-within:border-wine"}`}>
-                  <label htmlFor="ic-email" className="sr-only">Email address</label>
+                  <label htmlFor="ic-email" className="sr-only">Correo electrónico</label>
                   <input
                     id="ic-email"
                     type="email"
                     inputMode="email"
                     autoComplete="email"
-                    placeholder="Your email address"
+                    placeholder="Tu correo electrónico"
                     value={email}
                     onChange={(e) => {
                       setEmail(e.target.value);
@@ -59,12 +59,12 @@ export function InnerCircle() {
                   />
                   <Magnetic>
                     <button type="submit" className="group inline-flex h-12 items-center gap-2 rounded-full bg-burgundy px-6 text-[11px] font-semibold uppercase tracking-[0.22em] text-champagne transition-colors hover:bg-wine">
-                      Join <ArrowIcon width={14} height={14} className="transition-transform group-hover:translate-x-1" />
+                      Unirme <ArrowIcon width={14} height={14} className="transition-transform group-hover:translate-x-1" />
                     </button>
                   </Magnetic>
                 </div>
                 {state === "error" && (
-                  <p id="ic-err" className="mt-3 text-left text-sm text-burgundy">Enter a valid email, like name@example.com.</p>
+                  <p id="ic-err" className="mt-3 text-left text-sm text-burgundy">Escribe un correo válido, por ejemplo nombre@ejemplo.com.</p>
                 )}
               </motion.div>
             )}

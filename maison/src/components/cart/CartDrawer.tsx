@@ -32,7 +32,7 @@ function Drawer({ onClose }: { onClose: () => void }) {
         ref={ref}
         role="dialog"
         aria-modal="true"
-        aria-label="Shopping bag"
+        aria-label="Bolsa de compras"
         tabIndex={-1}
         initial={{ x: "100%" }}
         animate={{ x: 0 }}
@@ -42,9 +42,9 @@ function Drawer({ onClose }: { onClose: () => void }) {
       >
         <header className="flex items-center justify-between border-b border-wine/10 px-6 py-5">
           <h2 className="font-serif text-3xl">
-            Your Bag <span className="align-top font-sans text-xs tabular-nums text-maroon/70">({count})</span>
+            Tu bolsa <span className="align-top font-sans text-xs tabular-nums text-maroon/70">({count})</span>
           </h2>
-          <button type="button" onClick={onClose} aria-label="Close bag" className="-mr-2 flex h-10 w-10 items-center justify-center rounded-full transition-colors hover:bg-wine/10">
+          <button type="button" onClick={onClose} aria-label="Cerrar bolsa" className="-mr-2 flex h-10 w-10 items-center justify-center rounded-full transition-colors hover:bg-wine/10">
             <CloseIcon />
           </button>
         </header>
@@ -57,19 +57,19 @@ function Drawer({ onClose }: { onClose: () => void }) {
 
         {lines.length === 0 ? (
           <div className="flex flex-1 flex-col items-center justify-center px-8 text-center">
-            <p className="font-serif text-4xl italic text-burgundy">Nothing here, yet.</p>
-            <p className="mt-4 max-w-xs text-sm text-maroon/75">Pieces from Collection Nº 07 are numbered and rarely last a week.</p>
+            <p className="font-serif text-4xl italic text-burgundy">Todavía no hay nada aquí.</p>
+            <p className="mt-4 max-w-xs text-sm text-maroon/75">Las piezas de la Colección Nº 07 van numeradas y casi nunca duran una semana.</p>
             <a
               href="#collection"
               onClick={onClose}
               className="mt-8 inline-flex h-12 items-center gap-2 rounded-full bg-burgundy px-7 text-[11px] font-semibold uppercase tracking-[0.22em] text-champagne transition-colors hover:bg-wine"
             >
-              Explore the collection <ArrowIcon width={14} height={14} />
+              Ver la colección <ArrowIcon width={14} height={14} />
             </a>
           </div>
         ) : (
           <>
-            <ul className="flex-1 overflow-y-auto px-6" aria-label="Items in your bag">
+            <ul className="flex-1 overflow-y-auto px-6" aria-label="Artículos en tu bolsa">
               <AnimatePresence initial={false}>
                 {lines.map((l) => (
                   <motion.li
@@ -93,11 +93,11 @@ function Drawer({ onClose }: { onClose: () => void }) {
                       </div>
                       <p className="mt-1 text-xs text-maroon/70">{l.color} · {l.size}</p>
                       <div className="mt-auto flex items-center justify-between pt-4">
-                        <div className="flex items-center rounded-full border border-wine/20" role="group" aria-label={`Quantity for ${l.product.name}`}>
+                        <div className="flex items-center rounded-full border border-wine/20" role="group" aria-label={`Cantidad de ${l.product.name}`}>
                           <button
                             type="button"
                             onClick={() => setQty(l.key, l.qty - 1)}
-                            aria-label={l.qty === 1 ? `Remove ${l.product.name}` : "Decrease quantity"}
+                            aria-label={l.qty === 1 ? `Quitar ${l.product.name}` : "Restar uno"}
                             className="flex h-9 w-9 items-center justify-center rounded-full transition-colors hover:bg-wine/10"
                           >
                             <MinusIcon width={14} height={14} />
@@ -107,14 +107,14 @@ function Drawer({ onClose }: { onClose: () => void }) {
                             type="button"
                             onClick={() => setQty(l.key, l.qty + 1)}
                             disabled={l.qty >= Math.min(maxQty, l.product.stock)}
-                            aria-label="Increase quantity"
+                            aria-label="Sumar uno"
                             className="flex h-9 w-9 items-center justify-center rounded-full transition-colors hover:bg-wine/10 disabled:opacity-30"
                           >
                             <PlusIcon width={14} height={14} />
                           </button>
                         </div>
                         <button type="button" onClick={() => remove(l.key)} className="text-[11px] font-semibold uppercase tracking-[0.18em] text-maroon/70 underline-offset-4 hover:text-burgundy hover:underline">
-                          Remove
+                          Quitar
                         </button>
                       </div>
                     </div>
@@ -133,9 +133,9 @@ function Drawer({ onClose }: { onClose: () => void }) {
               >
                 <span className="absolute inset-0 origin-left scale-x-0 bg-wine transition-transform duration-500 ease-lux group-hover:scale-x-100" />
                 <LockIcon width={14} height={14} className="relative" />
-                <span className="relative">Secure checkout</span>
+                <span className="relative">Pagar de forma segura</span>
               </button>
-              <p className="mt-3 text-center text-[11px] text-maroon/60">Taxes estimated. Free returns within 30 days.</p>
+              <p className="mt-3 text-center text-[11px] text-maroon/60">Impuestos estimados. Cambios gratis por 30 días.</p>
             </footer>
           </>
         )}
@@ -162,10 +162,10 @@ export function PromoField() {
       <div className="flex items-center justify-between rounded-full border border-burgundy/30 bg-sand/40 px-4 py-2.5 text-xs">
         <span className="flex items-center gap-2 font-semibold uppercase tracking-[0.16em] text-burgundy">
           <TagIcon width={14} height={14} /> {promo.code}
-          {!totals.promoValid && <span className="font-normal normal-case tracking-normal text-maroon/70">(not met yet)</span>}
+          {!totals.promoValid && <span className="font-normal normal-case tracking-normal text-maroon/70">(aún no aplica)</span>}
         </span>
         <button type="button" onClick={() => { clearPromo(); setMsg(null); }} className="text-[11px] uppercase tracking-[0.16em] text-maroon/70 hover:text-burgundy">
-          Remove
+          Quitar
         </button>
       </div>
     );
@@ -179,7 +179,7 @@ export function PromoField() {
         aria-expanded={open}
         className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-maroon/80 hover:text-burgundy"
       >
-        <TagIcon width={14} height={14} /> {open ? "Hide promo code" : "Add a promo code"}
+        <TagIcon width={14} height={14} /> {open ? "Ocultar código" : "Tengo un código de descuento"}
       </button>
       <AnimatePresence initial={false}>
         {open && (
@@ -192,12 +192,12 @@ export function PromoField() {
             className="overflow-hidden"
           >
             <div className="flex gap-2 pt-3">
-              <label htmlFor="promo" className="sr-only">Promo code</label>
+              <label htmlFor="promo" className="sr-only">Código de descuento</label>
               <input
                 id="promo"
                 value={code}
                 onChange={(e) => { setCode(e.target.value); setMsg(null); }}
-                placeholder="Try INNERCIRCLE"
+                placeholder="Prueba BIENVENIDA"
                 autoComplete="off"
                 aria-invalid={msg ? !msg.ok : undefined}
                 aria-describedby="promo-msg"
@@ -207,7 +207,7 @@ export function PromoField() {
                 )}
               />
               <button type="submit" className="h-11 rounded-full border border-wine px-5 text-[11px] font-semibold uppercase tracking-[0.18em] transition-colors hover:bg-wine hover:text-champagne">
-                Apply
+                Aplicar
               </button>
             </div>
             <p id="promo-msg" role="status" className={cn("min-h-5 pt-2 text-xs", msg?.ok ? "text-burgundy" : "text-burgundy/90")}>
@@ -227,9 +227,9 @@ export function Summary({ className, shipping, shippingLabel }: { className?: st
   const total = totals.subtotal - totals.discount + ship + tax;
   const rows: [string, string, boolean?][] = [
     ["Subtotal", formatPrice(totals.subtotal)],
-    ...(totals.discount ? ([["Discount", `− ${formatPrice(totals.discount)}`, true]] as [string, string, boolean][]) : []),
-    [shippingLabel ?? "Shipping", ship === 0 ? "Complimentary" : formatPrice(ship)],
-    ["Estimated tax", formatPrice(tax)],
+    ...(totals.discount ? ([["Descuento", `− ${formatPrice(totals.discount)}`, true]] as [string, string, boolean][]) : []),
+    [shippingLabel ?? "Envío", ship === 0 ? "Gratis" : formatPrice(ship)],
+    ["Impuestos estimados", formatPrice(tax)],
   ];
   return (
     <dl className={cn("space-y-2 text-sm", className)}>

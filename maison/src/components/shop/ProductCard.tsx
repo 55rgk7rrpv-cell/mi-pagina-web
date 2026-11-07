@@ -33,8 +33,8 @@ export function ProductCard({ product, index }: { product: Product; index: numbe
         <button
           type="button"
           onClick={() => openQuickView(product.id)}
-          data-cursor="View"
-          aria-label={`Quick view ${product.name}`}
+          data-cursor="Ver"
+          aria-label={`Vista rápida: ${product.name}`}
           className="absolute inset-0 block"
         >
           <ProductVisual
@@ -56,14 +56,14 @@ export function ProductCard({ product, index }: { product: Product; index: numbe
         )}
         {product.stock <= 5 && (
           <span className="pointer-events-none absolute right-3 top-3 rounded-full bg-wine/60 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.2em] text-sand backdrop-blur-sm">
-            {product.stock} left
+            Quedan {product.stock}
           </span>
         )}
 
         {/* Hover / focus actions */}
         <div className="absolute inset-x-3 bottom-3 flex translate-y-0 gap-2 opacity-100 transition-all duration-500 ease-lux md:translate-y-4 md:opacity-0 md:group-focus-within:translate-y-0 md:group-focus-within:opacity-100 md:group-hover:translate-y-0 md:group-hover:opacity-100">
           {sizePicker ? (
-            <div role="group" aria-label={`Choose a size for ${product.name}`} className="flex flex-1 items-center gap-1 rounded-full bg-champagne/95 p-1 backdrop-blur">
+            <div role="group" aria-label={`Elige la talla de ${product.name}`} className="flex flex-1 items-center gap-1 rounded-full bg-champagne/95 p-1 backdrop-blur">
               {product.sizes.map((s) => (
                 <button
                   key={s}
@@ -82,12 +82,12 @@ export function ProductCard({ product, index }: { product: Product; index: numbe
                 onClick={() => (oneSize ? quickAdd(product.sizes[0]) : setSizePicker(true))}
                 className="flex h-11 flex-1 items-center justify-center gap-2 rounded-full bg-champagne/95 text-[11px] font-semibold uppercase tracking-[0.2em] text-wine backdrop-blur transition-colors hover:bg-sand"
               >
-                <PlusIcon width={14} height={14} /> Quick add
+                <PlusIcon width={14} height={14} /> Añadir rápido
               </button>
               <button
                 type="button"
                 onClick={() => openQuickView(product.id)}
-                aria-label={`Quick view ${product.name}`}
+                aria-label={`Vista rápida: ${product.name}`}
                 className="flex h-11 w-11 items-center justify-center rounded-full border border-champagne/50 bg-wine/40 text-champagne backdrop-blur transition-colors hover:bg-champagne hover:text-wine"
               >
                 <EyeIcon width={16} height={16} />
@@ -104,7 +104,7 @@ export function ProductCard({ product, index }: { product: Product; index: numbe
         </div>
         <div className="text-right">
           <p className="text-sm font-medium tabular-nums text-wine">{formatPrice(product.price)}</p>
-          <div className="mt-2 flex justify-end gap-1.5" aria-label={`Available in ${product.colors.map((c) => c.name).join(", ")}`}>
+          <div className="mt-2 flex justify-end gap-1.5" aria-label={`Disponible en ${product.colors.map((c) => c.name).join(", ")}`}>
             {product.colors.map((c) => (
               <span key={c.name} title={c.name} className="h-3 w-3 rounded-full ring-1 ring-wine/20" style={{ background: c.hex }} />
             ))}

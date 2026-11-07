@@ -35,7 +35,7 @@ const cleanHead = head
 const page =
   `<title>Otra Pinta</title>\n` +
   // The host owns <html>; re-apply the font variable classes it would carry.
-  `<script>document.documentElement.className=${JSON.stringify(htmlClass)};document.documentElement.lang="en"</script>\n` +
+  `<script>document.documentElement.className=${JSON.stringify(htmlClass)};document.documentElement.lang="es"</script>\n` +
   rewrite(cleanHead + "\n" + body) + "\n";
 fs.writeFileSync(path.join(dest, "index.html"), page);
 

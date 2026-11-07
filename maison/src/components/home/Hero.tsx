@@ -29,7 +29,7 @@ export function Hero() {
   return (
     <section
       ref={ref}
-      aria-label="Collection Nº 07"
+      aria-label="Colección Nº 07"
       className="grain relative isolate flex min-h-[100svh] items-center overflow-hidden bg-wine pb-24 pt-32 md:pt-28"
       onPointerMove={(e) => {
         if (reduce || e.pointerType !== "mouse") return;
@@ -54,18 +54,18 @@ export function Hero() {
             className="mb-8 flex items-center gap-4 text-[11px] font-medium uppercase tracking-[0.32em] text-sand"
           >
             <span className="h-px w-10 bg-sand" />
-            Collection Nº 07, Autumn / Winter
+            Colección Nº 07 · Edición limitada
           </motion.p>
 
           <SplitHeading
             as="h1"
             immediate
             delay={0.03}
-            className="font-serif text-[clamp(3.4rem,11vw,10.5rem)] font-normal leading-[0.88] tracking-[-0.02em] text-champagne"
+            className="font-serif text-[clamp(3.4rem,9vw,8.75rem)] font-normal leading-[0.88] tracking-[-0.02em] text-champagne"
             lines={[
-              "Not for",
+              "No es para",
               <span key="e">
-                <em className="text-gold-gradient animate-shimmer pr-[0.04em] font-normal">everyone</em>
+                <em className="text-gold-gradient animate-shimmer pr-[0.04em] font-normal">cualquiera</em>
                 <span className="text-sand">.</span>
               </span>,
             ]}
@@ -78,17 +78,17 @@ export function Hero() {
             className="mt-10 flex max-w-xl flex-col gap-10"
           >
             <p className="text-base leading-relaxed text-champagne/70 md:text-lg">
-              Twelve pieces. Numbered editions, cut in a single run and never restocked. Once a piece is gone, it is gone.
+              Doce piezas. Ediciones numeradas, hechas en una sola tanda y nunca repuestas. Cuando una pieza se agota, se agota.
             </p>
             <div className="flex flex-wrap items-center gap-4">
               <Magnetic>
                 <Link
                   href="#collection"
-                  data-cursor="Shop"
+                  data-cursor="Comprar"
                   className="group relative inline-flex h-14 items-center gap-3 overflow-hidden rounded-full bg-sand px-8 text-xs font-semibold uppercase tracking-[0.24em] text-wine"
                 >
                   <span className="absolute inset-0 origin-bottom scale-y-0 bg-champagne transition-transform duration-500 ease-lux group-hover:scale-y-100" />
-                  <span className="relative">Shop the drop</span>
+                  <span className="relative">Ver la colección</span>
                   <ArrowIcon className="relative transition-transform duration-500 ease-lux group-hover:translate-x-1" width={16} height={16} />
                 </Link>
               </Magnetic>
@@ -97,7 +97,7 @@ export function Hero() {
                   href="#lookbook"
                   className="inline-flex h-14 items-center rounded-full border border-champagne/30 px-8 text-xs font-medium uppercase tracking-[0.24em] text-champagne transition-colors duration-500 hover:border-sand hover:text-sand"
                 >
-                  View lookbook
+                  Ver lookbook
                 </Link>
               </Magnetic>
             </div>
@@ -112,15 +112,15 @@ export function Hero() {
           <motion.button
             type="button"
             onClick={() => openQuickView("vesper-slip")}
-            data-cursor="View"
-            aria-label="Quick view Vesper Slip Dress"
+            data-cursor="Ver"
+            aria-label="Vista rápida del Vestido Vesper"
             initial={{ clipPath: "inset(100% 0 0 0 round 999px 999px 0 0)", scale: 1.08 }}
             animate={{ clipPath: "inset(0% 0 0 0 round 999px 999px 0 0)", scale: 1 }}
             transition={{ duration: 1.6, ease, delay: 0.35 }}
             style={reduce ? undefined : { rotateX: rx, rotateY: ry }}
             className="relative block aspect-[4/5] w-full overflow-hidden rounded-t-full border border-sand/25 shadow-[0_60px_120px_-30px_rgba(0,0,0,0.6)]"
           >
-            <GarmentArt silhouette="slip" tone="noir" className="h-full w-full" label="Vesper Slip Dress in sand gold silk" />
+            <GarmentArt silhouette="slip" tone="noir" className="h-full w-full" label="Vestido Vesper en seda dorada" />
             <span className="pointer-events-none absolute inset-0 bg-[linear-gradient(115deg,transparent_40%,rgba(242,217,160,0.12)_50%,transparent_60%)]" />
           </motion.button>
 
@@ -130,8 +130,8 @@ export function Hero() {
             transition={{ duration: 1, ease, delay: 1.3 }}
             className="absolute -left-4 bottom-10 rounded-2xl border border-sand/20 bg-wine/70 px-5 py-4 backdrop-blur-md md:-left-10"
           >
-            <p className="text-[10px] uppercase tracking-[0.28em] text-sand/80">Vesper Slip Dress</p>
-            <p className="mt-1 font-serif text-2xl text-champagne">Nº 113 of 120</p>
+            <p className="text-[10px] uppercase tracking-[0.28em] text-sand/80">Vestido Vesper</p>
+            <p className="mt-1 font-serif text-2xl text-champagne">Nº 113 de 120</p>
           </motion.div>
 
           <motion.div
@@ -146,7 +146,7 @@ export function Hero() {
                 <path id="circ" d="M50 50 m-38 0 a38 38 0 1 1 76 0 a38 38 0 1 1 -76 0" />
               </defs>
               <text fill="#F2D9A0" fontSize="9.4" letterSpacing="3.2">
-                <textPath href="#circ">NUMBERED · NEVER RESTOCKED ·</textPath>
+                <textPath href="#circ">NUMERADAS · NUNCA REPUESTAS ·</textPath>
               </text>
             </svg>
             <span className="absolute inset-0 m-auto h-2 w-2 rounded-full bg-sand" />
@@ -161,7 +161,7 @@ export function Hero() {
         transition={{ delay: 1.8 }}
         className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-3 text-[10px] uppercase tracking-[0.3em] text-champagne/50 md:flex"
       >
-        Scroll
+        Desliza
         <span className="relative h-12 w-px overflow-hidden bg-champagne/15">
           <motion.span
             className="absolute inset-x-0 top-0 h-1/2 bg-sand"

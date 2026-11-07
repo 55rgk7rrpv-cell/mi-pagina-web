@@ -9,15 +9,15 @@ export function ShippingProgress({ progress, remaining }: { progress: number; re
     <div>
       <p className="text-xs text-maroon/85" aria-live="polite">
         {done ? (
-          <span className="font-semibold text-burgundy">✦ You&apos;ve unlocked complimentary express shipping.</span>
+          <span className="font-semibold text-burgundy">✦ Desbloqueaste el envío express gratis.</span>
         ) : (
-          <>You&apos;re <span className="font-semibold text-burgundy tabular-nums">{formatPrice(remaining)}</span> away from complimentary express shipping.</>
+          <>Te faltan <span className="font-semibold text-burgundy tabular-nums">{formatPrice(remaining)}</span> para el envío express gratis.</>
         )}
       </p>
       <div
         className="relative mt-3 h-1 overflow-hidden rounded-full bg-wine/10"
         role="progressbar"
-        aria-label="Progress to complimentary shipping"
+        aria-label="Progreso hacia el envío gratis"
         aria-valuemin={0}
         aria-valuemax={100}
         aria-valuenow={Math.round(progress * 100)}

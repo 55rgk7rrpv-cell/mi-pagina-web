@@ -20,10 +20,10 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   title: "Otra Pinta",
   description:
-    "Otra Pinta: numbered, never-restocked womenswear. Follow @otrapintapzo on Instagram.",
+    "Otra Pinta: moda femenina en ediciones numeradas que nunca se reponen. Síguenos en Instagram: @otrapintapzo.",
   openGraph: {
-    title: "Otra Pinta | Not for everyone.",
-    description: "Numbered pieces, never restocked.",
+    title: "Otra Pinta | No es para cualquiera.",
+    description: "Piezas numeradas que nunca se reponen.",
     type: "website",
   },
 };
@@ -37,10 +37,10 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${bodoni.variable} ${manrope.variable}`}>
+    <html lang="es" className={`${bodoni.variable} ${manrope.variable}`}>
       <body>
         <a href="#main" className="sr-only z-[300] rounded-full bg-sand px-5 py-3 text-wine focus:not-sr-only focus:fixed focus:left-4 focus:top-4">
-          Skip to content
+          Saltar al contenido
         </a>
         <Providers>{children}</Providers>
       </body>

@@ -1,7 +1,7 @@
 
 const COLS = [
-  { title: "Otra Pinta", items: ["The Collection", "Lookbook", "Inner Circle"] },
-  { title: "Client Care", items: ["Shipping & Returns", "Size Guide", "Private Appointments", "Contact"] },
+  { title: "Otra Pinta", items: ["La colección", "Lookbook", "El Círculo"] },
+  { title: "Atención", items: ["Envíos y cambios", "Guía de tallas", "Citas privadas", "Contacto"] },
   ];
 
 export function Footer() {
@@ -11,12 +11,12 @@ export function Footer() {
         <div className="grid gap-14 md:grid-cols-[1.4fr_repeat(3,1fr)]">
           <div>
             <p className="font-serif text-3xl leading-tight md:text-4xl">
-              Made in small numbers,
+              Hecho en pocas piezas,
               <br />
-              <em className="text-sand">for the few.</em>
+              <em className="text-sand">para pocas.</em>
             </p>
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-champagne/60">
-              Every Otra Pinta piece is numbered, made in a single run, and never restocked.
+              Cada pieza de Otra Pinta va numerada, se hace en una sola tanda y nunca se repone.
             </p>
           </div>
           {COLS.map((c) => (
@@ -32,7 +32,7 @@ export function Footer() {
             </div>
           ))}
           <div>
-            <h3 className="text-[11px] font-medium uppercase tracking-[0.24em] text-sand">Follow</h3>
+            <h3 className="text-[11px] font-medium uppercase tracking-[0.24em] text-sand">Síguenos</h3>
             <a
               href="https://www.instagram.com/otrapintapzo/"
               target="_blank"
@@ -55,7 +55,7 @@ export function Footer() {
         <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-sand/15 pt-6 text-[11px] uppercase tracking-[0.2em] text-champagne/50 md:flex-row">
           <span>© {new Date().getFullYear()} Otra Pinta</span>
           <span>Puerto Ordaz · Venezuela</span>
-          <span>Privacy · Terms · Accessibility</span>
+          <span>Privacidad · Términos · Accesibilidad</span>
         </div>
       </div>
     </footer>

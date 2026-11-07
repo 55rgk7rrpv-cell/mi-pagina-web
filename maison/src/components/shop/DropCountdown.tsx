@@ -30,8 +30,8 @@ export function DropCountdown() {
         });
 
   return (
-    <div className="flex items-center gap-4" aria-label="Time until the next drop">
-      <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-burgundy">Next drop in</span>
+    <div className="flex items-center gap-4" aria-label="Tiempo para el próximo lanzamiento">
+      <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-burgundy">Próximo lanzamiento en</span>
       <div className="flex gap-3 font-serif text-2xl tabular-nums text-wine md:text-3xl" aria-live="off">
         {parts.map((p, i) => (
           <span key={i} className="flex items-baseline gap-1">

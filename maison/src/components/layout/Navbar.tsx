@@ -8,10 +8,10 @@ import { Magnetic } from "@/components/ui/Magnetic";
 import { cn } from "@/lib/format";
 
 const LINKS = [
-  { href: "#collection", label: "Collection" },
+  { href: "#collection", label: "Colección" },
   { href: "#lookbook", label: "Lookbook" },
-  { href: "#manifesto", label: "Otra Pinta" },
-  { href: "#inner-circle", label: "Inner Circle" },
+  { href: "#manifesto", label: "Nosotras" },
+  { href: "#inner-circle", label: "El Círculo" },
 ];
 
 export function Navbar() {
@@ -40,7 +40,7 @@ export function Navbar() {
             scrolled ? "mt-3 max-w-6xl rounded-full border border-sand/15 bg-wine/70 py-3 backdrop-blur-xl md:mt-4" : "max-w-[1600px] py-6",
           )}
         >
-          <nav aria-label="Primary" className="hidden flex-1 items-center gap-8 md:flex">
+          <nav aria-label="Principal" className="hidden flex-1 items-center gap-8 md:flex">
             {LINKS.map((l) => (
               <a
                 key={l.href}
@@ -55,7 +55,7 @@ export function Navbar() {
 
           <button
             type="button"
-            aria-label="Open menu"
+            aria-label="Abrir menú"
             aria-expanded={menu}
             onClick={() => setMenu(true)}
             className="-ml-2 flex h-10 w-10 items-center justify-center text-champagne md:hidden"
@@ -68,17 +68,17 @@ export function Navbar() {
           </a>
 
           <div className="flex flex-1 items-center justify-end gap-6">
-            <span className="hidden text-[11px] uppercase tracking-[0.24em] text-champagne/60 lg:inline">Collection Nº 07</span>
+            <span className="hidden text-[11px] uppercase tracking-[0.24em] text-champagne/60 lg:inline">Colección Nº 07</span>
             <Magnetic strength={0.4}>
               <button
                 type="button"
                 onClick={openCart}
-                data-cursor="Bag"
-                aria-label={`Open bag, ${count} ${count === 1 ? "item" : "items"}`}
+                data-cursor="Bolsa"
+                aria-label={`Abrir bolsa, ${count} ${count === 1 ? "artículo" : "artículos"}`}
                 className="relative flex h-11 items-center gap-2 rounded-full border border-sand/30 px-4 text-[11px] font-medium uppercase tracking-[0.22em] text-champagne transition-colors hover:border-sand hover:bg-sand hover:text-wine"
               >
                 <BagIcon width={16} height={16} />
-                <span className="hidden sm:inline">Bag</span>
+                <span className="hidden sm:inline">Bolsa</span>
                 <span className="tabular-nums">({hydrated ? count : 0})</span>
                 <AnimatePresence>
                   {count > 0 && (
@@ -107,15 +107,15 @@ export function Navbar() {
             transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
             role="dialog"
             aria-modal="true"
-            aria-label="Menu"
+            aria-label="Menú"
           >
             <div className="flex items-center justify-between">
               <span className="font-serif text-2xl tracking-[0.26em]">OTRA PINTA</span>
-              <button type="button" aria-label="Close menu" onClick={() => setMenu(false)} className="flex h-10 w-10 items-center justify-center">
+              <button type="button" aria-label="Cerrar menú" onClick={() => setMenu(false)} className="flex h-10 w-10 items-center justify-center">
                 <CloseIcon />
               </button>
             </div>
-            <nav aria-label="Mobile" className="mt-16 flex flex-col gap-2">
+            <nav aria-label="Menú móvil" className="mt-16 flex flex-col gap-2">
               {LINKS.map((l, i) => (
                 <motion.div key={l.href} initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.25 + i * 0.07, duration: 0.6 }}>
                   <a href={l.href} onClick={() => setMenu(false)} className="block py-2 font-serif text-5xl italic text-champagne">
@@ -124,7 +124,7 @@ export function Navbar() {
                 </motion.div>
               ))}
             </nav>
-            <p className="mt-auto text-xs uppercase tracking-[0.24em] text-sand/70">Collection Nº 07 · Numbered pieces</p>
+            <p className="mt-auto text-xs uppercase tracking-[0.24em] text-sand/70">Colección Nº 07 · Piezas numeradas</p>
           </motion.div>
         )}
       </AnimatePresence>

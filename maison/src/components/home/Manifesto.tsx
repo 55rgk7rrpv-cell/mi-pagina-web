@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform, type MotionValue } from "framer-motion
 import { useRef } from "react";
 
 const TEXT =
-  "We make very few things, and we make them properly. No seasons of excess, no restocks, no compromise. Each piece is numbered by hand, because rare should mean something.";
+  "Hacemos muy pocas cosas, y las hacemos bien. Sin temporadas de exceso, sin reposiciones, sin atajos. Cada pieza va numerada a mano, porque lo exclusivo tiene que significar algo.";
 
 function Word({ word, progress, range }: { word: string; progress: MotionValue<number>; range: [number, number] }) {
   const opacity = useTransform(progress, range, [0.14, 1]);
@@ -26,7 +26,7 @@ export function Manifesto() {
       <div aria-hidden className="absolute -right-40 top-1/2 h-[60vmax] w-[60vmax] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(242,217,160,0.12),transparent_60%)]" />
       <div className="relative mx-auto max-w-6xl">
         <p className="mb-12 flex items-center gap-4 text-[11px] font-medium uppercase tracking-[0.32em] text-sand">
-          <span className="h-px w-10 bg-sand" /> The Maison
+          <span className="h-px w-10 bg-sand" /> Otra Pinta
         </p>
         <div ref={ref}>
           <p className="sr-only">{TEXT}</p>
@@ -38,9 +38,9 @@ export function Manifesto() {
         </div>
         <div className="mt-20 grid gap-10 border-t border-sand/20 pt-10 sm:grid-cols-3">
           {[
-            ["40h", "of hand finishing in every tailored piece"],
-            ["≤ 200", "pieces per style, numbered by hand"],
-            ["0", "restocks. Ever."],
+            ["40 h", "de terminación a mano en cada pieza de sastrería"],
+            ["≤ 200", "piezas por modelo, numeradas a mano"],
+            ["0", "reposiciones. Nunca."],
           ].map(([n, l]) => (
             <div key={n}>
               <p className="font-serif text-5xl text-sand md:text-6xl">{n}</p>

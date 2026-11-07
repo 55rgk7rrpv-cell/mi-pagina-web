@@ -11,9 +11,9 @@ export interface Promo {
 }
 
 export const PROMOS: Record<string, Promo> = {
-  INNERCIRCLE: { code: "INNERCIRCLE", label: "Inner Circle, 10% off", kind: "percent", value: 10 },
-  NOTFOREVERYONE: { code: "NOTFOREVERYONE", label: "15% off orders over $1,500", kind: "percent", value: 15, min: 1500 },
-  FREESHIP: { code: "FREESHIP", label: "Complimentary express shipping", kind: "shipping", value: 0 },
+  BIENVENIDA: { code: "BIENVENIDA", label: "El Círculo: 10% de descuento", kind: "percent", value: 10 },
+  OTRAPINTA: { code: "OTRAPINTA", label: "15% de descuento en compras desde $1,500", kind: "percent", value: 15, min: 1500 },
+  ENVIOGRATIS: { code: "ENVIOGRATIS", label: "Envío express gratis", kind: "shipping", value: 0 },
 };
 
 export function computeTotals(subtotal: number, promo: Promo | null, shippingOverride?: number) {

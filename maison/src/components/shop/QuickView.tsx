@@ -89,7 +89,7 @@ function QuickViewPanel({ id, onClose }: { id: string; onClose: () => void }) {
                   view === v ? "bg-champagne text-wine" : "bg-wine/40 text-champagne hover:bg-wine/70",
                 )}
               >
-                {v === "still" ? "Studio" : "Lookbook"}
+                {v === "still" ? "Estudio" : "Lookbook"}
               </button>
             ))}
           </div>
@@ -98,9 +98,9 @@ function QuickViewPanel({ id, onClose }: { id: string; onClose: () => void }) {
         <div className="flex flex-col p-6 md:max-h-[86svh] md:overflow-y-auto md:p-10">
           <div className="flex items-start justify-between gap-6">
             <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-burgundy">
-              {product.category} · Edition of {product.edition}
+              {product.category} · Edición de {product.edition}
             </p>
-            <button type="button" onClick={onClose} aria-label="Close quick view" className="-mr-2 -mt-2 flex h-10 w-10 items-center justify-center rounded-full transition-colors hover:bg-wine/10">
+            <button type="button" onClick={onClose} aria-label="Cerrar vista rápida" className="-mr-2 -mt-2 flex h-10 w-10 items-center justify-center rounded-full transition-colors hover:bg-wine/10">
               <CloseIcon />
             </button>
           </div>
@@ -111,7 +111,7 @@ function QuickViewPanel({ id, onClose }: { id: string; onClose: () => void }) {
 
           <fieldset className="mt-8">
             <legend className="text-[11px] font-semibold uppercase tracking-[0.2em]">
-              Colour <span className="ml-2 font-normal normal-case tracking-normal text-maroon/70">{color}</span>
+              Color <span className="ml-2 font-normal normal-case tracking-normal text-maroon/70">{color}</span>
             </legend>
             <div className="mt-3 flex gap-3">
               {product.colors.map((c) => (
@@ -130,7 +130,7 @@ function QuickViewPanel({ id, onClose }: { id: string; onClose: () => void }) {
 
           <fieldset className="mt-7">
             <legend className="flex w-full items-center justify-between text-[11px] font-semibold uppercase tracking-[0.2em]">
-              Size
+              Talla
             </legend>
             <div className="mt-3 flex flex-wrap gap-2">
               {product.sizes.map((s) => (
@@ -151,7 +151,7 @@ function QuickViewPanel({ id, onClose }: { id: string; onClose: () => void }) {
             <AnimatePresence>
               {error && (
                 <motion.p initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="mt-3 text-sm text-burgundy" role="alert">
-                  Choose a size to add this piece to your bag.
+                  Elige una talla para añadir esta pieza a tu bolsa.
                 </motion.p>
               )}
             </AnimatePresence>
@@ -165,11 +165,11 @@ function QuickViewPanel({ id, onClose }: { id: string; onClose: () => void }) {
                 className="group relative flex h-14 w-full items-center justify-center overflow-hidden rounded-full bg-burgundy text-xs font-semibold uppercase tracking-[0.24em] text-champagne"
               >
                 <span className="absolute inset-0 origin-left scale-x-0 bg-wine transition-transform duration-500 ease-lux group-hover:scale-x-100" />
-                <span className="relative">Add to bag · {formatPrice(product.price)}</span>
+                <span className="relative">Añadir a la bolsa · {formatPrice(product.price)}</span>
               </button>
             </Magnetic>
             <p className="mt-3 text-center text-xs text-maroon/70">
-              {product.stock <= 5 ? `Only ${product.stock} numbered pieces remain.` : "Complimentary shipping over $1,000 · Free returns within 30 days"}
+              {product.stock <= 5 ? `Solo quedan ${product.stock} piezas numeradas.` : "Envío gratis desde $1,000 · Cambios gratis por 30 días"}
             </p>
           </div>
 

@@ -37,12 +37,12 @@ export function CardPreview({ number, name, expiry, cvc, brand, flipped }: { num
             <p className="mt-auto font-mono text-[clamp(1rem,4.6vw,1.3rem)] tracking-[0.12em] tabular-nums">{masked}</p>
             <div className="mt-4 flex items-end justify-between text-[10px] uppercase tracking-[0.18em]">
               <div className="min-w-0">
-                <p className="text-champagne/50">Card holder</p>
-                <p className="mt-1 truncate text-xs text-champagne">{name || "Your name"}</p>
+                <p className="text-champagne/50">Titular</p>
+                <p className="mt-1 truncate text-xs text-champagne">{name || "Tu nombre"}</p>
               </div>
               <div className="text-right">
-                <p className="text-champagne/50">Expires</p>
-                <p className="mt-1 text-xs tabular-nums text-champagne">{expiry || "MM / YY"}</p>
+                <p className="text-champagne/50">Vence</p>
+                <p className="mt-1 text-xs tabular-nums text-champagne">{expiry || "MM / AA"}</p>
               </div>
             </div>
           </div>
@@ -53,7 +53,7 @@ export function CardPreview({ number, name, expiry, cvc, brand, flipped }: { num
           <div className="mx-6 mt-6 flex items-center justify-end rounded bg-champagne/90 px-3 py-2 font-mono text-sm tracking-widest text-wine">
             {cvc || "•••"}
           </div>
-          <p className="mx-6 mt-4 text-[9px] uppercase tracking-[0.2em] text-champagne/50">Security code</p>
+          <p className="mx-6 mt-4 text-[9px] uppercase tracking-[0.2em] text-champagne/50">Código de seguridad</p>
         </div>
       </motion.div>
     </div>
