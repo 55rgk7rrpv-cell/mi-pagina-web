@@ -64,8 +64,8 @@ export function Hero() {
             className="font-serif text-[clamp(3.4rem,11vw,10.5rem)] font-normal leading-[0.88] tracking-[-0.02em] text-champagne"
             lines={[
               "Not for",
-              <span key="e" className="flex items-baseline gap-[0.18em]">
-                <em className="text-gold-gradient animate-shimmer pr-[0.06em] font-normal">everyone</em>
+              <span key="e">
+                <em className="text-gold-gradient animate-shimmer pr-[0.04em] font-normal">everyone</em>
                 <span className="text-sand">.</span>
               </span>,
             ]}

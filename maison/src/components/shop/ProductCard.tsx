@@ -55,7 +55,7 @@ export function ProductCard({ product, index }: { product: Product; index: numbe
           </span>
         )}
         {product.stock <= 5 && (
-          <span className="pointer-events-none absolute right-3 top-3 text-[10px] font-medium uppercase tracking-[0.2em] text-sand">
+          <span className="pointer-events-none absolute right-3 top-3 rounded-full bg-wine/60 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.2em] text-sand backdrop-blur-sm">
             {product.stock} left
           </span>
         )}

@@ -54,7 +54,7 @@ export function SplitHeading({
   return (
     <Tag className={className}>
       {lines.map((line, i) => (
-        <span key={i} className="block overflow-hidden pb-[0.08em]">
+        <span key={i} className="-mb-[0.1em] block overflow-hidden pb-[0.18em]">
           <motion.span
             className={`block ${lineClassName ?? ""}`}
             custom={i + delay * 10}
