@@ -18,12 +18,12 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Aurèle | Collection Nº 07, numbered luxury womenswear",
+  title: "Otra Pinta",
   description:
-    "Aurèle makes numbered, never-restocked womenswear. Silk slip dresses, sculpted tailoring and cashmere in editions of 200 or fewer.",
+    "Otra Pinta: numbered, never-restocked womenswear. Follow @otrapintapzo on Instagram.",
   openGraph: {
-    title: "Aurèle | Not for everyone.",
-    description: "Collection Nº 07. Numbered pieces, never restocked.",
+    title: "Otra Pinta | Not for everyone.",
+    description: "Numbered pieces, never restocked.",
     type: "website",
   },
 };

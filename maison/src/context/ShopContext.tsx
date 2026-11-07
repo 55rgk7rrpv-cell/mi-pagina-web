@@ -35,7 +35,7 @@ type Action =
   | { type: "clear" };
 
 const MAX_QTY = 5;
-const STORAGE_KEY = "aurele.bag.v1";
+const STORAGE_KEY = "otrapinta.bag.v1";
 
 function reducer(state: State, action: Action): State {
   switch (action.type) {
@@ -102,6 +102,10 @@ interface ShopValue {
   cartOpen: boolean;
   openCart: () => void;
   closeCart: () => void;
+  checkoutOpen: boolean;
+  openCheckout: () => void;
+  /** Leave checkout, optionally landing on a section id */
+  leaveCheckout: (section?: string) => void;
   quickViewId: string | null;
   openQuickView: (id: string) => void;
   closeQuickView: () => void;
@@ -115,6 +119,16 @@ export function ShopProvider({ children }: { children: ReactNode }) {
   const [hydrated, setHydrated] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   const [quickViewId, setQuickViewId] = useState<string | null>(null);
+  const [checkoutOpen, setCheckoutOpen] = useState(false);
+
+  // Checkout lives on the same page at #checkout, so the back button works
+  // and the whole store can be served as a single static page.
+  useEffect(() => {
+    const sync = () => setCheckoutOpen(window.location.hash === "#checkout");
+    sync();
+    window.addEventListener("hashchange", sync);
+    return () => window.removeEventListener("hashchange", sync);
+  }, []);
 
   // Restore the bag after mount so server and client markup match.
   useEffect(() => {
@@ -187,6 +201,14 @@ export function ShopProvider({ children }: { children: ReactNode }) {
     cartOpen,
     openCart: () => setCartOpen(true),
     closeCart: () => setCartOpen(false),
+    checkoutOpen,
+    openCheckout: () => {
+      setCartOpen(false);
+      window.location.hash = "checkout";
+    },
+    leaveCheckout: (section) => {
+      window.location.hash = section ?? "top";
+    },
     quickViewId,
     openQuickView: (id) => setQuickViewId(id),
     closeQuickView: () => setQuickViewId(null),

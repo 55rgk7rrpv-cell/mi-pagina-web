@@ -28,7 +28,7 @@ export function CardPreview({ number, name, expiry, cvc, brand, flipped }: { num
           <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(242,217,160,0.35),transparent_65%)]" />
           <div className="relative flex h-full flex-col">
             <div className="flex items-center justify-between">
-              <span className="font-serif text-lg tracking-[0.3em]">AURÈLE</span>
+              <span className="font-serif text-base tracking-[0.24em]">OTRA PINTA</span>
               <motion.span key={brand} initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} className="text-sm font-semibold italic tracking-wider text-sand">
                 {BRAND_LABEL[brand]}
               </motion.span>

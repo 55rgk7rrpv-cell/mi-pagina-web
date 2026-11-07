@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { useMemo, useState, type FormEvent } from "react";
 import { useShop } from "@/context/ShopContext";
@@ -20,7 +19,7 @@ const STEPS = ["Information", "Delivery", "Payment"] as const;
 const METHODS = [
   { id: "express", label: "Atelier Express", note: "1–2 business days, signature required", cost: 35 },
   { id: "white-glove", label: "White-glove delivery", note: "Hand-delivered in garment bag, by appointment", cost: 85 },
-  { id: "pickup", label: "Boutique collection", note: "Paris · Milan · Caracas, ready in 24 hours", cost: 0 },
+  { id: "pickup", label: "Boutique collection", note: "Puerto Ordaz, ready in 24 hours", cost: 0 },
 ] as const;
 
 const PAY = [
@@ -124,9 +123,9 @@ export function CheckoutFlow() {
       <div className="mx-auto flex min-h-[70svh] max-w-lg flex-col items-center justify-center px-5 text-center">
         <p className="font-serif text-5xl italic text-burgundy">Your bag is empty.</p>
         <p className="mt-4 text-maroon/75">Add a piece from Collection Nº 07 to begin checkout.</p>
-        <Link href="/#collection" className="mt-8 inline-flex h-12 items-center gap-2 rounded-full bg-burgundy px-7 text-[11px] font-semibold uppercase tracking-[0.22em] text-champagne hover:bg-wine">
+        <a href="#collection" className="mt-8 inline-flex h-12 items-center gap-2 rounded-full bg-burgundy px-7 text-[11px] font-semibold uppercase tracking-[0.22em] text-champagne hover:bg-wine">
           Back to the collection <ArrowIcon width={14} height={14} />
-        </Link>
+        </a>
       </div>
     );
   }
@@ -339,7 +338,7 @@ export function CheckoutFlow() {
                   ← Back to {STEPS[step - 1].toLowerCase()}
                 </button>
               ) : (
-                <Link href="/#collection" className="text-[11px] font-semibold uppercase tracking-[0.2em] text-maroon/75 hover:text-burgundy">← Continue shopping</Link>
+                <a href="#collection" className="text-[11px] font-semibold uppercase tracking-[0.2em] text-maroon/75 hover:text-burgundy">← Continue shopping</a>
               )}
               <button
                 type="submit"
@@ -460,9 +459,9 @@ function Confirmation({ order }: { order: { id: string; total: number; email: st
           We&apos;ve sent a confirmation to <span className="font-medium text-wine">{order.email || "the email on your wallet"}</span>. Your numbered pieces are being wrapped by hand in our atelier.
         </p>
         <p className="mt-6 font-serif text-3xl tabular-nums">{formatPrice(order.total)}</p>
-        <Link href="/" className="mt-10 inline-flex h-12 items-center gap-2 rounded-full bg-burgundy px-7 text-[11px] font-semibold uppercase tracking-[0.22em] text-champagne hover:bg-wine">
-          Return to the maison <ArrowIcon width={14} height={14} />
-        </Link>
+        <a href="#top" className="mt-10 inline-flex h-12 items-center gap-2 rounded-full bg-burgundy px-7 text-[11px] font-semibold uppercase tracking-[0.22em] text-champagne hover:bg-wine">
+          Return to the shop <ArrowIcon width={14} height={14} />
+        </a>
       </motion.div>
     </div>
   );

@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "export:artifact": "STATIC_EXPORT=1 next build && node scripts/artifact.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",

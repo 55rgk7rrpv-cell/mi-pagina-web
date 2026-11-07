@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { useState } from "react";
 import { useShop } from "@/context/ShopContext";
@@ -9,10 +8,10 @@ import { Magnetic } from "@/components/ui/Magnetic";
 import { cn } from "@/lib/format";
 
 const LINKS = [
-  { href: "/#collection", label: "Collection" },
-  { href: "/#lookbook", label: "Lookbook" },
-  { href: "/#manifesto", label: "Maison" },
-  { href: "/#inner-circle", label: "Inner Circle" },
+  { href: "#collection", label: "Collection" },
+  { href: "#lookbook", label: "Lookbook" },
+  { href: "#manifesto", label: "Otra Pinta" },
+  { href: "#inner-circle", label: "Inner Circle" },
 ];
 
 export function Navbar() {
@@ -43,14 +42,14 @@ export function Navbar() {
         >
           <nav aria-label="Primary" className="hidden flex-1 items-center gap-8 md:flex">
             {LINKS.map((l) => (
-              <Link
+              <a
                 key={l.href}
                 href={l.href}
                 className="group relative text-[11px] font-medium uppercase tracking-[0.24em] text-champagne/80 transition-colors hover:text-sand"
               >
                 {l.label}
                 <span className="absolute -bottom-1 left-0 h-px w-full origin-right scale-x-0 bg-sand transition-transform duration-500 ease-lux group-hover:origin-left group-hover:scale-x-100" />
-              </Link>
+              </a>
             ))}
           </nav>
 
@@ -64,9 +63,9 @@ export function Navbar() {
             <MenuIcon />
           </button>
 
-          <Link href="/" aria-label="Aurèle, home" className="font-serif text-2xl tracking-[0.32em] text-champagne md:text-[1.7rem]">
-            AURÈLE
-          </Link>
+          <a href="#top" aria-label="Otra Pinta, inicio" className="whitespace-nowrap font-serif text-xl tracking-[0.26em] text-champagne sm:text-2xl md:text-[1.7rem]">
+            OTRA PINTA
+          </a>
 
           <div className="flex flex-1 items-center justify-end gap-6">
             <span className="hidden text-[11px] uppercase tracking-[0.24em] text-champagne/60 lg:inline">Collection Nº 07</span>
@@ -111,7 +110,7 @@ export function Navbar() {
             aria-label="Menu"
           >
             <div className="flex items-center justify-between">
-              <span className="font-serif text-2xl tracking-[0.32em]">AURÈLE</span>
+              <span className="font-serif text-2xl tracking-[0.26em]">OTRA PINTA</span>
               <button type="button" aria-label="Close menu" onClick={() => setMenu(false)} className="flex h-10 w-10 items-center justify-center">
                 <CloseIcon />
               </button>
@@ -119,9 +118,9 @@ export function Navbar() {
             <nav aria-label="Mobile" className="mt-16 flex flex-col gap-2">
               {LINKS.map((l, i) => (
                 <motion.div key={l.href} initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.25 + i * 0.07, duration: 0.6 }}>
-                  <Link href={l.href} onClick={() => setMenu(false)} className="block py-2 font-serif text-5xl italic text-champagne">
+                  <a href={l.href} onClick={() => setMenu(false)} className="block py-2 font-serif text-5xl italic text-champagne">
                     {l.label}
-                  </Link>
+                  </a>
                 </motion.div>
               ))}
             </nav>

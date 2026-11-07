@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRef, useState, type FormEvent } from "react";
 import { useShop } from "@/context/ShopContext";
@@ -16,7 +15,7 @@ export function CartDrawer() {
 }
 
 function Drawer({ onClose }: { onClose: () => void }) {
-  const { lines, count, totals, setQty, remove, maxQty } = useShop();
+  const { lines, count, totals, setQty, remove, maxQty, openCheckout } = useShop();
   const ref = useRef<HTMLDivElement>(null);
   useDialog(ref, onClose);
 
@@ -60,13 +59,13 @@ function Drawer({ onClose }: { onClose: () => void }) {
           <div className="flex flex-1 flex-col items-center justify-center px-8 text-center">
             <p className="font-serif text-4xl italic text-burgundy">Nothing here, yet.</p>
             <p className="mt-4 max-w-xs text-sm text-maroon/75">Pieces from Collection Nº 07 are numbered and rarely last a week.</p>
-            <Link
-              href="/#collection"
+            <a
+              href="#collection"
               onClick={onClose}
               className="mt-8 inline-flex h-12 items-center gap-2 rounded-full bg-burgundy px-7 text-[11px] font-semibold uppercase tracking-[0.22em] text-champagne transition-colors hover:bg-wine"
             >
               Explore the collection <ArrowIcon width={14} height={14} />
-            </Link>
+            </a>
           </div>
         ) : (
           <>
@@ -127,15 +126,15 @@ function Drawer({ onClose }: { onClose: () => void }) {
             <footer className="border-t border-wine/10 bg-champagne px-6 pb-6 pt-5">
               <PromoField />
               <Summary className="mt-5" />
-              <Link
-                href="/checkout"
-                onClick={onClose}
+              <button
+                type="button"
+                onClick={openCheckout}
                 className="group relative mt-5 flex h-14 w-full items-center justify-center gap-3 overflow-hidden rounded-full bg-burgundy text-xs font-semibold uppercase tracking-[0.24em] text-champagne"
               >
                 <span className="absolute inset-0 origin-left scale-x-0 bg-wine transition-transform duration-500 ease-lux group-hover:scale-x-100" />
                 <LockIcon width={14} height={14} className="relative" />
                 <span className="relative">Secure checkout</span>
-              </Link>
+              </button>
               <p className="mt-3 text-center text-[11px] text-maroon/60">Taxes estimated. Free returns within 30 days.</p>
             </footer>
           </>
