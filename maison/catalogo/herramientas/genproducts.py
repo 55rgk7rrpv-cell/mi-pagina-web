@@ -1,6 +1,7 @@
 import json, re, unicodedata
 cat=json.load(open("catalogo/catalogo.json"))["productos"]
-PRICE_FIX={"top-saten-cuello-alto":18,"vestido-floral-manga-globo":40}
+MEASURED=json.load(open("catalogo/herramientas/colores-medidos.json"))  # swatch = real colour measured on the photo
+PRICE_FIX={}  # prices now live only in catalogo.json
 def slug(s):
     s=unicodedata.normalize("NFD",s.lower()); s="".join(c for c in s if unicodedata.category(c)!="Mn")
     return re.sub(r"[^a-z0-9]+","-",s).strip("-")
@@ -20,7 +21,7 @@ IMG={
  "vestido-largo-un-hombro":["amarillo-claro","negro"],"vestido-halter-lunares-escote":["vinotinto","negro","crema"],
  "vestido-floral-manga-globo":["blanco-floral"],"top-tul-volantes":["negro"],"vestido-otra-pinta-lenceria":["marron-negro"],
  "vestido-midi-asimetrico":["negro"],"top-halter-aberturas":["negro"],"vestido-strapless-encaje-rosa":["vinotinto"],
- "falda-volantes-bicolor":["negro-blanco"],"chaqueta-capucha-lunares":["rosa","amarillo"],"top-encaje-corse":["negro"],
+ "falda-volantes-bicolor":["negro-blanco"],"chaqueta-capucha-lunares":["amarillo","rosa"],"top-encaje-corse":["negro"],
  "falda-saten-encaje":["negro"],"top-saten-cruzado":["marron","champana","negro"],"top-saten-cuello-alto":["vinotinto","marron"],
  "top-saten-lazo":["rojo","amarillo","verde","marron","champana"],"vestido-blazer-manga-larga":["rojo"],
  "vestido-encaje-hombros-descubiertos":["amarillo"],"vestido-blazer-halter":["vinotinto"],
@@ -76,7 +77,7 @@ for i,p in enumerate(cat):
     pid=p["id"]; keys=IMG[pid]; assert len(keys)==len(p["variantes"]),pid
     colors=[]
     for v,k in zip(p["variantes"],keys):
-        colors.append({"name":v["color"],"hex":hexof(v["color"]),"sizes":v["tallas"],"image":f"catalogo/{pid}__{k}.webp"})
+        colors.append({"name":v["color"],"hex":MEASURED.get(f"{pid}||{v['color']}",[hexof(v["color"])])[0],"sizes":v["tallas"],"image":f"catalogo/{pid}__{k}.webp"})
     sizes_total=sum(len(c["sizes"]) for c in colors)
     out.append({"id":pid,"name":p["nombre"],"category":p["categoria"],"price":PRICE_FIX.get(pid,p["precio_usd"]),
       "description":DESC[pid],"colors":colors,"gallery":[f"catalogo/{pid}__{k}.webp" for k in EXTRA.get(pid,[])],

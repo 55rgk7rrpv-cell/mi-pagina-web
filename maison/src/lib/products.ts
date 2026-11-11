@@ -37,7 +37,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Rojo",
-        "hex": "#C1121F",
+        "hex": "#9D090B",
         "sizes": [
           "XS"
         ],
@@ -45,7 +45,7 @@ export const PRODUCTS: Product[] = [
       },
       {
         "name": "Blanco con lunares grandes",
-        "hex": "#F6F3EC",
+        "hex": "#E3DCD5",
         "sizes": [
           "M (ajusta S)"
         ],
@@ -53,7 +53,7 @@ export const PRODUCTS: Product[] = [
       },
       {
         "name": "Azul marino con lunares",
-        "hex": "#1F2A44",
+        "hex": "#151625",
         "sizes": [
           "L (ajusta M)"
         ],
@@ -61,7 +61,7 @@ export const PRODUCTS: Product[] = [
       },
       {
         "name": "Blanco con lunares pequeños",
-        "hex": "#F6F3EC",
+        "hex": "#DAD1CC",
         "sizes": [
           "S"
         ],
@@ -81,7 +81,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Azul marino con lunares",
-        "hex": "#1F2A44",
+        "hex": "#0C2A3F",
         "sizes": [
           "S",
           "M"
@@ -102,7 +102,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Vinotinto",
-        "hex": "#6D1A2C",
+        "hex": "#681737",
         "sizes": [
           "XS",
           "S"
@@ -123,7 +123,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Amarillo claro",
-        "hex": "#F3EAB5",
+        "hex": "#E7E8CD",
         "sizes": [
           "S"
         ],
@@ -131,7 +131,7 @@ export const PRODUCTS: Product[] = [
       },
       {
         "name": "Negro",
-        "hex": "#161616",
+        "hex": "#0E0F09",
         "sizes": [
           "S"
         ],
@@ -151,7 +151,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Vinotinto con lunares",
-        "hex": "#6D1A2C",
+        "hex": "#690A14",
         "sizes": [
           "S"
         ],
@@ -159,7 +159,7 @@ export const PRODUCTS: Product[] = [
       },
       {
         "name": "Negro con lunares",
-        "hex": "#161616",
+        "hex": "#070C0C",
         "sizes": [
           "XS",
           "M"
@@ -168,7 +168,7 @@ export const PRODUCTS: Product[] = [
       },
       {
         "name": "Crema con lunares",
-        "hex": "#EDE3CF",
+        "hex": "#D0C3AF",
         "sizes": [
           "M"
         ],
@@ -188,7 +188,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Blanco con flores amarillas",
-        "hex": "#F6F3EC",
+        "hex": "#EAE7DE",
         "sizes": [
           "S"
         ],
@@ -210,7 +210,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Negro",
-        "hex": "#161616",
+        "hex": "#34383B",
         "sizes": [
           "XXS"
         ],
@@ -230,7 +230,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Marrón y negro",
-        "hex": "#5A3A2E",
+        "hex": "#1B1E2B",
         "sizes": [
           "S"
         ],
@@ -250,7 +250,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Negro",
-        "hex": "#161616",
+        "hex": "#202733",
         "sizes": [
           "XXS"
         ],
@@ -270,7 +270,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Negro",
-        "hex": "#161616",
+        "hex": "#121110",
         "sizes": [
           "XS"
         ],
@@ -290,7 +290,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Vinotinto",
-        "hex": "#6D1A2C",
+        "hex": "#5C121E",
         "sizes": [
           "XS",
           "S"
@@ -311,7 +311,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Negro y blanco",
-        "hex": "#1A1A1A",
+        "hex": "#060604",
         "sizes": [
           "S",
           "M"
@@ -331,20 +331,20 @@ export const PRODUCTS: Product[] = [
     "description": "Chaqueta ligera con capucha, cierre y puños elásticos, en lunares.",
     "colors": [
       {
-        "name": "Rosa con lunares",
-        "hex": "#F0BFCB",
-        "sizes": [
-          "M"
-        ],
-        "image": "catalogo/chaqueta-capucha-lunares__rosa.webp"
-      },
-      {
         "name": "Amarillo con lunares",
-        "hex": "#EFCB4A",
+        "hex": "#D7C78F",
         "sizes": [
           "L"
         ],
         "image": "catalogo/chaqueta-capucha-lunares__amarillo.webp"
+      },
+      {
+        "name": "Rosa con lunares",
+        "hex": "#E5C6CD",
+        "sizes": [
+          "M"
+        ],
+        "image": "catalogo/chaqueta-capucha-lunares__rosa.webp"
       }
     ],
     "gallery": [],
@@ -360,7 +360,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Negro",
-        "hex": "#161616",
+        "hex": "#1D1819",
         "sizes": [
           "XS",
           "M"
@@ -381,7 +381,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Negro",
-        "hex": "#161616",
+        "hex": "#0F1F2A",
         "sizes": [
           "XS",
           "S"
@@ -402,7 +402,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Marrón",
-        "hex": "#5A3A2E",
+        "hex": "#2B1810",
         "sizes": [
           "S"
         ],
@@ -410,7 +410,7 @@ export const PRODUCTS: Product[] = [
       },
       {
         "name": "Champaña",
-        "hex": "#E7D8BE",
+        "hex": "#D3C5B8",
         "sizes": [
           "XXS"
         ],
@@ -418,7 +418,7 @@ export const PRODUCTS: Product[] = [
       },
       {
         "name": "Negro",
-        "hex": "#161616",
+        "hex": "#111212",
         "sizes": [
           "XS"
         ],
@@ -438,7 +438,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Vinotinto",
-        "hex": "#6D1A2C",
+        "hex": "#511419",
         "sizes": [
           "M"
         ],
@@ -446,7 +446,7 @@ export const PRODUCTS: Product[] = [
       },
       {
         "name": "Marrón",
-        "hex": "#5A3A2E",
+        "hex": "#422E21",
         "sizes": [
           "S"
         ],
@@ -466,7 +466,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Rojo",
-        "hex": "#C1121F",
+        "hex": "#7C020F",
         "sizes": [
           "S"
         ],
@@ -474,7 +474,7 @@ export const PRODUCTS: Product[] = [
       },
       {
         "name": "Amarillo",
-        "hex": "#EFCB4A",
+        "hex": "#D2B662",
         "sizes": [
           "XXS"
         ],
@@ -482,7 +482,7 @@ export const PRODUCTS: Product[] = [
       },
       {
         "name": "Verde",
-        "hex": "#1F5C3F",
+        "hex": "#0B2E1D",
         "sizes": [
           "M"
         ],
@@ -490,7 +490,7 @@ export const PRODUCTS: Product[] = [
       },
       {
         "name": "Marrón",
-        "hex": "#5A3A2E",
+        "hex": "#2E1E16",
         "sizes": [
           "M"
         ],
@@ -498,7 +498,7 @@ export const PRODUCTS: Product[] = [
       },
       {
         "name": "Champaña",
-        "hex": "#E7D8BE",
+        "hex": "#E4D6C6",
         "sizes": [
           "XS"
         ],
@@ -518,7 +518,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Rojo",
-        "hex": "#C1121F",
+        "hex": "#82091A",
         "sizes": [
           "M"
         ],
@@ -538,7 +538,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Amarillo",
-        "hex": "#EFCB4A",
+        "hex": "#D6BB70",
         "sizes": [
           "S"
         ],
@@ -558,7 +558,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Vinotinto",
-        "hex": "#6D1A2C",
+        "hex": "#520B17",
         "sizes": [
           "S"
         ],
@@ -578,7 +578,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Amarillo claro",
-        "hex": "#F3EAB5",
+        "hex": "#E2E3C9",
         "sizes": [
           "S"
         ],
@@ -598,7 +598,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Negro",
-        "hex": "#161616",
+        "hex": "#1E252C",
         "sizes": [
           "S"
         ],
@@ -618,7 +618,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Amarillo con lunares marrones",
-        "hex": "#EFCB4A",
+        "hex": "#D5C091",
         "sizes": [
           "S"
         ],
@@ -638,7 +638,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Rojo",
-        "hex": "#C1121F",
+        "hex": "#900322",
         "sizes": [
           "S"
         ],
@@ -658,7 +658,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Vinotinto",
-        "hex": "#6D1A2C",
+        "hex": "#371115",
         "sizes": [
           "S"
         ],
@@ -680,7 +680,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Vinotinto",
-        "hex": "#6D1A2C",
+        "hex": "#7A0222",
         "sizes": [
           "S"
         ],
@@ -700,7 +700,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Blanco con lunares negros",
-        "hex": "#F6F3EC",
+        "hex": "#CBC5C8",
         "sizes": [
           "XS"
         ],
@@ -720,7 +720,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Amarillo con lunares",
-        "hex": "#EFCB4A",
+        "hex": "#E6C98A",
         "sizes": [
           "L"
         ],
@@ -728,7 +728,7 @@ export const PRODUCTS: Product[] = [
       },
       {
         "name": "Marrón con lunares",
-        "hex": "#5A3A2E",
+        "hex": "#3A2920",
         "sizes": [
           "S"
         ],
@@ -736,7 +736,7 @@ export const PRODUCTS: Product[] = [
       },
       {
         "name": "Crema con lunares",
-        "hex": "#EDE3CF",
+        "hex": "#E4D8C0",
         "sizes": [
           "XS"
         ],
@@ -744,7 +744,7 @@ export const PRODUCTS: Product[] = [
       },
       {
         "name": "Negro con lunares",
-        "hex": "#161616",
+        "hex": "#1A1716",
         "sizes": [
           "XXS"
         ],
@@ -764,7 +764,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Negro",
-        "hex": "#161616",
+        "hex": "#181A16",
         "sizes": [
           "XS"
         ],
@@ -784,7 +784,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Rojo",
-        "hex": "#C1121F",
+        "hex": "#70111A",
         "sizes": [
           "M"
         ],
@@ -804,7 +804,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Amarillo",
-        "hex": "#EFCB4A",
+        "hex": "#F4EDAA",
         "sizes": [
           "XS",
           "M"
@@ -813,7 +813,7 @@ export const PRODUCTS: Product[] = [
       },
       {
         "name": "Crema con lunares",
-        "hex": "#EDE3CF",
+        "hex": "#F2E7DC",
         "sizes": [
           "S",
           "M"
@@ -834,7 +834,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Negro",
-        "hex": "#161616",
+        "hex": "#332623",
         "sizes": [
           "XXS",
           "S"
@@ -855,7 +855,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Gris carbón",
-        "hex": "#3C3C3C",
+        "hex": "#3B3D3B",
         "sizes": [
           "S"
         ],
@@ -875,7 +875,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Dorado",
-        "hex": "#C9A35C",
+        "hex": "#E4E2E0",
         "sizes": [
           "Única"
         ],
@@ -895,7 +895,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Marrón",
-        "hex": "#5A3A2E",
+        "hex": "#57382C",
         "sizes": [
           "Única"
         ],
@@ -903,7 +903,7 @@ export const PRODUCTS: Product[] = [
       },
       {
         "name": "Negro",
-        "hex": "#161616",
+        "hex": "#272520",
         "sizes": [
           "Única"
         ],

@@ -1,12 +1,16 @@
-# Cómo se prepararon las fotos del catálogo
+# Cómo se prepararon las fotos del catálogo (v3)
 
-1. `specs.py`: qué foto original corresponde a cada producto y color, y qué parte recortar.
-2. `rgba.py`: recorta cada prenda una sola vez y la guarda con transparencia, sin encuadrar.
-   Usa `rembg` (modelos `isnet-general-use` y `u2net_cloth_seg`); la falda plisada y el cinturón
-   de corazones se separan por color porque el recorte automático fallaba con ellas.
-3. `frame.py`: encuadre estricto. Lienzo cuadrado blanco puro (#FFFFFF) cuyo lado es el lado más
-   largo de la prenda + 18 %, prenda pegada en el centro exacto, sin estirar ni agrandar.
-   Al final verifica margen, centrado y proporciones de cada foto.
-4. `genproducts.py`: genera `src/lib/products.ts` a partir de `catalogo.json`.
+Regla principal: **la prenda nunca pierde pedazos**. Es preferible un borde finito del fondo original.
 
-`cutout.py` es la versión anterior (encuadre fijo 4:5 con márgenes de ~5 %), que se reemplazó.
+1. `labels.py` detecta las etiquetas blancas de "Talla / Ref" en las fotos originales (`labels.json`).
+2. `process.py` procesa cada foto definida en `specs.py`:
+   - Borra las etiquetas reconstruyendo el fondo alrededor (inpainting), no con un bloque de color.
+   - **Fondo claro y liso** (estudio, mármol, cinturones, el render): NO se quita el fondo ni se usan
+     máscaras. Se pega la foto original sobre un lienzo blanco más grande ("canvas expand").
+   - **Fondo cargado** (exteriores, paredes, pisos): se quita el fondo de forma suave: se conserva la
+     transparencia original (sin umbral), se ensancha el borde unos píxeles, se rellenan huecos internos
+     y no se descartan piezas pequeñas. Se conserva la figura completa (no se recorta "solo la prenda").
+   - Encuadre: lienzo cuadrado blanco puro (#FFFFFF) = lado más largo + 18 %, sujeto en el centro exacto,
+     sin estirar ni agrandar.
+3. `genproducts.py` genera `src/lib/products.ts` desde `catalogo.json`. Los precios viven solo en
+   `catalogo.json`; las muestras de color salen del color medido en cada foto (`colores-medidos.json`).

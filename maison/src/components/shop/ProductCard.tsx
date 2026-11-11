@@ -31,13 +31,13 @@ export function ProductCard({ product, index }: { product: Product; index: numbe
       className="group relative"
       onMouseLeave={() => setSizePicker(false)}
     >
-      <div className="relative aspect-square overflow-hidden rounded-[2px] bg-white">
+      <div className="relative aspect-square overflow-hidden rounded-[2px] bg-white p-[4%]">
         <button
           type="button"
           onClick={() => openQuickView(product.id)}
           data-cursor="Ver"
           aria-label={`Vista rápida: ${product.name}`}
-          className="absolute inset-0 block"
+          className="absolute inset-[4%] block"
         >
           <ProductVisual
             product={product}
@@ -103,8 +103,8 @@ export function ProductCard({ product, index }: { product: Product; index: numbe
 
       <div className="mt-4 flex items-start justify-between gap-4">
         <div className="min-w-0">
-          <h3 className="font-serif text-xl leading-tight text-wine md:text-2xl">{product.name}</h3>
-          <p className="mt-1 text-xs text-maroon/65">
+          <h3 className="line-clamp-2 min-h-[2.5em] font-serif text-xl leading-tight text-wine md:text-2xl">{product.name}</h3>
+          <p className="mt-1 truncate text-xs text-maroon/65">
             {product.category} · Tallas {[...new Set(product.colors.flatMap((c) => c.sizes.map((s) => s.replace(/\s*\(.*\)/, ""))))].join(", ")}
           </p>
         </div>

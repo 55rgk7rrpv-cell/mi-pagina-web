@@ -147,7 +147,7 @@
       "id": "vestido-floral-manga-globo",
       "nombre": "Vestido floral manga globo",
       "categoria": "Vestidos",
-      "precio_usd": 38,
+      "precio_usd": 40,
       "imagen_principal": "6f05fbdd-image.jpg",
       "imagenes_secundarias": [
         "f2a86d51-image.jpg"
@@ -160,7 +160,8 @@
           ],
           "foto": "6f05fbdd-image.jpg"
         }
-      ]
+      ],
+      "nota_precio": "Una foto decía Ref 38 y la más reciente Ref 40; se usa 40."
     },
     {
       "id": "top-tul-volantes",
@@ -271,24 +272,24 @@
       "nombre": "Chaqueta con capucha y lunares",
       "categoria": "Chaquetas",
       "precio_usd": 38,
-      "imagen_principal": "2743c4d3-image.jpg",
+      "imagen_principal": "d4169678-image.jpg",
       "imagenes_secundarias": [
-        "d4169678-image.jpg"
+        "2743c4d3-image.jpg"
       ],
       "variantes": [
-        {
-          "color": "Rosa con lunares",
-          "tallas": [
-            "M"
-          ],
-          "foto": "2743c4d3-image.jpg"
-        },
         {
           "color": "Amarillo con lunares",
           "tallas": [
             "L"
           ],
           "foto": "d4169678-image.jpg"
+        },
+        {
+          "color": "Rosa con lunares",
+          "tallas": [
+            "M"
+          ],
+          "foto": "2743c4d3-image.jpg"
         }
       ]
     },
@@ -371,7 +372,7 @@
       "id": "top-saten-cuello-alto",
       "nombre": "Top de satén cuello alto con encaje",
       "categoria": "Tops",
-      "precio_usd": null,
+      "precio_usd": 18,
       "imagen_principal": "0d218c7e-image.jpg (panel derecho)",
       "imagenes_secundarias": [
         "0d218c7e-image.jpg (panel izquierdo)"
@@ -393,7 +394,8 @@
           "foto": "0d218c7e-image.jpg",
           "recorte": "panel izquierdo"
         }
-      ]
+      ],
+      "nota_precio": "La foto no traía Ref; se usa 18, el precio de los otros tops de satén de la misma línea."
     },
     {
       "id": "top-saten-lazo",
