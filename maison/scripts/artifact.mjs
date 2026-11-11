@@ -20,6 +20,8 @@ const rewrite = (t) => t.replaceAll("/_next/", "/assets/").replaceAll("\uFFFD", 
     else if (/\.(js|css|txt)$/.test(f)) fs.writeFileSync(p, rewrite(fs.readFileSync(p, "utf8")));
   }
 })(path.join(dest, "assets"));
+// Product photos from public/catalogo.
+if (fs.existsSync(path.join(src, "catalogo"))) fs.cpSync(path.join(src, "catalogo"), path.join(dest, "catalogo"), { recursive: true });
 fs.writeFileSync(path.join(dest, "index.txt"), rewrite(fs.readFileSync(path.join(src, "index.txt"), "utf8")));
 
 const html = fs.readFileSync(path.join(src, "index.html"), "utf8");

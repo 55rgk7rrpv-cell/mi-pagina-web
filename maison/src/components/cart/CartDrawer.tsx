@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useRef, useState, type FormEvent } from "react";
-import { useShop } from "@/context/ShopContext";
+import { maxFor, useShop } from "@/context/ShopContext";
 import { formatPrice, cn } from "@/lib/format";
 import { CloseIcon, MinusIcon, PlusIcon, TagIcon, ArrowIcon, LockIcon } from "@/components/ui/Icons";
 import { ProductVisual } from "@/components/shop/ProductVisual";
@@ -15,7 +15,7 @@ export function CartDrawer() {
 }
 
 function Drawer({ onClose }: { onClose: () => void }) {
-  const { lines, count, totals, setQty, remove, maxQty, openCheckout } = useShop();
+  const { lines, count, totals, setQty, remove, openCheckout } = useShop();
   const ref = useRef<HTMLDivElement>(null);
   useDialog(ref, onClose);
 
@@ -58,7 +58,7 @@ function Drawer({ onClose }: { onClose: () => void }) {
         {lines.length === 0 ? (
           <div className="flex flex-1 flex-col items-center justify-center px-8 text-center">
             <p className="font-serif text-4xl italic text-burgundy">Todavía no hay nada aquí.</p>
-            <p className="mt-4 max-w-xs text-sm text-maroon/75">Las piezas de la Colección Nº 07 van numeradas y casi nunca duran una semana.</p>
+            <p className="mt-4 max-w-xs text-sm text-maroon/75">Hay pocas unidades por talla. Si algo te gusta, no lo pienses mucho.</p>
             <a
               href="#collection"
               onClick={onClose}
@@ -82,7 +82,7 @@ function Drawer({ onClose }: { onClose: () => void }) {
                     className="flex gap-4 overflow-hidden border-b border-wine/10 py-5"
                   >
                     <div className="relative aspect-[4/5] w-24 shrink-0 overflow-hidden rounded-sm">
-                      <ProductVisual product={l.product} variant="still" className="h-full w-full" />
+                      <ProductVisual product={l.product} color={l.color} variant="still" className="h-full w-full" />
                     </div>
                     <div className="flex min-w-0 flex-1 flex-col">
                       <div className="flex justify-between gap-3">
@@ -106,7 +106,7 @@ function Drawer({ onClose }: { onClose: () => void }) {
                           <button
                             type="button"
                             onClick={() => setQty(l.key, l.qty + 1)}
-                            disabled={l.qty >= Math.min(maxQty, l.product.stock)}
+                            disabled={l.qty >= maxFor(l.productId)}
                             aria-label="Sumar uno"
                             className="flex h-9 w-9 items-center justify-center rounded-full transition-colors hover:bg-wine/10 disabled:opacity-30"
                           >
@@ -135,7 +135,7 @@ function Drawer({ onClose }: { onClose: () => void }) {
                 <LockIcon width={14} height={14} className="relative" />
                 <span className="relative">Pagar de forma segura</span>
               </button>
-              <p className="mt-3 text-center text-[11px] text-maroon/60">Impuestos estimados. Cambios gratis por 30 días.</p>
+              <p className="mt-3 text-center text-[11px] text-maroon/60">Precios en dólares. Pagas con tarjeta, Pago Móvil, Zelle o PayPal.</p>
             </footer>
           </>
         )}
@@ -223,13 +223,11 @@ export function PromoField() {
 export function Summary({ className, shipping, shippingLabel }: { className?: string; shipping?: number; shippingLabel?: string }) {
   const { totals } = useShop();
   const ship = shipping ?? totals.shipping;
-  const tax = totals.tax;
-  const total = totals.subtotal - totals.discount + ship + tax;
+  const total = totals.subtotal - totals.discount + ship;
   const rows: [string, string, boolean?][] = [
     ["Subtotal", formatPrice(totals.subtotal)],
     ...(totals.discount ? ([["Descuento", `− ${formatPrice(totals.discount)}`, true]] as [string, string, boolean][]) : []),
     [shippingLabel ?? "Envío", ship === 0 ? "Gratis" : formatPrice(ship)],
-    ["Impuestos estimados", formatPrice(tax)],
   ];
   return (
     <dl className={cn("space-y-2 text-sm", className)}>

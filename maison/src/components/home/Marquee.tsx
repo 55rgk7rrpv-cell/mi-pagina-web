@@ -1,9 +1,9 @@
 const ITEMS = [
-  "Colección Nº 07",
-  "Ediciones numeradas",
-  "Envío gratis desde $1,000",
-  "Hecho en pequeñas tandas",
-  "Asesoría de estilo personalizada",
+  "Nueva colección",
+  "Pocas unidades por talla",
+  "Delivery gratis desde $80",
+  "Pago Móvil, Zelle y tarjeta",
+  "@otrapintapzo",
 ];
 
 export function Marquee() {

@@ -1,14 +1,15 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element */
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useShop } from "@/context/ShopContext";
-import { getProduct } from "@/lib/products";
+import { getProduct, productImages } from "@/lib/products";
 import { cn, formatPrice } from "@/lib/format";
+import { FREE_SHIPPING_THRESHOLD } from "@/lib/pricing";
 import { CloseIcon } from "@/components/ui/Icons";
 import { Magnetic } from "@/components/ui/Magnetic";
 import { useDialog } from "@/components/ui/useDialog";
-import { ProductVisual } from "./ProductVisual";
 
 export function QuickView() {
   const { quickViewId, closeQuickView } = useShop();
@@ -25,20 +26,28 @@ function QuickViewPanel({ id, onClose }: { id: string; onClose: () => void }) {
   const product = getProduct(id)!;
   const { add, openCart } = useShop();
   const panelRef = useRef<HTMLDivElement>(null);
-  const [size, setSize] = useState<string | null>(product.sizes.length === 1 ? product.sizes[0] : null);
-  const [color, setColor] = useState(product.colors[0].name);
-  const [view, setView] = useState<"still" | "look">("still");
+  const [colorName, setColorName] = useState(product.colors[0].name);
+  const color = product.colors.find((c) => c.name === colorName) ?? product.colors[0];
+  const [size, setSize] = useState<string | null>(color.sizes.length === 1 ? color.sizes[0] : null);
+  const [image, setImage] = useState(color.image);
   const [error, setError] = useState(false);
+  const images = productImages(product);
   useDialog(panelRef, onClose);
 
-  useEffect(() => setError(false), [size]);
+  const pickColor = (name: string) => {
+    const c = product.colors.find((x) => x.name === name)!;
+    setColorName(name);
+    setImage(c.image);
+    setSize(c.sizes.length === 1 ? c.sizes[0] : null);
+    setError(false);
+  };
 
   const addToBag = () => {
     if (!size) {
       setError(true);
       return;
     }
-    add(product.id, size, color);
+    add(product.id, size, color.name);
     onClose();
     openCart();
   };
@@ -64,64 +73,64 @@ function QuickViewPanel({ id, onClose }: { id: string; onClose: () => void }) {
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className="relative grid max-h-[92svh] w-full max-w-5xl overflow-y-auto rounded-t-3xl bg-champagne text-wine shadow-2xl md:grid-cols-2 md:overflow-hidden md:rounded-3xl"
       >
-        <div className="relative aspect-[4/5] md:aspect-auto md:h-full">
-          <AnimatePresence initial={false} mode="popLayout">
-            <motion.div
-              key={view}
-              className="absolute inset-0"
-              initial={{ opacity: 0, scale: 1.05 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <ProductVisual product={product} variant={view} className="h-full w-full" />
-            </motion.div>
-          </AnimatePresence>
-          <div className="absolute bottom-4 left-4 flex gap-2">
-            {(["still", "look"] as const).map((v) => (
-              <button
-                key={v}
-                type="button"
-                onClick={() => setView(v)}
-                aria-pressed={view === v}
-                className={cn(
-                  "rounded-full px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.2em] backdrop-blur transition-colors",
-                  view === v ? "bg-champagne text-wine" : "bg-wine/40 text-champagne hover:bg-wine/70",
-                )}
-              >
-                {v === "still" ? "Estudio" : "Lookbook"}
-              </button>
-            ))}
+        <div className="relative flex flex-col bg-white">
+          <div className="relative aspect-[4/5] w-full md:aspect-auto md:flex-1">
+            <AnimatePresence initial={false} mode="popLayout">
+              <motion.img
+                key={image}
+                src={image}
+                alt={`${product.name}, color ${color.name}`}
+                className="absolute inset-0 h-full w-full object-contain"
+                initial={{ opacity: 0, scale: 1.03 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              />
+            </AnimatePresence>
           </div>
+          {images.length > 1 && (
+            <div className="no-scrollbar flex gap-2 overflow-x-auto border-t border-wine/10 p-3" aria-label="Fotos del producto">
+              {images.map((src, i) => (
+                <button
+                  key={src}
+                  type="button"
+                  onClick={() => setImage(src)}
+                  aria-label={`Ver foto ${i + 1}`}
+                  aria-pressed={image === src}
+                  className={cn("aspect-[4/5] w-14 shrink-0 overflow-hidden rounded-md bg-white ring-offset-1 transition", image === src ? "ring-2 ring-burgundy" : "ring-1 ring-wine/15 hover:ring-wine/40")}
+                >
+                  <img src={src} alt="" className="h-full w-full object-contain" loading="lazy" />
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="flex flex-col p-6 md:max-h-[86svh] md:overflow-y-auto md:p-10">
           <div className="flex items-start justify-between gap-6">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-burgundy">
-              {product.category} · Edición de {product.edition}
-            </p>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-burgundy">{product.category}</p>
             <button type="button" onClick={onClose} aria-label="Cerrar vista rápida" className="-mr-2 -mt-2 flex h-10 w-10 items-center justify-center rounded-full transition-colors hover:bg-wine/10">
               <CloseIcon />
             </button>
           </div>
-          <h2 id="qv-title" className="mt-4 font-serif text-4xl leading-none md:text-5xl">{product.name}</h2>
-          <p className="mt-3 text-sm text-maroon/70">{product.tagline}</p>
+          <h2 id="qv-title" className="mt-4 text-balance font-serif text-4xl leading-none md:text-5xl">{product.name}</h2>
           <p className="mt-6 text-2xl tabular-nums">{formatPrice(product.price)}</p>
           <p className="mt-6 text-sm leading-relaxed text-maroon/85">{product.description}</p>
 
           <fieldset className="mt-8">
             <legend className="text-[11px] font-semibold uppercase tracking-[0.2em]">
-              Color <span className="ml-2 font-normal normal-case tracking-normal text-maroon/70">{color}</span>
+              Color <span className="ml-2 font-normal normal-case tracking-normal text-maroon/70">{color.name}</span>
             </legend>
-            <div className="mt-3 flex gap-3">
+            <div className="mt-3 flex flex-wrap gap-3">
               {product.colors.map((c) => (
                 <button
                   key={c.name}
                   type="button"
-                  onClick={() => setColor(c.name)}
+                  onClick={() => pickColor(c.name)}
                   aria-label={c.name}
-                  aria-pressed={color === c.name}
-                  className={cn("h-9 w-9 rounded-full ring-offset-2 ring-offset-champagne transition", color === c.name ? "ring-2 ring-burgundy" : "ring-1 ring-wine/25 hover:ring-wine/60")}
+                  aria-pressed={color.name === c.name}
+                  title={c.name}
+                  className={cn("h-9 w-9 rounded-full ring-offset-2 ring-offset-champagne transition", color.name === c.name ? "ring-2 ring-burgundy" : "ring-1 ring-wine/25 hover:ring-wine/60")}
                   style={{ background: c.hex }}
                 />
               ))}
@@ -129,15 +138,16 @@ function QuickViewPanel({ id, onClose }: { id: string; onClose: () => void }) {
           </fieldset>
 
           <fieldset className="mt-7">
-            <legend className="flex w-full items-center justify-between text-[11px] font-semibold uppercase tracking-[0.2em]">
-              Talla
-            </legend>
+            <legend className="text-[11px] font-semibold uppercase tracking-[0.2em]">Talla</legend>
             <div className="mt-3 flex flex-wrap gap-2">
-              {product.sizes.map((s) => (
+              {color.sizes.map((s) => (
                 <button
                   key={s}
                   type="button"
-                  onClick={() => setSize(s)}
+                  onClick={() => {
+                    setSize(s);
+                    setError(false);
+                  }}
                   aria-pressed={size === s}
                   className={cn(
                     "h-11 min-w-12 rounded-full border px-4 text-xs font-semibold transition-colors",
@@ -148,6 +158,7 @@ function QuickViewPanel({ id, onClose }: { id: string; onClose: () => void }) {
                 </button>
               ))}
             </div>
+            {product.colors.length > 1 && <p className="mt-3 text-xs text-maroon/65">Las tallas cambian según el color.</p>}
             <AnimatePresence>
               {error && (
                 <motion.p initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="mt-3 text-sm text-burgundy" role="alert">
@@ -169,15 +180,9 @@ function QuickViewPanel({ id, onClose }: { id: string; onClose: () => void }) {
               </button>
             </Magnetic>
             <p className="mt-3 text-center text-xs text-maroon/70">
-              {product.stock <= 5 ? `Solo quedan ${product.stock} piezas numeradas.` : "Envío gratis desde $1,000 · Cambios gratis por 30 días"}
+              {product.badge === "Última pieza" ? "Es la última pieza disponible." : `Envío gratis desde ${formatPrice(FREE_SHIPPING_THRESHOLD)}.`}
             </p>
           </div>
-
-          <ul className="mt-8 space-y-2 border-t border-wine/10 pt-6 text-sm text-maroon/80">
-            {product.details.map((d) => (
-              <li key={d} className="flex gap-3"><span className="text-burgundy">—</span>{d}</li>
-            ))}
-          </ul>
         </div>
       </motion.div>
     </motion.div>

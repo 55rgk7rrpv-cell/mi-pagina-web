@@ -9,9 +9,9 @@ export function ShippingProgress({ progress, remaining }: { progress: number; re
     <div>
       <p className="text-xs text-maroon/85" aria-live="polite">
         {done ? (
-          <span className="font-semibold text-burgundy">✦ Desbloqueaste el envío express gratis.</span>
+          <span className="font-semibold text-burgundy">✦ Tu delivery es gratis.</span>
         ) : (
-          <>Te faltan <span className="font-semibold text-burgundy tabular-nums">{formatPrice(remaining)}</span> para el envío express gratis.</>
+          <>Te faltan <span className="font-semibold text-burgundy tabular-nums">{formatPrice(remaining)}</span> para tener delivery gratis.</>
         )}
       </p>
       <div

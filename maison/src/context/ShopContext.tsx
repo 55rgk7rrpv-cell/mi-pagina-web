@@ -35,7 +35,9 @@ type Action =
   | { type: "clear" };
 
 const MAX_QTY = 5;
-const STORAGE_KEY = "otrapinta.bag.v2";
+/** Clothing is one piece per size and colour; accessories can be bought in multiples. */
+export const maxFor = (productId: string) => (getProduct(productId)?.category === "Accesorios" ? MAX_QTY : 1);
+const STORAGE_KEY = "otrapinta.bag.v3";
 
 function reducer(state: State, action: Action): State {
   switch (action.type) {
@@ -43,8 +45,7 @@ function reducer(state: State, action: Action): State {
       return action.state;
     case "add": {
       const key = `${action.productId}__${action.size}__${action.color}`;
-      const product = getProduct(action.productId);
-      const cap = Math.min(MAX_QTY, product?.stock ?? MAX_QTY);
+      const cap = maxFor(action.productId);
       const existing = state.lines.find((l) => l.key === key);
       if (existing) {
         return {
@@ -68,7 +69,7 @@ function reducer(state: State, action: Action): State {
         ...state,
         lines: state.lines.map((l) => {
           if (l.key !== action.key) return l;
-          const cap = Math.min(MAX_QTY, getProduct(l.productId)?.stock ?? MAX_QTY);
+          const cap = maxFor(l.productId);
           return { ...l, qty: Math.min(cap, action.qty) };
         }),
       };

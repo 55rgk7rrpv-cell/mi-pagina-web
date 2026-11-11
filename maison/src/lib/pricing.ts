@@ -1,5 +1,5 @@
-export const FREE_SHIPPING_THRESHOLD = 1000;
-export const STANDARD_SHIPPING = 35;
+export const FREE_SHIPPING_THRESHOLD = 80;
+export const STANDARD_SHIPPING = 5;
 
 export interface Promo {
   code: string;
@@ -12,8 +12,8 @@ export interface Promo {
 
 export const PROMOS: Record<string, Promo> = {
   BIENVENIDA: { code: "BIENVENIDA", label: "El Círculo: 10% de descuento", kind: "percent", value: 10 },
-  OTRAPINTA: { code: "OTRAPINTA", label: "15% de descuento en compras desde $1,500", kind: "percent", value: 15, min: 1500 },
-  ENVIOGRATIS: { code: "ENVIOGRATIS", label: "Envío express gratis", kind: "shipping", value: 0 },
+  OTRAPINTA: { code: "OTRAPINTA", label: "15% de descuento en compras desde $100", kind: "percent", value: 15, min: 100 },
+  ENVIOGRATIS: { code: "ENVIOGRATIS", label: "Delivery gratis", kind: "shipping", value: 0 },
 };
 
 export function computeTotals(subtotal: number, promo: Promo | null, shippingOverride?: number) {
@@ -22,7 +22,8 @@ export function computeTotals(subtotal: number, promo: Promo | null, shippingOve
   const qualifiesFree = subtotal >= FREE_SHIPPING_THRESHOLD || promoValid?.kind === "shipping";
   const baseShipping = shippingOverride ?? STANDARD_SHIPPING;
   const shipping = subtotal === 0 ? 0 : qualifiesFree && baseShipping <= STANDARD_SHIPPING ? 0 : baseShipping;
-  const tax = Math.round((subtotal - discount) * 0.08 * 100) / 100;
+  // Prices are final ("Ref" in USD); no tax line.
+  const tax = 0;
   return {
     subtotal,
     discount,

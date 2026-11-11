@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { GarmentArt } from "@/components/shop/GarmentArt";
 import { Magnetic } from "@/components/ui/Magnetic";
 import { SplitHeading } from "@/components/ui/Reveal";
 import { ArrowIcon } from "@/components/ui/Icons";
@@ -29,7 +28,7 @@ export function Hero() {
   return (
     <section
       ref={ref}
-      aria-label="Colección Nº 07"
+      aria-label="Otra Pinta"
       className="grain relative isolate flex min-h-[100svh] items-center overflow-hidden bg-wine pb-24 pt-32 md:pt-28"
       onPointerMove={(e) => {
         if (reduce || e.pointerType !== "mouse") return;
@@ -54,7 +53,7 @@ export function Hero() {
             className="mb-8 flex items-center gap-4 text-[11px] font-medium uppercase tracking-[0.32em] text-sand"
           >
             <span className="h-px w-10 bg-sand" />
-            Colección Nº 07 · Edición limitada
+            Nueva colección · Puerto Ordaz
           </motion.p>
 
           <SplitHeading
@@ -78,7 +77,7 @@ export function Hero() {
             className="mt-10 flex max-w-xl flex-col gap-10"
           >
             <p className="text-base leading-relaxed text-champagne/70 md:text-lg">
-              Doce piezas. Ediciones numeradas, hechas en una sola tanda y nunca repuestas. Cuando una pieza se agota, se agota.
+              Vestidos, tops, faldas y conjuntos elegidos uno a uno. Pocas unidades por talla: cuando una pieza se agota, se agota.
             </p>
             <div className="flex flex-wrap items-center gap-4">
               <Magnetic>
@@ -111,16 +110,17 @@ export function Hero() {
         >
           <motion.button
             type="button"
-            onClick={() => openQuickView("vesper-slip")}
+            onClick={() => openQuickView("vestido-largo-strapless-rosa")}
             data-cursor="Ver"
-            aria-label="Vista rápida del Vestido Vesper"
+            aria-label="Vista rápida del vestido largo strapless con rosa"
             initial={{ clipPath: "inset(100% 0 0 0 round 999px 999px 0 0)", scale: 1.08 }}
             animate={{ clipPath: "inset(0% 0 0 0 round 999px 999px 0 0)", scale: 1 }}
             transition={{ duration: 1.6, ease, delay: 0.35 }}
             style={reduce ? undefined : { rotateX: rx, rotateY: ry }}
             className="relative block aspect-[4/5] w-full overflow-hidden rounded-t-full border border-sand/25 shadow-[0_60px_120px_-30px_rgba(0,0,0,0.6)]"
           >
-            <GarmentArt silhouette="slip" tone="noir" className="h-full w-full" label="Vestido Vesper en seda dorada" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="catalogo/vestido-largo-strapless-rosa__vinotinto.webp" alt="Vestido largo strapless con rosa, color vinotinto" className="h-full w-full bg-white object-contain pt-[12%]" />
             <span className="pointer-events-none absolute inset-0 bg-[linear-gradient(115deg,transparent_40%,rgba(242,217,160,0.12)_50%,transparent_60%)]" />
           </motion.button>
 
@@ -130,8 +130,8 @@ export function Hero() {
             transition={{ duration: 1, ease, delay: 1.3 }}
             className="absolute -left-4 bottom-10 rounded-2xl border border-sand/20 bg-wine/70 px-5 py-4 backdrop-blur-md md:-left-10"
           >
-            <p className="text-[10px] uppercase tracking-[0.28em] text-sand/80">Vestido Vesper</p>
-            <p className="mt-1 font-serif text-2xl text-champagne">Nº 113 de 120</p>
+            <p className="text-[10px] uppercase tracking-[0.28em] text-sand/80">Vestido largo strapless con rosa</p>
+            <p className="mt-1 font-serif text-2xl text-champagne">$45 · Tallas XS y S</p>
           </motion.div>
 
           <motion.div
@@ -146,7 +146,7 @@ export function Hero() {
                 <path id="circ" d="M50 50 m-38 0 a38 38 0 1 1 76 0 a38 38 0 1 1 -76 0" />
               </defs>
               <text fill="#F2D9A0" fontSize="9.4" letterSpacing="3.2">
-                <textPath href="#circ">NUMERADAS · NUNCA REPUESTAS ·</textPath>
+                <textPath href="#circ">POCAS UNIDADES · OTRA PINTA ·</textPath>
               </text>
             </svg>
             <span className="absolute inset-0 m-auto h-2 w-2 rounded-full bg-sand" />

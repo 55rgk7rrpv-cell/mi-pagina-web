@@ -6,14 +6,11 @@ import { CATEGORIES, PRODUCTS } from "@/lib/products";
 import { cn } from "@/lib/format";
 import { SplitHeading } from "@/components/ui/Reveal";
 import { ProductCard } from "./ProductCard";
-import { DropCountdown } from "./DropCountdown";
 
 const SORTS = {
   featured: "Destacados",
-  newest: "Más nuevos",
   "price-asc": "Precio: menor a mayor",
   "price-desc": "Precio: mayor a menor",
-  rarest: "Más exclusivos primero",
 } as const;
 type SortKey = keyof typeof SORTS;
 
@@ -25,10 +22,8 @@ export function Collection() {
     const list = PRODUCTS.filter((p) => category === "Todo" || p.category === category);
     const sorted = [...list];
     switch (sort) {
-      case "newest": sorted.sort((a, b) => b.arrival - a.arrival); break;
       case "price-asc": sorted.sort((a, b) => a.price - b.price); break;
       case "price-desc": sorted.sort((a, b) => b.price - a.price); break;
-      case "rarest": sorted.sort((a, b) => a.stock - b.stock); break;
       default: sorted.sort((a, b) => a.featured - b.featured);
     }
     return sorted;
@@ -45,14 +40,14 @@ export function Collection() {
         <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="mb-6 flex items-center gap-4 text-[11px] font-semibold uppercase tracking-[0.32em] text-burgundy">
-              <span className="h-px w-10 bg-burgundy" /> El lanzamiento
+              <span className="h-px w-10 bg-burgundy" /> Otra Pinta
             </p>
             <SplitHeading
               className="font-serif text-[clamp(3rem,8vw,7.5rem)] leading-[0.9] tracking-[-0.02em]"
-              lines={["Colección", <em key="n" className="text-burgundy">Nº 07</em>]}
+              lines={["La", <em key="n" className="text-burgundy">colección</em>]}
             />
           </div>
-          <DropCountdown />
+          <p className="max-w-xs text-sm leading-relaxed text-maroon/75">{PRODUCTS.length} piezas, con pocas unidades por talla. Precios en dólares.</p>
         </div>
 
         {/* Toolbar */}

@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform, type MotionValue } from "framer-motion
 import { useRef } from "react";
 
 const TEXT =
-  "Hacemos muy pocas cosas, y las hacemos bien. Sin temporadas de exceso, sin reposiciones, sin atajos. Cada pieza va numerada a mano, porque lo exclusivo tiene que significar algo.";
+  "Elegimos cada prenda una a una, pensando en ti. Pocas unidades por talla, para que no te vistas igual que todo el mundo. Porque vestirte distinto también es decir quién eres.";
 
 function Word({ word, progress, range }: { word: string; progress: MotionValue<number>; range: [number, number] }) {
   const opacity = useTransform(progress, range, [0.14, 1]);
@@ -38,9 +38,9 @@ export function Manifesto() {
         </div>
         <div className="mt-20 grid gap-10 border-t border-sand/20 pt-10 sm:grid-cols-3">
           {[
-            ["40 h", "de terminación a mano en cada pieza de sastrería"],
-            ["≤ 200", "piezas por modelo, numeradas a mano"],
-            ["0", "reposiciones. Nunca."],
+            ["36", "piezas en la colección"],
+            ["6", "categorías: vestidos, conjuntos, tops, faldas, chaquetas y accesorios"],
+            ["$13", "es el precio de entrada, en accesorios"],
           ].map(([n, l]) => (
             <div key={n}>
               <p className="font-serif text-5xl text-sand md:text-6xl">{n}</p>

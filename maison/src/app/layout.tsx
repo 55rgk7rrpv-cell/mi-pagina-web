@@ -20,10 +20,10 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   title: "Otra Pinta",
   description:
-    "Otra Pinta: moda femenina en ediciones numeradas que nunca se reponen. Síguenos en Instagram: @otrapintapzo.",
+    "Otra Pinta: moda femenina en Puerto Ordaz. Vestidos, tops, faldas y accesorios con pocas unidades por talla. Instagram: @otrapintapzo.",
   openGraph: {
     title: "Otra Pinta | No es para cualquiera.",
-    description: "Piezas numeradas que nunca se reponen.",
+    description: "Vestidos, tops y conjuntos con pocas unidades por talla.",
     type: "website",
   },
 };

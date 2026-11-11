@@ -1,7 +1,7 @@
 
 const COLS = [
   { title: "Otra Pinta", items: ["La colección", "Lookbook", "El Círculo"] },
-  { title: "Atención", items: ["Envíos y cambios", "Guía de tallas", "Citas privadas", "Contacto"] },
+  { title: "Atención", items: ["Delivery y envíos", "Guía de tallas", "Pago Móvil y Zelle", "Contacto por Instagram"] },
   ];
 
 export function Footer() {
@@ -11,12 +11,12 @@ export function Footer() {
         <div className="grid gap-14 md:grid-cols-[1.4fr_repeat(3,1fr)]">
           <div>
             <p className="font-serif text-3xl leading-tight md:text-4xl">
-              Hecho en pocas piezas,
+              Pocas piezas,
               <br />
               <em className="text-sand">para pocas.</em>
             </p>
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-champagne/60">
-              Cada pieza de Otra Pinta va numerada, se hace en una sola tanda y nunca se repone.
+              Prendas elegidas una a una, con pocas unidades por talla. Escríbenos por Instagram para cualquier duda.
             </p>
           </div>
           {COLS.map((c) => (

@@ -68,7 +68,7 @@ export function Navbar() {
           </a>
 
           <div className="flex flex-1 items-center justify-end gap-6">
-            <span className="hidden text-[11px] uppercase tracking-[0.24em] text-champagne/60 lg:inline">Colección Nº 07</span>
+            <span className="hidden text-[11px] uppercase tracking-[0.24em] text-champagne/60 lg:inline">Puerto Ordaz</span>
             <Magnetic strength={0.4}>
               <button
                 type="button"
@@ -124,7 +124,7 @@ export function Navbar() {
                 </motion.div>
               ))}
             </nav>
-            <p className="mt-auto text-xs uppercase tracking-[0.24em] text-sand/70">Colección Nº 07 · Piezas numeradas</p>
+            <p className="mt-auto text-xs uppercase tracking-[0.24em] text-sand/70">Puerto Ordaz · @otrapintapzo</p>
           </motion.div>
         )}
       </AnimatePresence>

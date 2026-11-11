@@ -17,9 +17,9 @@ const ease = [0.22, 1, 0.36, 1] as const;
 const STEPS = ["Datos", "Envío", "Pago"] as const;
 
 const METHODS = [
-  { id: "express", label: "Envío express", note: "De 1 a 2 días hábiles, se entrega con firma", cost: 35 },
-  { id: "white-glove", label: "Entrega personalizada", note: "En mano, en funda protectora y con cita", cost: 85 },
-  { id: "pickup", label: "Retiro en tienda", note: "Puerto Ordaz, listo en 24 horas", cost: 0 },
+  { id: "express", label: "Delivery", note: "En Puerto Ordaz y San Félix, de 1 a 2 días hábiles", cost: 5 },
+  { id: "white-glove", label: "Envío nacional", note: "A cualquier ciudad de Venezuela por agencia de encomiendas", cost: 10 },
+  { id: "pickup", label: "Retiro en persona", note: "En Puerto Ordaz, coordinamos por Instagram", cost: 0 },
 ] as const;
 
 const PAY = [
@@ -122,7 +122,7 @@ export function CheckoutFlow() {
     return (
       <div className="mx-auto flex min-h-[70svh] max-w-lg flex-col items-center justify-center px-5 text-center">
         <p className="font-serif text-5xl italic text-burgundy">Tu bolsa está vacía.</p>
-        <p className="mt-4 text-maroon/75">Añade una pieza de la Colección Nº 07 para empezar a pagar.</p>
+        <p className="mt-4 text-maroon/75">Añade una pieza de la colección para empezar a pagar.</p>
         <a href="#collection" className="mt-8 inline-flex h-12 items-center gap-2 rounded-full bg-burgundy px-7 text-[11px] font-semibold uppercase tracking-[0.22em] text-champagne hover:bg-wine">
           Volver a la colección <ArrowIcon width={14} height={14} />
         </a>
@@ -313,7 +313,7 @@ export function CheckoutFlow() {
                           </WalletPanel>
                         )}
                         {pay === "local" && (
-                          <WalletPanel title="Transferencia segura" body="Te apartamos tus piezas numeradas por 24 horas mientras se confirma el pago. Te enviamos al correo los datos y una referencia al instante.">
+                          <WalletPanel title="Transferencia segura" body="Te apartamos tus prendas por 24 horas mientras se confirma el pago. Te enviamos al correo los datos y una referencia al instante.">
                             <div className="grid grid-cols-3 gap-2" role="radiogroup" aria-label="Tipo de transferencia">
                               {["Pago Móvil", "Zelle", "Transferencia"].map((b) => (
                                 <button key={b} type="button" role="radio" aria-checked={localBank === b} onClick={() => setLocalBank(b)} className={cn("h-12 rounded-xl border text-sm font-medium transition-colors", localBank === b ? "border-burgundy bg-burgundy text-champagne" : "border-wine/20 hover:border-wine")}>
@@ -376,7 +376,7 @@ export function CheckoutFlow() {
             {lines.map((l) => (
               <li key={l.key} className="flex items-center gap-4">
                 <div className="relative aspect-[4/5] w-16 shrink-0 overflow-hidden rounded-sm">
-                  <ProductVisual product={l.product} variant="still" className="h-full w-full" />
+                  <ProductVisual product={l.product} color={l.color} variant="still" className="h-full w-full" />
                   <span className="absolute -right-0 -top-0 flex h-5 min-w-5 items-center justify-center rounded-bl-md bg-burgundy px-1 text-[10px] font-semibold text-champagne">{l.qty}</span>
                 </div>
                 <div className="min-w-0 flex-1">
@@ -456,7 +456,7 @@ function Confirmation({ order }: { order: { id: string; total: number; email: st
           Ya es <em className="text-burgundy">tuya.</em>
         </h1>
         <p className="mx-auto mt-6 max-w-md text-maroon/80">
-          Enviamos la confirmación a <span className="font-medium text-wine">{order.email || "el correo de tu billetera"}</span>. Ya estamos envolviendo a mano tus piezas numeradas.
+          Enviamos la confirmación a <span className="font-medium text-wine">{order.email || "el correo de tu billetera"}</span>. Ya estamos preparando tu pedido.
         </p>
         <p className="mt-6 font-serif text-3xl tabular-nums">{formatPrice(order.total)}</p>
         <a href="#top" className="mt-10 inline-flex h-12 items-center gap-2 rounded-full bg-burgundy px-7 text-[11px] font-semibold uppercase tracking-[0.22em] text-champagne hover:bg-wine">
