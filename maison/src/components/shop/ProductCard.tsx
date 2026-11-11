@@ -31,7 +31,7 @@ export function ProductCard({ product, index }: { product: Product; index: numbe
       className="group relative"
       onMouseLeave={() => setSizePicker(false)}
     >
-      <div className="relative aspect-[4/5] overflow-hidden rounded-[2px] bg-white">
+      <div className="relative aspect-square overflow-hidden rounded-[2px] bg-white">
         <button
           type="button"
           onClick={() => openQuickView(product.id)}

@@ -375,7 +375,7 @@ export function CheckoutFlow() {
           <ul className="mt-6 max-h-[40svh] space-y-5 overflow-y-auto pr-1">
             {lines.map((l) => (
               <li key={l.key} className="flex items-center gap-4">
-                <div className="relative aspect-[4/5] w-16 shrink-0 overflow-hidden rounded-sm">
+                <div className="relative aspect-square w-16 shrink-0 overflow-hidden rounded-sm bg-white">
                   <ProductVisual product={l.product} color={l.color} variant="still" className="h-full w-full" />
                   <span className="absolute -right-0 -top-0 flex h-5 min-w-5 items-center justify-center rounded-bl-md bg-burgundy px-1 text-[10px] font-semibold text-champagne">{l.qty}</span>
                 </div>

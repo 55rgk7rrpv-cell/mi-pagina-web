@@ -120,7 +120,7 @@ export function Hero() {
             className="relative block aspect-[4/5] w-full overflow-hidden rounded-t-full border border-sand/25 shadow-[0_60px_120px_-30px_rgba(0,0,0,0.6)]"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="catalogo/vestido-largo-strapless-rosa__vinotinto.webp" alt="Vestido largo strapless con rosa, color vinotinto" className="h-full w-full bg-white object-contain pt-[12%]" />
+            <img src="catalogo/vestido-largo-strapless-rosa__vinotinto.webp" alt="Vestido largo strapless con rosa, color vinotinto" className="h-full w-full bg-white object-contain" />
             <span className="pointer-events-none absolute inset-0 bg-[linear-gradient(115deg,transparent_40%,rgba(242,217,160,0.12)_50%,transparent_60%)]" />
           </motion.button>
 

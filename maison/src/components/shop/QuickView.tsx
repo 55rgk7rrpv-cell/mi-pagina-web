@@ -74,7 +74,7 @@ function QuickViewPanel({ id, onClose }: { id: string; onClose: () => void }) {
         className="relative grid max-h-[92svh] w-full max-w-5xl overflow-y-auto rounded-t-3xl bg-champagne text-wine shadow-2xl md:grid-cols-2 md:overflow-hidden md:rounded-3xl"
       >
         <div className="relative flex flex-col bg-white">
-          <div className="relative aspect-[4/5] w-full md:aspect-auto md:flex-1">
+          <div className="relative aspect-square w-full bg-white md:aspect-auto md:flex-1">
             <AnimatePresence initial={false} mode="popLayout">
               <motion.img
                 key={image}
@@ -97,7 +97,7 @@ function QuickViewPanel({ id, onClose }: { id: string; onClose: () => void }) {
                   onClick={() => setImage(src)}
                   aria-label={`Ver foto ${i + 1}`}
                   aria-pressed={image === src}
-                  className={cn("aspect-[4/5] w-14 shrink-0 overflow-hidden rounded-md bg-white ring-offset-1 transition", image === src ? "ring-2 ring-burgundy" : "ring-1 ring-wine/15 hover:ring-wine/40")}
+                  className={cn("aspect-square w-14 shrink-0 overflow-hidden rounded-md bg-white ring-offset-1 transition", image === src ? "ring-2 ring-burgundy" : "ring-1 ring-wine/15 hover:ring-wine/40")}
                 >
                   <img src={src} alt="" className="h-full w-full object-contain" loading="lazy" />
                 </button>

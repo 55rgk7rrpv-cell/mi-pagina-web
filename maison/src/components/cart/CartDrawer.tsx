@@ -81,7 +81,7 @@ function Drawer({ onClose }: { onClose: () => void }) {
                     transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                     className="flex gap-4 overflow-hidden border-b border-wine/10 py-5"
                   >
-                    <div className="relative aspect-[4/5] w-24 shrink-0 overflow-hidden rounded-sm">
+                    <div className="relative aspect-square w-24 shrink-0 overflow-hidden rounded-sm bg-white">
                       <ProductVisual product={l.product} color={l.color} variant="still" className="h-full w-full" />
                     </div>
                     <div className="flex min-w-0 flex-1 flex-col">
