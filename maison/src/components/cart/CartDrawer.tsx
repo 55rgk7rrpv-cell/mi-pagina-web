@@ -69,7 +69,7 @@ function Drawer({ onClose }: { onClose: () => void }) {
           </div>
         ) : (
           <>
-            <ul className="flex-1 overflow-y-auto px-6" aria-label="Artículos en tu bolsa">
+            <ul data-lenis-prevent className="flex-1 overflow-y-auto overscroll-contain px-6" aria-label="Artículos en tu bolsa">
               <AnimatePresence initial={false}>
                 {lines.map((l) => (
                   <motion.li

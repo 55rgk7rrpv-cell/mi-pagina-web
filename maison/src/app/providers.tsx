@@ -6,6 +6,7 @@ import { ShopProvider } from "@/context/ShopContext";
 import { CartDrawer } from "@/components/cart/CartDrawer";
 import { QuickView } from "@/components/shop/QuickView";
 import { CustomCursor } from "@/components/ui/CustomCursor";
+import { SmoothScroll } from "@/components/ui/SmoothScroll";
 
 export function Providers({ children }: { children: ReactNode }) {
   return (
@@ -15,6 +16,7 @@ export function Providers({ children }: { children: ReactNode }) {
         <CartDrawer />
         <QuickView />
         <CustomCursor />
+        <SmoothScroll />
       </ShopProvider>
     </MotionConfig>
   );

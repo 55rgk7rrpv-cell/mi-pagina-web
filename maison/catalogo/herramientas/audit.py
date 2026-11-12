@@ -15,7 +15,7 @@ E={ # id: (price, {colour prefix: [sizes]}, cover prefix)
  "top-halter-aberturas":(16,{"Negro":["XS"]},None),
  "vestido-strapless-encaje-rosa":(35,{"Vinotinto":["XS","S"]},None),
  "falda-volantes-bicolor":(28,{"Negro y blanco":["S","M"]},None),
- "chaqueta-capucha-lunares":(38,{"Amarillo":["L"],"Rosa":["M"]},"Amarillo"),
+ "chaqueta-capucha-lunares":(38,{"Amarillo":["L"],"Rosa":["M"]},"Rosa"),
  "top-encaje-corse":(20,{"Negro":["XS","M"]},None),
  "falda-saten-encaje":(30,{"Negro":["XS","S"]},None),
  "top-saten-cruzado":(18,{"Marrón":["S"],"Champaña":["XXS"],"Negro":["XS"]},"Marrón"),
@@ -53,6 +53,9 @@ for pid,(price,cols,cover) in E.items():
         if m[0]["sizes"]!=sizes: errors.append((pid,pref,"tallas",m[0]["sizes"],sizes))
         if not os.path.exists("public/"+m[0]["image"]): errors.append((pid,pref,"falta foto"))
     if cover and not p["colors"][0]["name"].startswith(cover): errors.append((pid,"portada",p["colors"][0]["name"],cover))
+# rule: if a product has any garment-only photo, its cover must be garment-only
+for p in P:
+    if any(not c["withModel"] for c in p["colors"]) and p["colors"][0]["withModel"]: errors.append((p["id"],"portada con modelo habiendo foto de la prenda sola"))
 imgs=[c["image"] for p in P for c in p["colors"]]
 if len(imgs)!=len(set(imgs)): errors.append(("una foto repetida en dos colores",))
 print(f"{len(P)} productos, {sum(len(p['colors']) for p in P)} variantes de color, {sum(len(c['sizes']) for p in P for c in p['colors'])} tallas revisadas.")

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { productImages, type Product } from "@/lib/products";
+import { garmentImages, type Product } from "@/lib/products";
 import { formatPrice } from "@/lib/format";
 import { useShop } from "@/context/ShopContext";
 import { EyeIcon, PlusIcon } from "@/components/ui/Icons";
@@ -13,7 +13,8 @@ export function ProductCard({ product, index }: { product: Product; index: numbe
   const [sizePicker, setSizePicker] = useState(false);
   const cover = product.colors[0];
   const oneSize = cover.sizes.length === 1;
-  const hasHover = productImages(product).length > 1;
+  // hover swap only between garment-only photos; model photos stay in the quick-view gallery
+  const hasHover = garmentImages(product).filter((s) => s !== cover.image).length > 0;
 
   const quickAdd = (size: string) => {
     add(product.id, size, cover.name);

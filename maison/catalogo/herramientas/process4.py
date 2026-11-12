@@ -9,7 +9,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from specs import S
 src=open(os.path.join(os.path.dirname(os.path.abspath(__file__)),"process.py")).read()
 ns={"json":json,"os":os,"__file__":os.path.abspath("process.py")}; exec(src[src.index("DROP="):src.index("def erase")], ns)
-DROP,CROP_FIX,labels_for=ns["DROP"],ns["CROP_FIX"],ns["labels_for"]
+CROP_FIX,labels_for=ns["CROP_FIX"],ns["labels_for"]
+DROP={"top-encaje-corse__negro-2"}  # the flat-lay insets of the vest set are now wanted (garment only)
 U="/root/.claude/uploads/16ab63f0-5b1d-5e2d-9464-4b8b426ada6c/"
 OUT=sys.argv[1]; os.makedirs(OUT,exist_ok=True); MAXS=1600
 OVERLAY={"vestido-halter-lunares-escote__vinotinto":[(0.24,0.476,0.296,0.51)]}  # size sticker "S" on the first panel

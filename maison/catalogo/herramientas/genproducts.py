@@ -29,10 +29,30 @@ IMG={
  "vestido-largo-lunares-panuelo":["amarillo"],"vestido-halter-suelto":["rojo"],"vestido-largo-halter-plisado":["vinotinto"],
  "vestido-asimetrico-volantes":["vinotinto"],"vestido-halter-suelto-tul":["blanco-lunares"],
  "vestido-corto-lunares-panuelo":["amarillo","marron","crema","negro"],"top-encaje-hombro-descubierto":["negro"],
- "vestido-mangas-acampanadas":["rojo"],"conjunto-chaleco-short":["amarillo","crema-lunares"],"falda-larga-encaje":["negro"],
+ "vestido-mangas-acampanadas":["rojo"],"conjunto-chaleco-short":["amarillo-plano","crema-lunares-plano"],"falda-larga-encaje":["negro"],
  "falda-plisada-short":["gris"],"cinturon-cadena-corazones":["dorado"],"cinturon-elegante":["marron","negro"],
 }
-EXTRA={"vestido-floral-manga-globo":["blanco-floral-2"],"vestido-largo-halter-plisado":["vinotinto-modelo"]}
+EXTRA={"vestido-floral-manga-globo":["blanco-floral-2"],"vestido-largo-halter-plisado":["vinotinto-modelo"],
+ "conjunto-chaleco-short":["amarillo","crema-lunares"],"cinturon-cadena-corazones":["dorado-modelo"]}
+# Photos that show only the garment: no person, not even a hand. Everything else counts as "with model".
+GARMENT_ONLY={
+ "vestido-strapless-encaje-rosa__vinotinto","falda-volantes-bicolor__negro-blanco","chaqueta-capucha-lunares__rosa",
+ "top-saten-cruzado__marron","top-saten-cruzado__champana","top-saten-cruzado__negro",
+ "top-saten-cuello-alto__vinotinto","top-saten-cuello-alto__marron",
+ "top-saten-lazo__rojo","top-saten-lazo__amarillo","top-saten-lazo__verde","top-saten-lazo__marron","top-saten-lazo__champana",
+ "vestido-largo-halter-plisado__vinotinto","cinturon-cadena-corazones__dorado","cinturon-elegante__marron","cinturon-elegante__negro",
+ "conjunto-chaleco-short__amarillo-plano","conjunto-chaleco-short__crema-lunares-plano"}
+import colorsys, numpy as np
+from PIL import Image
+def vivid(path):
+    a=np.asarray(Image.open(path).convert("RGB")).astype(float)/255; h,w,_=a.shape
+    reg=a[int(h*.3):int(h*.7), int(w*.3):int(w*.7)].reshape(-1,3)
+    hsv=np.array([colorsys.rgb_to_hsv(*px) for px in reg[::9]])
+    skin=(hsv[:,0]>0.02)&(hsv[:,0]<0.11)&(hsv[:,1]>0.18)&(hsv[:,1]<0.6)&(hsv[:,2]>0.45)
+    keep=hsv[~skin] if (~skin).sum()>50 else hsv
+    med=np.median(np.array([colorsys.hsv_to_rgb(*x) for x in keep]),axis=0); hh,ss,vv=colorsys.rgb_to_hsv(*med)
+    # vividness = saturation weighted above brightness, so beige/cream/champagne never beat a real colour
+    return ss*(vv**0.5), "#%02X%02X%02X"%tuple(int(x*255) for x in med)
 DESC={
  "vestido-halter-volantes":"Cuello halter, cintura fruncida que estiliza y una falda de volantes en capas que se mueve contigo.",
  "conjunto-top-falda-sirena":"Top corto drapeado y falda larga tipo sirena con fruncido en la cadera. Dos piezas que juntas son un look completo.",
@@ -75,14 +95,41 @@ CATMAP={"Conjuntos":"Conjuntos"}
 out=[]
 for i,p in enumerate(cat):
     pid=p["id"]; keys=IMG[pid]; assert len(keys)==len(p["variantes"]),pid
+    # pair every colour with its photo BY NAME (never by position: colour order changes with the cover rule)
+    def words(x): return set(slug(x).split("-"))-{"con","y","plano"}
+    pairs=[]
+    for v in p["variantes"]:
+        if len(keys)==1: k=keys[0]
+        else:
+            cand=[k for k in keys if words(k) <= words(v["color"])]
+            if len(cand)>1: cand=[max(cand,key=lambda k:len(words(k)))]
+            assert len(cand)==1,(pid,v["color"],cand)
+            k=cand[0]
+        pairs.append((v,k))
+    assert len({k for _,k in pairs})==len(keys),(pid,"photo used twice")
     colors=[]
-    for v,k in zip(p["variantes"],keys):
-        colors.append({"name":v["color"],"hex":MEASURED.get(f"{pid}||{v['color']}",[hexof(v["color"])])[0],"sizes":v["tallas"],"image":f"catalogo/{pid}__{k}.webp"})
+    for v,k in pairs:
+        img=f"catalogo/{pid}__{k}.webp"; vv,hx=vivid("public/"+img)
+        colors.append({"name":v["color"],"hex":hx,"sizes":v["tallas"],"image":img,"withModel":f"{pid}__{k}" not in GARMENT_ONLY,"_v":vv})
+    # Rule 1: a garment-only photo is always the cover when one exists. Rule 2: then the most vivid colour.
+    colors.sort(key=lambda c:(c["withModel"],-c["_v"]))
+    for c in colors: c.pop("_v")
+    gallery=[{"src":f"catalogo/{pid}__{k}.webp","withModel":f"{pid}__{k}" not in GARMENT_ONLY} for k in EXTRA.get(pid,[])]
     sizes_total=sum(len(c["sizes"]) for c in colors)
-    out.append({"id":pid,"name":p["nombre"],"category":p["categoria"],"price":PRICE_FIX.get(pid,p["precio_usd"]),
-      "description":DESC[pid],"colors":colors,"gallery":[f"catalogo/{pid}__{k}.webp" for k in EXTRA.get(pid,[])],
-      "badge":"Última pieza" if sizes_total==1 else None,"featured":i+1})
-    assert out[-1]["price"] is not None, pid
+    out.append({"id":pid,"name":p["nombre"],"category":p["categoria"],"price":p["precio_usd"],
+      "description":DESC[pid],"colors":colors,"gallery":gallery,
+      "coverHasModel":colors[0]["withModel"],
+      "badge":"Última pieza" if sizes_total==1 else None,"featured":0})
+    # keep the master catalogue in the same order and record what the web uses
+    order={c["name"]:j for j,c in enumerate(colors)}
+    p["variantes"].sort(key=lambda v:order[v["color"]])
+    for v in p["variantes"]:
+        c=next(c for c in colors if c["name"]==v["color"]); v["foto_web"]=c["image"]; v["con_modelo"]=c["withModel"]
+    p["imagen_principal"]=colors[0]["image"]; p["portada_con_modelo"]=colors[0]["withModel"]
+    p["imagenes_secundarias"]=[c["image"] for c in colors[1:]]+[g["src"] for g in gallery]
+# "Destacados": products with a garment-only cover first, keeping catalogue order inside each group
+for n,o in enumerate(sorted(out,key=lambda o:(o["coverHasModel"],cat.index(next(c for c in cat if c["id"]==o["id"]))))): o["featured"]=n+1
+json.dump({"tienda":"Otra Pinta","moneda":"USD","productos":cat},open("catalogo/catalogo.json","w"),ensure_ascii=False,indent=2)
 js=json.dumps(out,ensure_ascii=False,indent=2)
 ts='''// Catálogo de Otra Pinta. Generado a partir de catalogo/catalogo.json.
 // Cada color tiene su propia foto (prenda sobre fondo blanco) y sus tallas.
@@ -94,6 +141,13 @@ export interface ColorVariant {
   hex: string;
   sizes: string[];
   image: string;
+  /** true when the photo shows a person (model, or a hand holding the garment) */
+  withModel: boolean;
+}
+
+export interface GalleryImage {
+  src: string;
+  withModel: boolean;
 }
 
 export interface Product {
@@ -105,8 +159,10 @@ export interface Product {
   description: string;
   /** El primer color es la portada: el más llamativo */
   colors: ColorVariant[];
-  /** Fotos extra del mismo producto */
-  gallery: string[];
+  /** Fotos extra del mismo producto (solo para la galería de la vista rápida) */
+  gallery: GalleryImage[];
+  /** true while the product still has no garment-only photo */
+  coverHasModel: boolean;
   badge: "Última pieza" | null;
   featured: number;
 }
@@ -119,11 +175,15 @@ export const getProduct = (id: string) => PRODUCTS.find((p) => p.id === id);
 
 export const getColor = (p: Product, color?: string) => p.colors.find((c) => c.name === color) ?? p.colors[0];
 
-/** All photos of a product: one per colour, then the extra shots */
-export const productImages = (p: Product) => [...p.colors.map((c) => c.image), ...p.gallery];
+/** All photos of a product (quick-view gallery): one per colour, then the extra shots */
+export const productImages = (p: Product) => [...p.colors.map((c) => c.image), ...p.gallery.map((g) => g.src)];
+
+/** Garment-only photos (no person): the only ones the catalogue grid may show */
+export const garmentImages = (p: Product) =>
+  [...p.colors.filter((c) => !c.withModel).map((c) => c.image), ...p.gallery.filter((g) => !g.withModel).map((g) => g.src)];
 '''
 open("src/lib/products.ts","w").write(ts)
 print(len(out),"productos; categorías:",sorted({o["category"] for o in out}))
 import os
-missing=[c["image"] for o in out for c in o["colors"] if not os.path.exists("public/"+c["image"])]+[g for o in out for g in o["gallery"] if not os.path.exists("public/"+g)]
+missing=[c["image"] for o in out for c in o["colors"] if not os.path.exists("public/"+c["image"])]+[g["src"] for o in out for g in o["gallery"] if not os.path.exists("public/"+g["src"])]
 print("fotos que faltan:",missing)

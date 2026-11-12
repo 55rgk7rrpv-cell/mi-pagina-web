@@ -7,11 +7,11 @@
       "nombre": "Vestido halter con volantes",
       "categoria": "Vestidos",
       "precio_usd": 35,
-      "imagen_principal": "5c7fd302-image.jpg",
+      "imagen_principal": "catalogo/vestido-halter-volantes__rojo.webp",
       "imagenes_secundarias": [
-        "7cbb92b2-image.jpg",
-        "daa4cdf7-image.jpg",
-        "a984a136-image.jpg"
+        "catalogo/vestido-halter-volantes__azul-marino.webp",
+        "catalogo/vestido-halter-volantes__blanco-lunares-pequenos.webp",
+        "catalogo/vestido-halter-volantes__blanco-lunares-grandes.webp"
       ],
       "variantes": [
         {
@@ -19,37 +19,46 @@
           "tallas": [
             "XS"
           ],
-          "foto": "5c7fd302-image.jpg"
-        },
-        {
-          "color": "Blanco con lunares grandes",
-          "tallas": [
-            "M (ajusta S)"
-          ],
-          "foto": "7cbb92b2-image.jpg"
+          "foto": "5c7fd302-image.jpg",
+          "foto_web": "catalogo/vestido-halter-volantes__rojo.webp",
+          "con_modelo": true
         },
         {
           "color": "Azul marino con lunares",
           "tallas": [
             "L (ajusta M)"
           ],
-          "foto": "daa4cdf7-image.jpg"
+          "foto": "daa4cdf7-image.jpg",
+          "foto_web": "catalogo/vestido-halter-volantes__azul-marino.webp",
+          "con_modelo": true
         },
         {
           "color": "Blanco con lunares pequeños",
           "tallas": [
             "S"
           ],
-          "foto": "a984a136-image.jpg"
+          "foto": "a984a136-image.jpg",
+          "foto_web": "catalogo/vestido-halter-volantes__blanco-lunares-pequenos.webp",
+          "con_modelo": true
+        },
+        {
+          "color": "Blanco con lunares grandes",
+          "tallas": [
+            "M (ajusta S)"
+          ],
+          "foto": "7cbb92b2-image.jpg",
+          "foto_web": "catalogo/vestido-halter-volantes__blanco-lunares-grandes.webp",
+          "con_modelo": true
         }
-      ]
+      ],
+      "portada_con_modelo": true
     },
     {
       "id": "conjunto-top-falda-sirena",
       "nombre": "Conjunto top corto y falda sirena con lunares",
       "categoria": "Conjuntos",
       "precio_usd": 45,
-      "imagen_principal": "b6999bf0-image.jpg",
+      "imagen_principal": "catalogo/conjunto-top-falda-sirena__azul-marino.webp",
       "imagenes_secundarias": [],
       "variantes": [
         {
@@ -58,16 +67,19 @@
             "S",
             "M"
           ],
-          "foto": "b6999bf0-image.jpg"
+          "foto": "b6999bf0-image.jpg",
+          "foto_web": "catalogo/conjunto-top-falda-sirena__azul-marino.webp",
+          "con_modelo": true
         }
-      ]
+      ],
+      "portada_con_modelo": true
     },
     {
       "id": "vestido-largo-strapless-rosa",
       "nombre": "Vestido largo strapless con rosa",
       "categoria": "Vestidos",
       "precio_usd": 45,
-      "imagen_principal": "cfdc7af7-image.jpg",
+      "imagen_principal": "catalogo/vestido-largo-strapless-rosa__vinotinto.webp",
       "imagenes_secundarias": [],
       "variantes": [
         {
@@ -76,18 +88,21 @@
             "XS",
             "S"
           ],
-          "foto": "cfdc7af7-image.jpg"
+          "foto": "cfdc7af7-image.jpg",
+          "foto_web": "catalogo/vestido-largo-strapless-rosa__vinotinto.webp",
+          "con_modelo": true
         }
-      ]
+      ],
+      "portada_con_modelo": true
     },
     {
       "id": "vestido-largo-un-hombro",
       "nombre": "Vestido largo de un hombro fruncido",
       "categoria": "Vestidos",
       "precio_usd": 45,
-      "imagen_principal": "e2acbed6-image.jpg",
+      "imagen_principal": "catalogo/vestido-largo-un-hombro__amarillo-claro.webp",
       "imagenes_secundarias": [
-        "01796384-image.jpg"
+        "catalogo/vestido-largo-un-hombro__negro.webp"
       ],
       "variantes": [
         {
@@ -95,26 +110,31 @@
           "tallas": [
             "S"
           ],
-          "foto": "e2acbed6-image.jpg"
+          "foto": "e2acbed6-image.jpg",
+          "foto_web": "catalogo/vestido-largo-un-hombro__amarillo-claro.webp",
+          "con_modelo": true
         },
         {
           "color": "Negro",
           "tallas": [
             "S"
           ],
-          "foto": "01796384-image.jpg"
+          "foto": "01796384-image.jpg",
+          "foto_web": "catalogo/vestido-largo-un-hombro__negro.webp",
+          "con_modelo": true
         }
-      ]
+      ],
+      "portada_con_modelo": true
     },
     {
       "id": "vestido-halter-lunares-escote",
       "nombre": "Vestido halter con lunares y escote profundo",
       "categoria": "Vestidos",
       "precio_usd": 28,
-      "imagen_principal": "882b7294-image.jpg (panel izquierdo)",
+      "imagen_principal": "catalogo/vestido-halter-lunares-escote__vinotinto.webp",
       "imagenes_secundarias": [
-        "7e3196c9-image.jpg",
-        "882b7294-image.jpg (panel derecho)"
+        "catalogo/vestido-halter-lunares-escote__crema.webp",
+        "catalogo/vestido-halter-lunares-escote__negro.webp"
       ],
       "variantes": [
         {
@@ -123,15 +143,9 @@
             "S"
           ],
           "foto": "882b7294-image.jpg",
-          "recorte": "panel izquierdo"
-        },
-        {
-          "color": "Negro con lunares",
-          "tallas": [
-            "XS",
-            "M"
-          ],
-          "foto": "7e3196c9-image.jpg"
+          "recorte": "panel izquierdo",
+          "foto_web": "catalogo/vestido-halter-lunares-escote__vinotinto.webp",
+          "con_modelo": true
         },
         {
           "color": "Crema con lunares",
@@ -139,18 +153,31 @@
             "M"
           ],
           "foto": "882b7294-image.jpg",
-          "recorte": "panel derecho"
+          "recorte": "panel derecho",
+          "foto_web": "catalogo/vestido-halter-lunares-escote__crema.webp",
+          "con_modelo": true
+        },
+        {
+          "color": "Negro con lunares",
+          "tallas": [
+            "XS",
+            "M"
+          ],
+          "foto": "7e3196c9-image.jpg",
+          "foto_web": "catalogo/vestido-halter-lunares-escote__negro.webp",
+          "con_modelo": true
         }
-      ]
+      ],
+      "portada_con_modelo": true
     },
     {
       "id": "vestido-floral-manga-globo",
       "nombre": "Vestido floral manga globo",
       "categoria": "Vestidos",
       "precio_usd": 40,
-      "imagen_principal": "6f05fbdd-image.jpg",
+      "imagen_principal": "catalogo/vestido-floral-manga-globo__blanco-floral.webp",
       "imagenes_secundarias": [
-        "f2a86d51-image.jpg"
+        "catalogo/vestido-floral-manga-globo__blanco-floral-2.webp"
       ],
       "variantes": [
         {
@@ -158,17 +185,20 @@
           "tallas": [
             "S"
           ],
-          "foto": "6f05fbdd-image.jpg"
+          "foto": "6f05fbdd-image.jpg",
+          "foto_web": "catalogo/vestido-floral-manga-globo__blanco-floral.webp",
+          "con_modelo": true
         }
       ],
-      "nota_precio": "Una foto decía Ref 38 y la más reciente Ref 40; se usa 40."
+      "nota_precio": "Una foto decía Ref 38 y la más reciente Ref 40; se usa 40.",
+      "portada_con_modelo": true
     },
     {
       "id": "top-tul-volantes",
       "nombre": "Top de tul con volantes",
       "categoria": "Tops",
       "precio_usd": 20,
-      "imagen_principal": "126116b8-image.jpg",
+      "imagen_principal": "catalogo/top-tul-volantes__negro.webp",
       "imagenes_secundarias": [],
       "variantes": [
         {
@@ -176,16 +206,19 @@
           "tallas": [
             "XXS"
           ],
-          "foto": "126116b8-image.jpg"
+          "foto": "126116b8-image.jpg",
+          "foto_web": "catalogo/top-tul-volantes__negro.webp",
+          "con_modelo": true
         }
-      ]
+      ],
+      "portada_con_modelo": true
     },
     {
       "id": "vestido-otra-pinta-lenceria",
       "nombre": "Vestido Otra Pinta estilo lencería",
       "categoria": "Vestidos",
       "precio_usd": 28,
-      "imagen_principal": "973e9b92-image.jpg",
+      "imagen_principal": "catalogo/vestido-otra-pinta-lenceria__marron-negro.webp",
       "imagenes_secundarias": [],
       "variantes": [
         {
@@ -193,16 +226,19 @@
           "tallas": [
             "S"
           ],
-          "foto": "973e9b92-image.jpg"
+          "foto": "973e9b92-image.jpg",
+          "foto_web": "catalogo/vestido-otra-pinta-lenceria__marron-negro.webp",
+          "con_modelo": true
         }
-      ]
+      ],
+      "portada_con_modelo": true
     },
     {
       "id": "vestido-midi-asimetrico",
       "nombre": "Vestido midi asimétrico con abertura",
       "categoria": "Vestidos",
       "precio_usd": 38,
-      "imagen_principal": "29240e5b-image.jpg",
+      "imagen_principal": "catalogo/vestido-midi-asimetrico__negro.webp",
       "imagenes_secundarias": [],
       "variantes": [
         {
@@ -210,16 +246,19 @@
           "tallas": [
             "XXS"
           ],
-          "foto": "29240e5b-image.jpg"
+          "foto": "29240e5b-image.jpg",
+          "foto_web": "catalogo/vestido-midi-asimetrico__negro.webp",
+          "con_modelo": true
         }
-      ]
+      ],
+      "portada_con_modelo": true
     },
     {
       "id": "top-halter-aberturas",
       "nombre": "Top halter fruncido con aberturas",
       "categoria": "Tops",
       "precio_usd": 16,
-      "imagen_principal": "aba05884-image.jpg",
+      "imagen_principal": "catalogo/top-halter-aberturas__negro.webp",
       "imagenes_secundarias": [],
       "variantes": [
         {
@@ -227,16 +266,19 @@
           "tallas": [
             "XS"
           ],
-          "foto": "aba05884-image.jpg"
+          "foto": "aba05884-image.jpg",
+          "foto_web": "catalogo/top-halter-aberturas__negro.webp",
+          "con_modelo": true
         }
-      ]
+      ],
+      "portada_con_modelo": true
     },
     {
       "id": "vestido-strapless-encaje-rosa",
       "nombre": "Vestido corto strapless de encaje con rosa",
       "categoria": "Vestidos",
       "precio_usd": 35,
-      "imagen_principal": "2de645fc-image.jpg",
+      "imagen_principal": "catalogo/vestido-strapless-encaje-rosa__vinotinto.webp",
       "imagenes_secundarias": [],
       "variantes": [
         {
@@ -245,16 +287,19 @@
             "XS",
             "S"
           ],
-          "foto": "2de645fc-image.jpg"
+          "foto": "2de645fc-image.jpg",
+          "foto_web": "catalogo/vestido-strapless-encaje-rosa__vinotinto.webp",
+          "con_modelo": false
         }
-      ]
+      ],
+      "portada_con_modelo": false
     },
     {
       "id": "falda-volantes-bicolor",
       "nombre": "Falda corta con volantes",
       "categoria": "Faldas",
       "precio_usd": 28,
-      "imagen_principal": "710adba9-image.jpg",
+      "imagen_principal": "catalogo/falda-volantes-bicolor__negro-blanco.webp",
       "imagenes_secundarias": [],
       "variantes": [
         {
@@ -263,45 +308,51 @@
             "S",
             "M"
           ],
-          "foto": "710adba9-image.jpg"
+          "foto": "710adba9-image.jpg",
+          "foto_web": "catalogo/falda-volantes-bicolor__negro-blanco.webp",
+          "con_modelo": false
         }
-      ]
+      ],
+      "portada_con_modelo": false
     },
     {
       "id": "chaqueta-capucha-lunares",
       "nombre": "Chaqueta con capucha y lunares",
       "categoria": "Chaquetas",
       "precio_usd": 38,
-      "imagen_principal": "d4169678-image.jpg",
+      "imagen_principal": "catalogo/chaqueta-capucha-lunares__rosa.webp",
       "imagenes_secundarias": [
-        "2743c4d3-image.jpg"
+        "catalogo/chaqueta-capucha-lunares__amarillo.webp"
       ],
       "variantes": [
-        {
-          "color": "Amarillo con lunares",
-          "tallas": [
-            "L"
-          ],
-          "foto": "d4169678-image.jpg"
-        },
         {
           "color": "Rosa con lunares",
           "tallas": [
             "M"
           ],
-          "foto": "2743c4d3-image.jpg"
+          "foto": "2743c4d3-image.jpg",
+          "foto_web": "catalogo/chaqueta-capucha-lunares__rosa.webp",
+          "con_modelo": false
+        },
+        {
+          "color": "Amarillo con lunares",
+          "tallas": [
+            "L"
+          ],
+          "foto": "d4169678-image.jpg",
+          "foto_web": "catalogo/chaqueta-capucha-lunares__amarillo.webp",
+          "con_modelo": true
         }
-      ]
+      ],
+      "portada_con_modelo": false
     },
     {
       "id": "top-encaje-corse",
       "nombre": "Top de encaje tipo corsé",
       "categoria": "Tops",
       "precio_usd": 20,
-      "imagen_principal": "c1ca5944-image.jpg",
-      "imagenes_secundarias": [
-        "24c7a896-image.jpg"
-      ],
+      "imagen_principal": "catalogo/top-encaje-corse__negro.webp",
+      "imagenes_secundarias": [],
       "variantes": [
         {
           "color": "Negro",
@@ -309,16 +360,19 @@
             "XS",
             "M"
           ],
-          "foto": "c1ca5944-image.jpg"
+          "foto": "c1ca5944-image.jpg",
+          "foto_web": "catalogo/top-encaje-corse__negro.webp",
+          "con_modelo": true
         }
-      ]
+      ],
+      "portada_con_modelo": true
     },
     {
       "id": "falda-saten-encaje",
       "nombre": "Falda de satén con encaje",
       "categoria": "Faldas",
       "precio_usd": 30,
-      "imagen_principal": "24c7a896-image.jpg",
+      "imagen_principal": "catalogo/falda-saten-encaje__negro.webp",
       "imagenes_secundarias": [],
       "variantes": [
         {
@@ -327,19 +381,22 @@
             "XS",
             "S"
           ],
-          "foto": "24c7a896-image.jpg"
+          "foto": "24c7a896-image.jpg",
+          "foto_web": "catalogo/falda-saten-encaje__negro.webp",
+          "con_modelo": true
         }
-      ]
+      ],
+      "portada_con_modelo": true
     },
     {
       "id": "top-saten-cruzado",
       "nombre": "Top de satén halter cruzado con encaje",
       "categoria": "Tops",
       "precio_usd": 18,
-      "imagen_principal": "e3a7e40b-image.jpg (panel superior derecho)",
+      "imagen_principal": "catalogo/top-saten-cruzado__marron.webp",
       "imagenes_secundarias": [
-        "e3a7e40b-image.jpg (panel superior izquierdo)",
-        "e3a7e40b-image.jpg (panel inferior)"
+        "catalogo/top-saten-cruzado__champana.webp",
+        "catalogo/top-saten-cruzado__negro.webp"
       ],
       "variantes": [
         {
@@ -348,7 +405,9 @@
             "S"
           ],
           "foto": "e3a7e40b-image.jpg",
-          "recorte": "panel superior derecho"
+          "recorte": "panel superior derecho",
+          "foto_web": "catalogo/top-saten-cruzado__marron.webp",
+          "con_modelo": false
         },
         {
           "color": "Champaña",
@@ -356,7 +415,9 @@
             "XXS"
           ],
           "foto": "e3a7e40b-image.jpg",
-          "recorte": "panel superior izquierdo"
+          "recorte": "panel superior izquierdo",
+          "foto_web": "catalogo/top-saten-cruzado__champana.webp",
+          "con_modelo": false
         },
         {
           "color": "Negro",
@@ -364,18 +425,21 @@
             "XS"
           ],
           "foto": "e3a7e40b-image.jpg",
-          "recorte": "panel inferior"
+          "recorte": "panel inferior",
+          "foto_web": "catalogo/top-saten-cruzado__negro.webp",
+          "con_modelo": false
         }
-      ]
+      ],
+      "portada_con_modelo": false
     },
     {
       "id": "top-saten-cuello-alto",
       "nombre": "Top de satén cuello alto con encaje",
       "categoria": "Tops",
       "precio_usd": 18,
-      "imagen_principal": "0d218c7e-image.jpg (panel derecho)",
+      "imagen_principal": "catalogo/top-saten-cuello-alto__vinotinto.webp",
       "imagenes_secundarias": [
-        "0d218c7e-image.jpg (panel izquierdo)"
+        "catalogo/top-saten-cuello-alto__marron.webp"
       ],
       "variantes": [
         {
@@ -384,7 +448,9 @@
             "M"
           ],
           "foto": "0d218c7e-image.jpg",
-          "recorte": "panel derecho"
+          "recorte": "panel derecho",
+          "foto_web": "catalogo/top-saten-cuello-alto__vinotinto.webp",
+          "con_modelo": false
         },
         {
           "color": "Marrón",
@@ -392,22 +458,25 @@
             "S"
           ],
           "foto": "0d218c7e-image.jpg",
-          "recorte": "panel izquierdo"
+          "recorte": "panel izquierdo",
+          "foto_web": "catalogo/top-saten-cuello-alto__marron.webp",
+          "con_modelo": false
         }
       ],
-      "nota_precio": "La foto no traía Ref; se usa 18, el precio de los otros tops de satén de la misma línea."
+      "nota_precio": "La foto no traía Ref; se usa 18, el precio de los otros tops de satén de la misma línea.",
+      "portada_con_modelo": false
     },
     {
       "id": "top-saten-lazo",
       "nombre": "Top de satén con lazo al cuello y encaje",
       "categoria": "Tops",
       "precio_usd": 18,
-      "imagen_principal": "b5dc6738-image.jpg (fila 1, panel 3)",
+      "imagen_principal": "catalogo/top-saten-lazo__rojo.webp",
       "imagenes_secundarias": [
-        "b5dc6738-image.jpg (fila 2, panel 2)",
-        "b5dc6738-image.jpg (fila 2, panel 1)",
-        "b5dc6738-image.jpg (fila 1, panel 1)",
-        "b5dc6738-image.jpg (fila 1, panel 2)"
+        "catalogo/top-saten-lazo__amarillo.webp",
+        "catalogo/top-saten-lazo__verde.webp",
+        "catalogo/top-saten-lazo__marron.webp",
+        "catalogo/top-saten-lazo__champana.webp"
       ],
       "variantes": [
         {
@@ -416,7 +485,9 @@
             "S"
           ],
           "foto": "b5dc6738-image.jpg",
-          "recorte": "fila 1, panel 3"
+          "recorte": "fila 1, panel 3",
+          "foto_web": "catalogo/top-saten-lazo__rojo.webp",
+          "con_modelo": false
         },
         {
           "color": "Amarillo",
@@ -424,7 +495,9 @@
             "XXS"
           ],
           "foto": "b5dc6738-image.jpg",
-          "recorte": "fila 2, panel 2"
+          "recorte": "fila 2, panel 2",
+          "foto_web": "catalogo/top-saten-lazo__amarillo.webp",
+          "con_modelo": false
         },
         {
           "color": "Verde",
@@ -432,7 +505,9 @@
             "M"
           ],
           "foto": "b5dc6738-image.jpg",
-          "recorte": "fila 2, panel 1"
+          "recorte": "fila 2, panel 1",
+          "foto_web": "catalogo/top-saten-lazo__verde.webp",
+          "con_modelo": false
         },
         {
           "color": "Marrón",
@@ -440,7 +515,9 @@
             "M"
           ],
           "foto": "b5dc6738-image.jpg",
-          "recorte": "fila 1, panel 1"
+          "recorte": "fila 1, panel 1",
+          "foto_web": "catalogo/top-saten-lazo__marron.webp",
+          "con_modelo": false
         },
         {
           "color": "Champaña",
@@ -448,16 +525,19 @@
             "XS"
           ],
           "foto": "b5dc6738-image.jpg",
-          "recorte": "fila 1, panel 2"
+          "recorte": "fila 1, panel 2",
+          "foto_web": "catalogo/top-saten-lazo__champana.webp",
+          "con_modelo": false
         }
-      ]
+      ],
+      "portada_con_modelo": false
     },
     {
       "id": "vestido-blazer-manga-larga",
       "nombre": "Vestido blazer manga larga con falda plisada",
       "categoria": "Vestidos",
       "precio_usd": 70,
-      "imagen_principal": "7f9d9299-image.jpg",
+      "imagen_principal": "catalogo/vestido-blazer-manga-larga__rojo.webp",
       "imagenes_secundarias": [],
       "variantes": [
         {
@@ -465,16 +545,19 @@
           "tallas": [
             "M"
           ],
-          "foto": "7f9d9299-image.jpg"
+          "foto": "7f9d9299-image.jpg",
+          "foto_web": "catalogo/vestido-blazer-manga-larga__rojo.webp",
+          "con_modelo": true
         }
-      ]
+      ],
+      "portada_con_modelo": true
     },
     {
       "id": "vestido-encaje-hombros-descubiertos",
       "nombre": "Vestido corto de encaje con hombros descubiertos",
       "categoria": "Vestidos",
       "precio_usd": 35,
-      "imagen_principal": "016a8faf-image.jpg",
+      "imagen_principal": "catalogo/vestido-encaje-hombros-descubiertos__amarillo.webp",
       "imagenes_secundarias": [],
       "variantes": [
         {
@@ -482,16 +565,19 @@
           "tallas": [
             "S"
           ],
-          "foto": "016a8faf-image.jpg"
+          "foto": "016a8faf-image.jpg",
+          "foto_web": "catalogo/vestido-encaje-hombros-descubiertos__amarillo.webp",
+          "con_modelo": true
         }
-      ]
+      ],
+      "portada_con_modelo": true
     },
     {
       "id": "vestido-blazer-halter",
       "nombre": "Vestido blazer halter con botones",
       "categoria": "Vestidos",
       "precio_usd": 60,
-      "imagen_principal": "9c07676d-image.jpg",
+      "imagen_principal": "catalogo/vestido-blazer-halter__vinotinto.webp",
       "imagenes_secundarias": [],
       "variantes": [
         {
@@ -499,16 +585,19 @@
           "tallas": [
             "S"
           ],
-          "foto": "9c07676d-image.jpg"
+          "foto": "9c07676d-image.jpg",
+          "foto_web": "catalogo/vestido-blazer-halter__vinotinto.webp",
+          "con_modelo": true
         }
-      ]
+      ],
+      "portada_con_modelo": true
     },
     {
       "id": "vestido-largo-espalda-descubierta",
       "nombre": "Vestido largo con espalda descubierta",
       "categoria": "Vestidos",
       "precio_usd": 43,
-      "imagen_principal": "0114d1cf-image.jpg",
+      "imagen_principal": "catalogo/vestido-largo-espalda-descubierta__amarillo-claro.webp",
       "imagenes_secundarias": [],
       "variantes": [
         {
@@ -516,16 +605,19 @@
           "tallas": [
             "S"
           ],
-          "foto": "0114d1cf-image.jpg"
+          "foto": "0114d1cf-image.jpg",
+          "foto_web": "catalogo/vestido-largo-espalda-descubierta__amarillo-claro.webp",
+          "con_modelo": true
         }
-      ]
+      ],
+      "portada_con_modelo": true
     },
     {
       "id": "enterizo-tul-manga-larga",
       "nombre": "Enterizo corto de tul manga larga",
       "categoria": "Conjuntos",
       "precio_usd": 30,
-      "imagen_principal": "8194e676-image.jpg",
+      "imagen_principal": "catalogo/enterizo-tul-manga-larga__negro.webp",
       "imagenes_secundarias": [],
       "variantes": [
         {
@@ -533,16 +625,19 @@
           "tallas": [
             "S"
           ],
-          "foto": "8194e676-image.jpg"
+          "foto": "8194e676-image.jpg",
+          "foto_web": "catalogo/enterizo-tul-manga-larga__negro.webp",
+          "con_modelo": true
         }
-      ]
+      ],
+      "portada_con_modelo": true
     },
     {
       "id": "vestido-largo-lunares-panuelo",
       "nombre": "Vestido largo con lunares y pañuelo",
       "categoria": "Vestidos",
       "precio_usd": 40,
-      "imagen_principal": "7d573173-image.jpg",
+      "imagen_principal": "catalogo/vestido-largo-lunares-panuelo__amarillo.webp",
       "imagenes_secundarias": [],
       "variantes": [
         {
@@ -550,16 +645,19 @@
           "tallas": [
             "S"
           ],
-          "foto": "7d573173-image.jpg"
+          "foto": "7d573173-image.jpg",
+          "foto_web": "catalogo/vestido-largo-lunares-panuelo__amarillo.webp",
+          "con_modelo": true
         }
-      ]
+      ],
+      "portada_con_modelo": true
     },
     {
       "id": "vestido-halter-suelto",
       "nombre": "Vestido halter suelto con volantes",
       "categoria": "Vestidos",
       "precio_usd": 35,
-      "imagen_principal": "9c13e31c-image.jpg",
+      "imagen_principal": "catalogo/vestido-halter-suelto__rojo.webp",
       "imagenes_secundarias": [],
       "variantes": [
         {
@@ -567,33 +665,41 @@
           "tallas": [
             "S"
           ],
-          "foto": "9c13e31c-image.jpg"
+          "foto": "9c13e31c-image.jpg",
+          "foto_web": "catalogo/vestido-halter-suelto__rojo.webp",
+          "con_modelo": true
         }
-      ]
+      ],
+      "portada_con_modelo": true
     },
     {
       "id": "vestido-largo-halter-plisado",
       "nombre": "Vestido largo halter plisado con lazo",
       "categoria": "Vestidos",
       "precio_usd": 45,
-      "imagen_principal": "5726378b-image.jpg",
-      "imagenes_secundarias": [],
+      "imagen_principal": "catalogo/vestido-largo-halter-plisado__vinotinto.webp",
+      "imagenes_secundarias": [
+        "catalogo/vestido-largo-halter-plisado__vinotinto-modelo.webp"
+      ],
       "variantes": [
         {
           "color": "Vinotinto",
           "tallas": [
             "S"
           ],
-          "foto": "5726378b-image.jpg"
+          "foto": "5726378b-image.jpg",
+          "foto_web": "catalogo/vestido-largo-halter-plisado__vinotinto.webp",
+          "con_modelo": false
         }
-      ]
+      ],
+      "portada_con_modelo": false
     },
     {
       "id": "vestido-asimetrico-volantes",
       "nombre": "Vestido asimétrico de un hombro con volantes",
       "categoria": "Vestidos",
       "precio_usd": 38,
-      "imagen_principal": "3f87196c-image.jpg",
+      "imagen_principal": "catalogo/vestido-asimetrico-volantes__vinotinto.webp",
       "imagenes_secundarias": [],
       "variantes": [
         {
@@ -601,16 +707,19 @@
           "tallas": [
             "S"
           ],
-          "foto": "3f87196c-image.jpg"
+          "foto": "3f87196c-image.jpg",
+          "foto_web": "catalogo/vestido-asimetrico-volantes__vinotinto.webp",
+          "con_modelo": true
         }
-      ]
+      ],
+      "portada_con_modelo": true
     },
     {
       "id": "vestido-halter-suelto-tul",
       "nombre": "Vestido halter suelto con lunares y tul",
       "categoria": "Vestidos",
       "precio_usd": 40,
-      "imagen_principal": "5db5700b-image.jpg",
+      "imagen_principal": "catalogo/vestido-halter-suelto-tul__blanco-lunares.webp",
       "imagenes_secundarias": [],
       "variantes": [
         {
@@ -618,20 +727,23 @@
           "tallas": [
             "XS"
           ],
-          "foto": "5db5700b-image.jpg"
+          "foto": "5db5700b-image.jpg",
+          "foto_web": "catalogo/vestido-halter-suelto-tul__blanco-lunares.webp",
+          "con_modelo": true
         }
-      ]
+      ],
+      "portada_con_modelo": true
     },
     {
       "id": "vestido-corto-lunares-panuelo",
       "nombre": "Vestido corto con lunares y pañuelo",
       "categoria": "Vestidos",
       "precio_usd": 30,
-      "imagen_principal": "c147ab12-image.jpg (panel 4)",
+      "imagen_principal": "catalogo/vestido-corto-lunares-panuelo__amarillo.webp",
       "imagenes_secundarias": [
-        "c147ab12-image.jpg (panel 1)",
-        "c147ab12-image.jpg (panel 2)",
-        "c147ab12-image.jpg (panel 3)"
+        "catalogo/vestido-corto-lunares-panuelo__marron.webp",
+        "catalogo/vestido-corto-lunares-panuelo__crema.webp",
+        "catalogo/vestido-corto-lunares-panuelo__negro.webp"
       ],
       "variantes": [
         {
@@ -640,7 +752,9 @@
             "L"
           ],
           "foto": "c147ab12-image.jpg",
-          "recorte": "panel 4"
+          "recorte": "panel 4",
+          "foto_web": "catalogo/vestido-corto-lunares-panuelo__amarillo.webp",
+          "con_modelo": true
         },
         {
           "color": "Marrón con lunares",
@@ -648,7 +762,9 @@
             "S"
           ],
           "foto": "c147ab12-image.jpg",
-          "recorte": "panel 1"
+          "recorte": "panel 1",
+          "foto_web": "catalogo/vestido-corto-lunares-panuelo__marron.webp",
+          "con_modelo": true
         },
         {
           "color": "Crema con lunares",
@@ -656,7 +772,9 @@
             "XS"
           ],
           "foto": "c147ab12-image.jpg",
-          "recorte": "panel 2"
+          "recorte": "panel 2",
+          "foto_web": "catalogo/vestido-corto-lunares-panuelo__crema.webp",
+          "con_modelo": true
         },
         {
           "color": "Negro con lunares",
@@ -664,16 +782,19 @@
             "XXS"
           ],
           "foto": "c147ab12-image.jpg",
-          "recorte": "panel 3"
+          "recorte": "panel 3",
+          "foto_web": "catalogo/vestido-corto-lunares-panuelo__negro.webp",
+          "con_modelo": true
         }
-      ]
+      ],
+      "portada_con_modelo": true
     },
     {
       "id": "top-encaje-hombro-descubierto",
       "nombre": "Top de encaje con hombro descubierto",
       "categoria": "Tops",
       "precio_usd": 16,
-      "imagen_principal": "4a925d5f-image.jpg",
+      "imagen_principal": "catalogo/top-encaje-hombro-descubierto__negro.webp",
       "imagenes_secundarias": [],
       "variantes": [
         {
@@ -681,16 +802,19 @@
           "tallas": [
             "XS"
           ],
-          "foto": "4a925d5f-image.jpg"
+          "foto": "4a925d5f-image.jpg",
+          "foto_web": "catalogo/top-encaje-hombro-descubierto__negro.webp",
+          "con_modelo": true
         }
-      ]
+      ],
+      "portada_con_modelo": true
     },
     {
       "id": "vestido-mangas-acampanadas",
       "nombre": "Vestido corto con mangas acampanadas y volantes",
       "categoria": "Vestidos",
       "precio_usd": 38,
-      "imagen_principal": "e628c4e7-image.jpg",
+      "imagen_principal": "catalogo/vestido-mangas-acampanadas__rojo.webp",
       "imagenes_secundarias": [],
       "variantes": [
         {
@@ -698,18 +822,23 @@
           "tallas": [
             "M"
           ],
-          "foto": "e628c4e7-image.jpg"
+          "foto": "e628c4e7-image.jpg",
+          "foto_web": "catalogo/vestido-mangas-acampanadas__rojo.webp",
+          "con_modelo": true
         }
-      ]
+      ],
+      "portada_con_modelo": true
     },
     {
       "id": "conjunto-chaleco-short",
       "nombre": "Conjunto chaleco y short",
       "categoria": "Conjuntos",
       "precio_usd": 30,
-      "imagen_principal": "6eed4483-image.jpg",
+      "imagen_principal": "catalogo/conjunto-chaleco-short__amarillo-plano.webp",
       "imagenes_secundarias": [
-        "6ba6d4ce-image.jpg"
+        "catalogo/conjunto-chaleco-short__crema-lunares-plano.webp",
+        "catalogo/conjunto-chaleco-short__amarillo.webp",
+        "catalogo/conjunto-chaleco-short__crema-lunares.webp"
       ],
       "variantes": [
         {
@@ -718,7 +847,9 @@
             "XS",
             "M"
           ],
-          "foto": "6eed4483-image.jpg"
+          "foto": "6eed4483-image.jpg",
+          "foto_web": "catalogo/conjunto-chaleco-short__amarillo-plano.webp",
+          "con_modelo": false
         },
         {
           "color": "Crema con lunares",
@@ -726,16 +857,19 @@
             "S",
             "M"
           ],
-          "foto": "6ba6d4ce-image.jpg"
+          "foto": "6ba6d4ce-image.jpg",
+          "foto_web": "catalogo/conjunto-chaleco-short__crema-lunares-plano.webp",
+          "con_modelo": false
         }
-      ]
+      ],
+      "portada_con_modelo": false
     },
     {
       "id": "falda-larga-encaje",
       "nombre": "Falda larga asimétrica de encaje con volantes",
       "categoria": "Faldas",
       "precio_usd": 30,
-      "imagen_principal": "c6c2e6bb-image.jpg",
+      "imagen_principal": "catalogo/falda-larga-encaje__negro.webp",
       "imagenes_secundarias": [],
       "variantes": [
         {
@@ -744,16 +878,19 @@
             "XXS",
             "S"
           ],
-          "foto": "c6c2e6bb-image.jpg"
+          "foto": "c6c2e6bb-image.jpg",
+          "foto_web": "catalogo/falda-larga-encaje__negro.webp",
+          "con_modelo": true
         }
-      ]
+      ],
+      "portada_con_modelo": true
     },
     {
       "id": "falda-plisada-short",
       "nombre": "Falda plisada con short interno",
       "categoria": "Faldas",
       "precio_usd": 28,
-      "imagen_principal": "2ff30d6c-image.jpg",
+      "imagen_principal": "catalogo/falda-plisada-short__gris.webp",
       "imagenes_secundarias": [],
       "variantes": [
         {
@@ -761,35 +898,43 @@
           "tallas": [
             "S"
           ],
-          "foto": "2ff30d6c-image.jpg"
+          "foto": "2ff30d6c-image.jpg",
+          "foto_web": "catalogo/falda-plisada-short__gris.webp",
+          "con_modelo": true
         }
-      ]
+      ],
+      "portada_con_modelo": true
     },
     {
       "id": "cinturon-cadena-corazones",
       "nombre": "Cinturón de cadena con corazones",
       "categoria": "Accesorios",
       "precio_usd": 15,
-      "imagen_principal": "d5591a08-image.jpg",
-      "imagenes_secundarias": [],
+      "imagen_principal": "catalogo/cinturon-cadena-corazones__dorado.webp",
+      "imagenes_secundarias": [
+        "catalogo/cinturon-cadena-corazones__dorado-modelo.webp"
+      ],
       "variantes": [
         {
           "color": "Dorado",
           "tallas": [
             "Única"
           ],
-          "foto": "d5591a08-image.jpg"
+          "foto": "d5591a08-image.jpg",
+          "foto_web": "catalogo/cinturon-cadena-corazones__dorado.webp",
+          "con_modelo": false
         }
-      ]
+      ],
+      "portada_con_modelo": false
     },
     {
       "id": "cinturon-elegante",
       "nombre": "Cinturón elegante con hebilla dorada",
       "categoria": "Accesorios",
       "precio_usd": 13,
-      "imagen_principal": "59538a0a-image.jpg (cinturón de arriba)",
+      "imagen_principal": "catalogo/cinturon-elegante__marron.webp",
       "imagenes_secundarias": [
-        "59538a0a-image.jpg (cinturón de abajo)"
+        "catalogo/cinturon-elegante__negro.webp"
       ],
       "variantes": [
         {
@@ -798,7 +943,9 @@
             "Única"
           ],
           "foto": "59538a0a-image.jpg",
-          "recorte": "cinturón de arriba"
+          "recorte": "cinturón de arriba",
+          "foto_web": "catalogo/cinturon-elegante__marron.webp",
+          "con_modelo": false
         },
         {
           "color": "Negro",
@@ -806,9 +953,12 @@
             "Única"
           ],
           "foto": "59538a0a-image.jpg",
-          "recorte": "cinturón de abajo"
+          "recorte": "cinturón de abajo",
+          "foto_web": "catalogo/cinturon-elegante__negro.webp",
+          "con_modelo": false
         }
-      ]
+      ],
+      "portada_con_modelo": false
     }
   ]
 }

@@ -71,6 +71,7 @@ function QuickViewPanel({ id, onClose }: { id: string; onClose: () => void }) {
         animate={{ y: 0, opacity: 1, scale: 1 }}
         exit={{ y: 40, opacity: 0, scale: 0.98 }}
         transition={{ type: "spring", bounce: 0, duration: 0.45 }}
+        data-lenis-prevent
         className="relative grid max-h-[92svh] w-full max-w-5xl overflow-y-auto rounded-t-3xl bg-champagne text-wine shadow-2xl md:grid-cols-2 md:overflow-hidden md:rounded-3xl"
       >
         <div className="relative flex flex-col bg-white">

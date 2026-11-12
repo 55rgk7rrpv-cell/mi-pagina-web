@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
-import { getColor, productImages, type Product } from "@/lib/products";
+import { garmentImages, getColor, type Product } from "@/lib/products";
 
 /**
  * Product photo on a white background.
- * "still" shows the chosen colour (or the cover); "look" shows the next photo,
- * used for the hover swap on cards.
+ * "still" shows the chosen colour (or the cover); "look" shows the next garment-only photo
+ * (never a model), used for the hover swap on cards.
  */
 export function ProductVisual({
   product,
@@ -17,8 +17,9 @@ export function ProductVisual({
   variant?: "still" | "look";
   className?: string;
 }) {
-  const images = productImages(product);
-  const src = variant === "look" ? images[1] ?? images[0] : getColor(product, color).image;
+  const cover = getColor(product, color).image;
+  const alt = garmentImages(product).filter((s) => s !== cover);
+  const src = variant === "look" ? alt[0] ?? cover : cover;
   const shown = variant === "look" ? undefined : getColor(product, color).name;
   return (
     <img
