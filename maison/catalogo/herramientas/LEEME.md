@@ -1,16 +1,17 @@
-# Cómo se prepararon las fotos del catálogo (v3)
+# Cómo se prepararon las fotos del catálogo (v4, vigente)
 
-Regla principal: **la prenda nunca pierde pedazos**. Es preferible un borde finito del fondo original.
+Regla: **no se quita el fondo ni se recorta la prenda**. Las fotos originales no se modifican;
+las copias web solo:
+1. se recortan para separar cada color cuando la foto original es un collage (`specs.py`);
+2. borran la etiqueta blanca "Talla / Ref" y el título "Inspo COLOR", reconstruyendo el fondo
+   de alrededor (inpainting, `labels.json`), nunca sobre la prenda;
+3. se reducen de tamaño de forma proporcional si superan 1600 px (nunca se agrandan ni se estiran).
 
-1. `labels.py` detecta las etiquetas blancas de "Talla / Ref" en las fotos originales (`labels.json`).
-2. `process.py` procesa cada foto definida en `specs.py`:
-   - Borra las etiquetas reconstruyendo el fondo alrededor (inpainting), no con un bloque de color.
-   - **Fondo claro y liso** (estudio, mármol, cinturones, el render): NO se quita el fondo ni se usan
-     máscaras. Se pega la foto original sobre un lienzo blanco más grande ("canvas expand").
-   - **Fondo cargado** (exteriores, paredes, pisos): se quita el fondo de forma suave: se conserva la
-     transparencia original (sin umbral), se ensancha el borde unos píxeles, se rellenan huecos internos
-     y no se descartan piezas pequeñas. Se conserva la figura completa (no se recorta "solo la prenda").
-   - Encuadre: lienzo cuadrado blanco puro (#FFFFFF) = lado más largo + 18 %, sujeto en el centro exacto,
-     sin estirar ni agrandar.
-3. `genproducts.py` genera `src/lib/products.ts` desde `catalogo.json`. Los precios viven solo en
-   `catalogo.json`; las muestras de color salen del color medido en cada foto (`colores-medidos.json`).
+El encuadre lo hace el CSS de la tienda: tarjeta cuadrada blanca, margen limpio del 7 % por lado,
+`object-fit: contain` y foto centrada.
+
+- `process4.py`: genera las copias web en `public/catalogo/`.
+- `audit.py`: comprueba precio, colores, tallas, portada y foto de cada producto contra lo que dicen
+  las fotos originales. Ejecutar desde `maison/` con `python3 catalogo/herramientas/audit.py`.
+- `genproducts.py`: genera `src/lib/products.ts` a partir de `catalogo.json`.
+- `process.py` y `labels.py`: versión anterior (v3, con recorte de fondo) y detector de etiquetas.

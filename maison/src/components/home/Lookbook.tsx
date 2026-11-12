@@ -36,12 +36,12 @@ export function Lookbook() {
           {LOOKS.map((look, i) => (
             <li key={look.id} className={`shrink-0 ${i % 2 ? "md:mt-16" : ""}`}>
               <button type="button" onClick={() => openQuickView(look.id)} data-cursor="Ver" className="group block w-[72vw] text-left sm:w-[44vw] lg:w-[30vw]">
-                <div className="relative aspect-square overflow-hidden rounded-sm bg-white">
+                <div className="relative aspect-square overflow-hidden rounded-2xl bg-white p-[6%]">
                   <img
                     src={look.image}
                     alt={`${look.title}: ${look.note}`}
                     loading="lazy"
-                    className="h-full w-full object-contain transition-transform duration-[1.4s] ease-lux group-hover:scale-105"
+                    className="h-full w-full object-contain object-center transition-transform duration-700 ease-lux group-hover:scale-[1.02]"
                   />
                   <span className="absolute left-4 top-4 font-serif text-sm text-wine/70">0{i + 1}</span>
                 </div>

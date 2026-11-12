@@ -37,7 +37,7 @@ export function Navbar() {
         <div
           className={cn(
             "mx-auto flex items-center justify-between px-5 transition-all duration-700 ease-lux md:px-10",
-            scrolled ? "mt-3 max-w-6xl rounded-full border border-sand/15 bg-wine/70 py-3 backdrop-blur-xl md:mt-4" : "max-w-[1600px] py-6",
+            scrolled ? "mt-3 max-w-6xl glass-dark rounded-full border border-sand/15 bg-wine/70 py-3 backdrop-blur-xl md:mt-4" : "max-w-[1600px] py-6",
           )}
         >
           <nav aria-label="Principal" className="hidden flex-1 items-center gap-8 md:flex">

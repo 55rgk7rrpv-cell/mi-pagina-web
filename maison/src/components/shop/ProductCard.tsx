@@ -21,34 +21,71 @@ export function ProductCard({ product, index }: { product: Product; index: numbe
     openCart();
   };
 
+  const actions = (
+    <>
+          {sizePicker ? (
+        <div role="group" aria-label={`Elige la talla de ${product.name}`} className="flex flex-1 items-center gap-1 rounded-full bg-wine/95 p-1 backdrop-blur">
+          {cover.sizes.map((s) => (
+            <button
+              key={s}
+              type="button"
+              onClick={() => quickAdd(s)}
+              className="h-9 flex-1 whitespace-nowrap rounded-full px-2 text-[11px] font-semibold text-champagne transition-colors hover:bg-sand hover:text-wine"
+            >
+              {s.replace(/\s*\(.*\)/, "")}
+            </button>
+          ))}
+        </div>
+      ) : (
+        <>
+          <button
+            type="button"
+            onClick={() => (oneSize ? quickAdd(cover.sizes[0]) : setSizePicker(true))}
+            className="flex h-11 flex-1 items-center justify-center gap-2 rounded-full bg-wine/95 text-[11px] font-semibold uppercase tracking-[0.2em] text-champagne backdrop-blur transition-[background-color,transform] duration-100 hover:bg-burgundy active:scale-[0.97]"
+          >
+            <PlusIcon width={14} height={14} /> Añadir rápido
+          </button>
+          <button
+            type="button"
+            onClick={() => openQuickView(product.id)}
+            aria-label={`Vista rápida: ${product.name}`}
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-wine/30 bg-white/90 text-wine backdrop-blur transition-[background-color,color,transform] duration-100 hover:bg-wine hover:text-champagne active:scale-[0.94]"
+          >
+            <EyeIcon width={16} height={16} />
+          </button>
+        </>
+      )}
+    </>
+  );
+
   return (
     <motion.article
       layout
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.96 }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: (index % 3) * 0.06 }}
+      transition={{ type: "spring", bounce: 0, duration: 0.5, delay: (index % 3) * 0.05 }}
       className="group relative"
       onMouseLeave={() => setSizePicker(false)}
     >
-      <div className="relative aspect-square overflow-hidden rounded-[2px] bg-white p-[4%]">
+      <div className="product-frame relative aspect-square overflow-hidden rounded-2xl bg-white transition-transform duration-100 ease-out group-active:scale-[0.985]">
         <button
           type="button"
           onClick={() => openQuickView(product.id)}
           data-cursor="Ver"
           aria-label={`Vista rápida: ${product.name}`}
-          className="absolute inset-[4%] block"
+          className="absolute inset-[7%] block"
         >
           <ProductVisual
             product={product}
             variant="still"
-            className={`absolute inset-0 h-full w-full transition-[transform,opacity] duration-[1.1s] ease-lux group-hover:scale-[1.04] ${hasHover ? "group-hover:opacity-0" : ""}`}
+            className={`absolute inset-0 transition-[transform,opacity] duration-500 ease-lux group-hover:scale-[1.02] ${hasHover ? "group-hover:opacity-0" : ""}`}
           />
           {hasHover && (
             <ProductVisual
               product={product}
               variant="look"
-              className="absolute inset-0 h-full w-full scale-[1.06] opacity-0 transition-[transform,opacity] duration-[1.1s] ease-lux group-hover:scale-100 group-hover:opacity-100"
+              className="absolute inset-0 scale-[1.02] opacity-0 transition-[transform,opacity] duration-500 ease-lux group-hover:scale-100 group-hover:opacity-100"
             />
           )}
         </button>
@@ -64,42 +101,13 @@ export function ProductCard({ product, index }: { product: Product; index: numbe
           </span>
         )}
 
-        {/* Hover / focus actions */}
-        <div className="absolute inset-x-3 bottom-3 flex gap-2 opacity-100 transition-all duration-500 ease-lux md:translate-y-4 md:opacity-0 md:group-focus-within:translate-y-0 md:group-focus-within:opacity-100 md:group-hover:translate-y-0 md:group-hover:opacity-100">
-          {sizePicker ? (
-            <div role="group" aria-label={`Elige la talla de ${product.name}`} className="flex flex-1 items-center gap-1 rounded-full bg-wine/95 p-1 backdrop-blur">
-              {cover.sizes.map((s) => (
-                <button
-                  key={s}
-                  type="button"
-                  onClick={() => quickAdd(s)}
-                  className="h-9 flex-1 whitespace-nowrap rounded-full px-2 text-[11px] font-semibold text-champagne transition-colors hover:bg-sand hover:text-wine"
-                >
-                  {s.replace(/\s*\(.*\)/, "")}
-                </button>
-              ))}
-            </div>
-          ) : (
-            <>
-              <button
-                type="button"
-                onClick={() => (oneSize ? quickAdd(cover.sizes[0]) : setSizePicker(true))}
-                className="flex h-11 flex-1 items-center justify-center gap-2 rounded-full bg-wine/95 text-[11px] font-semibold uppercase tracking-[0.2em] text-champagne backdrop-blur transition-colors hover:bg-burgundy"
-              >
-                <PlusIcon width={14} height={14} /> Añadir rápido
-              </button>
-              <button
-                type="button"
-                onClick={() => openQuickView(product.id)}
-                aria-label={`Vista rápida: ${product.name}`}
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-wine/30 bg-white/90 text-wine backdrop-blur transition-colors hover:bg-wine hover:text-champagne"
-              >
-                <EyeIcon width={16} height={16} />
-              </button>
-            </>
-          )}
+        {/* Mouse: actions float over the photo on hover / keyboard focus */}
+        <div className="absolute inset-x-3 bottom-3 hidden gap-2 transition-all duration-300 ease-out [@media(hover:hover)]:flex [@media(hover:hover)]:translate-y-3 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-focus-within:translate-y-0 [@media(hover:hover)]:group-focus-within:opacity-100 [@media(hover:hover)]:group-hover:translate-y-0 [@media(hover:hover)]:group-hover:opacity-100">
+          {actions}
         </div>
       </div>
+
+      <div className="mt-3 flex gap-2 [@media(hover:hover)]:hidden">{actions}</div>
 
       <div className="mt-4 flex items-start justify-between gap-4">
         <div className="min-w-0">

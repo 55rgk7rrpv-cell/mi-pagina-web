@@ -51,7 +51,7 @@ export function Collection() {
         </div>
 
         {/* Toolbar */}
-        <div className="sticky top-[76px] z-30 -mx-5 mt-14 border-y border-wine/10 bg-champagne/85 px-5 py-4 backdrop-blur-xl md:top-[88px] md:-mx-10 md:px-10">
+        <div className="sticky top-[76px] z-30 -mx-5 mt-14 glass-light border-y border-wine/10 bg-champagne/85 px-5 py-4 backdrop-blur-xl md:top-[88px] md:-mx-10 md:px-10">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <LayoutGroup id="filters">
               <div role="tablist" aria-label="Filtrar por categoría" className="no-scrollbar -mx-1 flex gap-1 overflow-x-auto px-1">

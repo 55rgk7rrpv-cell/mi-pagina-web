@@ -37,7 +37,7 @@ function Drawer({ onClose }: { onClose: () => void }) {
         initial={{ x: "100%" }}
         animate={{ x: 0 }}
         exit={{ x: "100%" }}
-        transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
+        transition={{ type: "spring", bounce: 0, duration: 0.45 }}
         className="absolute right-0 top-0 flex h-full w-full max-w-[480px] flex-col bg-champagne text-wine shadow-[-40px_0_80px_-20px_rgba(0,0,0,0.5)]"
       >
         <header className="flex items-center justify-between border-b border-wine/10 px-6 py-5">
@@ -81,7 +81,7 @@ function Drawer({ onClose }: { onClose: () => void }) {
                     transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                     className="flex gap-4 overflow-hidden border-b border-wine/10 py-5"
                   >
-                    <div className="relative aspect-square w-24 shrink-0 overflow-hidden rounded-sm bg-white">
+                    <div className="relative aspect-square w-24 shrink-0 overflow-hidden rounded-lg bg-white p-1.5 ring-1 ring-wine/10">
                       <ProductVisual product={l.product} color={l.color} variant="still" className="h-full w-full" />
                     </div>
                     <div className="flex min-w-0 flex-1 flex-col">

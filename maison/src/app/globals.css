@@ -109,3 +109,21 @@ body {
     animation-iteration-count: 1 !important;
   }
 }
+
+/* ---- Catalogue photo frames: white, quiet depth, never cropped ---- */
+.product-frame {
+  box-shadow: 0 1px 2px rgb(59 1 11 / 0.05), 0 12px 28px -18px rgb(59 1 11 / 0.35);
+  outline: 1px solid rgb(59 1 11 / 0.06);
+  outline-offset: -1px;
+}
+
+/* ---- Translucent chrome: solid when the viewer asks for less transparency ---- */
+@media (prefers-reduced-transparency: reduce) {
+  .glass-dark { background: var(--color-wine) !important; backdrop-filter: none !important; }
+  .glass-light { background: var(--color-champagne) !important; backdrop-filter: none !important; }
+}
+@media (prefers-contrast: more) {
+  .glass-dark { background: var(--color-wine) !important; backdrop-filter: none !important; border-color: var(--color-sand) !important; }
+  .glass-light { background: var(--color-champagne) !important; backdrop-filter: none !important; border-color: var(--color-wine) !important; }
+  .product-frame { outline-color: rgb(59 1 11 / 0.4); }
+}

@@ -70,7 +70,7 @@ function QuickViewPanel({ id, onClose }: { id: string; onClose: () => void }) {
         initial={{ y: 60, opacity: 0, scale: 0.98 }}
         animate={{ y: 0, opacity: 1, scale: 1 }}
         exit={{ y: 40, opacity: 0, scale: 0.98 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ type: "spring", bounce: 0, duration: 0.45 }}
         className="relative grid max-h-[92svh] w-full max-w-5xl overflow-y-auto rounded-t-3xl bg-champagne text-wine shadow-2xl md:grid-cols-2 md:overflow-hidden md:rounded-3xl"
       >
         <div className="relative flex flex-col bg-white">
@@ -80,11 +80,11 @@ function QuickViewPanel({ id, onClose }: { id: string; onClose: () => void }) {
                 key={image}
                 src={image}
                 alt={`${product.name}, color ${color.name}`}
-                className="absolute inset-0 h-full w-full object-contain"
-                initial={{ opacity: 0, scale: 1.03 }}
+                className="absolute inset-[6%] h-[88%] w-[88%] object-contain object-center"
+                initial={{ opacity: 0, scale: 1.02 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ type: "spring", bounce: 0, duration: 0.4 }}
               />
             </AnimatePresence>
           </div>
@@ -99,7 +99,7 @@ function QuickViewPanel({ id, onClose }: { id: string; onClose: () => void }) {
                   aria-pressed={image === src}
                   className={cn("aspect-square w-14 shrink-0 overflow-hidden rounded-md bg-white ring-offset-1 transition", image === src ? "ring-2 ring-burgundy" : "ring-1 ring-wine/15 hover:ring-wine/40")}
                 >
-                  <img src={src} alt="" className="h-full w-full object-contain" loading="lazy" />
+                  <img src={src} alt="" className="h-full w-full object-contain p-1" loading="lazy" />
                 </button>
               ))}
             </div>
@@ -173,7 +173,7 @@ function QuickViewPanel({ id, onClose }: { id: string; onClose: () => void }) {
               <button
                 type="button"
                 onClick={addToBag}
-                className="group relative flex h-14 w-full items-center justify-center overflow-hidden rounded-full bg-burgundy text-xs font-semibold uppercase tracking-[0.24em] text-champagne"
+                className="group relative flex h-14 w-full items-center justify-center overflow-hidden rounded-full bg-burgundy text-xs font-semibold uppercase tracking-[0.24em] text-champagne transition-transform duration-100 active:scale-[0.98]"
               >
                 <span className="absolute inset-0 origin-left scale-x-0 bg-wine transition-transform duration-500 ease-lux group-hover:scale-x-100" />
                 <span className="relative">Añadir a la bolsa · {formatPrice(product.price)}</span>

@@ -24,7 +24,7 @@ export function ProductVisual({
     <img
       src={src}
       alt={variant === "look" ? "" : `${product.name}, color ${shown}`}
-      className={`${className ?? ""} h-full w-full bg-white object-contain`}
+      className={`${className ?? ""} h-full w-full object-contain object-center`}
       loading="lazy"
       decoding="async"
     />
