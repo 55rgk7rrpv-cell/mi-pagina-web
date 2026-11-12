@@ -1,4 +1,6 @@
 @import "tailwindcss";
+/* The React Bits library in /reactbits is a parts bin: only components moved into src/ get styled */
+@source not "../../reactbits";
 
 @theme {
   --color-champagne: #f2e5c6;
