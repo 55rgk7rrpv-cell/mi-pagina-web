@@ -1,7 +1,7 @@
 // The order summary that the customer sends to the shop (WhatsApp / Instagram).
 // The site has no server: this message IS the order, so it carries everything needed to verify and deliver.
 import { formatPrice } from "./format";
-import { enBolivares, formatBs, INSTAGRAM, TASA_BCV, WHATSAPP } from "./tienda";
+import { enBolivares, fechaCorta, formatBs, formatTasa, INSTAGRAM, WHATSAPP, type TasaBcv } from "./tienda";
 
 export type PayMethod = "pagomovil" | "efectivo";
 
@@ -24,14 +24,16 @@ export interface Pedido {
   envio: number;
   envioLabel: string;
   total: number;
-  cliente: { nombre: string; telefono: string; correo: string; direccion: string; ciudad: string };
+  /** BCV rate used for the Bs amount, or null if none was current */
+  tasa: TasaBcv | null;
+  cliente: { nombre: string; telefono: string; correo: string; direccion: string };
   pago: { metodo: "pagomovil"; datos: PagoMovilDatos } | { metodo: "efectivo"; datos: EfectivoDatos };
 }
 
 export const nuevoId = () => `OP-${Math.floor(100000 + Math.random() * 900000)}`;
 
 export function mensajePedido(p: Pedido): string {
-  const bs = enBolivares(p.total);
+  const bs = enBolivares(p.total, p.tasa);
   const out = [
     `Hola Otra Pinta, quiero confirmar mi pedido ${p.id}`,
     "",
@@ -40,7 +42,7 @@ export function mensajePedido(p: Pedido): string {
     `Subtotal: ${formatPrice(p.subtotal)}`,
     ...(p.descuento ? [`Descuento: -${formatPrice(p.descuento)}`] : []),
     `${p.envioLabel}: ${p.envio ? formatPrice(p.envio) : "gratis"}`,
-    `Total: ${formatPrice(p.total)}${bs ? ` (${formatBs(bs)} a tasa BCV ${TASA_BCV.bsPorDolar} del ${TASA_BCV.fecha})` : ""}`,
+    `Total: ${formatPrice(p.total)}${bs ? ` (${formatBs(bs)} a tasa BCV ${formatTasa(p.tasa!)} del ${fechaCorta(p.tasa!.fecha)})` : ""}`,
     "",
   ];
   if (p.pago.metodo === "pagomovil") {
@@ -52,7 +54,7 @@ export function mensajePedido(p: Pedido): string {
   }
   out.push("", `Nombre: ${p.cliente.nombre}`, `Teléfono: ${p.cliente.telefono}`);
   if (p.cliente.correo) out.push(`Correo: ${p.cliente.correo}`);
-  out.push(`Dirección: ${p.cliente.direccion}, ${p.cliente.ciudad}`);
+  out.push(`Dirección: ${p.cliente.direccion}, Puerto Ordaz`);
   return out.join("\n");
 }
 

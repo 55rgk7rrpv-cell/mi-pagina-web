@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { formatPrice, cn } from "@/lib/format";
-import { BANCOS, enBolivares, formatBs, PAGO_MOVIL, pagoMovilListo, TASA_BCV } from "@/lib/tienda";
+import { BANCOS, enBolivares, fechaCorta, formatBs, formatTasa, PAGO_MOVIL, pagoMovilListo, type TasaBcv } from "@/lib/tienda";
 import type { EfectivoDatos, PagoMovilDatos } from "@/lib/pedido";
 import { Field } from "./Field";
 
@@ -45,6 +45,7 @@ function CopyRow({ label, value }: { label: string; value: string }) {
 
 export function PagoMovilPanel({
   totalUsd,
+  tasa,
   datos,
   onChange,
   errors,
@@ -52,13 +53,14 @@ export function PagoMovilPanel({
   onTouch,
 }: {
   totalUsd: number;
+  tasa: TasaBcv | null;
   datos: PagoMovilDatos;
   onChange: (d: PagoMovilDatos) => void;
   errors: PagoMovilErrors;
   touched: Partial<Record<string, boolean>>;
   onTouch: (k: string) => void;
 }) {
-  const bs = enBolivares(totalUsd);
+  const bs = enBolivares(totalUsd, tasa);
   const listo = pagoMovilListo();
   return (
     <div className="space-y-6">
@@ -68,7 +70,7 @@ export function PagoMovilPanel({
 
         <div className="mt-5 rounded-2xl bg-champagne/70 px-5 py-2">
           {bs ? (
-            <CopyRow label={`Monto · tasa BCV ${TASA_BCV.bsPorDolar} Bs/$ del ${TASA_BCV.fecha}`} value={formatBs(bs)} />
+            <CopyRow label={`Monto · ${formatPrice(totalUsd)} a tasa BCV ${formatTasa(tasa!)} Bs/$ del ${fechaCorta(tasa!.fecha)}`} value={formatBs(bs)} />
           ) : (
             <div className="border-b border-wine/10 py-3">
               <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-maroon/65">Monto</p>

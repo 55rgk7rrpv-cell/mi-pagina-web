@@ -6,6 +6,7 @@ import { useShop } from "@/context/ShopContext";
 import { computeTotals, FREE_SHIPPING_THRESHOLD } from "@/lib/pricing";
 import { mensajePedido, nuevoId, whatsappUrl, instagramUrl, type EfectivoDatos, type PagoMovilDatos, type PayMethod, type Pedido } from "@/lib/pedido";
 import { enBolivares, formatBs } from "@/lib/tienda";
+import { useTasaBcv } from "@/lib/useTasaBcv";
 import { cn, formatPrice } from "@/lib/format";
 import { ArrowIcon, CheckIcon, LockIcon } from "@/components/ui/Icons";
 import { ProductVisual } from "@/components/shop/ProductVisual";
@@ -18,28 +19,23 @@ import { play } from "@/lib/sounds";
 const ease = [0.22, 1, 0.36, 1] as const;
 const STEPS = ["Datos", "Envío", "Pago"] as const;
 
+// Otra Pinta only sells in Puerto Ordaz.
 const METHODS = [
-  { id: "express", label: "Delivery", note: "En Puerto Ordaz y San Félix, de 1 a 2 días hábiles", cost: 5 },
-  { id: "white-glove", label: "Envío nacional", note: "A cualquier ciudad de Venezuela por agencia de encomiendas", cost: 10 },
-  { id: "pickup", label: "Retiro en persona", note: "En Puerto Ordaz, coordinamos por Instagram", cost: 0 },
+  { id: "express", label: "Delivery", note: "A tu dirección en Puerto Ordaz, de 1 a 2 días hábiles", cost: 5 },
+  { id: "pickup", label: "Retiro en persona", note: "En Puerto Ordaz, coordinamos el punto por mensaje", cost: 0 },
 ] as const;
 
-// The only two ways to pay. Cash needs someone to hand it to: delivery or pickup, not national shipping.
+// The only two ways to pay.
 const PAY: { id: PayMethod; label: string }[] = [
   { id: "pagomovil", label: "Pago Móvil" },
   { id: "efectivo", label: "Efectivo" },
 ];
-
-const COUNTRIES = ["Venezuela", "Colombia", "Panamá", "México", "Chile", "Argentina", "Perú", "España", "Estados Unidos"];
 
 interface Contact {
   email: string;
   first: string;
   last: string;
   address: string;
-  city: string;
-  postal: string;
-  country: string;
   phone: string;
 }
 
@@ -49,7 +45,6 @@ function validateContact(c: Contact) {
   if (!c.first.trim()) e.first = "Escribe tu nombre.";
   if (!c.last.trim()) e.last = "Escribe tu apellido.";
   if (c.address.trim().length < 5) e.address = "Escribe tu dirección.";
-  if (!c.city.trim()) e.city = "Escribe tu ciudad.";
   if (c.phone.replace(/\D/g, "").length < 7) e.phone = "Escribe un teléfono para que el mensajero pueda llamarte.";
   return e;
 }
@@ -59,7 +54,7 @@ export function CheckoutFlow() {
   const { lines, totals, promo, hydrated, clear } = shop;
 
   const [step, setStep] = useState(0);
-  const [contact, setContact] = useState<Contact>({ email: "", first: "", last: "", address: "", city: "", postal: "", country: "Venezuela", phone: "" });
+  const [contact, setContact] = useState<Contact>({ email: "", first: "", last: "", address: "", phone: "" });
   const [touched, setTouched] = useState<Partial<Record<string, boolean>>>({});
   const [method, setMethod] = useState<(typeof METHODS)[number]["id"]>("express");
   const [pay, setPay] = useState<PayMethod>("pagomovil");
@@ -70,8 +65,8 @@ export function CheckoutFlow() {
 
   const contactErrors = useMemo(() => validateContact(contact), [contact]);
   const pmErrors = useMemo(() => validatePagoMovil(pm), [pm]);
-  const cashAllowed = method !== "white-glove";
-  const payMethod: PayMethod = cashAllowed ? pay : "pagomovil";
+  const payMethod = pay;
+  const tasa = useTasaBcv();
   const chosen = METHODS.find((m) => m.id === method)!;
   const checkoutTotals = computeTotals(totals.subtotal, promo, chosen.cost);
   const shippingCost = checkoutTotals.shipping;
@@ -112,12 +107,12 @@ export function CheckoutFlow() {
       envio: checkoutTotals.shipping,
       envioLabel: chosen.label,
       total: checkoutTotals.total,
+      tasa,
       cliente: {
         nombre: `${contact.first} ${contact.last}`.trim(),
         telefono: contact.phone,
         correo: contact.email.trim(),
         direccion: contact.address,
-        ciudad: `${contact.city}, ${contact.country}`,
       },
       pago: payMethod === "pagomovil" ? { metodo: "pagomovil", datos: pm } : { metodo: "efectivo", datos: cash },
     });
@@ -172,17 +167,7 @@ export function CheckoutFlow() {
                     <Field id="first" label="Nombre" autoComplete="given-name" value={contact.first} onChange={setC("first")} onBlur={() => touch("first")} error={show("first", contactErrors)} valid={!contactErrors.first} />
                     <Field id="last" label="Apellido" autoComplete="family-name" value={contact.last} onChange={setC("last")} onBlur={() => touch("last")} error={show("last", contactErrors)} valid={!contactErrors.last} />
                   </div>
-                  <Field id="address" label="Dirección" autoComplete="street-address" value={contact.address} onChange={setC("address")} onBlur={() => touch("address")} error={show("address", contactErrors)} valid={!contactErrors.address} />
-                  <div className="grid gap-4 sm:grid-cols-3">
-                    <Field id="city" label="Ciudad" autoComplete="address-level2" value={contact.city} onChange={setC("city")} onBlur={() => touch("city")} error={show("city", contactErrors)} valid={!contactErrors.city} />
-                    <Field id="postal" label="Código postal (opcional)" autoComplete="postal-code" value={contact.postal} onChange={setC("postal")} onBlur={() => touch("postal")} error={show("postal", contactErrors)} valid={!contactErrors.postal} />
-                    <div className="relative rounded-2xl border border-wine/15 bg-champagne/60 hover:border-wine/35 focus-within:border-wine">
-                      <label htmlFor="country" className="pointer-events-none absolute left-4 top-3 text-[10px] uppercase tracking-[0.18em] text-maroon/65">País</label>
-                      <select id="country" autoComplete="country-name" value={contact.country} onChange={setC("country")} className="h-[3.75rem] w-full appearance-none rounded-2xl bg-transparent px-4 pt-5 text-[15px] text-wine outline-none">
-                        {COUNTRIES.map((c) => <option key={c}>{c}</option>)}
-                      </select>
-                    </div>
-                  </div>
+                  <Field id="address" label="Dirección en Puerto Ordaz" autoComplete="street-address" value={contact.address} onChange={setC("address")} onBlur={() => touch("address")} error={show("address", contactErrors)} valid={!contactErrors.address} />
                   <Field id="phone" label="Teléfono" type="tel" autoComplete="tel" inputMode="tel" value={contact.phone} onChange={setC("phone")} onBlur={() => touch("phone")} error={show("phone", contactErrors)} valid={!contactErrors.phone} />
                 </fieldset>
               )}
@@ -224,7 +209,7 @@ export function CheckoutFlow() {
                   )}
                   <div className="mt-8 rounded-2xl border border-wine/10 bg-sand/20 p-5 text-sm">
                     <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-maroon/70">Enviar a</p>
-                    <p className="mt-2">{contact.first} {contact.last}, {contact.address}, {contact.city} {contact.postal}, {contact.country}</p>
+                    <p className="mt-2">{contact.first} {contact.last}, {contact.address}, Puerto Ordaz</p>
                     <button type="button" onClick={() => setStep(0)} className="mt-2 text-xs font-semibold uppercase tracking-[0.16em] text-burgundy underline-offset-4 hover:underline">Editar</button>
                   </div>
                 </fieldset>
@@ -235,16 +220,14 @@ export function CheckoutFlow() {
                   <legend className="mb-6 font-serif text-4xl">Pago</legend>
                   <div role="tablist" aria-label="Método de pago" className="grid grid-cols-2 gap-2 rounded-full border border-wine/15 p-1">
                     {PAY.map((p) => {
-                      const disabled = p.id === "efectivo" && !cashAllowed;
                       return (
                         <button
                           key={p.id}
                           type="button"
                           role="tab"
                           aria-selected={payMethod === p.id}
-                          disabled={disabled}
                           onClick={() => setPay(p.id)}
-                          className={cn("filter-pill relative h-11 rounded-full text-[11px] font-semibold uppercase tracking-[0.14em] disabled:cursor-not-allowed disabled:opacity-40", payMethod === p.id ? "is-active text-champagne" : "text-maroon/75")}
+                          className={cn("filter-pill relative h-11 rounded-full text-[11px] font-semibold uppercase tracking-[0.14em]", payMethod === p.id ? "is-active text-champagne" : "text-maroon/75")}
                         >
                           {payMethod === p.id && <motion.span layoutId="pay-pill" className="absolute inset-0 rounded-full bg-burgundy" transition={{ type: "spring", stiffness: 380, damping: 32 }} />}
                           <span className="relative">{p.label}</span>
@@ -252,15 +235,12 @@ export function CheckoutFlow() {
                       );
                     })}
                   </div>
-                  {!cashAllowed && (
-                    <p className="mt-3 px-2 text-xs text-maroon/70">El efectivo es solo para delivery o retiro en persona. Para envío nacional se paga por Pago Móvil.</p>
-                  )}
 
                   <div className="mt-8">
                     <AnimatePresence mode="wait">
                       <motion.div key={payMethod} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }}>
                         {payMethod === "pagomovil" ? (
-                          <PagoMovilPanel totalUsd={checkoutTotals.total} datos={pm} onChange={setPm} errors={pmErrors} touched={touched} onTouch={touch} />
+                          <PagoMovilPanel totalUsd={checkoutTotals.total} tasa={tasa} datos={pm} onChange={setPm} errors={pmErrors} touched={touched} onTouch={touch} />
                         ) : (
                           <EfectivoPanel totalUsd={checkoutTotals.total} datos={cash} onChange={setCash} pickup={method === "pickup"} />
                         )}
@@ -364,7 +344,7 @@ function Stepper({ step, onJump }: { step: number; onJump: (i: number) => void }
 function Confirmation({ order }: { order: Pedido }) {
   const texto = mensajePedido(order);
   const wa = whatsappUrl(texto);
-  const bs = enBolivares(order.total);
+  const bs = enBolivares(order.total, order.tasa);
   const [copied, setCopied] = useState(false);
   const copyAndOpenInstagram = () => {
     navigator.clipboard?.writeText(texto).finally(() => {

@@ -14,21 +14,24 @@ export const PAGO_MOVIL: {
   /** Cédula o RIF del titular, por ejemplo "V-12345678" o "J-12345678-9" */
   documento: string | null;
 } = {
-  banco: null,
-  codigoBanco: null,
-  telefono: null,
-  documento: null,
+  banco: "Banco del Tesoro",
+  codigoBanco: "0163",
+  telefono: "0412-1909480",
+  documento: "V-33846154",
 };
 
 /**
- * Tasa oficial BCV (bolívares por dólar) con la que se calcula el monto del Pago Móvil.
- * Actualízala cada día hábil. Si la dejas en null, la tienda muestra solo el monto en dólares
- * y avisa que el monto en bolívares se confirma por mensaje.
+ * Tasa oficial BCV (bolívares por dólar). NO se escribe aquí: una tarea programada la busca cada mañana
+ * (scripts/tasa-bcv.mjs) y la publica como "tasa.json" junto a la página; la tienda la lee con useTasaBcv().
  */
-export const TASA_BCV: { bsPorDolar: number | null; fecha: string | null } = {
-  bsPorDolar: null,
-  fecha: null, // "2026-11-13"
-};
+export interface TasaBcv {
+  bsPorDolar: number;
+  /** fecha valor, "AAAA-MM-DD" */
+  fecha: string;
+}
+
+/** A rate older than this is not shown: the Bs amount is confirmed by message instead. */
+export const TASA_MAX_DIAS = 4;
 
 /** WhatsApp de la tienda en formato internacional sin "+" ni espacios, por ejemplo "584141234567". */
 export const WHATSAPP: string | null = null;
@@ -64,8 +67,13 @@ export const BANCOS: { codigo: string; nombre: string }[] = [
   { codigo: "0191", nombre: "BNC Banco Nacional de Crédito" },
 ];
 
-/** Monto en bolívares, redondeado al céntimo hacia arriba, o null si no hay tasa cargada. */
-export const enBolivares = (usd: number) => (TASA_BCV.bsPorDolar ? Math.ceil(usd * TASA_BCV.bsPorDolar * 100) / 100 : null);
+/** Monto en bolívares, redondeado al céntimo hacia arriba, o null si no hay tasa vigente. */
+export const enBolivares = (usd: number, tasa: TasaBcv | null) => (tasa ? Math.ceil(usd * tasa.bsPorDolar * 100) / 100 : null);
+
+/** "2026-11-13" -> "13/11/2026" */
+export const fechaCorta = (iso: string) => iso.split("-").reverse().join("/");
+
+export const formatTasa = (t: TasaBcv) => new Intl.NumberFormat("es-VE", { maximumFractionDigits: 4 }).format(t.bsPorDolar);
 
 export const formatBs = (bs: number) =>
   "Bs. " + new Intl.NumberFormat("es-VE", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(bs);
