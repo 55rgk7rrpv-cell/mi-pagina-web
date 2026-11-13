@@ -4,14 +4,15 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useMemo, useState, type FormEvent } from "react";
 import { useShop } from "@/context/ShopContext";
 import { computeTotals, FREE_SHIPPING_THRESHOLD } from "@/lib/pricing";
-import { detectBrand, formatCardNumber, formatExpiry, validateCard, type CardFields } from "@/lib/payment";
+import { mensajePedido, nuevoId, whatsappUrl, instagramUrl, type EfectivoDatos, type PagoMovilDatos, type PayMethod, type Pedido } from "@/lib/pedido";
+import { enBolivares, formatBs } from "@/lib/tienda";
 import { cn, formatPrice } from "@/lib/format";
-import { AppleIcon, ArrowIcon, CheckIcon, LockIcon } from "@/components/ui/Icons";
+import { ArrowIcon, CheckIcon, LockIcon } from "@/components/ui/Icons";
 import { ProductVisual } from "@/components/shop/ProductVisual";
 import { PromoField, Summary } from "@/components/cart/CartDrawer";
 import { ShippingProgress } from "@/components/cart/ShippingProgress";
 import { Field } from "./Field";
-import { CardPreview } from "./CardPreview";
+import { EfectivoPanel, PagoMovilPanel, validatePagoMovil } from "./PaymentPanels";
 import { play } from "@/lib/sounds";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -23,13 +24,11 @@ const METHODS = [
   { id: "pickup", label: "Retiro en persona", note: "En Puerto Ordaz, coordinamos por Instagram", cost: 0 },
 ] as const;
 
-const PAY = [
-  { id: "card", label: "Tarjeta" },
-  { id: "apple", label: "Apple Pay" },
-  { id: "paypal", label: "PayPal" },
-  { id: "local", label: "Transferencia" },
-] as const;
-type PayId = (typeof PAY)[number]["id"];
+// The only two ways to pay. Cash needs someone to hand it to: delivery or pickup, not national shipping.
+const PAY: { id: PayMethod; label: string }[] = [
+  { id: "pagomovil", label: "Pago Móvil" },
+  { id: "efectivo", label: "Efectivo" },
+];
 
 const COUNTRIES = ["Venezuela", "Colombia", "Panamá", "México", "Chile", "Argentina", "Perú", "España", "Estados Unidos"];
 
@@ -46,12 +45,11 @@ interface Contact {
 
 function validateContact(c: Contact) {
   const e: Partial<Record<keyof Contact, string>> = {};
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(c.email)) e.email = "Escribe un correo válido, por ejemplo nombre@ejemplo.com.";
+  if (c.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(c.email)) e.email = "Escribe un correo válido, por ejemplo nombre@ejemplo.com.";
   if (!c.first.trim()) e.first = "Escribe tu nombre.";
   if (!c.last.trim()) e.last = "Escribe tu apellido.";
   if (c.address.trim().length < 5) e.address = "Escribe tu dirección.";
   if (!c.city.trim()) e.city = "Escribe tu ciudad.";
-  if (c.postal.trim().length < 3) e.postal = "Escribe tu código postal.";
   if (c.phone.replace(/\D/g, "").length < 7) e.phone = "Escribe un teléfono para que el mensajero pueda llamarte.";
   return e;
 }
@@ -64,17 +62,16 @@ export function CheckoutFlow() {
   const [contact, setContact] = useState<Contact>({ email: "", first: "", last: "", address: "", city: "", postal: "", country: "Venezuela", phone: "" });
   const [touched, setTouched] = useState<Partial<Record<string, boolean>>>({});
   const [method, setMethod] = useState<(typeof METHODS)[number]["id"]>("express");
-  const [pay, setPay] = useState<PayId>("card");
-  const [card, setCard] = useState<CardFields>({ name: "", number: "", expiry: "", cvc: "" });
-  const [cvcFocus, setCvcFocus] = useState(false);
-  const [localBank, setLocalBank] = useState("Pago Móvil");
-  const [processing, setProcessing] = useState(false);
-  const [order, setOrder] = useState<{ id: string; total: number; email: string } | null>(null);
+  const [pay, setPay] = useState<PayMethod>("pagomovil");
+  const [pm, setPm] = useState<PagoMovilDatos>({ banco: "", telefono: "", referencia: "" });
+  const [cash, setCash] = useState<EfectivoDatos>({ pagaCon: "" });
+  const [order, setOrder] = useState<Pedido | null>(null);
   const [showSummary, setShowSummary] = useState(false);
 
   const contactErrors = useMemo(() => validateContact(contact), [contact]);
-  const cardErrors = useMemo(() => validateCard(card), [card]);
-  const brand = detectBrand(card.number);
+  const pmErrors = useMemo(() => validatePagoMovil(pm), [pm]);
+  const cashAllowed = method !== "white-glove";
+  const payMethod: PayMethod = cashAllowed ? pay : "pagomovil";
   const chosen = METHODS.find((m) => m.id === method)!;
   const checkoutTotals = computeTotals(totals.subtotal, promo, chosen.cost);
   const shippingCost = checkoutTotals.shipping;
@@ -101,21 +98,31 @@ export function CheckoutFlow() {
   };
 
   const placeOrder = () => {
-    if (pay === "card" && Object.keys(cardErrors).length) {
-      setTouched((t) => ({ ...t, "card-name": true, "card-number": true, "card-expiry": true, "card-cvc": true }));
-      const first = Object.keys(cardErrors)[0];
-      document.getElementById(`card-${first}`)?.focus();
+    if (payMethod === "pagomovil" && Object.keys(pmErrors).length) {
+      setTouched((t) => ({ ...t, "pm-banco": true, "pm-telefono": true, "pm-referencia": true }));
+      document.getElementById(`pm-${Object.keys(pmErrors)[0]}`)?.focus();
       return;
     }
-    setProcessing(true);
-    const total = checkoutTotals.total;
-    window.setTimeout(() => {
-      setOrder({ id: `OP-${Math.floor(100000 + Math.random() * 900000)}`, total, email: contact.email });
-      play("done", -8);
-      clear();
-      setProcessing(false);
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }, 2000);
+    // No server: the order is the message the customer sends us on the next screen.
+    setOrder({
+      id: nuevoId(),
+      lineas: lines.map((l) => ({ nombre: l.product.name, color: l.color, talla: l.size, cantidad: l.qty, total: l.lineTotal })),
+      subtotal: checkoutTotals.subtotal,
+      descuento: checkoutTotals.discount,
+      envio: checkoutTotals.shipping,
+      envioLabel: chosen.label,
+      total: checkoutTotals.total,
+      cliente: {
+        nombre: `${contact.first} ${contact.last}`.trim(),
+        telefono: contact.phone,
+        correo: contact.email.trim(),
+        direccion: contact.address,
+        ciudad: `${contact.city}, ${contact.country}`,
+      },
+      pago: payMethod === "pagomovil" ? { metodo: "pagomovil", datos: pm } : { metodo: "efectivo", datos: cash },
+    });
+    play("done", -8);
+    clear();
   };
 
   if (order) return <Confirmation order={order} />;
@@ -160,19 +167,7 @@ export function CheckoutFlow() {
               {step === 0 && (
                 <fieldset className="space-y-4">
                   <legend className="mb-6 font-serif text-4xl">¿Para quién es?</legend>
-                  {/* Express wallets, shown first as is standard */}
-                  <div className="grid grid-cols-2 gap-3 pb-2">
-                    <button type="button" onClick={() => { setPay("apple"); setStep(2); }} className="flex h-12 items-center justify-center gap-1.5 rounded-full bg-black text-[15px] font-medium text-white transition-opacity hover:opacity-85">
-                      <AppleIcon /> Pay
-                    </button>
-                    <button type="button" onClick={() => { setPay("paypal"); setStep(2); }} className="flex h-12 items-center justify-center rounded-full bg-[#ffc439] text-[15px] font-bold italic text-[#003087] transition-opacity hover:opacity-85">
-                      Pay<span className="text-[#009cde]">Pal</span>
-                    </button>
-                  </div>
-                  <div className="flex items-center gap-4 py-2 text-[10px] uppercase tracking-[0.24em] text-maroon/60">
-                    <span className="h-px flex-1 bg-wine/15" /> o continúa abajo <span className="h-px flex-1 bg-wine/15" />
-                  </div>
-                  <Field id="email" label="Correo electrónico" type="email" autoComplete="email" inputMode="email" value={contact.email} onChange={setC("email")} onBlur={() => touch("email")} error={show("email", contactErrors)} valid={!contactErrors.email} />
+                  <Field id="email" label="Correo (opcional)" type="email" autoComplete="email" inputMode="email" value={contact.email} onChange={setC("email")} onBlur={() => touch("email")} error={show("email", contactErrors)} valid={!contactErrors.email} />
                   <div className="grid gap-4 sm:grid-cols-2">
                     <Field id="first" label="Nombre" autoComplete="given-name" value={contact.first} onChange={setC("first")} onBlur={() => touch("first")} error={show("first", contactErrors)} valid={!contactErrors.first} />
                     <Field id="last" label="Apellido" autoComplete="family-name" value={contact.last} onChange={setC("last")} onBlur={() => touch("last")} error={show("last", contactErrors)} valid={!contactErrors.last} />
@@ -180,7 +175,7 @@ export function CheckoutFlow() {
                   <Field id="address" label="Dirección" autoComplete="street-address" value={contact.address} onChange={setC("address")} onBlur={() => touch("address")} error={show("address", contactErrors)} valid={!contactErrors.address} />
                   <div className="grid gap-4 sm:grid-cols-3">
                     <Field id="city" label="Ciudad" autoComplete="address-level2" value={contact.city} onChange={setC("city")} onBlur={() => touch("city")} error={show("city", contactErrors)} valid={!contactErrors.city} />
-                    <Field id="postal" label="Código postal" autoComplete="postal-code" value={contact.postal} onChange={setC("postal")} onBlur={() => touch("postal")} error={show("postal", contactErrors)} valid={!contactErrors.postal} />
+                    <Field id="postal" label="Código postal (opcional)" autoComplete="postal-code" value={contact.postal} onChange={setC("postal")} onBlur={() => touch("postal")} error={show("postal", contactErrors)} valid={!contactErrors.postal} />
                     <div className="relative rounded-2xl border border-wine/15 bg-champagne/60 hover:border-wine/35 focus-within:border-wine">
                       <label htmlFor="country" className="pointer-events-none absolute left-4 top-3 text-[10px] uppercase tracking-[0.18em] text-maroon/65">País</label>
                       <select id="country" autoComplete="country-name" value={contact.country} onChange={setC("country")} className="h-[3.75rem] w-full appearance-none rounded-2xl bg-transparent px-4 pt-5 text-[15px] text-wine outline-none">
@@ -238,92 +233,36 @@ export function CheckoutFlow() {
               {step === 2 && (
                 <fieldset>
                   <legend className="mb-6 font-serif text-4xl">Pago</legend>
-                  <div role="tablist" aria-label="Método de pago" className="grid grid-cols-2 gap-2 rounded-full border border-wine/15 p-1 sm:grid-cols-4">
-                    {PAY.map((p) => (
-                      <button
-                        key={p.id}
-                        type="button"
-                        role="tab"
-                        aria-selected={pay === p.id}
-                        onClick={() => setPay(p.id)}
-                        className={cn("relative h-11 rounded-full text-[11px] font-semibold uppercase tracking-[0.14em] transition-colors", pay === p.id ? "text-champagne" : "text-maroon/75 hover:text-wine")}
-                      >
-                        {pay === p.id && <motion.span layoutId="pay-pill" className="absolute inset-0 rounded-full bg-burgundy" transition={{ type: "spring", stiffness: 380, damping: 32 }} />}
-                        <span className="relative">{p.label}</span>
-                      </button>
-                    ))}
+                  <div role="tablist" aria-label="Método de pago" className="grid grid-cols-2 gap-2 rounded-full border border-wine/15 p-1">
+                    {PAY.map((p) => {
+                      const disabled = p.id === "efectivo" && !cashAllowed;
+                      return (
+                        <button
+                          key={p.id}
+                          type="button"
+                          role="tab"
+                          aria-selected={payMethod === p.id}
+                          disabled={disabled}
+                          onClick={() => setPay(p.id)}
+                          className={cn("filter-pill relative h-11 rounded-full text-[11px] font-semibold uppercase tracking-[0.14em] disabled:cursor-not-allowed disabled:opacity-40", payMethod === p.id ? "is-active text-champagne" : "text-maroon/75")}
+                        >
+                          {payMethod === p.id && <motion.span layoutId="pay-pill" className="absolute inset-0 rounded-full bg-burgundy" transition={{ type: "spring", stiffness: 380, damping: 32 }} />}
+                          <span className="relative">{p.label}</span>
+                        </button>
+                      );
+                    })}
                   </div>
+                  {!cashAllowed && (
+                    <p className="mt-3 px-2 text-xs text-maroon/70">El efectivo es solo para delivery o retiro en persona. Para envío nacional se paga por Pago Móvil.</p>
+                  )}
 
                   <div className="mt-8">
                     <AnimatePresence mode="wait">
-                      <motion.div key={pay} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.35 }}>
-                        {pay === "card" && (
-                          <div className="grid gap-8 md:grid-cols-[1fr_1fr] md:items-start">
-                            <div className="space-y-4">
-                              <Field
-                                id="card-number" label="Número de tarjeta" inputMode="numeric" autoComplete="cc-number"
-                                value={card.number}
-                                onChange={(e) => setCard((c) => ({ ...c, number: formatCardNumber(e.target.value) }))}
-                                onBlur={() => touch("card-number")}
-                                error={touched["card-number"] ? cardErrors.number : undefined}
-                                valid={!cardErrors.number}
-                                adornment={brand !== "unknown" ? <span className="text-[10px] font-bold uppercase tracking-wider text-burgundy">{brand}</span> : null}
-                              />
-                              <Field id="card-name" label="Nombre en la tarjeta" autoComplete="cc-name" value={card.name} onChange={(e) => setCard((c) => ({ ...c, name: e.target.value }))} onBlur={() => touch("card-name")} error={touched["card-name"] ? cardErrors.name : undefined} valid={!cardErrors.name} />
-                              <div className="grid grid-cols-2 gap-4">
-                                <Field
-                                  id="card-expiry" label="Vencimiento (MM / AA)" inputMode="numeric" autoComplete="cc-exp"
-                                  value={card.expiry}
-                                  onChange={(e) => {
-                                    const v = e.target.value;
-                                    // Let backspace remove the " / " separator naturally
-                                    setCard((c) => ({ ...c, expiry: v.length < c.expiry.length ? v.replace(/\s\/\s?$/, "") : formatExpiry(v) }));
-                                  }}
-                                  onBlur={() => touch("card-expiry")}
-                                  error={touched["card-expiry"] ? cardErrors.expiry : undefined}
-                                  valid={!cardErrors.expiry}
-                                />
-                                <Field
-                                  id="card-cvc" label="Código de seguridad" inputMode="numeric" autoComplete="cc-csc"
-                                  value={card.cvc}
-                                  onChange={(e) => setCard((c) => ({ ...c, cvc: e.target.value.replace(/\D/g, "").slice(0, brand === "amex" ? 4 : 3) }))}
-                                  onFocus={() => setCvcFocus(true)}
-                                  onBlur={() => { setCvcFocus(false); touch("card-cvc"); }}
-                                  error={touched["card-cvc"] ? cardErrors.cvc : undefined}
-                                  valid={!cardErrors.cvc}
-                                />
-                              </div>
-                              <p className="text-xs text-maroon/60">Modo de prueba: usa 4242 4242 4242 4242, cualquier fecha futura y 3 dígitos cualquiera.</p>
-                            </div>
-                            <div className="order-first md:order-none">
-                              <CardPreview number={card.number} name={card.name} expiry={card.expiry} cvc={card.cvc} brand={brand} flipped={cvcFocus} />
-                            </div>
-                          </div>
-                        )}
-                        {pay === "apple" && (
-                          <WalletPanel title="Apple Pay" body="Confirma con Face ID o Touch ID en tu teléfono. Nunca recibimos los datos de tu tarjeta.">
-                            <button type="button" onClick={placeOrder} disabled={processing} className="flex h-14 w-full items-center justify-center gap-1.5 rounded-full bg-black text-lg font-medium text-white transition-opacity hover:opacity-85 disabled:opacity-60">
-                              {processing ? <Spinner /> : <><AppleIcon width={20} height={20} /> Pagar {formatPrice(checkoutTotals.total)}</>}
-                            </button>
-                          </WalletPanel>
-                        )}
-                        {pay === "paypal" && (
-                          <WalletPanel title="PayPal" body="Confirmarás el pago en una ventana segura de PayPal y luego volverás aquí para terminar tu pedido.">
-                            <button type="button" onClick={placeOrder} disabled={processing} className="flex h-14 w-full items-center justify-center rounded-full bg-[#ffc439] text-lg font-bold italic text-[#003087] transition-opacity hover:opacity-85 disabled:opacity-60">
-                              {processing ? <Spinner dark /> : <>Pay<span className="text-[#009cde]">Pal</span></>}
-                            </button>
-                          </WalletPanel>
-                        )}
-                        {pay === "local" && (
-                          <WalletPanel title="Transferencia segura" body="Te apartamos tus prendas por 24 horas mientras se confirma el pago. Te enviamos al correo los datos y una referencia al instante.">
-                            <div className="grid grid-cols-3 gap-2" role="radiogroup" aria-label="Tipo de transferencia">
-                              {["Pago Móvil", "Zelle", "Transferencia"].map((b) => (
-                                <button key={b} type="button" role="radio" aria-checked={localBank === b} onClick={() => setLocalBank(b)} className={cn("h-12 rounded-xl border text-sm font-medium transition-colors", localBank === b ? "border-burgundy bg-burgundy text-champagne" : "border-wine/20 hover:border-wine")}>
-                                  {b}
-                                </button>
-                              ))}
-                            </div>
-                          </WalletPanel>
+                      <motion.div key={payMethod} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }}>
+                        {payMethod === "pagomovil" ? (
+                          <PagoMovilPanel totalUsd={checkoutTotals.total} datos={pm} onChange={setPm} errors={pmErrors} touched={touched} onTouch={touch} />
+                        ) : (
+                          <EfectivoPanel totalUsd={checkoutTotals.total} datos={cash} onChange={setCash} pickup={method === "pickup"} />
                         )}
                       </motion.div>
                     </AnimatePresence>
@@ -333,7 +272,6 @@ export function CheckoutFlow() {
             </motion.div>
           </AnimatePresence>
 
-          {!(step === 2 && (pay === "apple" || pay === "paypal")) && (
             <div className="mt-10 flex flex-col-reverse items-stretch gap-4 sm:flex-row sm:items-center sm:justify-between">
               {step > 0 ? (
                 <button type="button" onClick={() => setStep((s) => s - 1)} className="text-[11px] font-semibold uppercase tracking-[0.2em] text-maroon/75 hover:text-burgundy">
@@ -344,25 +282,21 @@ export function CheckoutFlow() {
               )}
               <button
                 type="submit"
-                disabled={processing}
                 className="group relative flex h-14 items-center justify-center gap-3 overflow-hidden rounded-full bg-burgundy px-10 text-xs font-semibold uppercase tracking-[0.24em] text-champagne disabled:cursor-wait"
               >
                 <span className="absolute inset-0 origin-left scale-x-0 bg-wine transition-transform duration-500 ease-lux group-hover:scale-x-100" />
                 <span className="relative flex items-center gap-3">
-                  {processing ? (
-                    <><Spinner /> Autorizando…</>
-                  ) : step === 2 ? (
-                    <><LockIcon width={14} height={14} /> {pay === "local" ? "Apartar y recibir datos" : `Pagar ${formatPrice(checkoutTotals.total)}`}</>
+                  {step === 2 ? (
+                    <><LockIcon width={14} height={14} /> Confirmar pedido · {formatPrice(checkoutTotals.total)}</>
                   ) : (
                     <>Continuar a {STEPS[step + 1].toLowerCase()} <ArrowIcon width={14} height={14} /></>
                   )}
                 </span>
               </button>
             </div>
-          )}
 
           <p className="mt-8 flex items-center justify-center gap-2 text-[11px] text-maroon/60 sm:justify-end">
-            <LockIcon width={12} height={12} /> Cifrado TLS de 256 bits · Pasarela con certificación PCI DSS (demo)
+            <LockIcon width={12} height={12} /> Verificamos cada pago a mano antes de despachar tu pedido
           </p>
         </form>
       </div>
@@ -427,21 +361,17 @@ function Stepper({ step, onJump }: { step: number; onJump: (i: number) => void }
   );
 }
 
-function WalletPanel({ title, body, children }: { title: string; body: string; children: React.ReactNode }) {
-  return (
-    <div className="rounded-3xl border border-wine/10 bg-sand/20 p-6 md:p-8">
-      <h3 className="font-serif text-2xl">{title}</h3>
-      <p className="mt-2 max-w-md text-sm text-maroon/75">{body}</p>
-      <div className="mt-6">{children}</div>
-    </div>
-  );
-}
-
-function Spinner({ dark }: { dark?: boolean }) {
-  return <span aria-label="Procesando" className={cn("h-4 w-4 animate-spin rounded-full border-2 border-t-transparent", dark ? "border-[#003087]" : "border-current")} />;
-}
-
-function Confirmation({ order }: { order: { id: string; total: number; email: string } }) {
+function Confirmation({ order }: { order: Pedido }) {
+  const texto = mensajePedido(order);
+  const wa = whatsappUrl(texto);
+  const bs = enBolivares(order.total);
+  const [copied, setCopied] = useState(false);
+  const copyAndOpenInstagram = () => {
+    navigator.clipboard?.writeText(texto).finally(() => {
+      setCopied(true);
+      window.open(instagramUrl, "_blank", "noopener");
+    });
+  };
   return (
     <div className="mx-auto flex min-h-[80svh] max-w-2xl flex-col items-center justify-center px-5 py-20 text-center">
       <motion.div
@@ -454,15 +384,37 @@ function Confirmation({ order }: { order: { id: string; total: number; email: st
       </motion.div>
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.8, ease }}>
         <p className="mt-10 text-[11px] font-semibold uppercase tracking-[0.3em] text-burgundy">Pedido {order.id}</p>
-        <h1 className="mt-4 font-serif text-[clamp(2.8rem,8vw,5.5rem)] leading-[0.95]">
-          Ya es <em className="text-burgundy">tuya.</em>
+        <h1 className="mt-4 font-serif text-[clamp(2.6rem,7vw,4.8rem)] leading-[0.95]">
+          Falta <em className="text-burgundy">un paso.</em>
         </h1>
         <p className="mx-auto mt-6 max-w-md text-maroon/80">
-          Enviamos la confirmación a <span className="font-medium text-wine">{order.email || "el correo de tu billetera"}</span>. Ya estamos preparando tu pedido.
+          Envíanos tu pedido por mensaje. {order.pago.metodo === "pagomovil" ? "Verificamos tu Pago Móvil y te confirmamos" : "Te confirmamos el pedido y coordinamos la entrega"} por la misma vía.
         </p>
-        <p className="mt-6 font-serif text-3xl tabular-nums">{formatPrice(order.total)}</p>
-        <a href="#top" className="mt-10 inline-flex h-12 items-center gap-2 rounded-full bg-burgundy px-7 text-[11px] font-semibold uppercase tracking-[0.22em] text-champagne hover:bg-wine">
-          Volver a la tienda <ArrowIcon width={14} height={14} />
+        <p className="mt-6 font-serif text-3xl tabular-nums">
+          {formatPrice(order.total)}
+          {bs && <span className="ml-3 text-xl text-maroon/70">{formatBs(bs)}</span>}
+        </p>
+        <div className="mx-auto mt-10 flex max-w-sm flex-col gap-3">
+          {wa && (
+            <a href={wa} target="_blank" rel="noopener" className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-burgundy px-7 text-[11px] font-semibold uppercase tracking-[0.22em] text-champagne transition-colors hover:bg-wine">
+              Enviar pedido por WhatsApp <ArrowIcon width={14} height={14} />
+            </a>
+          )}
+          <button
+            type="button"
+            onClick={copyAndOpenInstagram}
+            className={cn("inline-flex h-14 items-center justify-center gap-2 rounded-full px-7 text-[11px] font-semibold uppercase tracking-[0.22em] transition-colors", wa ? "border border-wine/25 text-wine hover:border-wine hover:bg-wine hover:text-champagne" : "bg-burgundy text-champagne hover:bg-wine")}
+          >
+            {copied ? "Copiado · pégalo en el chat" : "Copiar pedido y abrir Instagram"}
+          </button>
+          {copied && <p className="text-xs text-maroon/70">Tu pedido quedó copiado. En el chat de @otrapintapzo, mantén presionado y elige “Pegar”.</p>}
+        </div>
+        <details className="mx-auto mt-8 max-w-md text-left">
+          <summary className="cursor-pointer text-center text-[11px] font-semibold uppercase tracking-[0.2em] text-maroon/70 hover:text-burgundy">Ver el mensaje</summary>
+          <pre className="mt-4 whitespace-pre-wrap rounded-2xl bg-sand/30 p-5 font-sans text-sm text-wine">{texto}</pre>
+        </details>
+        <a href="#top" className="mt-10 inline-block text-[11px] font-semibold uppercase tracking-[0.2em] text-maroon/70 hover:text-burgundy">
+          Volver a la tienda
         </a>
       </motion.div>
     </div>

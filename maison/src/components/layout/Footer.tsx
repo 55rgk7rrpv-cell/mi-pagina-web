@@ -1,7 +1,7 @@
 
 const COLS = [
   { title: "Otra Pinta", items: ["La colección", "Lookbook", "El Círculo"] },
-  { title: "Atención", items: ["Delivery y envíos", "Guía de tallas", "Pago Móvil y Zelle", "Contacto por Instagram"] },
+  { title: "Atención", items: ["Delivery y envíos", "Guía de tallas", "Pago Móvil y efectivo", "Contacto por Instagram"] },
   ];
 
 export function Footer() {

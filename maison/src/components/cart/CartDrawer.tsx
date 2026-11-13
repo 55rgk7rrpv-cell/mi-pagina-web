@@ -133,9 +133,9 @@ function Drawer({ onClose }: { onClose: () => void }) {
               >
                 <span className="absolute inset-0 origin-left scale-x-0 bg-wine transition-transform duration-500 ease-lux group-hover:scale-x-100" />
                 <LockIcon width={14} height={14} className="relative" />
-                <span className="relative">Pagar de forma segura</span>
+                <span className="relative">Finalizar pedido</span>
               </button>
-              <p className="mt-3 text-center text-[11px] text-maroon/60">Precios en dólares. Pagas con tarjeta, Pago Móvil, Zelle o PayPal.</p>
+              <p className="mt-3 text-center text-[11px] text-maroon/60">Precios en dólares. Pagas por Pago Móvil o en efectivo al recibir.</p>
             </footer>
           </>
         )}

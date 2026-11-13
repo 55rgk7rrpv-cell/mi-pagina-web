@@ -7,7 +7,7 @@ const ITEMS = [
   "Nueva colección",
   "Pocas unidades por talla",
   "Delivery gratis desde $80",
-  "Pago Móvil, Zelle y tarjeta",
+  "Pago Móvil y efectivo",
   "@otrapintapzo",
 ];
 
