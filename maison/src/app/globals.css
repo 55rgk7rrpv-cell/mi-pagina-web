@@ -123,10 +123,22 @@ body {
    the card lifts, gets a burgundy outline and a deep shadow, the photo zooms in,
    the title turns burgundy and underlines, the price becomes a solid pill,
    the buttons slide up, and every other card fades back. Pressing sinks the card. */
-.product-card .card-inner { transition: opacity 0.3s var(--ease-lux), filter 0.3s var(--ease-lux); }
-.product-card .product-frame {
-  transition: transform 0.35s var(--ease-lux), box-shadow 0.35s var(--ease-lux), outline-color 0.2s ease, outline-width 0.2s ease;
+/* Performance: everything that animates on hover is opacity or transform (handled by the GPU,
+   no repaint). The deep shadow is a separate layer that fades in, instead of animating box-shadow,
+   and the other cards only fade (no filter), so moving the mouse across the grid stays at 60 fps. */
+.product-card .card-inner { position: relative; transition: opacity 0.3s var(--ease-lux); }
+.product-card .card-inner::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  aspect-ratio: 1;
+  border-radius: 1rem;
+  box-shadow: 0 2px 4px rgb(59 1 11 / 0.08), 0 34px 60px -24px rgb(59 1 11 / 0.6);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s var(--ease-lux), transform 0.35s var(--ease-lux);
 }
+.product-card .product-frame { transition: transform 0.35s var(--ease-lux), outline-color 0.2s ease; }
 .product-card .card-photo { transition: transform 0.6s var(--ease-lux); }
 .product-card .card-title {
   text-decoration-line: underline;
@@ -149,8 +161,9 @@ body {
     transform: translateY(-8px);
     outline: 2px solid var(--color-burgundy);
     outline-offset: -2px;
-    box-shadow: 0 2px 4px rgb(59 1 11 / 0.08), 0 34px 60px -24px rgb(59 1 11 / 0.6);
   }
+  .product-card:hover .card-inner::before,
+  .product-card:has(:focus-visible) .card-inner::before { opacity: 1; transform: translateY(-8px); }
   .product-card:hover .card-photo,
   .product-card:has(:focus-visible) .card-photo { transform: scale(1.06); }
   .product-card:hover .card-actions,
@@ -165,7 +178,7 @@ body {
   .product-card:active .product-frame { transform: translateY(-3px) scale(0.99); transition-duration: 0.1s; }
 
   /* everything you are NOT on steps back */
-  .product-grid:has(.product-card:hover) .product-card:not(:hover) .card-inner { opacity: 0.5; filter: saturate(0.6); }
+  .product-grid:has(.product-card:hover) .product-card:not(:hover) .card-inner { opacity: 0.5; }
 
   /* buttons on the card: high-contrast swap */
   .add-btn:hover, .size-btn:hover { background: var(--color-sand); color: var(--color-wine); }
@@ -182,7 +195,8 @@ body {
 
 /* less motion: keep every colour, outline and shadow cue, drop the lift and the zoom */
 @media (prefers-reduced-motion: reduce) {
-  .product-card .product-frame, .product-card .card-photo, .card-actions, .product-card .card-dot { transform: none !important; }
+  .product-card .product-frame, .product-card .card-photo, .card-actions, .product-card .card-dot,
+  .product-card .card-inner::before { transform: none !important; }
 }
 
 /* ---- Translucent chrome: solid when the viewer asks for less transparency ---- */

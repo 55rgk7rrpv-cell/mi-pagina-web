@@ -10,7 +10,10 @@ import { Manifesto } from "@/components/home/Manifesto";
 import { Lookbook } from "@/components/home/Lookbook";
 import { InnerCircle } from "@/components/home/InnerCircle";
 import { Collection } from "@/components/shop/Collection";
-import { CheckoutScreen } from "@/components/checkout/CheckoutScreen";
+import dynamic from "next/dynamic";
+
+// Checkout is a separate screen: its code (forms, card preview, validation) loads only when opened.
+const CheckoutScreen = dynamic(() => import("@/components/checkout/CheckoutScreen").then((m) => m.CheckoutScreen), { ssr: false });
 
 export function Storefront() {
   const { checkoutOpen } = useShop();

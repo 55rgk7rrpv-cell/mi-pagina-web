@@ -23,6 +23,10 @@ import { play } from "@/lib/sounds";
 export function ProductCard({ product, index }: { product: Product; index: number }) {
   const { openQuickView, add, openCart } = useShop();
   const [sizePicker, setSizePicker] = useState(false);
+  // The hover photo is only requested once the pointer (or keyboard focus) reaches this card,
+  // so the grid loads one photo per product instead of two.
+  const [wantsLook, setWantsLook] = useState(false);
+  const primeLook = () => setWantsLook(true);
   const cover = product.colors[0];
   // hover swap only between garment-only photos; model photos stay in the quick-view gallery
   const hasHover = garmentImages(product).some((s) => s !== cover.image);
@@ -55,6 +59,8 @@ export function ProductCard({ product, index }: { product: Product; index: numbe
       transition={{ type: "spring", bounce: 0, duration: 0.5, delay: (index % 3) * 0.05 }}
       className="product-card group relative"
       onMouseLeave={() => setSizePicker(false)}
+      onPointerEnter={(e) => e.pointerType === "mouse" && primeLook()}
+      onFocus={primeLook}
     >
       {/* framer-motion owns the article's opacity; the dimming of the other cards happens on this wrapper */}
       <div className="card-inner">
@@ -78,7 +84,7 @@ export function ProductCard({ product, index }: { product: Product; index: numbe
                 variant="still"
                 className={`absolute inset-0 transition-opacity duration-500 ease-lux ${hasHover ? "group-hover:opacity-0" : ""}`}
               />
-              {hasHover && (
+              {hasHover && wantsLook && (
                 <ProductVisual product={product} variant="look" className="absolute inset-0 opacity-0 transition-opacity duration-500 ease-lux group-hover:opacity-100" />
               )}
             </span>

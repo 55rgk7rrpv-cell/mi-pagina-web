@@ -8,6 +8,9 @@ import { SplitHeading } from "@/components/ui/Reveal";
 import { ArrowIcon } from "@/components/ui/Icons";
 import { useShop } from "@/context/ShopContext";
 import { HeroAurora } from "./HeroAurora";
+import { imgSize } from "@/lib/image-sizes";
+
+const HERO_IMG = "catalogo/vestido-strapless-encaje-rosa__vinotinto.webp";
 import ShinyText from "@/components/bits/ShinyText";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -116,14 +119,16 @@ export function Hero() {
             onClick={() => openQuickView("vestido-strapless-encaje-rosa")}
             data-cursor="Ver"
             aria-label="Vista rápida del vestido corto strapless de encaje con rosa"
-            initial={{ clipPath: "inset(100% 0 0 0 round 999px 999px 0 0)", scale: 1.08 }}
-            animate={{ clipPath: "inset(0% 0 0 0 round 999px 999px 0 0)", scale: 1 }}
-            transition={{ duration: 1.6, ease, delay: 0.35 }}
+            // The photo is the page's largest paint (LCP): it is shown from the very first frame,
+            // with only a gentle settle-in, instead of being hidden behind a clip-path until JS runs.
+            initial={{ scale: 1.04 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 1.2, ease }}
             style={reduce ? undefined : { rotateX: rx, rotateY: ry }}
             className="relative block aspect-[4/5] w-full overflow-hidden rounded-t-full border border-sand/25 shadow-[0_60px_120px_-30px_rgba(0,0,0,0.6)]"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="catalogo/vestido-strapless-encaje-rosa__vinotinto.webp" alt="Vestido corto strapless de encaje con rosa, color vinotinto" className="h-full w-full bg-white object-contain object-center px-[10%] pb-[6%] pt-[20%]" />
+            <img src={HERO_IMG} {...imgSize(HERO_IMG)} fetchPriority="high" loading="eager" decoding="async" alt="Vestido corto strapless de encaje con rosa, color vinotinto" className="h-full w-full bg-white object-contain object-center px-[10%] pb-[6%] pt-[20%]" />
             <span className="pointer-events-none absolute inset-0 bg-[linear-gradient(115deg,transparent_40%,rgba(242,217,160,0.12)_50%,transparent_60%)]" />
           </motion.button>
 

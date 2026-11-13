@@ -207,3 +207,6 @@ print(len(out),"productos; categorías:",sorted({o["category"] for o in out}))
 import os
 missing=[c["image"] for o in out for c in o["colors"] if not os.path.exists("public/"+c["image"])]+[g["src"] for o in out for g in o["gallery"] if not os.path.exists("public/"+g["src"])]
 print("fotos que faltan:",missing)
+
+# keep the <img> width/height table in sync with the photos
+import runpy; runpy.run_path("catalogo/herramientas/image-sizes.py")

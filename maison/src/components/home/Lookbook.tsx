@@ -1,6 +1,7 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element */
+import { imgSize } from "@/lib/image-sizes";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { useShop } from "@/context/ShopContext";
@@ -39,6 +40,8 @@ export function Lookbook() {
                 <div className="relative aspect-square overflow-hidden rounded-2xl bg-white p-[6%]">
                   <img
                     src={look.image}
+                    {...imgSize(look.image)}
+                    decoding="async"
                     alt={`${look.title}: ${look.note}`}
                     loading="lazy"
                     className="h-full w-full object-contain object-center transition-transform duration-700 ease-lux group-hover:scale-[1.02]"

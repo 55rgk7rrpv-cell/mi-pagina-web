@@ -3,8 +3,7 @@
 import { MotionConfig } from "framer-motion";
 import type { ReactNode } from "react";
 import { ShopProvider } from "@/context/ShopContext";
-import { CartDrawer } from "@/components/cart/CartDrawer";
-import { QuickView } from "@/components/shop/QuickView";
+import { LazyOverlays } from "@/components/LazyOverlays";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { SmoothScroll } from "@/components/ui/SmoothScroll";
 
@@ -13,8 +12,7 @@ export function Providers({ children }: { children: ReactNode }) {
     <MotionConfig reducedMotion="user">
       <ShopProvider>
         {children}
-        <CartDrawer />
-        <QuickView />
+        <LazyOverlays />
         <CustomCursor />
         <SmoothScroll />
       </ShopProvider>

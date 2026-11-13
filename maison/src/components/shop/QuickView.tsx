@@ -1,6 +1,7 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element */
+import { imgSize } from "@/lib/image-sizes";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRef, useState } from "react";
 import { useShop } from "@/context/ShopContext";
@@ -83,6 +84,8 @@ function QuickViewPanel({ id, onClose }: { id: string; onClose: () => void }) {
               <motion.img
                 key={image}
                 src={image}
+                {...imgSize(image)}
+                decoding="async"
                 alt={`${product.name}, color ${color.name}`}
                 className="absolute inset-[6%] h-[88%] w-[88%] object-contain object-center"
                 initial={{ opacity: 0, scale: 1.02 }}
@@ -108,7 +111,7 @@ function QuickViewPanel({ id, onClose }: { id: string; onClose: () => void }) {
                   aria-pressed={image === src}
                   className={cn("aspect-square w-14 shrink-0 overflow-hidden rounded-md bg-white ring-offset-1 transition", image === src ? "ring-2 ring-burgundy" : "ring-1 ring-wine/15 hover:ring-wine/40")}
                 >
-                  <img src={src} alt="" className="h-full w-full object-contain p-1" loading="lazy" />
+                  <img src={src} {...imgSize(src)} alt="" className="h-full w-full object-contain p-1" loading="lazy" decoding="async" />
                 </button>
               ))}
             </div>

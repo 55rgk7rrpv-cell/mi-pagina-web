@@ -20,6 +20,8 @@ export interface AuroraProps {
   lightMode?: boolean;
   paused?: boolean;
   dpr?: number;
+  /** Frame-rate cap. The aurora drifts slowly, so 30 fps looks the same and halves GPU work. */
+  maxFps?: number;
   className?: string;
   style?: CSSProperties;
 }
@@ -42,6 +44,7 @@ type Settings = {
   lightMode: boolean;
   paused: boolean;
   dpr?: number;
+  maxFps: number;
 };
 
 type Program = { program: WebGLProgram; uniforms: Record<string, WebGLUniformLocation | null> };
@@ -278,6 +281,7 @@ const Aurora = ({
   lightMode = false,
   paused = false,
   dpr,
+  maxFps = 60,
   className = '',
   style
 }: AuroraProps) => {
@@ -302,7 +306,8 @@ const Aurora = ({
     opacity: clamp(opacity, 0, 1),
     lightMode,
     paused,
-    dpr
+    dpr,
+    maxFps
   };
   const settingsRef = useRef(settings);
   settingsRef.current = settings;
@@ -394,6 +399,11 @@ const Aurora = ({
       raf = 0;
       if (!visible || document.hidden) return;
       const s = settingsRef.current;
+      // skip frames above the cap (keep the loop alive, draw nothing)
+      if (last && now - last < 1000 / s.maxFps - 1) {
+        raf = requestAnimationFrame(frame);
+        return;
+      }
       const dt = last ? clamp((now - last) / 1000, 0.0005, 0.05) : 1 / 60;
       last = now;
       if (s.paused) {
@@ -427,7 +437,7 @@ const Aurora = ({
       const s = settingsRef.current;
       const width = Math.max(1, container.clientWidth);
       const height = Math.max(1, container.clientHeight);
-      const ratio = Math.min(s.dpr || window.devicePixelRatio || 1, 2);
+      const ratio = Math.min(s.dpr ?? window.devicePixelRatio ?? 1, 2);
       view.width = width;
       view.height = height;
       canvas.width = Math.max(1, Math.round(width * ratio));
