@@ -58,5 +58,20 @@ for p in P:
     if any(not c["withModel"] for c in p["colors"]) and p["colors"][0]["withModel"]: errors.append((p["id"],"portada con modelo habiendo foto de la prenda sola"))
 imgs=[c["image"] for p in P for c in p["colors"]]
 if len(imgs)!=len(set(imgs)): errors.append(("una foto repetida en dos colores",))
+# duplicates: same id, same name, or the very same photo file in two places
+import hashlib, unicodedata
+norm=lambda t: unicodedata.normalize("NFD",t.lower()).encode("ascii","ignore").decode().strip()
+for what,vals in (("id",[p["id"] for p in P]),("nombre",[norm(p["name"]) for p in P])):
+    dup={v for v in vals if vals.count(v)>1}
+    if dup: errors.append((f"{what} repetido",sorted(dup)))
+srcs=sorted({c["image"] for p in P for c in p["colors"]}|{g["src"] for p in P for g in p["gallery"]})
+seen={}
+for s_ in srcs:
+    h=hashlib.md5(open("public/"+s_,"rb").read()).hexdigest()
+    if h in seen: errors.append(("misma foto dos veces",seen[h],s_))
+    seen[h]=s_
+# photos on disk that no product uses (left over after a photo was replaced)
+orphans=sorted(set("catalogo/"+f for f in os.listdir("public/catalogo"))-set(srcs))
+if orphans: errors.append(("fotos sin usar",orphans))
 print(f"{len(P)} productos, {sum(len(p['colors']) for p in P)} variantes de color, {sum(len(c['sizes']) for p in P for c in p['colors'])} tallas revisadas.")
 print("Errores:", errors or "ninguno")

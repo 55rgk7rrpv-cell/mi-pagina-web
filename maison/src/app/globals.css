@@ -118,6 +118,73 @@ body {
   outline-offset: -1px;
 }
 
+/* ---- Catalogue interaction (desktop / laptop: a real pointer that can hover) ----
+   One look for hover and keyboard focus, so you always know which piece you are on:
+   the card lifts, gets a burgundy outline and a deep shadow, the photo zooms in,
+   the title turns burgundy and underlines, the price becomes a solid pill,
+   the buttons slide up, and every other card fades back. Pressing sinks the card. */
+.product-card .card-inner { transition: opacity 0.3s var(--ease-lux), filter 0.3s var(--ease-lux); }
+.product-card .product-frame {
+  transition: transform 0.35s var(--ease-lux), box-shadow 0.35s var(--ease-lux), outline-color 0.2s ease, outline-width 0.2s ease;
+}
+.product-card .card-photo { transition: transform 0.6s var(--ease-lux); }
+.product-card .card-title {
+  text-decoration-line: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+.product-card .card-price { transition: background-color 0.2s ease, color 0.2s ease; }
+.product-card .card-dot { transition: transform 0.2s var(--ease-lux); }
+.card-btn { transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.1s ease-out; }
+.card-btn:active { transform: scale(0.95); }
+.card-btn:focus-visible { outline: 2px solid var(--color-sand); outline-offset: 2px; }
+
+@media (hover: hover) and (pointer: fine) {
+  .card-actions { opacity: 0; transform: translateY(12px); transition: opacity 0.25s var(--ease-lux), transform 0.3s var(--ease-lux); }
+
+  .product-card:hover .product-frame,
+  .product-card:has(:focus-visible) .product-frame {
+    transform: translateY(-8px);
+    outline: 2px solid var(--color-burgundy);
+    outline-offset: -2px;
+    box-shadow: 0 2px 4px rgb(59 1 11 / 0.08), 0 34px 60px -24px rgb(59 1 11 / 0.6);
+  }
+  .product-card:hover .card-photo,
+  .product-card:has(:focus-visible) .card-photo { transform: scale(1.06); }
+  .product-card:hover .card-actions,
+  .product-card:has(:focus-visible) .card-actions { opacity: 1; transform: none; }
+  .product-card:hover .card-title,
+  .product-card:has(:focus-visible) .card-title { color: var(--color-burgundy); text-decoration-color: currentColor; }
+  .product-card:hover .card-price,
+  .product-card:has(:focus-visible) .card-price { background: var(--color-wine); color: var(--color-champagne); }
+  .product-card:hover .card-dot { transform: scale(1.25); }
+
+  /* pressed: the card sinks back towards the page */
+  .product-card:active .product-frame { transform: translateY(-3px) scale(0.99); transition-duration: 0.1s; }
+
+  /* everything you are NOT on steps back */
+  .product-grid:has(.product-card:hover) .product-card:not(:hover) .card-inner { opacity: 0.5; filter: saturate(0.6); }
+
+  /* buttons on the card: high-contrast swap */
+  .add-btn:hover, .size-btn:hover { background: var(--color-sand); color: var(--color-wine); }
+  .view-btn:hover { background: var(--color-wine); color: var(--color-champagne); border-color: var(--color-wine); }
+
+  /* filter tabs and sort */
+  .filter-pill { transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease-out; }
+  .filter-pill:not(.is-active):hover { background: rgb(117 22 45 / 0.1); color: var(--color-wine); box-shadow: inset 0 0 0 1px rgb(117 22 45 / 0.45); }
+  .sort-select { transition: border-color 0.2s ease, background-color 0.2s ease; }
+  .sort-select:hover { border-color: var(--color-burgundy); background: rgb(117 22 45 / 0.08); }
+}
+.filter-pill:active { transform: scale(0.96); }
+.filter-pill:focus-visible, .sort-select:focus-visible { outline: 2px solid var(--color-burgundy); outline-offset: 2px; }
+
+/* less motion: keep every colour, outline and shadow cue, drop the lift and the zoom */
+@media (prefers-reduced-motion: reduce) {
+  .product-card .product-frame, .product-card .card-photo, .card-actions, .product-card .card-dot { transform: none !important; }
+}
+
 /* ---- Translucent chrome: solid when the viewer asks for less transparency ---- */
 @media (prefers-reduced-transparency: reduce) {
   .glass-dark { background: var(--color-wine) !important; backdrop-filter: none !important; }
