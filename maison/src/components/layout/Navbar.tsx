@@ -6,6 +6,7 @@ import { useShop } from "@/context/ShopContext";
 import { BagIcon, CloseIcon, MenuIcon } from "@/components/ui/Icons";
 import { Magnetic } from "@/components/ui/Magnetic";
 import { cn } from "@/lib/format";
+import { useSoundSetting } from "@/lib/sounds";
 
 const LINKS = [
   { href: "#collection", label: "Colección" },
@@ -20,6 +21,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [menu, setMenu] = useState(false);
+  const sound = useSoundSetting();
 
   useMotionValueEvent(scrollY, "change", (v) => {
     const prev = scrollY.getPrevious() ?? 0;
@@ -69,6 +71,19 @@ export function Navbar() {
 
           <div className="flex flex-1 items-center justify-end gap-6">
             <span className="hidden text-[11px] uppercase tracking-[0.24em] text-champagne/60 lg:inline">Puerto Ordaz</span>
+            <button
+              type="button"
+              onClick={sound.toggle}
+              aria-pressed={sound.on}
+              aria-label={sound.on ? "Silenciar sonidos" : "Activar sonidos"}
+              title={sound.on ? "Sonido activado" : "Sonido silenciado"}
+              className="hidden h-9 w-9 items-center justify-center rounded-full border border-sand/20 text-champagne/70 transition-colors hover:border-sand hover:text-sand md:flex"
+            >
+              <svg aria-hidden width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M4 10v4h4l5 4V6L8 10H4Z" />
+                {sound.on ? <path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11" /> : <path d="M17 9l4 6M21 9l-4 6" />}
+              </svg>
+            </button>
             <Magnetic strength={0.4}>
               <button
                 type="button"

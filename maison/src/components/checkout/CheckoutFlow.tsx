@@ -12,6 +12,7 @@ import { PromoField, Summary } from "@/components/cart/CartDrawer";
 import { ShippingProgress } from "@/components/cart/ShippingProgress";
 import { Field } from "./Field";
 import { CardPreview } from "./CardPreview";
+import { play } from "@/lib/sounds";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 const STEPS = ["Datos", "Envío", "Pago"] as const;
@@ -110,6 +111,7 @@ export function CheckoutFlow() {
     const total = checkoutTotals.total;
     window.setTimeout(() => {
       setOrder({ id: `OP-${Math.floor(100000 + Math.random() * 900000)}`, total, email: contact.email });
+      play("done", -8);
       clear();
       setProcessing(false);
       window.scrollTo({ top: 0, behavior: "smooth" });

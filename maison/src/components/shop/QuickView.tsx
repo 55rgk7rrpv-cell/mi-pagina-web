@@ -10,6 +10,8 @@ import { FREE_SHIPPING_THRESHOLD } from "@/lib/pricing";
 import { CloseIcon } from "@/components/ui/Icons";
 import { Magnetic } from "@/components/ui/Magnetic";
 import { useDialog } from "@/components/ui/useDialog";
+import ClickSpark from "@/components/bits/ClickSpark";
+import { play } from "@/lib/sounds";
 
 export function QuickView() {
   const { quickViewId, closeQuickView } = useShop();
@@ -48,6 +50,7 @@ function QuickViewPanel({ id, onClose }: { id: string; onClose: () => void }) {
       return;
     }
     add(product.id, size, color.name);
+    play("add");
     onClose();
     openCart();
   };
@@ -171,6 +174,7 @@ function QuickViewPanel({ id, onClose }: { id: string; onClose: () => void }) {
 
           <div className="mt-8">
             <Magnetic className="block" strength={0.15}>
+              <ClickSpark sparkColor="#F2D9A0" sparkCount={12} sparkRadius={28} sparkSize={9} duration={500} className="block">
               <button
                 type="button"
                 onClick={addToBag}
@@ -179,6 +183,7 @@ function QuickViewPanel({ id, onClose }: { id: string; onClose: () => void }) {
                 <span className="absolute inset-0 origin-left scale-x-0 bg-wine transition-transform duration-500 ease-lux group-hover:scale-x-100" />
                 <span className="relative">Añadir a la bolsa · {formatPrice(product.price)}</span>
               </button>
+              </ClickSpark>
             </Magnetic>
             <p className="mt-3 text-center text-xs text-maroon/70">
               {product.badge === "Última pieza" ? "Es la última pieza disponible." : `Envío gratis desde ${formatPrice(FREE_SHIPPING_THRESHOLD)}.`}

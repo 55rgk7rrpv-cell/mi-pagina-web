@@ -7,6 +7,9 @@ import { formatPrice } from "@/lib/format";
 import { useShop } from "@/context/ShopContext";
 import { EyeIcon, PlusIcon } from "@/components/ui/Icons";
 import { ProductVisual } from "./ProductVisual";
+import GlareHover from "@/components/bits/GlareHover";
+import ClickSpark from "@/components/bits/ClickSpark";
+import { play } from "@/lib/sounds";
 
 export function ProductCard({ product, index }: { product: Product; index: number }) {
   const { openQuickView, add, openCart } = useShop();
@@ -19,6 +22,7 @@ export function ProductCard({ product, index }: { product: Product; index: numbe
   const quickAdd = (size: string) => {
     add(product.id, size, cover.name);
     setSizePicker(false);
+    play("add");
     openCart();
   };
 
@@ -39,6 +43,7 @@ export function ProductCard({ product, index }: { product: Product; index: numbe
         </div>
       ) : (
         <>
+          <ClickSpark sparkColor="#F2D9A0" sparkCount={10} sparkRadius={22} sparkSize={8} duration={450} className="flex flex-1">
           <button
             type="button"
             onClick={() => (oneSize ? quickAdd(cover.sizes[0]) : setSizePicker(true))}
@@ -46,6 +51,7 @@ export function ProductCard({ product, index }: { product: Product; index: numbe
           >
             <PlusIcon width={14} height={14} /> Añadir rápido
           </button>
+          </ClickSpark>
           <button
             type="button"
             onClick={() => openQuickView(product.id)}
@@ -69,7 +75,19 @@ export function ProductCard({ product, index }: { product: Product; index: numbe
       className="group relative"
       onMouseLeave={() => setSizePicker(false)}
     >
-      <div className="product-frame relative aspect-square overflow-hidden rounded-2xl bg-white transition-transform duration-100 ease-out group-active:scale-[0.985]">
+      <GlareHover
+        className="product-frame relative aspect-square overflow-hidden rounded-2xl bg-white transition-transform duration-100 ease-out group-active:scale-[0.985]"
+        width="100%"
+        height="auto"
+        background="#FFFFFF"
+        borderRadius="1rem"
+        borderColor="transparent"
+        glareColor="#F2D9A0"
+        glareOpacity={0.22}
+        glareAngle={-35}
+        glareSize={220}
+        transitionDuration={900}
+      >
         <button
           type="button"
           onClick={() => openQuickView(product.id)}
@@ -106,7 +124,7 @@ export function ProductCard({ product, index }: { product: Product; index: numbe
         <div className="absolute inset-x-3 bottom-3 hidden gap-2 transition-all duration-300 ease-out [@media(hover:hover)]:flex [@media(hover:hover)]:translate-y-3 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-focus-within:translate-y-0 [@media(hover:hover)]:group-focus-within:opacity-100 [@media(hover:hover)]:group-hover:translate-y-0 [@media(hover:hover)]:group-hover:opacity-100">
           {actions}
         </div>
-      </div>
+      </GlareHover>
 
       <div className="mt-3 flex gap-2 [@media(hover:hover)]:hidden">{actions}</div>
 

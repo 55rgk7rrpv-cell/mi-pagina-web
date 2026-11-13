@@ -4,7 +4,8 @@ import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
 import { useMemo, useState } from "react";
 import { CATEGORIES, PRODUCTS } from "@/lib/products";
 import { cn } from "@/lib/format";
-import { SplitHeading } from "@/components/ui/Reveal";
+import BlurText from "@/components/bits/BlurText";
+import { play } from "@/lib/sounds";
 import { ProductCard } from "./ProductCard";
 
 const SORTS = {
@@ -42,10 +43,10 @@ export function Collection() {
             <p className="mb-6 flex items-center gap-4 text-[11px] font-semibold uppercase tracking-[0.32em] text-burgundy">
               <span className="h-px w-10 bg-burgundy" /> Otra Pinta
             </p>
-            <SplitHeading
-              className="font-serif text-[clamp(3rem,8vw,7.5rem)] leading-[0.9] tracking-[-0.02em]"
-              lines={["La", <em key="n" className="text-burgundy">colección</em>]}
-            />
+            <h2 className="font-serif text-[clamp(3rem,8vw,7.5rem)] leading-[0.9] tracking-[-0.02em]">
+              <BlurText text="La" animateBy="words" direction="bottom" delay={60} stepDuration={0.5} className="block" />
+              <BlurText text="colección" animateBy="letters" direction="bottom" delay={40} stepDuration={0.45} className="block italic text-burgundy" />
+            </h2>
           </div>
           <p className="max-w-xs text-sm leading-relaxed text-maroon/75">{PRODUCTS.length} piezas, con pocas unidades por talla. Precios en dólares.</p>
         </div>
@@ -63,7 +64,10 @@ export function Collection() {
                       type="button"
                       role="tab"
                       aria-selected={active}
-                      onClick={() => setCategory(c)}
+                      onClick={() => {
+                        setCategory(c);
+                        play("filter", -16);
+                      }}
                       className={cn(
                         "relative shrink-0 rounded-full px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.18em] transition-colors duration-300",
                         active ? "text-champagne" : "text-maroon/70 hover:text-wine",

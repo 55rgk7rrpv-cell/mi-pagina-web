@@ -7,6 +7,8 @@ import { Magnetic } from "@/components/ui/Magnetic";
 import { SplitHeading } from "@/components/ui/Reveal";
 import { ArrowIcon } from "@/components/ui/Icons";
 import { useShop } from "@/context/ShopContext";
+import { HeroAurora } from "./HeroAurora";
+import ShinyText from "@/components/bits/ShinyText";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -43,6 +45,7 @@ export function Hero() {
         <div className="absolute right-[18%] top-[18%] h-[28vmax] w-[28vmax] animate-drift rounded-full bg-[radial-gradient(circle,rgba(242,217,160,0.22)_0%,transparent_65%)] [animation-delay:-11s]" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-wine to-transparent" />
       </div>
+      <HeroAurora />
 
       <div className="mx-auto grid w-full max-w-[1600px] items-center gap-14 px-5 md:px-10 lg:grid-cols-[1.25fr_1fr]">
         <motion.div style={reduce ? undefined : { y: yText, opacity: fade }} className="relative z-10">
@@ -53,7 +56,7 @@ export function Hero() {
             className="mb-8 flex items-center gap-4 text-[11px] font-medium uppercase tracking-[0.32em] text-sand"
           >
             <span className="h-px w-10 bg-sand" />
-            Nueva colección · Puerto Ordaz
+            <ShinyText text="Nueva colección · Puerto Ordaz" color="#F2D9A0" shineColor="#FFF4D9" speed={4} delay={3} shineWidth={30} />
           </motion.p>
 
           <SplitHeading

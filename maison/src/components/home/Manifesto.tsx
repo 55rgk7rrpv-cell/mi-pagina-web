@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import { useRef } from "react";
+import CountUp from "@/components/bits/CountUp";
 
 const TEXT =
   "Elegimos cada prenda una a una, pensando en ti. Pocas unidades por talla, para que no te vistas igual que todo el mundo. Porque vestirte distinto también es decir quién eres.";
@@ -38,12 +39,14 @@ export function Manifesto() {
         </div>
         <div className="mt-20 grid gap-10 border-t border-sand/20 pt-10 sm:grid-cols-3">
           {[
-            ["36", "piezas en la colección"],
-            ["6", "categorías: vestidos, conjuntos, tops, faldas, chaquetas y accesorios"],
-            ["$13", "es el precio de entrada, en accesorios"],
-          ].map(([n, l]) => (
-            <div key={n}>
-              <p className="font-serif text-5xl text-sand md:text-6xl">{n}</p>
+            [36, "", "piezas en la colección"],
+            [6, "", "categorías: vestidos, conjuntos, tops, faldas, chaquetas y accesorios"],
+            [13, "$", "es el precio de entrada, en accesorios"],
+          ].map(([n, prefix, l]) => (
+            <div key={l as string}>
+              <p className="font-serif text-5xl text-sand md:text-6xl">
+                <CountUp to={n as number} prefix={prefix as string} duration={1.6} trigger="view" />
+              </p>
               <p className="mt-3 max-w-[16rem] text-sm leading-relaxed text-champagne/65">{l}</p>
             </div>
           ))}
