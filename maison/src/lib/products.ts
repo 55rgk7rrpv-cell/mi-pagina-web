@@ -147,14 +147,14 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Vinotinto",
-        "hex": "#8A3B51",
+        "hex": "#651C37",
         "sizes": [
           "XS",
           "S"
         ],
-        "image": "catalogo/vestido-largo-strapless-rosa__vinotinto-ia.webp",
+        "image": "catalogo/vestido-largo-strapless-rosa__vinotinto-sola.webp",
         "withModel": false,
-        "aiGenerated": true
+        "aiGenerated": false
       }
     ],
     "gallery": [
@@ -213,6 +213,17 @@ export const PRODUCTS: Product[] = [
     "description": "Corto, con escote en V profundo, espalda descubierta y falda con vuelo. Lunares que nunca pasan de moda.",
     "colors": [
       {
+        "name": "Negro con lunares",
+        "hex": "#091214",
+        "sizes": [
+          "XS",
+          "M"
+        ],
+        "image": "catalogo/vestido-halter-lunares-escote__negro-sola.webp",
+        "withModel": false,
+        "aiGenerated": false
+      },
+      {
         "name": "Vinotinto con lunares",
         "hex": "#680713",
         "sizes": [
@@ -231,23 +242,17 @@ export const PRODUCTS: Product[] = [
         "image": "catalogo/vestido-halter-lunares-escote__crema.webp",
         "withModel": true,
         "aiGenerated": false
-      },
-      {
-        "name": "Negro con lunares",
-        "hex": "#080D0D",
-        "sizes": [
-          "XS",
-          "M"
-        ],
-        "image": "catalogo/vestido-halter-lunares-escote__negro.webp",
-        "withModel": true,
-        "aiGenerated": false
       }
     ],
-    "gallery": [],
-    "coverHasModel": true,
+    "gallery": [
+      {
+        "src": "catalogo/vestido-halter-lunares-escote__negro.webp",
+        "withModel": true
+      }
+    ],
+    "coverHasModel": false,
     "badge": null,
-    "featured": 19
+    "featured": 5
   },
   {
     "id": "vestido-floral-manga-globo",
@@ -279,7 +284,7 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 5
+    "featured": 6
   },
   {
     "id": "top-tul-volantes",
@@ -302,7 +307,7 @@ export const PRODUCTS: Product[] = [
     "gallery": [],
     "coverHasModel": true,
     "badge": "Última pieza",
-    "featured": 20
+    "featured": 25
   },
   {
     "id": "vestido-otra-pinta-lenceria",
@@ -325,7 +330,7 @@ export const PRODUCTS: Product[] = [
     "gallery": [],
     "coverHasModel": true,
     "badge": "Última pieza",
-    "featured": 21
+    "featured": 26
   },
   {
     "id": "vestido-midi-asimetrico",
@@ -336,19 +341,24 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Negro",
-        "hex": "#4B4043",
+        "hex": "#1E242B",
         "sizes": [
           "XXS"
         ],
-        "image": "catalogo/vestido-midi-asimetrico__negro.webp",
-        "withModel": true,
+        "image": "catalogo/vestido-midi-asimetrico__negro-sola.webp",
+        "withModel": false,
         "aiGenerated": false
       }
     ],
-    "gallery": [],
-    "coverHasModel": true,
+    "gallery": [
+      {
+        "src": "catalogo/vestido-midi-asimetrico__negro.webp",
+        "withModel": true
+      }
+    ],
+    "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 22
+    "featured": 7
   },
   {
     "id": "top-halter-aberturas",
@@ -359,19 +369,24 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Negro",
-        "hex": "#10100E",
+        "hex": "#1A1A1A",
         "sizes": [
           "XS"
         ],
-        "image": "catalogo/top-halter-aberturas__negro.webp",
-        "withModel": true,
+        "image": "catalogo/top-halter-aberturas__negro-sola.webp",
+        "withModel": false,
         "aiGenerated": false
       }
     ],
-    "gallery": [],
-    "coverHasModel": true,
+    "gallery": [
+      {
+        "src": "catalogo/top-halter-aberturas__negro.webp",
+        "withModel": true
+      }
+    ],
+    "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 23
+    "featured": 8
   },
   {
     "id": "vestido-strapless-encaje-rosa",
@@ -395,7 +410,7 @@ export const PRODUCTS: Product[] = [
     "gallery": [],
     "coverHasModel": false,
     "badge": null,
-    "featured": 6
+    "featured": 9
   },
   {
     "id": "falda-volantes-bicolor",
@@ -419,7 +434,7 @@ export const PRODUCTS: Product[] = [
     "gallery": [],
     "coverHasModel": false,
     "badge": null,
-    "featured": 7
+    "featured": 10
   },
   {
     "id": "chaqueta-capucha-lunares",
@@ -457,7 +472,7 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": null,
-    "featured": 8
+    "featured": 11
   },
   {
     "id": "top-encaje-corse",
@@ -468,20 +483,25 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Negro",
-        "hex": "#1C1818",
+        "hex": "#453D39",
         "sizes": [
           "XS",
           "M"
         ],
-        "image": "catalogo/top-encaje-corse__negro.webp",
-        "withModel": true,
+        "image": "catalogo/top-encaje-corse__negro-sola.webp",
+        "withModel": false,
         "aiGenerated": false
       }
     ],
-    "gallery": [],
-    "coverHasModel": true,
+    "gallery": [
+      {
+        "src": "catalogo/top-encaje-corse__negro.webp",
+        "withModel": true
+      }
+    ],
+    "coverHasModel": false,
     "badge": null,
-    "featured": 24
+    "featured": 12
   },
   {
     "id": "falda-saten-encaje",
@@ -505,7 +525,7 @@ export const PRODUCTS: Product[] = [
     "gallery": [],
     "coverHasModel": true,
     "badge": null,
-    "featured": 25
+    "featured": 27
   },
   {
     "id": "top-saten-cruzado",
@@ -548,7 +568,7 @@ export const PRODUCTS: Product[] = [
     "gallery": [],
     "coverHasModel": false,
     "badge": null,
-    "featured": 9
+    "featured": 13
   },
   {
     "id": "top-saten-cuello-alto",
@@ -581,7 +601,7 @@ export const PRODUCTS: Product[] = [
     "gallery": [],
     "coverHasModel": false,
     "badge": null,
-    "featured": 10
+    "featured": 14
   },
   {
     "id": "top-saten-lazo",
@@ -644,7 +664,7 @@ export const PRODUCTS: Product[] = [
     "gallery": [],
     "coverHasModel": false,
     "badge": null,
-    "featured": 11
+    "featured": 15
   },
   {
     "id": "vestido-blazer-manga-larga",
@@ -667,7 +687,7 @@ export const PRODUCTS: Product[] = [
     "gallery": [],
     "coverHasModel": true,
     "badge": "Última pieza",
-    "featured": 26
+    "featured": 28
   },
   {
     "id": "vestido-encaje-hombros-descubiertos",
@@ -690,7 +710,7 @@ export const PRODUCTS: Product[] = [
     "gallery": [],
     "coverHasModel": true,
     "badge": "Última pieza",
-    "featured": 27
+    "featured": 29
   },
   {
     "id": "vestido-blazer-halter",
@@ -713,7 +733,7 @@ export const PRODUCTS: Product[] = [
     "gallery": [],
     "coverHasModel": true,
     "badge": "Última pieza",
-    "featured": 28
+    "featured": 30
   },
   {
     "id": "vestido-largo-espalda-descubierta",
@@ -724,19 +744,24 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Amarillo claro",
-        "hex": "#E3E3C9",
+        "hex": "#E7E5C8",
         "sizes": [
           "S"
         ],
-        "image": "catalogo/vestido-largo-espalda-descubierta__amarillo-claro.webp",
-        "withModel": true,
+        "image": "catalogo/vestido-largo-espalda-descubierta__amarillo-claro-sola.webp",
+        "withModel": false,
         "aiGenerated": false
       }
     ],
-    "gallery": [],
-    "coverHasModel": true,
+    "gallery": [
+      {
+        "src": "catalogo/vestido-largo-espalda-descubierta__amarillo-claro.webp",
+        "withModel": true
+      }
+    ],
+    "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 29
+    "featured": 16
   },
   {
     "id": "enterizo-tul-manga-larga",
@@ -759,7 +784,7 @@ export const PRODUCTS: Product[] = [
     "gallery": [],
     "coverHasModel": true,
     "badge": "Última pieza",
-    "featured": 30
+    "featured": 31
   },
   {
     "id": "vestido-largo-lunares-panuelo",
@@ -787,7 +812,7 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 12
+    "featured": 17
   },
   {
     "id": "vestido-halter-suelto",
@@ -798,19 +823,24 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Rojo",
-        "hex": "#89021D",
+        "hex": "#690B1C",
         "sizes": [
           "S"
         ],
-        "image": "catalogo/vestido-halter-suelto__rojo.webp",
-        "withModel": true,
+        "image": "catalogo/vestido-halter-suelto__rojo-sola.webp",
+        "withModel": false,
         "aiGenerated": false
       }
     ],
-    "gallery": [],
-    "coverHasModel": true,
+    "gallery": [
+      {
+        "src": "catalogo/vestido-halter-suelto__rojo.webp",
+        "withModel": true
+      }
+    ],
+    "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 31
+    "featured": 18
   },
   {
     "id": "vestido-largo-halter-plisado",
@@ -838,7 +868,7 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 13
+    "featured": 19
   },
   {
     "id": "vestido-asimetrico-volantes",
@@ -1027,7 +1057,7 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": null,
-    "featured": 14
+    "featured": 20
   },
   {
     "id": "falda-larga-encaje",
@@ -1056,7 +1086,7 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": null,
-    "featured": 15
+    "featured": 21
   },
   {
     "id": "falda-plisada-short",
@@ -1084,7 +1114,7 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 16
+    "featured": 22
   },
   {
     "id": "cinturon-cadena-corazones",
@@ -1112,7 +1142,7 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 17
+    "featured": 23
   },
   {
     "id": "cinturon-elegante",
@@ -1145,7 +1175,7 @@ export const PRODUCTS: Product[] = [
     "gallery": [],
     "coverHasModel": false,
     "badge": null,
-    "featured": 18
+    "featured": 24
   }
 ];
 

@@ -36,7 +36,7 @@ EXTRA={"vestido-floral-manga-globo":["blanco-floral-2"],"vestido-largo-halter-pl
  "conjunto-chaleco-short":["amarillo","crema-lunares"],"cinturon-cadena-corazones":["dorado-modelo"]}
 # Garment-only images generated with AI (Canva) from the real model photo. They become the colour's photo;
 # the real photo stays in the gallery. The page marks them as illustrative.
-GENERATED={"conjunto-top-falda-sirena__azul-marino","vestido-largo-strapless-rosa__vinotinto"}
+GENERATED={"conjunto-top-falda-sirena__azul-marino"}
 # Real garment-only photos sent later by the shop (catalogo/fotos-solas-originales, copied by fotos-solas.py).
 # They become the colour's photo. The older photo stays in the gallery only if it shows the garment worn;
 # an older garment-only shot of the same piece (hanger, floor, low resolution) is replaced.

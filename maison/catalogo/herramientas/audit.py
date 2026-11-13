@@ -7,7 +7,7 @@ E={ # id: (price, {colour prefix: [sizes]}, cover prefix)
  "conjunto-top-falda-sirena":(45,{"Azul marino":["S","M"]},None),
  "vestido-largo-strapless-rosa":(45,{"Vinotinto":["XS","S"]},None),
  "vestido-largo-un-hombro":(45,{"Amarillo claro":["S"],"Negro":["S"]},"Negro"),  # the black one now has a garment-only photo
- "vestido-halter-lunares-escote":(28,{"Vinotinto":["S"],"Negro":["XS","M"],"Crema":["M"]},"Vinotinto"),
+ "vestido-halter-lunares-escote":(28,{"Vinotinto":["S"],"Negro":["XS","M"],"Crema":["M"]},"Negro"),  # only colour with a garment-only photo
  "vestido-floral-manga-globo":(40,{"Blanco":["S"]},None),
  "top-tul-volantes":(20,{"Negro":["XXS"]},None),
  "vestido-otra-pinta-lenceria":(28,{"Marrón y negro":["S"]},None),

@@ -85,7 +85,7 @@
       "nombre": "Vestido largo strapless con rosa",
       "categoria": "Vestidos",
       "precio_usd": 45,
-      "imagen_principal": "catalogo/vestido-largo-strapless-rosa__vinotinto-ia.webp",
+      "imagen_principal": "catalogo/vestido-largo-strapless-rosa__vinotinto-sola.webp",
       "imagenes_secundarias": [
         "catalogo/vestido-largo-strapless-rosa__vinotinto.webp"
       ],
@@ -97,7 +97,7 @@
             "S"
           ],
           "foto": "cfdc7af7-image.jpg",
-          "foto_web": "catalogo/vestido-largo-strapless-rosa__vinotinto-ia.webp",
+          "foto_web": "catalogo/vestido-largo-strapless-rosa__vinotinto-sola.webp",
           "con_modelo": false
         }
       ],
@@ -140,12 +140,23 @@
       "nombre": "Vestido halter con lunares y escote profundo",
       "categoria": "Vestidos",
       "precio_usd": 28,
-      "imagen_principal": "catalogo/vestido-halter-lunares-escote__vinotinto.webp",
+      "imagen_principal": "catalogo/vestido-halter-lunares-escote__negro-sola.webp",
       "imagenes_secundarias": [
+        "catalogo/vestido-halter-lunares-escote__vinotinto.webp",
         "catalogo/vestido-halter-lunares-escote__crema.webp",
         "catalogo/vestido-halter-lunares-escote__negro.webp"
       ],
       "variantes": [
+        {
+          "color": "Negro con lunares",
+          "tallas": [
+            "XS",
+            "M"
+          ],
+          "foto": "7e3196c9-image.jpg",
+          "foto_web": "catalogo/vestido-halter-lunares-escote__negro-sola.webp",
+          "con_modelo": false
+        },
         {
           "color": "Vinotinto con lunares",
           "tallas": [
@@ -165,19 +176,9 @@
           "recorte": "panel derecho",
           "foto_web": "catalogo/vestido-halter-lunares-escote__crema.webp",
           "con_modelo": true
-        },
-        {
-          "color": "Negro con lunares",
-          "tallas": [
-            "XS",
-            "M"
-          ],
-          "foto": "7e3196c9-image.jpg",
-          "foto_web": "catalogo/vestido-halter-lunares-escote__negro.webp",
-          "con_modelo": true
         }
       ],
-      "portada_con_modelo": true
+      "portada_con_modelo": false
     },
     {
       "id": "vestido-floral-manga-globo",
@@ -248,8 +249,10 @@
       "nombre": "Vestido midi asimétrico con abertura",
       "categoria": "Vestidos",
       "precio_usd": 38,
-      "imagen_principal": "catalogo/vestido-midi-asimetrico__negro.webp",
-      "imagenes_secundarias": [],
+      "imagen_principal": "catalogo/vestido-midi-asimetrico__negro-sola.webp",
+      "imagenes_secundarias": [
+        "catalogo/vestido-midi-asimetrico__negro.webp"
+      ],
       "variantes": [
         {
           "color": "Negro",
@@ -257,19 +260,21 @@
             "XXS"
           ],
           "foto": "29240e5b-image.jpg",
-          "foto_web": "catalogo/vestido-midi-asimetrico__negro.webp",
-          "con_modelo": true
+          "foto_web": "catalogo/vestido-midi-asimetrico__negro-sola.webp",
+          "con_modelo": false
         }
       ],
-      "portada_con_modelo": true
+      "portada_con_modelo": false
     },
     {
       "id": "top-halter-aberturas",
       "nombre": "Top halter fruncido con aberturas",
       "categoria": "Tops",
       "precio_usd": 16,
-      "imagen_principal": "catalogo/top-halter-aberturas__negro.webp",
-      "imagenes_secundarias": [],
+      "imagen_principal": "catalogo/top-halter-aberturas__negro-sola.webp",
+      "imagenes_secundarias": [
+        "catalogo/top-halter-aberturas__negro.webp"
+      ],
       "variantes": [
         {
           "color": "Negro",
@@ -277,11 +282,11 @@
             "XS"
           ],
           "foto": "aba05884-image.jpg",
-          "foto_web": "catalogo/top-halter-aberturas__negro.webp",
-          "con_modelo": true
+          "foto_web": "catalogo/top-halter-aberturas__negro-sola.webp",
+          "con_modelo": false
         }
       ],
-      "portada_con_modelo": true
+      "portada_con_modelo": false
     },
     {
       "id": "vestido-strapless-encaje-rosa",
@@ -362,8 +367,10 @@
       "nombre": "Top de encaje tipo corsé",
       "categoria": "Tops",
       "precio_usd": 20,
-      "imagen_principal": "catalogo/top-encaje-corse__negro.webp",
-      "imagenes_secundarias": [],
+      "imagen_principal": "catalogo/top-encaje-corse__negro-sola.webp",
+      "imagenes_secundarias": [
+        "catalogo/top-encaje-corse__negro.webp"
+      ],
       "variantes": [
         {
           "color": "Negro",
@@ -372,11 +379,11 @@
             "M"
           ],
           "foto": "c1ca5944-image.jpg",
-          "foto_web": "catalogo/top-encaje-corse__negro.webp",
-          "con_modelo": true
+          "foto_web": "catalogo/top-encaje-corse__negro-sola.webp",
+          "con_modelo": false
         }
       ],
-      "portada_con_modelo": true
+      "portada_con_modelo": false
     },
     {
       "id": "falda-saten-encaje",
@@ -608,8 +615,10 @@
       "nombre": "Vestido largo con espalda descubierta",
       "categoria": "Vestidos",
       "precio_usd": 43,
-      "imagen_principal": "catalogo/vestido-largo-espalda-descubierta__amarillo-claro.webp",
-      "imagenes_secundarias": [],
+      "imagen_principal": "catalogo/vestido-largo-espalda-descubierta__amarillo-claro-sola.webp",
+      "imagenes_secundarias": [
+        "catalogo/vestido-largo-espalda-descubierta__amarillo-claro.webp"
+      ],
       "variantes": [
         {
           "color": "Amarillo claro",
@@ -617,11 +626,11 @@
             "S"
           ],
           "foto": "0114d1cf-image.jpg",
-          "foto_web": "catalogo/vestido-largo-espalda-descubierta__amarillo-claro.webp",
-          "con_modelo": true
+          "foto_web": "catalogo/vestido-largo-espalda-descubierta__amarillo-claro-sola.webp",
+          "con_modelo": false
         }
       ],
-      "portada_con_modelo": true
+      "portada_con_modelo": false
     },
     {
       "id": "enterizo-tul-manga-larga",
@@ -670,8 +679,10 @@
       "nombre": "Vestido halter suelto con volantes",
       "categoria": "Vestidos",
       "precio_usd": 35,
-      "imagen_principal": "catalogo/vestido-halter-suelto__rojo.webp",
-      "imagenes_secundarias": [],
+      "imagen_principal": "catalogo/vestido-halter-suelto__rojo-sola.webp",
+      "imagenes_secundarias": [
+        "catalogo/vestido-halter-suelto__rojo.webp"
+      ],
       "variantes": [
         {
           "color": "Rojo",
@@ -679,11 +690,11 @@
             "S"
           ],
           "foto": "9c13e31c-image.jpg",
-          "foto_web": "catalogo/vestido-halter-suelto__rojo.webp",
-          "con_modelo": true
+          "foto_web": "catalogo/vestido-halter-suelto__rojo-sola.webp",
+          "con_modelo": false
         }
       ],
-      "portada_con_modelo": true
+      "portada_con_modelo": false
     },
     {
       "id": "vestido-largo-halter-plisado",
