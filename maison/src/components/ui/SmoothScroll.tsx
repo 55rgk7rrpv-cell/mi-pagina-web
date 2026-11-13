@@ -2,16 +2,13 @@
 
 import { useEffect } from "react";
 import Lenis from "lenis";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useShop } from "@/context/ShopContext";
-
-gsap.registerPlugin(ScrollTrigger);
 
 let lenis: Lenis | null = null;
 
 /**
- * Lenis smooth scrolling, driven by GSAP's ticker so ScrollTrigger and Lenis share one clock.
+ * Lenis smooth scrolling on its own animation-frame loop (autoRaf).
+ * The page scrolls the real window, so Framer Motion's useScroll keeps reading it as usual.
  * Skipped entirely when the viewer prefers reduced motion. Paused while a modal surface is open.
  */
 export function SmoothScroll() {
@@ -19,13 +16,8 @@ export function SmoothScroll() {
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    lenis = new Lenis({ lerp: 0.12, wheelMultiplier: 1, smoothWheel: true });
-    lenis.on("scroll", ScrollTrigger.update);
-    const tick = (time: number) => lenis?.raf(time * 1000);
-    gsap.ticker.add(tick);
-    gsap.ticker.lagSmoothing(0);
+    lenis = new Lenis({ lerp: 0.12, wheelMultiplier: 1, smoothWheel: true, autoRaf: true });
     return () => {
-      gsap.ticker.remove(tick);
       lenis?.destroy();
       lenis = null;
     };

@@ -1,11 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
-
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+import { motion, useAnimationFrame, useInView, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform, useVelocity } from "framer-motion";
 
 const ITEMS = [
   "Nueva colección",
@@ -15,44 +11,48 @@ const ITEMS = [
   "@otrapintapzo",
 ];
 
-/** Endless band. GSAP loops it; scrolling speeds it up and flips its direction. */
+/** One full loop (half the track) takes this long at rest. */
+const LOOP_SECONDS = 38;
+
+/**
+ * Endless band. It drifts on its own; scrolling speeds it up (up to 4×) and flips its direction
+ * to follow the scroll, then it eases back to its resting speed.
+ * Only runs while it is on screen, and stays still for reduced motion.
+ */
 export function Marquee() {
   const root = useRef<HTMLDivElement>(null);
+  const inView = useInView(root);
+  const reduce = useReducedMotion();
   const row = [...ITEMS, ...ITEMS];
 
-  useGSAP(
-    () => {
-      const mm = gsap.matchMedia();
-      mm.add("(prefers-reduced-motion: no-preference)", () => {
-        const loop = gsap.to(".marquee-track", { xPercent: -50, duration: 38, ease: "none", repeat: -1 });
-        let direction = 1;
-        ScrollTrigger.create({
-          trigger: root.current,
-          start: "top bottom",
-          end: "bottom top",
-          onUpdate: (self) => {
-            if (self.direction !== direction) direction = self.direction;
-            const boost = gsap.utils.clamp(1, 4, 1 + Math.abs(self.getVelocity()) / 800);
-            gsap.to(loop, { timeScale: direction * boost, duration: 0.2, overwrite: true });
-            gsap.to(loop, { timeScale: direction, duration: 1.2, delay: 0.2, ease: "power2.out", overwrite: false });
-          },
-        });
-      });
-      return () => mm.revert();
-    },
-    { scope: root },
-  );
+  const pos = useMotionValue(0); // 0 → -50 (%), then wraps
+  const x = useTransform(pos, (v) => `${v}%`);
+  const { scrollY } = useScroll();
+  const velocity = useSpring(useVelocity(scrollY), { damping: 50, stiffness: 400 });
+  const direction = useRef(1);
+
+  useAnimationFrame((_, delta) => {
+    if (reduce || !inView) return;
+    const v = velocity.get();
+    if (v < -5) direction.current = -1;
+    else if (v > 5) direction.current = 1;
+    const boost = Math.min(4, 1 + Math.abs(v) / 800);
+    let next = pos.get() - direction.current * boost * (50 / LOOP_SECONDS) * (delta / 1000);
+    if (next <= -50) next += 50;
+    else if (next > 0) next -= 50;
+    pos.set(next);
+  });
 
   return (
     <div ref={root} className="relative overflow-hidden border-y border-sand/20 bg-burgundy py-5" aria-label="Lo esencial de Otra Pinta">
-      <ul className="marquee-track flex w-max gap-12 whitespace-nowrap will-change-transform">
+      <motion.ul style={{ x }} className="flex w-max gap-12 whitespace-nowrap will-change-transform">
         {[...row, ...row].map((item, i) => (
           <li key={i} aria-hidden={i >= ITEMS.length} className="flex items-center gap-12 font-serif text-2xl italic text-champagne md:text-3xl">
             {item}
             <span className="text-base not-italic text-sand">✦</span>
           </li>
         ))}
-      </ul>
+      </motion.ul>
     </div>
   );
 }
