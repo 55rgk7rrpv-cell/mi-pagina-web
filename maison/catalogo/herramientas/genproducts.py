@@ -34,6 +34,10 @@ IMG={
 }
 EXTRA={"vestido-floral-manga-globo":["blanco-floral-2"],"vestido-largo-halter-plisado":["vinotinto-modelo"],
  "conjunto-chaleco-short":["amarillo","crema-lunares"],"cinturon-cadena-corazones":["dorado-modelo"]}
+# Garment-only images generated with AI (Canva) from the real model photo. They become the colour's photo;
+# the real photo stays in the gallery. The page marks them as illustrative.
+GENERATED={"vestido-halter-volantes__rojo","vestido-halter-volantes__azul-marino","vestido-halter-volantes__blanco-lunares-pequenos",
+ "vestido-halter-volantes__blanco-lunares-grandes","conjunto-top-falda-sirena__azul-marino","vestido-largo-strapless-rosa__vinotinto"}
 # Photos that show only the garment: no person, not even a hand. Everything else counts as "with model".
 GARMENT_ONLY={
  "vestido-strapless-encaje-rosa__vinotinto","falda-volantes-bicolor__negro-blanco","chaqueta-capucha-lunares__rosa",
@@ -107,14 +111,19 @@ for i,p in enumerate(cat):
             k=cand[0]
         pairs.append((v,k))
     assert len({k for _,k in pairs})==len(keys),(pid,"photo used twice")
-    colors=[]
+    colors=[]; real_photos=[]
     for v,k in pairs:
-        img=f"catalogo/{pid}__{k}.webp"; vv,hx=vivid("public/"+img)
-        colors.append({"name":v["color"],"hex":hx,"sizes":v["tallas"],"image":img,"withModel":f"{pid}__{k}" not in GARMENT_ONLY,"_v":vv})
+        img=f"catalogo/{pid}__{k}.webp"; ai=f"{pid}__{k}" in GENERATED
+        if ai:
+            real_photos.append({"src":img,"withModel":True})
+            img=f"catalogo/{pid}__{k}-ia.webp"
+        vv,hx=vivid("public/"+img)
+        colors.append({"name":v["color"],"hex":hx,"sizes":v["tallas"],"image":img,
+                       "withModel":(not ai) and f"{pid}__{k}" not in GARMENT_ONLY,"aiGenerated":ai,"_v":vv})
     # Rule 1: a garment-only photo is always the cover when one exists. Rule 2: then the most vivid colour.
     colors.sort(key=lambda c:(c["withModel"],-c["_v"]))
     for c in colors: c.pop("_v")
-    gallery=[{"src":f"catalogo/{pid}__{k}.webp","withModel":f"{pid}__{k}" not in GARMENT_ONLY} for k in EXTRA.get(pid,[])]
+    gallery=real_photos+[{"src":f"catalogo/{pid}__{k}.webp","withModel":f"{pid}__{k}" not in GARMENT_ONLY} for k in EXTRA.get(pid,[])]
     sizes_total=sum(len(c["sizes"]) for c in colors)
     out.append({"id":pid,"name":p["nombre"],"category":p["categoria"],"price":p["precio_usd"],
       "description":DESC[pid],"colors":colors,"gallery":gallery,
@@ -143,6 +152,8 @@ export interface ColorVariant {
   image: string;
   /** true when the photo shows a person (model, or a hand holding the garment) */
   withModel: boolean;
+  /** true when the photo is an AI rendering made from the real photo (shown as illustrative) */
+  aiGenerated: boolean;
 }
 
 export interface GalleryImage {
@@ -172,6 +183,9 @@ export const CATEGORIES: ("Todo" | Category)[] = ["Todo", "Vestidos", "Conjuntos
 export const PRODUCTS: Product[] = ''' + js + ''';
 
 export const getProduct = (id: string) => PRODUCTS.find((p) => p.id === id);
+
+/** AI renderings, so the page can label them as illustrative */
+export const isAiImage = (p: Product, src: string) => p.colors.some((c) => c.image === src && c.aiGenerated);
 
 export const getColor = (p: Product, color?: string) => p.colors.find((c) => c.name === color) ?? p.colors[0];
 

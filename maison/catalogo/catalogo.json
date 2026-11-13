@@ -7,8 +7,12 @@
       "nombre": "Vestido halter con volantes",
       "categoria": "Vestidos",
       "precio_usd": 35,
-      "imagen_principal": "catalogo/vestido-halter-volantes__rojo.webp",
+      "imagen_principal": "catalogo/vestido-halter-volantes__rojo-ia.webp",
       "imagenes_secundarias": [
+        "catalogo/vestido-halter-volantes__azul-marino-ia.webp",
+        "catalogo/vestido-halter-volantes__blanco-lunares-pequenos-ia.webp",
+        "catalogo/vestido-halter-volantes__blanco-lunares-grandes-ia.webp",
+        "catalogo/vestido-halter-volantes__rojo.webp",
         "catalogo/vestido-halter-volantes__azul-marino.webp",
         "catalogo/vestido-halter-volantes__blanco-lunares-pequenos.webp",
         "catalogo/vestido-halter-volantes__blanco-lunares-grandes.webp"
@@ -20,8 +24,8 @@
             "XS"
           ],
           "foto": "5c7fd302-image.jpg",
-          "foto_web": "catalogo/vestido-halter-volantes__rojo.webp",
-          "con_modelo": true
+          "foto_web": "catalogo/vestido-halter-volantes__rojo-ia.webp",
+          "con_modelo": false
         },
         {
           "color": "Azul marino con lunares",
@@ -29,8 +33,8 @@
             "L (ajusta M)"
           ],
           "foto": "daa4cdf7-image.jpg",
-          "foto_web": "catalogo/vestido-halter-volantes__azul-marino.webp",
-          "con_modelo": true
+          "foto_web": "catalogo/vestido-halter-volantes__azul-marino-ia.webp",
+          "con_modelo": false
         },
         {
           "color": "Blanco con lunares pequeños",
@@ -38,8 +42,8 @@
             "S"
           ],
           "foto": "a984a136-image.jpg",
-          "foto_web": "catalogo/vestido-halter-volantes__blanco-lunares-pequenos.webp",
-          "con_modelo": true
+          "foto_web": "catalogo/vestido-halter-volantes__blanco-lunares-pequenos-ia.webp",
+          "con_modelo": false
         },
         {
           "color": "Blanco con lunares grandes",
@@ -47,19 +51,21 @@
             "M (ajusta S)"
           ],
           "foto": "7cbb92b2-image.jpg",
-          "foto_web": "catalogo/vestido-halter-volantes__blanco-lunares-grandes.webp",
-          "con_modelo": true
+          "foto_web": "catalogo/vestido-halter-volantes__blanco-lunares-grandes-ia.webp",
+          "con_modelo": false
         }
       ],
-      "portada_con_modelo": true
+      "portada_con_modelo": false
     },
     {
       "id": "conjunto-top-falda-sirena",
       "nombre": "Conjunto top corto y falda sirena con lunares",
       "categoria": "Conjuntos",
       "precio_usd": 45,
-      "imagen_principal": "catalogo/conjunto-top-falda-sirena__azul-marino.webp",
-      "imagenes_secundarias": [],
+      "imagen_principal": "catalogo/conjunto-top-falda-sirena__azul-marino-ia.webp",
+      "imagenes_secundarias": [
+        "catalogo/conjunto-top-falda-sirena__azul-marino.webp"
+      ],
       "variantes": [
         {
           "color": "Azul marino con lunares",
@@ -68,19 +74,21 @@
             "M"
           ],
           "foto": "b6999bf0-image.jpg",
-          "foto_web": "catalogo/conjunto-top-falda-sirena__azul-marino.webp",
-          "con_modelo": true
+          "foto_web": "catalogo/conjunto-top-falda-sirena__azul-marino-ia.webp",
+          "con_modelo": false
         }
       ],
-      "portada_con_modelo": true
+      "portada_con_modelo": false
     },
     {
       "id": "vestido-largo-strapless-rosa",
       "nombre": "Vestido largo strapless con rosa",
       "categoria": "Vestidos",
       "precio_usd": 45,
-      "imagen_principal": "catalogo/vestido-largo-strapless-rosa__vinotinto.webp",
-      "imagenes_secundarias": [],
+      "imagen_principal": "catalogo/vestido-largo-strapless-rosa__vinotinto-ia.webp",
+      "imagenes_secundarias": [
+        "catalogo/vestido-largo-strapless-rosa__vinotinto.webp"
+      ],
       "variantes": [
         {
           "color": "Vinotinto",
@@ -89,11 +97,11 @@
             "S"
           ],
           "foto": "cfdc7af7-image.jpg",
-          "foto_web": "catalogo/vestido-largo-strapless-rosa__vinotinto.webp",
-          "con_modelo": true
+          "foto_web": "catalogo/vestido-largo-strapless-rosa__vinotinto-ia.webp",
+          "con_modelo": false
         }
       ],
-      "portada_con_modelo": true
+      "portada_con_modelo": false
     },
     {
       "id": "vestido-largo-un-hombro",

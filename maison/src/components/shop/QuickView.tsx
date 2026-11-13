@@ -4,7 +4,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useRef, useState } from "react";
 import { useShop } from "@/context/ShopContext";
-import { getProduct, productImages } from "@/lib/products";
+import { getProduct, isAiImage, productImages } from "@/lib/products";
 import { cn, formatPrice } from "@/lib/format";
 import { FREE_SHIPPING_THRESHOLD } from "@/lib/pricing";
 import { CloseIcon } from "@/components/ui/Icons";
@@ -92,6 +92,11 @@ function QuickViewPanel({ id, onClose }: { id: string; onClose: () => void }) {
               />
             </AnimatePresence>
           </div>
+          {isAiImage(product, image) && (
+            <p className="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 text-[10px] text-maroon/80 ring-1 ring-wine/10">
+              Imagen ilustrativa · la foto real está en la galería
+            </p>
+          )}
           {images.length > 1 && (
             <div className="no-scrollbar flex gap-2 overflow-x-auto border-t border-wine/10 p-3" aria-label="Fotos del producto">
               {images.map((src, i) => (
