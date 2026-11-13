@@ -7,11 +7,11 @@
       "nombre": "Vestido halter con volantes",
       "categoria": "Vestidos",
       "precio_usd": 35,
-      "imagen_principal": "catalogo/vestido-halter-volantes__rojo-ia.webp",
+      "imagen_principal": "catalogo/vestido-halter-volantes__rojo-sola.webp",
       "imagenes_secundarias": [
-        "catalogo/vestido-halter-volantes__azul-marino-ia.webp",
-        "catalogo/vestido-halter-volantes__blanco-lunares-pequenos-ia.webp",
-        "catalogo/vestido-halter-volantes__blanco-lunares-grandes-ia.webp",
+        "catalogo/vestido-halter-volantes__azul-marino-sola.webp",
+        "catalogo/vestido-halter-volantes__blanco-lunares-pequenos-sola.webp",
+        "catalogo/vestido-halter-volantes__blanco-lunares-grandes-sola.webp",
         "catalogo/vestido-halter-volantes__rojo.webp",
         "catalogo/vestido-halter-volantes__azul-marino.webp",
         "catalogo/vestido-halter-volantes__blanco-lunares-pequenos.webp",
@@ -24,7 +24,7 @@
             "XS"
           ],
           "foto": "5c7fd302-image.jpg",
-          "foto_web": "catalogo/vestido-halter-volantes__rojo-ia.webp",
+          "foto_web": "catalogo/vestido-halter-volantes__rojo-sola.webp",
           "con_modelo": false
         },
         {
@@ -33,7 +33,7 @@
             "L (ajusta M)"
           ],
           "foto": "daa4cdf7-image.jpg",
-          "foto_web": "catalogo/vestido-halter-volantes__azul-marino-ia.webp",
+          "foto_web": "catalogo/vestido-halter-volantes__azul-marino-sola.webp",
           "con_modelo": false
         },
         {
@@ -42,7 +42,7 @@
             "S"
           ],
           "foto": "a984a136-image.jpg",
-          "foto_web": "catalogo/vestido-halter-volantes__blanco-lunares-pequenos-ia.webp",
+          "foto_web": "catalogo/vestido-halter-volantes__blanco-lunares-pequenos-sola.webp",
           "con_modelo": false
         },
         {
@@ -51,7 +51,7 @@
             "M (ajusta S)"
           ],
           "foto": "7cbb92b2-image.jpg",
-          "foto_web": "catalogo/vestido-halter-volantes__blanco-lunares-grandes-ia.webp",
+          "foto_web": "catalogo/vestido-halter-volantes__blanco-lunares-grandes-sola.webp",
           "con_modelo": false
         }
       ],
@@ -108,11 +108,21 @@
       "nombre": "Vestido largo de un hombro fruncido",
       "categoria": "Vestidos",
       "precio_usd": 45,
-      "imagen_principal": "catalogo/vestido-largo-un-hombro__amarillo-claro.webp",
+      "imagen_principal": "catalogo/vestido-largo-un-hombro__negro-sola.webp",
       "imagenes_secundarias": [
+        "catalogo/vestido-largo-un-hombro__amarillo-claro.webp",
         "catalogo/vestido-largo-un-hombro__negro.webp"
       ],
       "variantes": [
+        {
+          "color": "Negro",
+          "tallas": [
+            "S"
+          ],
+          "foto": "01796384-image.jpg",
+          "foto_web": "catalogo/vestido-largo-un-hombro__negro-sola.webp",
+          "con_modelo": false
+        },
         {
           "color": "Amarillo claro",
           "tallas": [
@@ -121,18 +131,9 @@
           "foto": "e2acbed6-image.jpg",
           "foto_web": "catalogo/vestido-largo-un-hombro__amarillo-claro.webp",
           "con_modelo": true
-        },
-        {
-          "color": "Negro",
-          "tallas": [
-            "S"
-          ],
-          "foto": "01796384-image.jpg",
-          "foto_web": "catalogo/vestido-largo-un-hombro__negro.webp",
-          "con_modelo": true
         }
       ],
-      "portada_con_modelo": true
+      "portada_con_modelo": false
     },
     {
       "id": "vestido-halter-lunares-escote",
@@ -183,8 +184,9 @@
       "nombre": "Vestido floral manga globo",
       "categoria": "Vestidos",
       "precio_usd": 40,
-      "imagen_principal": "catalogo/vestido-floral-manga-globo__blanco-floral.webp",
+      "imagen_principal": "catalogo/vestido-floral-manga-globo__blanco-floral-sola.webp",
       "imagenes_secundarias": [
+        "catalogo/vestido-floral-manga-globo__blanco-floral.webp",
         "catalogo/vestido-floral-manga-globo__blanco-floral-2.webp"
       ],
       "variantes": [
@@ -194,12 +196,12 @@
             "S"
           ],
           "foto": "6f05fbdd-image.jpg",
-          "foto_web": "catalogo/vestido-floral-manga-globo__blanco-floral.webp",
-          "con_modelo": true
+          "foto_web": "catalogo/vestido-floral-manga-globo__blanco-floral-sola.webp",
+          "con_modelo": false
         }
       ],
       "nota_precio": "Una foto decía Ref 38 y la más reciente Ref 40; se usa 40.",
-      "portada_con_modelo": true
+      "portada_con_modelo": false
     },
     {
       "id": "top-tul-volantes",
@@ -307,7 +309,7 @@
       "nombre": "Falda corta con volantes",
       "categoria": "Faldas",
       "precio_usd": 28,
-      "imagen_principal": "catalogo/falda-volantes-bicolor__negro-blanco.webp",
+      "imagen_principal": "catalogo/falda-volantes-bicolor__negro-blanco-sola.webp",
       "imagenes_secundarias": [],
       "variantes": [
         {
@@ -317,7 +319,7 @@
             "M"
           ],
           "foto": "710adba9-image.jpg",
-          "foto_web": "catalogo/falda-volantes-bicolor__negro-blanco.webp",
+          "foto_web": "catalogo/falda-volantes-bicolor__negro-blanco-sola.webp",
           "con_modelo": false
         }
       ],
@@ -328,28 +330,29 @@
       "nombre": "Chaqueta con capucha y lunares",
       "categoria": "Chaquetas",
       "precio_usd": 38,
-      "imagen_principal": "catalogo/chaqueta-capucha-lunares__rosa.webp",
+      "imagen_principal": "catalogo/chaqueta-capucha-lunares__amarillo-sola.webp",
       "imagenes_secundarias": [
+        "catalogo/chaqueta-capucha-lunares__rosa-sola.webp",
         "catalogo/chaqueta-capucha-lunares__amarillo.webp"
       ],
       "variantes": [
-        {
-          "color": "Rosa con lunares",
-          "tallas": [
-            "M"
-          ],
-          "foto": "2743c4d3-image.jpg",
-          "foto_web": "catalogo/chaqueta-capucha-lunares__rosa.webp",
-          "con_modelo": false
-        },
         {
           "color": "Amarillo con lunares",
           "tallas": [
             "L"
           ],
           "foto": "d4169678-image.jpg",
-          "foto_web": "catalogo/chaqueta-capucha-lunares__amarillo.webp",
-          "con_modelo": true
+          "foto_web": "catalogo/chaqueta-capucha-lunares__amarillo-sola.webp",
+          "con_modelo": false
+        },
+        {
+          "color": "Rosa con lunares",
+          "tallas": [
+            "M"
+          ],
+          "foto": "2743c4d3-image.jpg",
+          "foto_web": "catalogo/chaqueta-capucha-lunares__rosa-sola.webp",
+          "con_modelo": false
         }
       ],
       "portada_con_modelo": false
@@ -645,8 +648,10 @@
       "nombre": "Vestido largo con lunares y pañuelo",
       "categoria": "Vestidos",
       "precio_usd": 40,
-      "imagen_principal": "catalogo/vestido-largo-lunares-panuelo__amarillo.webp",
-      "imagenes_secundarias": [],
+      "imagen_principal": "catalogo/vestido-largo-lunares-panuelo__amarillo-sola.webp",
+      "imagenes_secundarias": [
+        "catalogo/vestido-largo-lunares-panuelo__amarillo.webp"
+      ],
       "variantes": [
         {
           "color": "Amarillo con lunares marrones",
@@ -654,11 +659,11 @@
             "S"
           ],
           "foto": "7d573173-image.jpg",
-          "foto_web": "catalogo/vestido-largo-lunares-panuelo__amarillo.webp",
-          "con_modelo": true
+          "foto_web": "catalogo/vestido-largo-lunares-panuelo__amarillo-sola.webp",
+          "con_modelo": false
         }
       ],
-      "portada_con_modelo": true
+      "portada_con_modelo": false
     },
     {
       "id": "vestido-halter-suelto",
@@ -685,7 +690,7 @@
       "nombre": "Vestido largo halter plisado con lazo",
       "categoria": "Vestidos",
       "precio_usd": 45,
-      "imagen_principal": "catalogo/vestido-largo-halter-plisado__vinotinto.webp",
+      "imagen_principal": "catalogo/vestido-largo-halter-plisado__vinotinto-sola.webp",
       "imagenes_secundarias": [
         "catalogo/vestido-largo-halter-plisado__vinotinto-modelo.webp"
       ],
@@ -696,7 +701,7 @@
             "S"
           ],
           "foto": "5726378b-image.jpg",
-          "foto_web": "catalogo/vestido-largo-halter-plisado__vinotinto.webp",
+          "foto_web": "catalogo/vestido-largo-halter-plisado__vinotinto-sola.webp",
           "con_modelo": false
         }
       ],
@@ -842,9 +847,9 @@
       "nombre": "Conjunto chaleco y short",
       "categoria": "Conjuntos",
       "precio_usd": 30,
-      "imagen_principal": "catalogo/conjunto-chaleco-short__amarillo-plano.webp",
+      "imagen_principal": "catalogo/conjunto-chaleco-short__amarillo-plano-sola.webp",
       "imagenes_secundarias": [
-        "catalogo/conjunto-chaleco-short__crema-lunares-plano.webp",
+        "catalogo/conjunto-chaleco-short__crema-lunares-plano-sola.webp",
         "catalogo/conjunto-chaleco-short__amarillo.webp",
         "catalogo/conjunto-chaleco-short__crema-lunares.webp"
       ],
@@ -856,7 +861,7 @@
             "M"
           ],
           "foto": "6eed4483-image.jpg",
-          "foto_web": "catalogo/conjunto-chaleco-short__amarillo-plano.webp",
+          "foto_web": "catalogo/conjunto-chaleco-short__amarillo-plano-sola.webp",
           "con_modelo": false
         },
         {
@@ -866,7 +871,7 @@
             "M"
           ],
           "foto": "6ba6d4ce-image.jpg",
-          "foto_web": "catalogo/conjunto-chaleco-short__crema-lunares-plano.webp",
+          "foto_web": "catalogo/conjunto-chaleco-short__crema-lunares-plano-sola.webp",
           "con_modelo": false
         }
       ],
@@ -877,8 +882,10 @@
       "nombre": "Falda larga asimétrica de encaje con volantes",
       "categoria": "Faldas",
       "precio_usd": 30,
-      "imagen_principal": "catalogo/falda-larga-encaje__negro.webp",
-      "imagenes_secundarias": [],
+      "imagen_principal": "catalogo/falda-larga-encaje__negro-sola.webp",
+      "imagenes_secundarias": [
+        "catalogo/falda-larga-encaje__negro.webp"
+      ],
       "variantes": [
         {
           "color": "Negro",
@@ -887,19 +894,21 @@
             "S"
           ],
           "foto": "c6c2e6bb-image.jpg",
-          "foto_web": "catalogo/falda-larga-encaje__negro.webp",
-          "con_modelo": true
+          "foto_web": "catalogo/falda-larga-encaje__negro-sola.webp",
+          "con_modelo": false
         }
       ],
-      "portada_con_modelo": true
+      "portada_con_modelo": false
     },
     {
       "id": "falda-plisada-short",
       "nombre": "Falda plisada con short interno",
       "categoria": "Faldas",
       "precio_usd": 28,
-      "imagen_principal": "catalogo/falda-plisada-short__gris.webp",
-      "imagenes_secundarias": [],
+      "imagen_principal": "catalogo/falda-plisada-short__gris-sola.webp",
+      "imagenes_secundarias": [
+        "catalogo/falda-plisada-short__gris.webp"
+      ],
       "variantes": [
         {
           "color": "Gris carbón",
@@ -907,11 +916,11 @@
             "S"
           ],
           "foto": "2ff30d6c-image.jpg",
-          "foto_web": "catalogo/falda-plisada-short__gris.webp",
-          "con_modelo": true
+          "foto_web": "catalogo/falda-plisada-short__gris-sola.webp",
+          "con_modelo": false
         }
       ],
-      "portada_con_modelo": true
+      "portada_con_modelo": false
     },
     {
       "id": "cinturon-cadena-corazones",

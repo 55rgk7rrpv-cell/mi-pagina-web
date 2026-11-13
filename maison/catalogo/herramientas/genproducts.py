@@ -36,8 +36,11 @@ EXTRA={"vestido-floral-manga-globo":["blanco-floral-2"],"vestido-largo-halter-pl
  "conjunto-chaleco-short":["amarillo","crema-lunares"],"cinturon-cadena-corazones":["dorado-modelo"]}
 # Garment-only images generated with AI (Canva) from the real model photo. They become the colour's photo;
 # the real photo stays in the gallery. The page marks them as illustrative.
-GENERATED={"vestido-halter-volantes__rojo","vestido-halter-volantes__azul-marino","vestido-halter-volantes__blanco-lunares-pequenos",
- "vestido-halter-volantes__blanco-lunares-grandes","conjunto-top-falda-sirena__azul-marino","vestido-largo-strapless-rosa__vinotinto"}
+GENERATED={"conjunto-top-falda-sirena__azul-marino","vestido-largo-strapless-rosa__vinotinto"}
+# Real garment-only photos sent later by the shop (catalogo/fotos-solas-originales, copied by fotos-solas.py).
+# They become the colour's photo. The older photo stays in the gallery only if it shows the garment worn;
+# an older garment-only shot of the same piece (hanger, floor, low resolution) is replaced.
+SOLAS=set(json.load(open("catalogo/herramientas/fotos-solas.json")))
 # Photos that show only the garment: no person, not even a hand. Everything else counts as "with model".
 GARMENT_ONLY={
  "vestido-strapless-encaje-rosa__vinotinto","falda-volantes-bicolor__negro-blanco","chaqueta-capucha-lunares__rosa",
@@ -113,13 +116,16 @@ for i,p in enumerate(cat):
     assert len({k for _,k in pairs})==len(keys),(pid,"photo used twice")
     colors=[]; real_photos=[]
     for v,k in pairs:
-        img=f"catalogo/{pid}__{k}.webp"; ai=f"{pid}__{k}" in GENERATED
-        if ai:
+        img=f"catalogo/{pid}__{k}.webp"; ai=f"{pid}__{k}" in GENERATED and f"{pid}__{k}" not in SOLAS
+        if f"{pid}__{k}" in SOLAS:
+            if f"{pid}__{k}" not in GARMENT_ONLY: real_photos.append({"src":img,"withModel":True})
+            img=f"catalogo/{pid}__{k}-sola.webp"
+        elif ai:
             real_photos.append({"src":img,"withModel":True})
             img=f"catalogo/{pid}__{k}-ia.webp"
         vv,hx=vivid("public/"+img)
         colors.append({"name":v["color"],"hex":hx,"sizes":v["tallas"],"image":img,
-                       "withModel":(not ai) and f"{pid}__{k}" not in GARMENT_ONLY,"aiGenerated":ai,"_v":vv})
+                       "withModel":(not ai) and f"{pid}__{k}" not in GARMENT_ONLY and f"{pid}__{k}" not in SOLAS,"aiGenerated":ai,"_v":vv})
     # Rule 1: a garment-only photo is always the cover when one exists. Rule 2: then the most vivid colour.
     colors.sort(key=lambda c:(c["withModel"],-c["_v"]))
     for c in colors: c.pop("_v")

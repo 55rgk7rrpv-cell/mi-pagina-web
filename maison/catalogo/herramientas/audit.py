@@ -6,7 +6,7 @@ E={ # id: (price, {colour prefix: [sizes]}, cover prefix)
  "vestido-halter-volantes":(35,{"Rojo":["XS"],"Blanco con lunares grandes":["M (ajusta S)"],"Azul marino":["L (ajusta M)"],"Blanco con lunares pequeños":["S"]},"Rojo"),
  "conjunto-top-falda-sirena":(45,{"Azul marino":["S","M"]},None),
  "vestido-largo-strapless-rosa":(45,{"Vinotinto":["XS","S"]},None),
- "vestido-largo-un-hombro":(45,{"Amarillo claro":["S"],"Negro":["S"]},"Amarillo claro"),
+ "vestido-largo-un-hombro":(45,{"Amarillo claro":["S"],"Negro":["S"]},"Negro"),  # the black one now has a garment-only photo
  "vestido-halter-lunares-escote":(28,{"Vinotinto":["S"],"Negro":["XS","M"],"Crema":["M"]},"Vinotinto"),
  "vestido-floral-manga-globo":(40,{"Blanco":["S"]},None),
  "top-tul-volantes":(20,{"Negro":["XXS"]},None),
@@ -15,7 +15,7 @@ E={ # id: (price, {colour prefix: [sizes]}, cover prefix)
  "top-halter-aberturas":(16,{"Negro":["XS"]},None),
  "vestido-strapless-encaje-rosa":(35,{"Vinotinto":["XS","S"]},None),
  "falda-volantes-bicolor":(28,{"Negro y blanco":["S","M"]},None),
- "chaqueta-capucha-lunares":(38,{"Amarillo":["L"],"Rosa":["M"]},"Rosa"),
+ "chaqueta-capucha-lunares":(38,{"Amarillo":["L"],"Rosa":["M"]},"Amarillo"),  # both garment-only now: yellow measures more vivid
  "top-encaje-corse":(20,{"Negro":["XS","M"]},None),
  "falda-saten-encaje":(30,{"Negro":["XS","S"]},None),
  "top-saten-cruzado":(18,{"Marrón":["S"],"Champaña":["XXS"],"Negro":["XS"]},"Marrón"),
