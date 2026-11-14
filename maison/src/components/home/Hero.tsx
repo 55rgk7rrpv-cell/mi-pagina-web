@@ -10,7 +10,7 @@ import { useShop } from "@/context/ShopContext";
 import { HeroAurora } from "./HeroAurora";
 import { imgSize } from "@/lib/image-sizes";
 
-const HERO_IMG = "catalogo/vestido-strapless-encaje-rosa__vinotinto.webp";
+const HERO_IMG = "catalogo/vestido-strapless-encaje-rosa__vinotinto-sola.webp";
 import ShinyText from "@/components/bits/ShinyText";
 
 const ease = [0.22, 1, 0.36, 1] as const;

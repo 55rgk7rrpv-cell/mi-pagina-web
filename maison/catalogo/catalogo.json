@@ -293,7 +293,7 @@
       "nombre": "Vestido corto strapless de encaje con rosa",
       "categoria": "Vestidos",
       "precio_usd": 35,
-      "imagen_principal": "catalogo/vestido-strapless-encaje-rosa__vinotinto.webp",
+      "imagen_principal": "catalogo/vestido-strapless-encaje-rosa__vinotinto-sola.webp",
       "imagenes_secundarias": [],
       "variantes": [
         {
@@ -303,7 +303,7 @@
             "S"
           ],
           "foto": "2de645fc-image.jpg",
-          "foto_web": "catalogo/vestido-strapless-encaje-rosa__vinotinto.webp",
+          "foto_web": "catalogo/vestido-strapless-encaje-rosa__vinotinto-sola.webp",
           "con_modelo": false
         }
       ],
@@ -555,8 +555,10 @@
       "nombre": "Vestido blazer manga larga con falda plisada",
       "categoria": "Vestidos",
       "precio_usd": 70,
-      "imagen_principal": "catalogo/vestido-blazer-manga-larga__rojo.webp",
-      "imagenes_secundarias": [],
+      "imagen_principal": "catalogo/vestido-blazer-manga-larga__rojo-sola.webp",
+      "imagenes_secundarias": [
+        "catalogo/vestido-blazer-manga-larga__rojo.webp"
+      ],
       "variantes": [
         {
           "color": "Rojo",
@@ -564,19 +566,21 @@
             "M"
           ],
           "foto": "7f9d9299-image.jpg",
-          "foto_web": "catalogo/vestido-blazer-manga-larga__rojo.webp",
-          "con_modelo": true
+          "foto_web": "catalogo/vestido-blazer-manga-larga__rojo-sola.webp",
+          "con_modelo": false
         }
       ],
-      "portada_con_modelo": true
+      "portada_con_modelo": false
     },
     {
       "id": "vestido-encaje-hombros-descubiertos",
       "nombre": "Vestido corto de encaje con hombros descubiertos",
       "categoria": "Vestidos",
       "precio_usd": 35,
-      "imagen_principal": "catalogo/vestido-encaje-hombros-descubiertos__amarillo.webp",
-      "imagenes_secundarias": [],
+      "imagen_principal": "catalogo/vestido-encaje-hombros-descubiertos__amarillo-sola.webp",
+      "imagenes_secundarias": [
+        "catalogo/vestido-encaje-hombros-descubiertos__amarillo.webp"
+      ],
       "variantes": [
         {
           "color": "Amarillo",
@@ -584,19 +588,21 @@
             "S"
           ],
           "foto": "016a8faf-image.jpg",
-          "foto_web": "catalogo/vestido-encaje-hombros-descubiertos__amarillo.webp",
-          "con_modelo": true
+          "foto_web": "catalogo/vestido-encaje-hombros-descubiertos__amarillo-sola.webp",
+          "con_modelo": false
         }
       ],
-      "portada_con_modelo": true
+      "portada_con_modelo": false
     },
     {
       "id": "vestido-blazer-halter",
       "nombre": "Vestido blazer halter con botones",
       "categoria": "Vestidos",
       "precio_usd": 60,
-      "imagen_principal": "catalogo/vestido-blazer-halter__vinotinto.webp",
-      "imagenes_secundarias": [],
+      "imagen_principal": "catalogo/vestido-blazer-halter__vinotinto-sola.webp",
+      "imagenes_secundarias": [
+        "catalogo/vestido-blazer-halter__vinotinto.webp"
+      ],
       "variantes": [
         {
           "color": "Vinotinto",
@@ -604,11 +610,11 @@
             "S"
           ],
           "foto": "9c07676d-image.jpg",
-          "foto_web": "catalogo/vestido-blazer-halter__vinotinto.webp",
-          "con_modelo": true
+          "foto_web": "catalogo/vestido-blazer-halter__vinotinto-sola.webp",
+          "con_modelo": false
         }
       ],
-      "portada_con_modelo": true
+      "portada_con_modelo": false
     },
     {
       "id": "vestido-largo-espalda-descubierta",
@@ -743,8 +749,10 @@
       "nombre": "Vestido halter suelto con lunares y tul",
       "categoria": "Vestidos",
       "precio_usd": 40,
-      "imagen_principal": "catalogo/vestido-halter-suelto-tul__blanco-lunares.webp",
-      "imagenes_secundarias": [],
+      "imagen_principal": "catalogo/vestido-halter-suelto-tul__blanco-lunares-sola.webp",
+      "imagenes_secundarias": [
+        "catalogo/vestido-halter-suelto-tul__blanco-lunares.webp"
+      ],
       "variantes": [
         {
           "color": "Blanco con lunares negros",
@@ -752,11 +760,11 @@
             "XS"
           ],
           "foto": "5db5700b-image.jpg",
-          "foto_web": "catalogo/vestido-halter-suelto-tul__blanco-lunares.webp",
-          "con_modelo": true
+          "foto_web": "catalogo/vestido-halter-suelto-tul__blanco-lunares-sola.webp",
+          "con_modelo": false
         }
       ],
-      "portada_con_modelo": true
+      "portada_con_modelo": false
     },
     {
       "id": "vestido-corto-lunares-panuelo",
@@ -818,8 +826,10 @@
       "nombre": "Top de encaje con hombro descubierto",
       "categoria": "Tops",
       "precio_usd": 16,
-      "imagen_principal": "catalogo/top-encaje-hombro-descubierto__negro.webp",
-      "imagenes_secundarias": [],
+      "imagen_principal": "catalogo/top-encaje-hombro-descubierto__negro-sola.webp",
+      "imagenes_secundarias": [
+        "catalogo/top-encaje-hombro-descubierto__negro.webp"
+      ],
       "variantes": [
         {
           "color": "Negro",
@@ -827,11 +837,11 @@
             "XS"
           ],
           "foto": "4a925d5f-image.jpg",
-          "foto_web": "catalogo/top-encaje-hombro-descubierto__negro.webp",
-          "con_modelo": true
+          "foto_web": "catalogo/top-encaje-hombro-descubierto__negro-sola.webp",
+          "con_modelo": false
         }
       ],
-      "portada_con_modelo": true
+      "portada_con_modelo": false
     },
     {
       "id": "vestido-mangas-acampanadas",

@@ -89,6 +89,10 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   911,
   1080
  ],
+ "catalogo/top-encaje-hombro-descubierto__negro-sola.webp": [
+  896,
+  1200
+ ],
  "catalogo/top-encaje-hombro-descubierto__negro.webp": [
   837,
   1080
@@ -149,9 +153,17 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   310,
   907
  ],
+ "catalogo/vestido-blazer-halter__vinotinto-sola.webp": [
+  896,
+  1200
+ ],
  "catalogo/vestido-blazer-halter__vinotinto.webp": [
   826,
   1080
+ ],
+ "catalogo/vestido-blazer-manga-larga__rojo-sola.webp": [
+  896,
+  1200
  ],
  "catalogo/vestido-blazer-manga-larga__rojo.webp": [
   576,
@@ -172,6 +184,10 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
  "catalogo/vestido-corto-lunares-panuelo__negro.webp": [
   165,
   669
+ ],
+ "catalogo/vestido-encaje-hombros-descubiertos__amarillo-sola.webp": [
+  975,
+  1104
  ],
  "catalogo/vestido-encaje-hombros-descubiertos__amarillo.webp": [
   954,
@@ -204,6 +220,10 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
  "catalogo/vestido-halter-lunares-escote__vinotinto.webp": [
   229,
   512
+ ],
+ "catalogo/vestido-halter-suelto-tul__blanco-lunares-sola.webp": [
+  848,
+  1264
  ],
  "catalogo/vestido-halter-suelto-tul__blanco-lunares.webp": [
   310,
@@ -309,9 +329,9 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   337,
   859
  ],
- "catalogo/vestido-strapless-encaje-rosa__vinotinto.webp": [
-  875,
-  1080
+ "catalogo/vestido-strapless-encaje-rosa__vinotinto-sola.webp": [
+  928,
+  1146
  ]
 };
 

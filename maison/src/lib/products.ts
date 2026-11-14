@@ -307,7 +307,7 @@ export const PRODUCTS: Product[] = [
     "gallery": [],
     "coverHasModel": true,
     "badge": "Última pieza",
-    "featured": 25
+    "featured": 30
   },
   {
     "id": "vestido-otra-pinta-lenceria",
@@ -330,7 +330,7 @@ export const PRODUCTS: Product[] = [
     "gallery": [],
     "coverHasModel": true,
     "badge": "Última pieza",
-    "featured": 26
+    "featured": 31
   },
   {
     "id": "vestido-midi-asimetrico",
@@ -397,12 +397,12 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Vinotinto",
-        "hex": "#611421",
+        "hex": "#5C1420",
         "sizes": [
           "XS",
           "S"
         ],
-        "image": "catalogo/vestido-strapless-encaje-rosa__vinotinto.webp",
+        "image": "catalogo/vestido-strapless-encaje-rosa__vinotinto-sola.webp",
         "withModel": false,
         "aiGenerated": false
       }
@@ -525,7 +525,7 @@ export const PRODUCTS: Product[] = [
     "gallery": [],
     "coverHasModel": true,
     "badge": null,
-    "featured": 27
+    "featured": 32
   },
   {
     "id": "top-saten-cruzado",
@@ -675,19 +675,24 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Rojo",
-        "hex": "#86091B",
+        "hex": "#720B19",
         "sizes": [
           "M"
         ],
-        "image": "catalogo/vestido-blazer-manga-larga__rojo.webp",
-        "withModel": true,
+        "image": "catalogo/vestido-blazer-manga-larga__rojo-sola.webp",
+        "withModel": false,
         "aiGenerated": false
       }
     ],
-    "gallery": [],
-    "coverHasModel": true,
+    "gallery": [
+      {
+        "src": "catalogo/vestido-blazer-manga-larga__rojo.webp",
+        "withModel": true
+      }
+    ],
+    "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 28
+    "featured": 16
   },
   {
     "id": "vestido-encaje-hombros-descubiertos",
@@ -698,19 +703,24 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Amarillo",
-        "hex": "#D9BF74",
+        "hex": "#E6D284",
         "sizes": [
           "S"
         ],
-        "image": "catalogo/vestido-encaje-hombros-descubiertos__amarillo.webp",
-        "withModel": true,
+        "image": "catalogo/vestido-encaje-hombros-descubiertos__amarillo-sola.webp",
+        "withModel": false,
         "aiGenerated": false
       }
     ],
-    "gallery": [],
-    "coverHasModel": true,
+    "gallery": [
+      {
+        "src": "catalogo/vestido-encaje-hombros-descubiertos__amarillo.webp",
+        "withModel": true
+      }
+    ],
+    "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 29
+    "featured": 17
   },
   {
     "id": "vestido-blazer-halter",
@@ -721,19 +731,24 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Vinotinto",
-        "hex": "#520B16",
+        "hex": "#4A101A",
         "sizes": [
           "S"
         ],
-        "image": "catalogo/vestido-blazer-halter__vinotinto.webp",
-        "withModel": true,
+        "image": "catalogo/vestido-blazer-halter__vinotinto-sola.webp",
+        "withModel": false,
         "aiGenerated": false
       }
     ],
-    "gallery": [],
-    "coverHasModel": true,
+    "gallery": [
+      {
+        "src": "catalogo/vestido-blazer-halter__vinotinto.webp",
+        "withModel": true
+      }
+    ],
+    "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 30
+    "featured": 18
   },
   {
     "id": "vestido-largo-espalda-descubierta",
@@ -761,7 +776,7 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 16
+    "featured": 19
   },
   {
     "id": "enterizo-tul-manga-larga",
@@ -784,7 +799,7 @@ export const PRODUCTS: Product[] = [
     "gallery": [],
     "coverHasModel": true,
     "badge": "Última pieza",
-    "featured": 31
+    "featured": 33
   },
   {
     "id": "vestido-largo-lunares-panuelo",
@@ -812,7 +827,7 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 17
+    "featured": 20
   },
   {
     "id": "vestido-halter-suelto",
@@ -840,7 +855,7 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 18
+    "featured": 21
   },
   {
     "id": "vestido-largo-halter-plisado",
@@ -868,7 +883,7 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 19
+    "featured": 22
   },
   {
     "id": "vestido-asimetrico-volantes",
@@ -891,7 +906,7 @@ export const PRODUCTS: Product[] = [
     "gallery": [],
     "coverHasModel": true,
     "badge": "Última pieza",
-    "featured": 32
+    "featured": 34
   },
   {
     "id": "vestido-halter-suelto-tul",
@@ -902,19 +917,24 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Blanco con lunares negros",
-        "hex": "#C7C3C7",
+        "hex": "#D7D7D9",
         "sizes": [
           "XS"
         ],
-        "image": "catalogo/vestido-halter-suelto-tul__blanco-lunares.webp",
-        "withModel": true,
+        "image": "catalogo/vestido-halter-suelto-tul__blanco-lunares-sola.webp",
+        "withModel": false,
         "aiGenerated": false
       }
     ],
-    "gallery": [],
-    "coverHasModel": true,
+    "gallery": [
+      {
+        "src": "catalogo/vestido-halter-suelto-tul__blanco-lunares.webp",
+        "withModel": true
+      }
+    ],
+    "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 33
+    "featured": 23
   },
   {
     "id": "vestido-corto-lunares-panuelo",
@@ -967,7 +987,7 @@ export const PRODUCTS: Product[] = [
     "gallery": [],
     "coverHasModel": true,
     "badge": null,
-    "featured": 34
+    "featured": 35
   },
   {
     "id": "top-encaje-hombro-descubierto",
@@ -978,19 +998,24 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Negro",
-        "hex": "#1A1C1A",
+        "hex": "#1C1E1A",
         "sizes": [
           "XS"
         ],
-        "image": "catalogo/top-encaje-hombro-descubierto__negro.webp",
-        "withModel": true,
+        "image": "catalogo/top-encaje-hombro-descubierto__negro-sola.webp",
+        "withModel": false,
         "aiGenerated": false
       }
     ],
-    "gallery": [],
-    "coverHasModel": true,
+    "gallery": [
+      {
+        "src": "catalogo/top-encaje-hombro-descubierto__negro.webp",
+        "withModel": true
+      }
+    ],
+    "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 35
+    "featured": 24
   },
   {
     "id": "vestido-mangas-acampanadas",
@@ -1057,7 +1082,7 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": null,
-    "featured": 20
+    "featured": 25
   },
   {
     "id": "falda-larga-encaje",
@@ -1086,7 +1111,7 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": null,
-    "featured": 21
+    "featured": 26
   },
   {
     "id": "falda-plisada-short",
@@ -1114,7 +1139,7 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 22
+    "featured": 27
   },
   {
     "id": "cinturon-cadena-corazones",
@@ -1142,7 +1167,7 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 23
+    "featured": 28
   },
   {
     "id": "cinturon-elegante",
@@ -1175,7 +1200,7 @@ export const PRODUCTS: Product[] = [
     "gallery": [],
     "coverHasModel": false,
     "badge": null,
-    "featured": 24
+    "featured": 29
   }
 ];
 
