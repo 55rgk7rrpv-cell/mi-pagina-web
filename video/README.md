@@ -36,7 +36,9 @@ Efectos generados por código en `fuente/mix.py`, según los reels de referencia
 
 - Voz: vidIQ Voiceover, voz "Francisco" (español latinoamericano).
 - Música: vidIQ AI Music, pista original libre de derechos.
-- Imágenes (pastelería y manos con teléfono): generadas con vidIQ. "Panadería Aurora" es un negocio ficticio de ejemplo.
+- Foto de la vitrina de pan dulce: aportada por Meridian Digital (sustituye a la imagen de IA de la primera versión).
+- Foto de manos con teléfono: generada con vidIQ.
+- "Panadería Aurora" es un negocio ficticio de ejemplo.
 - Fuentes: Anton, Inter Tight, Instrument Serif, JetBrains Mono (SIL Open Font License, Google Fonts).
 - Render: motor Lemo-Opuscar (estilo "Swiss Motion Graphics") + Playwright/Chromium + ffmpeg.
 
