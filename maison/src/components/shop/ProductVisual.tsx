@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { garmentImages, getColor, type Product } from "@/lib/products";
-import { imgSize } from "@/lib/image-sizes";
+import { imgSize, thumbOf } from "@/lib/image-sizes";
 
 /**
  * Product photo on a white background.
@@ -23,7 +23,8 @@ export function ProductVisual({
 }) {
   const cover = getColor(product, color).image;
   const alt = garmentImages(product).filter((s) => s !== cover);
-  const src = variant === "look" ? alt[0] ?? cover : cover;
+  // the grid, cart and checkout show the light copy (<= 880 px); the quick view loads the full-size photo
+  const src = thumbOf(variant === "look" ? alt[0] ?? cover : cover);
   const shown = variant === "look" ? undefined : getColor(product, color).name;
   return (
     <img

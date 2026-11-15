@@ -25,6 +25,8 @@ interface GlareHoverProps {
   interval?: number;
   playOnce?: boolean;
   intro?: boolean;
+  /** false: render only the frame, no glare layers, listeners or observers (cheap while idle) */
+  armed?: boolean;
   className?: string;
   style?: CSSProperties;
 }
@@ -96,6 +98,7 @@ const GlareHover = ({
   interval = 3,
   playOnce = false,
   intro = false,
+  armed = true,
   className = '',
   style = {}
 }: GlareHoverProps) => {
@@ -112,7 +115,7 @@ const GlareHover = ({
   useEffect(() => {
     const root = rootRef.current;
     const glare = glareRef.current;
-    if (!root || !glare) return;
+    if (!armed || !root || !glare) return;
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const geometry = { band: 0, reach: 0, ux: 0, uy: -1, angle: 0 };
@@ -290,6 +293,8 @@ const GlareHover = ({
     measure();
     schedule();
     engineRef.current = { measure };
+    // armed while the pointer is already over it: play the first sweep that the arming itself missed
+    if (mode === 'hover' && root.matches(':hover')) sweep(1);
 
     return () => {
       cancelAnimationFrame(raf);
@@ -303,7 +308,7 @@ const GlareHover = ({
       root.removeEventListener('focusin', onFocus);
       engineRef.current = null;
     };
-  }, [mode]);
+  }, [mode, armed]);
 
   useEffect(() => {
     engineRef.current?.measure();
@@ -326,14 +331,16 @@ const GlareHover = ({
       }}
     >
       {children}
-      <span ref={glareRef} className={GLARE} style={{ mixBlendMode: blendMode }} aria-hidden="true">
-        <span ref={bandRef} className={BAND} style={{ background: glare }} />
-        {rimGlint && (
-          <span className={RIM} style={RIM_MASK}>
-            <span ref={rimRef} className={BAND} style={{ background: rim }} />
-          </span>
-        )}
-      </span>
+      {armed && (
+        <span ref={glareRef} className={GLARE} style={{ mixBlendMode: blendMode }} aria-hidden="true">
+          <span ref={bandRef} className={BAND} style={{ background: glare }} />
+          {rimGlint && (
+            <span className={RIM} style={RIM_MASK}>
+              <span ref={rimRef} className={BAND} style={{ background: rim }} />
+            </span>
+          )}
+        </span>
+      )}
     </div>
   );
 };

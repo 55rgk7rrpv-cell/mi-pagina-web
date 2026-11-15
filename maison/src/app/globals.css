@@ -126,7 +126,7 @@ body {
 /* Performance: everything that animates on hover is opacity or transform (handled by the GPU,
    no repaint). The deep shadow is a separate layer that fades in, instead of animating box-shadow,
    and the other cards only fade (no filter), so moving the mouse across the grid stays at 60 fps. */
-.product-card .card-inner { position: relative; transition: opacity 0.3s var(--ease-lux); }
+.product-card .card-inner { position: relative; }
 .product-card .card-inner::before {
   content: "";
   position: absolute;
@@ -177,8 +177,9 @@ body {
   /* pressed: the card sinks back towards the page */
   .product-card:active .product-frame { transform: translateY(-3px) scale(0.99); transition-duration: 0.1s; }
 
-  /* everything you are NOT on steps back */
-  .product-grid:has(.product-card:hover) .product-card:not(:hover) .card-inner { opacity: 0.5; }
+  /* While the page is scrolling, cards pass under a resting mouse: do not let each one fire its hover effects.
+     (Dimming "all the other cards" was removed: its :has() selector re-evaluated all 36 cards on every hover change.) */
+  html[data-scrolling] .product-grid { pointer-events: none; }
 
   /* buttons on the card: high-contrast swap */
   .add-btn:hover, .size-btn:hover { background: var(--color-sand); color: var(--color-wine); }
@@ -192,6 +193,9 @@ body {
 }
 .filter-pill:active { transform: scale(0.96); }
 .filter-pill:focus-visible, .sort-select:focus-visible { outline: 2px solid var(--color-burgundy); outline-offset: 2px; }
+
+/* Infinite hero animations tick on the main thread every frame; stop them once the hero is out of view */
+[data-offscreen] .animate-drift, [data-offscreen] .animate-shimmer, [data-offscreen] [class*="animate-["] { animation-play-state: paused !important; }
 
 /* less motion: keep every colour, outline and shadow cue, drop the lift and the zoom */
 @media (prefers-reduced-motion: reduce) {

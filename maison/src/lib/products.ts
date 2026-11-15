@@ -12,6 +12,8 @@ export interface ColorVariant {
   withModel: boolean;
   /** true when the photo is an AI rendering made from the real photo (shown as illustrative) */
   aiGenerated: boolean;
+  /** explanation shown over the photo in the quick view, when it needs one */
+  note: string | null;
 }
 
 export interface GalleryImage {
@@ -48,43 +50,47 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Rojo",
-        "hex": "#B61615",
+        "hex": "#B21212",
         "sizes": [
           "XS"
         ],
         "image": "catalogo/vestido-halter-volantes__rojo-sola.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       },
       {
         "name": "Azul marino con lunares",
-        "hex": "#212739",
+        "hex": "#1E2435",
         "sizes": [
           "L (ajusta M)"
         ],
         "image": "catalogo/vestido-halter-volantes__azul-marino-sola.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       },
       {
         "name": "Blanco con lunares pequeños",
-        "hex": "#E5E1DA",
+        "hex": "#E4E1DA",
         "sizes": [
           "S"
         ],
         "image": "catalogo/vestido-halter-volantes__blanco-lunares-pequenos-sola.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       },
       {
         "name": "Blanco con lunares grandes",
-        "hex": "#E1E0E1",
+        "hex": "#E0DFDF",
         "sizes": [
           "M (ajusta S)"
         ],
         "image": "catalogo/vestido-halter-volantes__blanco-lunares-grandes-sola.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       }
     ],
     "gallery": [
@@ -125,7 +131,8 @@ export const PRODUCTS: Product[] = [
         ],
         "image": "catalogo/conjunto-top-falda-sirena__azul-marino-ia.webp",
         "withModel": false,
-        "aiGenerated": true
+        "aiGenerated": true,
+        "note": null
       }
     ],
     "gallery": [
@@ -147,14 +154,15 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Vinotinto",
-        "hex": "#651C37",
+        "hex": "#57122B",
         "sizes": [
           "XS",
           "S"
         ],
         "image": "catalogo/vestido-largo-strapless-rosa__vinotinto-sola.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       }
     ],
     "gallery": [
@@ -176,13 +184,14 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Negro",
-        "hex": "#1B1B1B",
+        "hex": "#1A1A1A",
         "sizes": [
           "S"
         ],
         "image": "catalogo/vestido-largo-un-hombro__negro-sola.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       },
       {
         "name": "Amarillo claro",
@@ -192,7 +201,8 @@ export const PRODUCTS: Product[] = [
         ],
         "image": "catalogo/vestido-largo-un-hombro__amarillo-claro.webp",
         "withModel": true,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       }
     ],
     "gallery": [
@@ -221,7 +231,8 @@ export const PRODUCTS: Product[] = [
         ],
         "image": "catalogo/vestido-halter-lunares-escote__negro-sola.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       },
       {
         "name": "Vinotinto con lunares",
@@ -231,7 +242,8 @@ export const PRODUCTS: Product[] = [
         ],
         "image": "catalogo/vestido-halter-lunares-escote__vinotinto.webp",
         "withModel": true,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       },
       {
         "name": "Crema con lunares",
@@ -241,7 +253,8 @@ export const PRODUCTS: Product[] = [
         ],
         "image": "catalogo/vestido-halter-lunares-escote__crema.webp",
         "withModel": true,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       }
     ],
     "gallery": [
@@ -269,7 +282,8 @@ export const PRODUCTS: Product[] = [
         ],
         "image": "catalogo/vestido-floral-manga-globo__blanco-floral-sola.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       }
     ],
     "gallery": [
@@ -295,19 +309,25 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Negro",
-        "hex": "#343839",
+        "hex": "#484845",
         "sizes": [
           "XXS"
         ],
-        "image": "catalogo/top-tul-volantes__negro.webp",
-        "withModel": true,
-        "aiGenerated": false
+        "image": "catalogo/top-tul-volantes__negro-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
       }
     ],
-    "gallery": [],
-    "coverHasModel": true,
+    "gallery": [
+      {
+        "src": "catalogo/top-tul-volantes__negro.webp",
+        "withModel": true
+      }
+    ],
+    "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 30
+    "featured": 7
   },
   {
     "id": "vestido-otra-pinta-lenceria",
@@ -318,19 +338,25 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Marrón y negro",
-        "hex": "#1D202D",
+        "hex": "#1F1A19",
         "sizes": [
           "S"
         ],
-        "image": "catalogo/vestido-otra-pinta-lenceria__marron-negro.webp",
-        "withModel": true,
-        "aiGenerated": false
+        "image": "catalogo/vestido-otra-pinta-lenceria__marron-negro-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
       }
     ],
-    "gallery": [],
-    "coverHasModel": true,
+    "gallery": [
+      {
+        "src": "catalogo/vestido-otra-pinta-lenceria__marron-negro.webp",
+        "withModel": true
+      }
+    ],
+    "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 31
+    "featured": 8
   },
   {
     "id": "vestido-midi-asimetrico",
@@ -341,13 +367,14 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Negro",
-        "hex": "#1E242B",
+        "hex": "#1D232A",
         "sizes": [
           "XXS"
         ],
         "image": "catalogo/vestido-midi-asimetrico__negro-sola.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       }
     ],
     "gallery": [
@@ -358,7 +385,7 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 7
+    "featured": 9
   },
   {
     "id": "top-halter-aberturas",
@@ -369,13 +396,14 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Negro",
-        "hex": "#1A1A1A",
+        "hex": "#1B1B1B",
         "sizes": [
           "XS"
         ],
         "image": "catalogo/top-halter-aberturas__negro-sola.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       }
     ],
     "gallery": [
@@ -386,7 +414,7 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 8
+    "featured": 10
   },
   {
     "id": "vestido-strapless-encaje-rosa",
@@ -404,13 +432,14 @@ export const PRODUCTS: Product[] = [
         ],
         "image": "catalogo/vestido-strapless-encaje-rosa__vinotinto-sola.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       }
     ],
     "gallery": [],
     "coverHasModel": false,
     "badge": null,
-    "featured": 9
+    "featured": 11
   },
   {
     "id": "falda-volantes-bicolor",
@@ -421,20 +450,21 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Negro y blanco",
-        "hex": "#040706",
+        "hex": "#DAD5C6",
         "sizes": [
           "S",
           "M"
         ],
         "image": "catalogo/falda-volantes-bicolor__negro-blanco-sola.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       }
     ],
     "gallery": [],
     "coverHasModel": false,
     "badge": null,
-    "featured": 10
+    "featured": 12
   },
   {
     "id": "chaqueta-capucha-lunares",
@@ -445,23 +475,25 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Amarillo con lunares",
-        "hex": "#E4D7A4",
+        "hex": "#E2D69F",
         "sizes": [
           "L"
         ],
         "image": "catalogo/chaqueta-capucha-lunares__amarillo-sola.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       },
       {
         "name": "Rosa con lunares",
-        "hex": "#E2C2CA",
+        "hex": "#E3C3CB",
         "sizes": [
           "M"
         ],
         "image": "catalogo/chaqueta-capucha-lunares__rosa-sola.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       }
     ],
     "gallery": [
@@ -472,7 +504,7 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": null,
-    "featured": 11
+    "featured": 13
   },
   {
     "id": "top-encaje-corse",
@@ -483,14 +515,15 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Negro",
-        "hex": "#453D39",
+        "hex": "#443D39",
         "sizes": [
           "XS",
           "M"
         ],
         "image": "catalogo/top-encaje-corse__negro-sola.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       }
     ],
     "gallery": [
@@ -501,31 +534,37 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": null,
-    "featured": 12
+    "featured": 14
   },
   {
     "id": "falda-saten-encaje",
     "name": "Falda de satén con encaje",
     "category": "Faldas",
     "price": 30,
-    "description": "Falda midi de satén con ruedo en picos de encaje. Combínala con el top de encaje tipo corsé.",
+    "description": "Falda midi de satén con ruedo en picos de encaje. En la foto se ve con el top de encaje tipo corsé, que se vende por separado.",
     "colors": [
       {
         "name": "Negro",
-        "hex": "#0E1E29",
+        "hex": "#292929",
         "sizes": [
           "XS",
           "S"
         ],
-        "image": "catalogo/falda-saten-encaje__negro.webp",
-        "withModel": true,
-        "aiGenerated": false
+        "image": "catalogo/falda-saten-encaje__negro-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": "En la foto se ve con el top de encaje, que se vende por separado"
       }
     ],
-    "gallery": [],
-    "coverHasModel": true,
+    "gallery": [
+      {
+        "src": "catalogo/falda-saten-encaje__negro.webp",
+        "withModel": true
+      }
+    ],
+    "coverHasModel": false,
     "badge": null,
-    "featured": 32
+    "featured": 15
   },
   {
     "id": "top-saten-cruzado",
@@ -542,7 +581,8 @@ export const PRODUCTS: Product[] = [
         ],
         "image": "catalogo/top-saten-cruzado__marron.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       },
       {
         "name": "Champaña",
@@ -552,7 +592,8 @@ export const PRODUCTS: Product[] = [
         ],
         "image": "catalogo/top-saten-cruzado__champana.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       },
       {
         "name": "Negro",
@@ -562,13 +603,14 @@ export const PRODUCTS: Product[] = [
         ],
         "image": "catalogo/top-saten-cruzado__negro.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       }
     ],
     "gallery": [],
     "coverHasModel": false,
     "badge": null,
-    "featured": 13
+    "featured": 16
   },
   {
     "id": "top-saten-cuello-alto",
@@ -585,7 +627,8 @@ export const PRODUCTS: Product[] = [
         ],
         "image": "catalogo/top-saten-cuello-alto__vinotinto.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       },
       {
         "name": "Marrón",
@@ -595,13 +638,14 @@ export const PRODUCTS: Product[] = [
         ],
         "image": "catalogo/top-saten-cuello-alto__marron.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       }
     ],
     "gallery": [],
     "coverHasModel": false,
     "badge": null,
-    "featured": 14
+    "featured": 17
   },
   {
     "id": "top-saten-lazo",
@@ -618,7 +662,8 @@ export const PRODUCTS: Product[] = [
         ],
         "image": "catalogo/top-saten-lazo__rojo.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       },
       {
         "name": "Amarillo",
@@ -628,7 +673,8 @@ export const PRODUCTS: Product[] = [
         ],
         "image": "catalogo/top-saten-lazo__amarillo.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       },
       {
         "name": "Verde",
@@ -638,7 +684,8 @@ export const PRODUCTS: Product[] = [
         ],
         "image": "catalogo/top-saten-lazo__verde.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       },
       {
         "name": "Marrón",
@@ -648,7 +695,8 @@ export const PRODUCTS: Product[] = [
         ],
         "image": "catalogo/top-saten-lazo__marron.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       },
       {
         "name": "Champaña",
@@ -658,13 +706,14 @@ export const PRODUCTS: Product[] = [
         ],
         "image": "catalogo/top-saten-lazo__champana.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       }
     ],
     "gallery": [],
     "coverHasModel": false,
     "badge": null,
-    "featured": 15
+    "featured": 18
   },
   {
     "id": "vestido-blazer-manga-larga",
@@ -675,13 +724,14 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Rojo",
-        "hex": "#720B19",
+        "hex": "#750C19",
         "sizes": [
           "M"
         ],
         "image": "catalogo/vestido-blazer-manga-larga__rojo-sola.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       }
     ],
     "gallery": [
@@ -692,7 +742,7 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 16
+    "featured": 19
   },
   {
     "id": "vestido-encaje-hombros-descubiertos",
@@ -703,13 +753,14 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Amarillo",
-        "hex": "#E6D284",
+        "hex": "#E5D284",
         "sizes": [
           "S"
         ],
         "image": "catalogo/vestido-encaje-hombros-descubiertos__amarillo-sola.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       }
     ],
     "gallery": [
@@ -720,7 +771,7 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 17
+    "featured": 20
   },
   {
     "id": "vestido-blazer-halter",
@@ -731,13 +782,14 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Vinotinto",
-        "hex": "#4A101A",
+        "hex": "#48101A",
         "sizes": [
           "S"
         ],
         "image": "catalogo/vestido-blazer-halter__vinotinto-sola.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       }
     ],
     "gallery": [
@@ -748,7 +800,7 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 18
+    "featured": 21
   },
   {
     "id": "vestido-largo-espalda-descubierta",
@@ -759,13 +811,14 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Amarillo claro",
-        "hex": "#E7E5C8",
+        "hex": "#E0DEBA",
         "sizes": [
           "S"
         ],
         "image": "catalogo/vestido-largo-espalda-descubierta__amarillo-claro-sola.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       }
     ],
     "gallery": [
@@ -776,7 +829,7 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 19
+    "featured": 22
   },
   {
     "id": "enterizo-tul-manga-larga",
@@ -787,19 +840,25 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Negro",
-        "hex": "#20272D",
+        "hex": "#181818",
         "sizes": [
           "S"
         ],
-        "image": "catalogo/enterizo-tul-manga-larga__negro.webp",
-        "withModel": true,
-        "aiGenerated": false
+        "image": "catalogo/enterizo-tul-manga-larga__negro-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
       }
     ],
-    "gallery": [],
-    "coverHasModel": true,
+    "gallery": [
+      {
+        "src": "catalogo/enterizo-tul-manga-larga__negro.webp",
+        "withModel": true
+      }
+    ],
+    "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 33
+    "featured": 23
   },
   {
     "id": "vestido-largo-lunares-panuelo",
@@ -810,13 +869,14 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Amarillo con lunares marrones",
-        "hex": "#FEFEFE",
+        "hex": "#E9D59E",
         "sizes": [
           "S"
         ],
         "image": "catalogo/vestido-largo-lunares-panuelo__amarillo-sola.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       }
     ],
     "gallery": [
@@ -827,7 +887,7 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 20
+    "featured": 24
   },
   {
     "id": "vestido-halter-suelto",
@@ -838,13 +898,14 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Rojo",
-        "hex": "#690B1C",
+        "hex": "#690A1B",
         "sizes": [
           "S"
         ],
         "image": "catalogo/vestido-halter-suelto__rojo-sola.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       }
     ],
     "gallery": [
@@ -855,7 +916,7 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 21
+    "featured": 25
   },
   {
     "id": "vestido-largo-halter-plisado",
@@ -866,13 +927,14 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Vinotinto",
-        "hex": "#2F0D11",
+        "hex": "#2D0C0F",
         "sizes": [
           "S"
         ],
         "image": "catalogo/vestido-largo-halter-plisado__vinotinto-sola.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       }
     ],
     "gallery": [
@@ -883,7 +945,7 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 22
+    "featured": 26
   },
   {
     "id": "vestido-asimetrico-volantes",
@@ -894,19 +956,25 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Vinotinto",
-        "hex": "#7D0223",
+        "hex": "#4C0C19",
         "sizes": [
           "S"
         ],
-        "image": "catalogo/vestido-asimetrico-volantes__vinotinto.webp",
-        "withModel": true,
-        "aiGenerated": false
+        "image": "catalogo/vestido-asimetrico-volantes__vinotinto-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
       }
     ],
-    "gallery": [],
-    "coverHasModel": true,
+    "gallery": [
+      {
+        "src": "catalogo/vestido-asimetrico-volantes__vinotinto.webp",
+        "withModel": true
+      }
+    ],
+    "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 34
+    "featured": 27
   },
   {
     "id": "vestido-halter-suelto-tul",
@@ -917,13 +985,14 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Blanco con lunares negros",
-        "hex": "#D7D7D9",
+        "hex": "#DAD9DC",
         "sizes": [
           "XS"
         ],
         "image": "catalogo/vestido-halter-suelto-tul__blanco-lunares-sola.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       }
     ],
     "gallery": [
@@ -934,7 +1003,7 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 23
+    "featured": 28
   },
   {
     "id": "vestido-corto-lunares-panuelo",
@@ -945,49 +1014,70 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Amarillo con lunares",
-        "hex": "#E4C787",
+        "hex": "#E4CE93",
         "sizes": [
           "L"
         ],
-        "image": "catalogo/vestido-corto-lunares-panuelo__amarillo.webp",
-        "withModel": true,
-        "aiGenerated": false
+        "image": "catalogo/vestido-corto-lunares-panuelo__amarillo-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
       },
       {
         "name": "Marrón con lunares",
-        "hex": "#38281E",
+        "hex": "#38271F",
         "sizes": [
           "S"
         ],
-        "image": "catalogo/vestido-corto-lunares-panuelo__marron.webp",
-        "withModel": true,
-        "aiGenerated": false
+        "image": "catalogo/vestido-corto-lunares-panuelo__marron-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
       },
       {
         "name": "Crema con lunares",
-        "hex": "#E4D8C0",
+        "hex": "#E0D8C6",
         "sizes": [
           "XS"
         ],
-        "image": "catalogo/vestido-corto-lunares-panuelo__crema.webp",
-        "withModel": true,
-        "aiGenerated": false
+        "image": "catalogo/vestido-corto-lunares-panuelo__crema-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
       },
       {
         "name": "Negro con lunares",
-        "hex": "#161313",
+        "hex": "#151515",
         "sizes": [
           "XXS"
         ],
-        "image": "catalogo/vestido-corto-lunares-panuelo__negro.webp",
-        "withModel": true,
-        "aiGenerated": false
+        "image": "catalogo/vestido-corto-lunares-panuelo__negro-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
       }
     ],
-    "gallery": [],
-    "coverHasModel": true,
+    "gallery": [
+      {
+        "src": "catalogo/vestido-corto-lunares-panuelo__amarillo.webp",
+        "withModel": true
+      },
+      {
+        "src": "catalogo/vestido-corto-lunares-panuelo__marron.webp",
+        "withModel": true
+      },
+      {
+        "src": "catalogo/vestido-corto-lunares-panuelo__crema.webp",
+        "withModel": true
+      },
+      {
+        "src": "catalogo/vestido-corto-lunares-panuelo__negro.webp",
+        "withModel": true
+      }
+    ],
+    "coverHasModel": false,
     "badge": null,
-    "featured": 35
+    "featured": 29
   },
   {
     "id": "top-encaje-hombro-descubierto",
@@ -998,13 +1088,14 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Negro",
-        "hex": "#1C1E1A",
+        "hex": "#181B16",
         "sizes": [
           "XS"
         ],
         "image": "catalogo/top-encaje-hombro-descubierto__negro-sola.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       }
     ],
     "gallery": [
@@ -1015,7 +1106,7 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 24
+    "featured": 30
   },
   {
     "id": "vestido-mangas-acampanadas",
@@ -1026,19 +1117,25 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Rojo",
-        "hex": "#6B131B",
+        "hex": "#5B0F1A",
         "sizes": [
           "M"
         ],
-        "image": "catalogo/vestido-mangas-acampanadas__rojo.webp",
-        "withModel": true,
-        "aiGenerated": false
+        "image": "catalogo/vestido-mangas-acampanadas__rojo-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
       }
     ],
-    "gallery": [],
-    "coverHasModel": true,
+    "gallery": [
+      {
+        "src": "catalogo/vestido-mangas-acampanadas__rojo.webp",
+        "withModel": true
+      }
+    ],
+    "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 36
+    "featured": 31
   },
   {
     "id": "conjunto-chaleco-short",
@@ -1049,25 +1146,27 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Amarillo",
-        "hex": "#E9E0A0",
+        "hex": "#EAE1A0",
         "sizes": [
           "XS",
           "M"
         ],
         "image": "catalogo/conjunto-chaleco-short__amarillo-plano-sola.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       },
       {
         "name": "Crema con lunares",
-        "hex": "#E6DFD1",
+        "hex": "#E7E1D3",
         "sizes": [
           "S",
           "M"
         ],
         "image": "catalogo/conjunto-chaleco-short__crema-lunares-plano-sola.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       }
     ],
     "gallery": [
@@ -1082,7 +1181,7 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": null,
-    "featured": 25
+    "featured": 32
   },
   {
     "id": "falda-larga-encaje",
@@ -1093,14 +1192,15 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Negro",
-        "hex": "#575859",
+        "hex": "#5C5D5E",
         "sizes": [
           "XXS",
           "S"
         ],
         "image": "catalogo/falda-larga-encaje__negro-sola.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       }
     ],
     "gallery": [
@@ -1111,7 +1211,7 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": null,
-    "featured": 26
+    "featured": 33
   },
   {
     "id": "falda-plisada-short",
@@ -1122,13 +1222,14 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Gris carbón",
-        "hex": "#3D3D3B",
+        "hex": "#3E3E3D",
         "sizes": [
           "S"
         ],
         "image": "catalogo/falda-plisada-short__gris-sola.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       }
     ],
     "gallery": [
@@ -1139,7 +1240,7 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 27
+    "featured": 34
   },
   {
     "id": "cinturon-cadena-corazones",
@@ -1150,13 +1251,14 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Dorado",
-        "hex": "#E4E2E0",
+        "hex": "#FFFFFF",
         "sizes": [
           "Única"
         ],
-        "image": "catalogo/cinturon-cadena-corazones__dorado.webp",
+        "image": "catalogo/cinturon-cadena-corazones__dorado-sola.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       }
     ],
     "gallery": [
@@ -1167,7 +1269,7 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 28
+    "featured": 35
   },
   {
     "id": "cinturon-elegante",
@@ -1184,7 +1286,8 @@ export const PRODUCTS: Product[] = [
         ],
         "image": "catalogo/cinturon-elegante__marron.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       },
       {
         "name": "Negro",
@@ -1194,20 +1297,24 @@ export const PRODUCTS: Product[] = [
         ],
         "image": "catalogo/cinturon-elegante__negro.webp",
         "withModel": false,
-        "aiGenerated": false
+        "aiGenerated": false,
+        "note": null
       }
     ],
     "gallery": [],
     "coverHasModel": false,
     "badge": null,
-    "featured": 29
+    "featured": 36
   }
 ];
 
 export const getProduct = (id: string) => PRODUCTS.find((p) => p.id === id);
 
-/** AI renderings, so the page can label them as illustrative */
-export const isAiImage = (p: Product, src: string) => p.colors.some((c) => c.image === src && c.aiGenerated);
+/** Note to show over a photo in the quick view: AI renderings are labelled as illustrative */
+export const imageNote = (p: Product, src: string) => {
+  const c = p.colors.find((c) => c.image === src);
+  return c?.aiGenerated ? "Imagen ilustrativa · la foto real está en la galería" : c?.note ?? null;
+};
 
 export const getColor = (p: Product, color?: string) => p.colors.find((c) => c.name === color) ?? p.colors[0];
 

@@ -1,7 +1,7 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element */
-import { imgSize } from "@/lib/image-sizes";
+import { imgSize, thumbOf } from "@/lib/image-sizes";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { useShop } from "@/context/ShopContext";
@@ -39,8 +39,8 @@ export function Lookbook() {
               <button type="button" onClick={() => openQuickView(look.id)} data-cursor="Ver" className="group block w-[72vw] text-left sm:w-[44vw] lg:w-[30vw]">
                 <div className="relative aspect-square overflow-hidden rounded-2xl bg-white p-[6%]">
                   <img
-                    src={look.image}
-                    {...imgSize(look.image)}
+                    src={thumbOf(look.image)}
+                    {...imgSize(thumbOf(look.image))}
                     decoding="async"
                     alt={`${look.title}: ${look.note}`}
                     loading="lazy"

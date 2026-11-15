@@ -71,7 +71,19 @@ for s_ in srcs:
     if h in seen: errors.append(("misma foto dos veces",seen[h],s_))
     seen[h]=s_
 # photos on disk that no product uses (left over after a photo was replaced)
-orphans=sorted(set("catalogo/"+f for f in os.listdir("public/catalogo"))-set(srcs))
+files=set("catalogo/"+f for f in os.listdir("public/catalogo") if os.path.isfile("public/catalogo/"+f))
+orphans=sorted(files-set(srcs))
 if orphans: errors.append(("fotos sin usar",orphans))
+# every photo has its light copy for the grid, and no thumbnail is left without a photo
+thumbs=set("catalogo/"+f for f in os.listdir("public/catalogo/m"))
+miss=sorted(s_.replace("catalogo/","catalogo/m/",1) for s_ in srcs if s_.replace("catalogo/","catalogo/m/",1) not in set("catalogo/m/"+t.split("/",1)[1] for t in thumbs))
+if miss: errors.append(("falta la miniatura",miss))
+stale=sorted(t for t in thumbs if "catalogo/"+t.split("/",1)[1] not in files)
+if stale: errors.append(("miniatura sin foto",stale))
+# every photo the shop sent (fotos-solas.json) is used as the photo of some colour: none is left out
+sent=json.load(open("catalogo/herramientas/fotos-solas.json"))
+used={c["image"] for p in P for c in p["colors"]}
+left=[k for k in sent if f"catalogo/{k}-sola.webp" not in used]
+if left: errors.append(("foto recibida que no se usa",left))
 print(f"{len(P)} productos, {sum(len(p['colors']) for p in P)} variantes de color, {sum(len(c['sizes']) for p in P for c in p['colors'])} tallas revisadas.")
 print("Errores:", errors or "ninguno")

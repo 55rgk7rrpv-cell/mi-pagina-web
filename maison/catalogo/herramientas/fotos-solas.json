@@ -26,5 +26,48 @@
  "vestido-encaje-hombros-descubiertos__amarillo": "d15176f2-image.jpg",
  "top-encaje-hombro-descubierto__negro": "74d830a6-image.jpg",
  "vestido-halter-suelto-tul__blanco-lunares": "2dc5e241-image.jpg",
- "vestido-blazer-manga-larga__rojo": "5bd6b8d4-image.jpg"
+ "vestido-blazer-manga-larga__rojo": "5bd6b8d4-image.jpg",
+ "vestido-otra-pinta-lenceria__marron-negro": "5ec48ae8-image.jpg",
+ "vestido-asimetrico-volantes__vinotinto": "00a8ea39-image.jpg",
+ "vestido-corto-lunares-panuelo__marron": {
+  "file": "52df7be2-image.jpg",
+  "crop": [
+   0,
+   196,
+   231,
+   922
+  ]
+ },
+ "vestido-corto-lunares-panuelo__crema": {
+  "file": "52df7be2-image.jpg",
+  "crop": [
+   231,
+   196,
+   449,
+   922
+  ]
+ },
+ "vestido-corto-lunares-panuelo__negro": {
+  "file": "52df7be2-image.jpg",
+  "crop": [
+   449,
+   196,
+   670,
+   922
+  ]
+ },
+ "vestido-corto-lunares-panuelo__amarillo": {
+  "file": "52df7be2-image.jpg",
+  "crop": [
+   670,
+   196,
+   896,
+   922
+  ]
+ },
+ "vestido-mangas-acampanadas__rojo": "b7377cf3-image.jpg",
+ "top-tul-volantes__negro": "a6471969-image.jpg",
+ "falda-saten-encaje__negro": "b7a567ed-image.jpg",
+ "enterizo-tul-manga-larga__negro": "e298aab2-image.jpg",
+ "cinturon-cadena-corazones__dorado": "cd38918c-image.jpg"
 }

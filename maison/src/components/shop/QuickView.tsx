@@ -1,11 +1,11 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element */
-import { imgSize } from "@/lib/image-sizes";
+import { imgSize, thumbOf } from "@/lib/image-sizes";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRef, useState } from "react";
 import { useShop } from "@/context/ShopContext";
-import { getProduct, isAiImage, productImages } from "@/lib/products";
+import { getProduct, imageNote, productImages } from "@/lib/products";
 import { cn, formatPrice } from "@/lib/format";
 import { FREE_SHIPPING_THRESHOLD } from "@/lib/pricing";
 import { CloseIcon } from "@/components/ui/Icons";
@@ -95,9 +95,9 @@ function QuickViewPanel({ id, onClose }: { id: string; onClose: () => void }) {
               />
             </AnimatePresence>
           </div>
-          {isAiImage(product, image) && (
-            <p className="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 text-[10px] text-maroon/80 ring-1 ring-wine/10">
-              Imagen ilustrativa · la foto real está en la galería
+          {imageNote(product, image) && (
+            <p className="absolute left-3 right-3 top-3 w-fit max-w-[calc(100%-1.5rem)] rounded-full bg-white/90 px-3 py-1 text-[10px] leading-snug text-maroon/80 ring-1 ring-wine/10">
+              {imageNote(product, image)}
             </p>
           )}
           {images.length > 1 && (
@@ -111,7 +111,7 @@ function QuickViewPanel({ id, onClose }: { id: string; onClose: () => void }) {
                   aria-pressed={image === src}
                   className={cn("aspect-square w-14 shrink-0 overflow-hidden rounded-md bg-white ring-offset-1 transition", image === src ? "ring-2 ring-burgundy" : "ring-1 ring-wine/15 hover:ring-wine/40")}
                 >
-                  <img src={src} {...imgSize(src)} alt="" className="h-full w-full object-contain p-1" loading="lazy" decoding="async" />
+                  <img src={thumbOf(src)} {...imgSize(thumbOf(src))} alt="" className="h-full w-full object-contain p-1" loading="lazy" decoding="async" />
                 </button>
               ))}
             </div>

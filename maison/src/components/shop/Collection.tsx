@@ -24,14 +24,14 @@ export function Collection() {
             </p>
             <h2 className="font-serif text-[clamp(3rem,8vw,7.5rem)] leading-[0.9] tracking-[-0.02em]">
               <BlurText text="La" animateBy="words" direction="bottom" delay={60} stepDuration={0.5} className="block" />
-              <BlurText text="colección" animateBy="letters" direction="bottom" delay={40} stepDuration={0.45} className="block italic text-burgundy" />
+              <BlurText text="colección" animateBy="words" direction="bottom" delay={60} stepDuration={0.6} className="block italic text-burgundy" />
             </h2>
           </div>
           <p className="max-w-xs text-sm leading-relaxed text-maroon/75">{PRODUCTS.length} piezas, con pocas unidades por talla. Precios en dólares.</p>
         </div>
 
         {/* Toolbar */}
-        <div className="sticky top-[76px] z-30 -mx-5 mt-14 glass-light border-y border-wine/10 bg-champagne/85 px-5 py-4 backdrop-blur-xl md:top-[88px] md:-mx-10 md:px-10">
+        <div className="sticky top-[76px] z-30 -mx-5 mt-14 glass-light border-y border-wine/10 bg-champagne/[0.97] px-5 py-4 shadow-[0_8px_24px_-18px_rgb(59_1_11/0.5)] md:top-[88px] md:-mx-10 md:px-10">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <CategoryTabs
               value={category}

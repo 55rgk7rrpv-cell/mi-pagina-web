@@ -41,6 +41,8 @@ GENERATED={"conjunto-top-falda-sirena__azul-marino"}
 # They become the colour's photo. The older photo stays in the gallery only if it shows the garment worn;
 # an older garment-only shot of the same piece (hanger, floor, low resolution) is replaced.
 SOLAS=set(json.load(open("catalogo/herramientas/fotos-solas.json")))
+# A note shown over the photo in the quick view, for photos that need an explanation.
+NOTAS={"falda-saten-encaje__negro":"En la foto se ve con el top de encaje, que se vende por separado"}
 # Photos that show only the garment: no person, not even a hand. Everything else counts as "with model".
 GARMENT_ONLY={
  "vestido-strapless-encaje-rosa__vinotinto","falda-volantes-bicolor__negro-blanco","chaqueta-capucha-lunares__rosa",
@@ -75,7 +77,7 @@ DESC={
  "falda-volantes-bicolor":"Falda corta negra con volantes blancos en capas. Contraste puro.",
  "chaqueta-capucha-lunares":"Chaqueta ligera con capucha, cierre y puños elásticos, en lunares.",
  "top-encaje-corse":"Top tipo corsé de encaje con copas, tirantes finos y abertura al centro.",
- "falda-saten-encaje":"Falda midi de satén con ruedo en picos de encaje. Combínala con el top de encaje tipo corsé.",
+ "falda-saten-encaje":"Falda midi de satén con ruedo en picos de encaje. En la foto se ve con el top de encaje tipo corsé, que se vende por separado.",
  "top-saten-cruzado":"Top de satén con cuello halter cruzado y ruedo asimétrico de encaje.",
  "top-saten-cuello-alto":"Top de satén con cuello alto, sin mangas y ruedo asimétrico de encaje.",
  "top-saten-lazo":"Top de satén que se amarra al cuello con lazo, con ruedo de encaje. Cinco colores para elegir.",
@@ -125,7 +127,8 @@ for i,p in enumerate(cat):
             img=f"catalogo/{pid}__{k}-ia.webp"
         vv,hx=vivid("public/"+img)
         colors.append({"name":v["color"],"hex":hx,"sizes":v["tallas"],"image":img,
-                       "withModel":(not ai) and f"{pid}__{k}" not in GARMENT_ONLY and f"{pid}__{k}" not in SOLAS,"aiGenerated":ai,"_v":vv})
+                       "withModel":(not ai) and f"{pid}__{k}" not in GARMENT_ONLY and f"{pid}__{k}" not in SOLAS,"aiGenerated":ai,
+                       "note":NOTAS.get(f"{pid}__{k}"),"_v":vv})
     # Rule 1: a garment-only photo is always the cover when one exists. Rule 2: then the most vivid colour.
     colors.sort(key=lambda c:(c["withModel"],-c["_v"]))
     for c in colors: c.pop("_v")
@@ -160,6 +163,8 @@ export interface ColorVariant {
   withModel: boolean;
   /** true when the photo is an AI rendering made from the real photo (shown as illustrative) */
   aiGenerated: boolean;
+  /** explanation shown over the photo in the quick view, when it needs one */
+  note: string | null;
 }
 
 export interface GalleryImage {
@@ -190,8 +195,11 @@ export const PRODUCTS: Product[] = ''' + js + ''';
 
 export const getProduct = (id: string) => PRODUCTS.find((p) => p.id === id);
 
-/** AI renderings, so the page can label them as illustrative */
-export const isAiImage = (p: Product, src: string) => p.colors.some((c) => c.image === src && c.aiGenerated);
+/** Note to show over a photo in the quick view: AI renderings are labelled as illustrative */
+export const imageNote = (p: Product, src: string) => {
+  const c = p.colors.find((c) => c.image === src);
+  return c?.aiGenerated ? "Imagen ilustrativa · la foto real está en la galería" : c?.note ?? null;
+};
 
 export const getColor = (p: Product, color?: string) => p.colors.find((c) => c.name === color) ?? p.colors[0];
 
@@ -209,4 +217,4 @@ missing=[c["image"] for o in out for c in o["colors"] if not os.path.exists("pub
 print("fotos que faltan:",missing)
 
 # keep the <img> width/height table in sync with the photos
-import runpy; runpy.run_path("catalogo/herramientas/image-sizes.py")
+import runpy; runpy.run_path("catalogo/herramientas/thumbs.py"); runpy.run_path("catalogo/herramientas/image-sizes.py")

@@ -2,15 +2,15 @@
 
 import Link from "next/link";
 import { motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Magnetic } from "@/components/ui/Magnetic";
 import { SplitHeading } from "@/components/ui/Reveal";
 import { ArrowIcon } from "@/components/ui/Icons";
 import { useShop } from "@/context/ShopContext";
 import { HeroAurora } from "./HeroAurora";
-import { imgSize } from "@/lib/image-sizes";
+import { imgSize, thumbOf } from "@/lib/image-sizes";
 
-const HERO_IMG = "catalogo/vestido-strapless-encaje-rosa__vinotinto-sola.webp";
+const HERO_IMG = thumbOf("catalogo/vestido-strapless-encaje-rosa__vinotinto-sola.webp");
 import ShinyText from "@/components/bits/ShinyText";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -20,6 +20,14 @@ export function Hero() {
   const reduce = useReducedMotion();
   const { openQuickView } = useShop();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
+  // once the hero is scrolled away, pause its endless CSS animations (see [data-offscreen] in globals.css)
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => el.toggleAttribute("data-offscreen", !e.isIntersecting));
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
   const yArt = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
   const yText = useTransform(scrollYProgress, [0, 1], ["0%", "-25%"]);
   const fade = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
@@ -70,7 +78,7 @@ export function Hero() {
             lines={[
               "No es para",
               <span key="e">
-                <em className="text-gold-gradient animate-shimmer pr-[0.04em] font-normal">cualquiera</em>
+                <em className="text-gold-gradient pr-[0.04em] font-normal md:animate-shimmer">cualquiera</em>
                 <span className="text-sand">.</span>
               </span>,
             ]}

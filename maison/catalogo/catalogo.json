@@ -209,8 +209,10 @@
       "nombre": "Top de tul con volantes",
       "categoria": "Tops",
       "precio_usd": 20,
-      "imagen_principal": "catalogo/top-tul-volantes__negro.webp",
-      "imagenes_secundarias": [],
+      "imagen_principal": "catalogo/top-tul-volantes__negro-sola.webp",
+      "imagenes_secundarias": [
+        "catalogo/top-tul-volantes__negro.webp"
+      ],
       "variantes": [
         {
           "color": "Negro",
@@ -218,19 +220,21 @@
             "XXS"
           ],
           "foto": "126116b8-image.jpg",
-          "foto_web": "catalogo/top-tul-volantes__negro.webp",
-          "con_modelo": true
+          "foto_web": "catalogo/top-tul-volantes__negro-sola.webp",
+          "con_modelo": false
         }
       ],
-      "portada_con_modelo": true
+      "portada_con_modelo": false
     },
     {
       "id": "vestido-otra-pinta-lenceria",
       "nombre": "Vestido Otra Pinta estilo lencería",
       "categoria": "Vestidos",
       "precio_usd": 28,
-      "imagen_principal": "catalogo/vestido-otra-pinta-lenceria__marron-negro.webp",
-      "imagenes_secundarias": [],
+      "imagen_principal": "catalogo/vestido-otra-pinta-lenceria__marron-negro-sola.webp",
+      "imagenes_secundarias": [
+        "catalogo/vestido-otra-pinta-lenceria__marron-negro.webp"
+      ],
       "variantes": [
         {
           "color": "Marrón y negro",
@@ -238,11 +242,11 @@
             "S"
           ],
           "foto": "973e9b92-image.jpg",
-          "foto_web": "catalogo/vestido-otra-pinta-lenceria__marron-negro.webp",
-          "con_modelo": true
+          "foto_web": "catalogo/vestido-otra-pinta-lenceria__marron-negro-sola.webp",
+          "con_modelo": false
         }
       ],
-      "portada_con_modelo": true
+      "portada_con_modelo": false
     },
     {
       "id": "vestido-midi-asimetrico",
@@ -390,8 +394,10 @@
       "nombre": "Falda de satén con encaje",
       "categoria": "Faldas",
       "precio_usd": 30,
-      "imagen_principal": "catalogo/falda-saten-encaje__negro.webp",
-      "imagenes_secundarias": [],
+      "imagen_principal": "catalogo/falda-saten-encaje__negro-sola.webp",
+      "imagenes_secundarias": [
+        "catalogo/falda-saten-encaje__negro.webp"
+      ],
       "variantes": [
         {
           "color": "Negro",
@@ -400,11 +406,11 @@
             "S"
           ],
           "foto": "24c7a896-image.jpg",
-          "foto_web": "catalogo/falda-saten-encaje__negro.webp",
-          "con_modelo": true
+          "foto_web": "catalogo/falda-saten-encaje__negro-sola.webp",
+          "con_modelo": false
         }
       ],
-      "portada_con_modelo": true
+      "portada_con_modelo": false
     },
     {
       "id": "top-saten-cruzado",
@@ -643,8 +649,10 @@
       "nombre": "Enterizo corto de tul manga larga",
       "categoria": "Conjuntos",
       "precio_usd": 30,
-      "imagen_principal": "catalogo/enterizo-tul-manga-larga__negro.webp",
-      "imagenes_secundarias": [],
+      "imagen_principal": "catalogo/enterizo-tul-manga-larga__negro-sola.webp",
+      "imagenes_secundarias": [
+        "catalogo/enterizo-tul-manga-larga__negro.webp"
+      ],
       "variantes": [
         {
           "color": "Negro",
@@ -652,11 +660,11 @@
             "S"
           ],
           "foto": "8194e676-image.jpg",
-          "foto_web": "catalogo/enterizo-tul-manga-larga__negro.webp",
-          "con_modelo": true
+          "foto_web": "catalogo/enterizo-tul-manga-larga__negro-sola.webp",
+          "con_modelo": false
         }
       ],
-      "portada_con_modelo": true
+      "portada_con_modelo": false
     },
     {
       "id": "vestido-largo-lunares-panuelo",
@@ -729,8 +737,10 @@
       "nombre": "Vestido asimétrico de un hombro con volantes",
       "categoria": "Vestidos",
       "precio_usd": 38,
-      "imagen_principal": "catalogo/vestido-asimetrico-volantes__vinotinto.webp",
-      "imagenes_secundarias": [],
+      "imagen_principal": "catalogo/vestido-asimetrico-volantes__vinotinto-sola.webp",
+      "imagenes_secundarias": [
+        "catalogo/vestido-asimetrico-volantes__vinotinto.webp"
+      ],
       "variantes": [
         {
           "color": "Vinotinto",
@@ -738,11 +748,11 @@
             "S"
           ],
           "foto": "3f87196c-image.jpg",
-          "foto_web": "catalogo/vestido-asimetrico-volantes__vinotinto.webp",
-          "con_modelo": true
+          "foto_web": "catalogo/vestido-asimetrico-volantes__vinotinto-sola.webp",
+          "con_modelo": false
         }
       ],
-      "portada_con_modelo": true
+      "portada_con_modelo": false
     },
     {
       "id": "vestido-halter-suelto-tul",
@@ -771,8 +781,12 @@
       "nombre": "Vestido corto con lunares y pañuelo",
       "categoria": "Vestidos",
       "precio_usd": 30,
-      "imagen_principal": "catalogo/vestido-corto-lunares-panuelo__amarillo.webp",
+      "imagen_principal": "catalogo/vestido-corto-lunares-panuelo__amarillo-sola.webp",
       "imagenes_secundarias": [
+        "catalogo/vestido-corto-lunares-panuelo__marron-sola.webp",
+        "catalogo/vestido-corto-lunares-panuelo__crema-sola.webp",
+        "catalogo/vestido-corto-lunares-panuelo__negro-sola.webp",
+        "catalogo/vestido-corto-lunares-panuelo__amarillo.webp",
         "catalogo/vestido-corto-lunares-panuelo__marron.webp",
         "catalogo/vestido-corto-lunares-panuelo__crema.webp",
         "catalogo/vestido-corto-lunares-panuelo__negro.webp"
@@ -785,8 +799,8 @@
           ],
           "foto": "c147ab12-image.jpg",
           "recorte": "panel 4",
-          "foto_web": "catalogo/vestido-corto-lunares-panuelo__amarillo.webp",
-          "con_modelo": true
+          "foto_web": "catalogo/vestido-corto-lunares-panuelo__amarillo-sola.webp",
+          "con_modelo": false
         },
         {
           "color": "Marrón con lunares",
@@ -795,8 +809,8 @@
           ],
           "foto": "c147ab12-image.jpg",
           "recorte": "panel 1",
-          "foto_web": "catalogo/vestido-corto-lunares-panuelo__marron.webp",
-          "con_modelo": true
+          "foto_web": "catalogo/vestido-corto-lunares-panuelo__marron-sola.webp",
+          "con_modelo": false
         },
         {
           "color": "Crema con lunares",
@@ -805,8 +819,8 @@
           ],
           "foto": "c147ab12-image.jpg",
           "recorte": "panel 2",
-          "foto_web": "catalogo/vestido-corto-lunares-panuelo__crema.webp",
-          "con_modelo": true
+          "foto_web": "catalogo/vestido-corto-lunares-panuelo__crema-sola.webp",
+          "con_modelo": false
         },
         {
           "color": "Negro con lunares",
@@ -815,11 +829,11 @@
           ],
           "foto": "c147ab12-image.jpg",
           "recorte": "panel 3",
-          "foto_web": "catalogo/vestido-corto-lunares-panuelo__negro.webp",
-          "con_modelo": true
+          "foto_web": "catalogo/vestido-corto-lunares-panuelo__negro-sola.webp",
+          "con_modelo": false
         }
       ],
-      "portada_con_modelo": true
+      "portada_con_modelo": false
     },
     {
       "id": "top-encaje-hombro-descubierto",
@@ -848,8 +862,10 @@
       "nombre": "Vestido corto con mangas acampanadas y volantes",
       "categoria": "Vestidos",
       "precio_usd": 38,
-      "imagen_principal": "catalogo/vestido-mangas-acampanadas__rojo.webp",
-      "imagenes_secundarias": [],
+      "imagen_principal": "catalogo/vestido-mangas-acampanadas__rojo-sola.webp",
+      "imagenes_secundarias": [
+        "catalogo/vestido-mangas-acampanadas__rojo.webp"
+      ],
       "variantes": [
         {
           "color": "Rojo",
@@ -857,11 +873,11 @@
             "M"
           ],
           "foto": "e628c4e7-image.jpg",
-          "foto_web": "catalogo/vestido-mangas-acampanadas__rojo.webp",
-          "con_modelo": true
+          "foto_web": "catalogo/vestido-mangas-acampanadas__rojo-sola.webp",
+          "con_modelo": false
         }
       ],
-      "portada_con_modelo": true
+      "portada_con_modelo": false
     },
     {
       "id": "conjunto-chaleco-short",
@@ -948,7 +964,7 @@
       "nombre": "Cinturón de cadena con corazones",
       "categoria": "Accesorios",
       "precio_usd": 15,
-      "imagen_principal": "catalogo/cinturon-cadena-corazones__dorado.webp",
+      "imagen_principal": "catalogo/cinturon-cadena-corazones__dorado-sola.webp",
       "imagenes_secundarias": [
         "catalogo/cinturon-cadena-corazones__dorado-modelo.webp"
       ],
@@ -959,7 +975,7 @@
             "Única"
           ],
           "foto": "d5591a08-image.jpg",
-          "foto_web": "catalogo/cinturon-cadena-corazones__dorado.webp",
+          "foto_web": "catalogo/cinturon-cadena-corazones__dorado-sola.webp",
           "con_modelo": false
         }
       ],

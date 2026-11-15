@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { garmentImages, type ColorVariant, type Product } from "@/lib/products";
 import { allSizes, shortSize } from "@/lib/catalog";
 import { formatPrice } from "@/lib/format";
@@ -27,6 +27,19 @@ export function ProductCard({ product, index }: { product: Product; index: numbe
   // so the grid loads one photo per product instead of two.
   const [wantsLook, setWantsLook] = useState(false);
   const primeLook = () => setWantsLook(true);
+  // The gold glare adds 4 compositor layers per card, so only the card under a mouse gets them,
+  // and they are released a moment after the pointer leaves. Touch screens never get them.
+  const [glare, setGlare] = useState(false);
+  const glareOff = useRef(0);
+  const armGlare = () => {
+    window.clearTimeout(glareOff.current);
+    setGlare(true);
+  };
+  const releaseGlare = () => {
+    window.clearTimeout(glareOff.current);
+    glareOff.current = window.setTimeout(() => setGlare(false), 1500);
+  };
+  useEffect(() => () => window.clearTimeout(glareOff.current), []);
   const cover = product.colors[0];
   // hover swap only between garment-only photos; model photos stay in the quick-view gallery
   const hasHover = garmentImages(product).some((s) => s !== cover.image);
@@ -59,7 +72,12 @@ export function ProductCard({ product, index }: { product: Product; index: numbe
       transition={{ type: "spring", bounce: 0, duration: 0.5, delay: (index % 3) * 0.05 }}
       className="product-card group relative"
       onMouseLeave={() => setSizePicker(false)}
-      onPointerEnter={(e) => e.pointerType === "mouse" && primeLook()}
+      onPointerEnter={(e) => {
+        if (e.pointerType !== "mouse") return;
+        primeLook();
+        armGlare();
+      }}
+      onPointerLeave={(e) => e.pointerType === "mouse" && releaseGlare()}
       onFocus={primeLook}
     >
       {/* framer-motion owns the article's opacity; the dimming of the other cards happens on this wrapper */}
@@ -76,6 +94,7 @@ export function ProductCard({ product, index }: { product: Product; index: numbe
           glareAngle={-35}
           glareSize={220}
           transitionDuration={900}
+          armed={glare}
         >
           <button type="button" onClick={open} data-cursor="Ver" aria-label={`Vista rápida: ${product.name}`} className="absolute inset-[7%] block cursor-pointer">
             <span className="card-photo absolute inset-0 block">
