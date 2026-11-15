@@ -91,7 +91,20 @@ vo = np.zeros((N, 2))
 for l in TL['lines']:
     add(vo, load(D / 'assets' / f"{l['id']}.wav") * .95, l['t'])
 
-# ---------- sfx ----------
+# ---------- sfx (anclados a palabras habladas: "L03:encuentra#n") ----------
+import unicodedata, re
+def _n(s): s = unicodedata.normalize('NFD', s.lower()); return re.sub(r'[^a-z0-9]', '', ''.join(c for c in s if unicodedata.category(c) != 'Mn'))
+LINES = {l['id']: l for l in TL['lines']}
+def W(ref):
+    lid, wq = ref.split(':', 1); w, _, n = wq.partition('#'); c = 0
+    for x in LINES[lid]['words']:
+        if _n(x['w']) == _n(w):
+            c += 1
+            if c == int(n or 1): return x['t']
+    raise KeyError(ref)
+for e in TL['sfx']:
+    if 'at' in e: e['t'] = W(e['at']) + e.get('off', 0)
+    if 'to' in e: e['span'] = W(e['to']) + e.get('to_off', 0) - e['t']
 fx = np.zeros((N, 2))
 for e in TL['sfx']:
     k, t = e['k'], e['t']
@@ -102,7 +115,7 @@ for e in TL['sfx']:
         n, sp = e['n'], e['span']
         for i in range(n): add(fx, type_(.3 + .1 * rng.random()), t + sp * i / n + .015 * rng.random(), pan=.15 * rng.standard_normal())
     elif k == 'coin':
-        for i in range(e['n']): add(fx, coin(), t + e['span'] * i / (e['n'] - 1) * .99)
+        for i in range(e['n']): add(fx, coin(), t + e['span'] * i / (e['n'] - 1))
     elif k == 'riser': add(fx, riser(e['span']), t)
     elif k == 'drone': add(fx, drone(e['span']), t)
     elif k == 'fill': add(fx, fill(e['span']), t)

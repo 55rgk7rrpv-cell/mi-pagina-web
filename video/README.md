@@ -26,11 +26,18 @@ OSHEA usa fuentes comerciales (TT Backwards, Monr Pro…), así que el video usa
 - **Instrument Serif Italic**: serif itálica de contraste (palabras de acento en rojo).
 - **JetBrains Mono**: etiquetas técnicas.
 
-Paleta: blanco verdoso `#EEF2EA` y rojo `#FF1E0F` de OSHEA, con el azul noche `#03071F` de la web de Meridian.
+Paleta: la de la web de Meridian Digital (`meridian-digital-v8.html`): azul noche `#03071F`, blanco `#FFFFFF`, celeste `#DFE5FF`, azul `#0428CB`, azul claro `#7FB0FF` y gris `#A3ADC2`.
 
 ## Sonido
 
 Efectos generados por código en `fuente/mix.py`, según los reels de referencia: impacto en el gancho, whoosh en paneos y cortinas, click al aparecer texto, "magic reveal" en las revelaciones, contador, tecleo, sello, error, campanita y obturador al final. La música baja sola cuando entra la voz y hay dos silencios casi totales antes de los momentos clave.
+
+## Control de calidad
+
+- **Sincronía:** `fuente/align.py` mide en cada pista de voz dónde empieza cada frase y asigna un tiempo a cada palabra. Textos, animaciones y efectos de sonido se anclan a la palabra que los provoca (por ejemplo `L01:publicaste.`), no a segundos escritos a mano.
+- **Cero superposiciones:** `fuente/check_overlap.mjs` recorre el video cada 0,05 s y comprueba que ningún texto pise a otro texto o a una imagen. Resultado: ninguna superposición.
+- **Sin distorsión:** las fotos van en `<img>` con `object-fit: cover` dentro de contenedores con `aspect-ratio` fijo. Los zooms son uniformes y no hay `scaleX`/`scaleY` sobre texto ni fotos.
+- **Sin saltos de layout:** todo se mueve con `transform`, `clip-path`, `opacity` y `visibility`. Los contadores usan dígitos de ancho fijo medidos sobre la fuente real.
 
 ## Créditos
 

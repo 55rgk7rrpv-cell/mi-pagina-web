@@ -5,31 +5,31 @@
    "t": 0.0,
    "n": "01",
    "name": "EL PROYECTO",
-   "bg": "page"
+   "bg": "light"
   },
   {
-   "t": 6.6,
+   "t": 6.75,
    "n": "02",
    "name": "EL SILENCIO",
-   "bg": "navy"
+   "bg": "dark"
   },
   {
    "t": 23.6,
    "n": "03",
    "name": "LAS REGLAS",
-   "bg": "page"
+   "bg": "light"
   },
   {
    "t": 42.7,
    "n": "04",
    "name": "LA CONCLUSIÓN",
-   "bg": "navy"
+   "bg": "dark"
   },
   {
    "t": 46.6,
    "n": "05",
    "name": "MERIDIAN",
-   "bg": "red"
+   "bg": "blue"
   }
  ],
  "lines": [
@@ -37,79 +37,783 @@
    "id": "L00",
    "t": 0.25,
    "d": 1.43,
-   "text": "Por fin tienes tu página web."
+   "text": "Por fin tienes tu página web.",
+   "words": [
+    {
+     "w": "Por",
+     "t": 0.25
+    },
+    {
+     "w": "fin",
+     "t": 0.409
+    },
+    {
+     "w": "tienes",
+     "t": 0.568
+    },
+    {
+     "w": "tu",
+     "t": 0.886
+    },
+    {
+     "w": "página",
+     "t": 1.044
+    },
+    {
+     "w": "web.",
+     "t": 1.521
+    }
+   ],
+   "phrases": [
+    [
+     0.25,
+     1.68
+    ]
+   ]
   },
   {
    "id": "L01",
-   "t": 2.0,
+   "t": 2.4,
    "d": 4.07,
-   "text": "Quedó bonita. La publicaste. La compartiste en tus estados."
+   "text": "Quedó bonita. La publicaste. La compartiste en tus estados.",
+   "words": [
+    {
+     "w": "Quedó",
+     "t": 2.4
+    },
+    {
+     "w": "bonita.",
+     "t": 2.668
+    },
+    {
+     "w": "La",
+     "t": 3.62
+    },
+    {
+     "w": "publicaste.",
+     "t": 3.784
+    },
+    {
+     "w": "La",
+     "t": 5.09
+    },
+    {
+     "w": "compartiste",
+     "t": 5.227
+    },
+    {
+     "w": "en",
+     "t": 5.775
+    },
+    {
+     "w": "tus",
+     "t": 5.912
+    },
+    {
+     "w": "estados.",
+     "t": 6.049
+    }
+   ],
+   "phrases": [
+    [
+     2.4,
+     3.07
+    ],
+    [
+     3.62,
+     4.44
+    ],
+    [
+     5.09,
+     6.46
+    ]
+   ]
   },
   {
    "id": "L02",
    "t": 7.1,
    "d": 2.55,
-   "text": "Pasa un mes, y no te llega ni un mensaje."
+   "text": "Pasa un mes, y no te llega ni un mensaje.",
+   "words": [
+    {
+     "w": "Pasa",
+     "t": 7.1
+    },
+    {
+     "w": "un",
+     "t": 7.415
+    },
+    {
+     "w": "mes,",
+     "t": 7.572
+    },
+    {
+     "w": "y",
+     "t": 8.14
+    },
+    {
+     "w": "no",
+     "t": 8.29
+    },
+    {
+     "w": "te",
+     "t": 8.44
+    },
+    {
+     "w": "llega",
+     "t": 8.59
+    },
+    {
+     "w": "ni",
+     "t": 8.89
+    },
+    {
+     "w": "un",
+     "t": 9.04
+    },
+    {
+     "w": "mensaje.",
+     "t": 9.19
+    }
+   ],
+   "phrases": [
+    [
+     7.1,
+     7.73
+    ],
+    [
+     8.14,
+     9.64
+    ]
+   ]
   },
   {
    "id": "L03",
    "t": 10.1,
    "d": 3.22,
-   "text": "Un cliente te busca en Google, y encuentra a tu competencia."
+   "text": "Un cliente te busca en Google, y encuentra a tu competencia.",
+   "words": [
+    {
+     "w": "Un",
+     "t": 10.1
+    },
+    {
+     "w": "cliente",
+     "t": 10.252
+    },
+    {
+     "w": "te",
+     "t": 10.557
+    },
+    {
+     "w": "busca",
+     "t": 10.709
+    },
+    {
+     "w": "en",
+     "t": 11.013
+    },
+    {
+     "w": "Google,",
+     "t": 11.166
+    },
+    {
+     "w": "y",
+     "t": 11.96
+    },
+    {
+     "w": "encuentra",
+     "t": 12.095
+    },
+    {
+     "w": "a",
+     "t": 12.5
+    },
+    {
+     "w": "tu",
+     "t": 12.635
+    },
+    {
+     "w": "competencia.",
+     "t": 12.77
+    }
+   ],
+   "phrases": [
+    [
+     10.1,
+     11.47
+    ],
+    [
+     11.96,
+     13.31
+    ]
+   ]
   },
   {
    "id": "L04",
    "t": 13.8,
    "d": 3.7,
-   "text": "Otro abre tu web en el teléfono, espera ocho segundos, y se va."
+   "text": "Otro abre tu web en el teléfono, espera ocho segundos, y se va.",
+   "words": [
+    {
+     "w": "Otro",
+     "t": 13.8
+    },
+    {
+     "w": "abre",
+     "t": 14.042
+    },
+    {
+     "w": "tu",
+     "t": 14.283
+    },
+    {
+     "w": "web",
+     "t": 14.404
+    },
+    {
+     "w": "en",
+     "t": 14.525
+    },
+    {
+     "w": "el",
+     "t": 14.646
+    },
+    {
+     "w": "teléfono,",
+     "t": 14.767
+    },
+    {
+     "w": "espera",
+     "t": 15.63
+    },
+    {
+     "w": "ocho",
+     "t": 16.061
+    },
+    {
+     "w": "segundos,",
+     "t": 16.349
+    },
+    {
+     "w": "y",
+     "t": 17.12
+    },
+    {
+     "w": "se",
+     "t": 17.243
+    },
+    {
+     "w": "va.",
+     "t": 17.367
+    }
+   ],
+   "phrases": [
+    [
+     13.8,
+     15.25
+    ],
+    [
+     15.63,
+     16.78
+    ],
+    [
+     17.12,
+     17.49
+    ]
+   ]
   },
   {
    "id": "L05",
    "t": 18.3,
    "d": 4.73,
-   "text": "Y tu web sigue ahí, cobrando hosting, sin traerte un solo cliente."
+   "text": "Y tu web sigue ahí, cobrando hosting, sin traerte un solo cliente.",
+   "words": [
+    {
+     "w": "Y",
+     "t": 18.3
+    },
+    {
+     "w": "tu",
+     "t": 18.426
+    },
+    {
+     "w": "web",
+     "t": 18.551
+    },
+    {
+     "w": "sigue",
+     "t": 18.677
+    },
+    {
+     "w": "ahí,",
+     "t": 18.929
+    },
+    {
+     "w": "cobrando",
+     "t": 19.54
+    },
+    {
+     "w": "hosting,",
+     "t": 20.032
+    },
+    {
+     "w": "sin",
+     "t": 20.93
+    },
+    {
+     "w": "traerte",
+     "t": 21.192
+    },
+    {
+     "w": "un",
+     "t": 21.718
+    },
+    {
+     "w": "solo",
+     "t": 21.98
+    },
+    {
+     "w": "cliente.",
+     "t": 22.505
+    }
+   ],
+   "phrases": [
+    [
+     18.3,
+     19.18
+    ],
+    [
+     19.54,
+     20.36
+    ],
+    [
+     20.93,
+     23.03
+    ]
+   ]
   },
   {
    "id": "L06",
    "t": 24.2,
    "d": 2.93,
-   "text": "Antes de pagar por una web, exige tres cosas."
+   "text": "Antes de pagar por una web, exige tres cosas.",
+   "words": [
+    {
+     "w": "Antes",
+     "t": 24.2
+    },
+    {
+     "w": "de",
+     "t": 24.473
+    },
+    {
+     "w": "pagar",
+     "t": 24.61
+    },
+    {
+     "w": "por",
+     "t": 24.883
+    },
+    {
+     "w": "una",
+     "t": 25.02
+    },
+    {
+     "w": "web,",
+     "t": 25.293
+    },
+    {
+     "w": "exige",
+     "t": 25.77
+    },
+    {
+     "w": "tres",
+     "t": 26.445
+    },
+    {
+     "w": "cosas.",
+     "t": 26.67
+    }
+   ],
+   "phrases": [
+    [
+     24.2,
+     25.43
+    ],
+    [
+     25.77,
+     27.12
+    ]
+   ]
   },
   {
    "id": "L07",
    "t": 27.6,
    "d": 3.08,
-   "text": "Uno: que cargue en menos de tres segundos en el teléfono."
+   "text": "Uno: que cargue en menos de tres segundos en el teléfono.",
+   "words": [
+    {
+     "w": "Uno:",
+     "t": 27.6
+    },
+    {
+     "w": "que",
+     "t": 28.53
+    },
+    {
+     "w": "cargue",
+     "t": 28.656
+    },
+    {
+     "w": "en",
+     "t": 28.909
+    },
+    {
+     "w": "menos",
+     "t": 29.036
+    },
+    {
+     "w": "de",
+     "t": 29.289
+    },
+    {
+     "w": "tres",
+     "t": 29.415
+    },
+    {
+     "w": "segundos",
+     "t": 29.542
+    },
+    {
+     "w": "en",
+     "t": 29.921
+    },
+    {
+     "w": "el",
+     "t": 30.048
+    },
+    {
+     "w": "teléfono.",
+     "t": 30.174
+    }
+   ],
+   "phrases": [
+    [
+     27.6,
+     27.85
+    ],
+    [
+     28.53,
+     30.68
+    ]
+   ]
   },
   {
    "id": "L08",
    "t": 31.2,
    "d": 4.28,
-   "text": "Dos: un botón de WhatsApp a un toque, en todas las páginas."
+   "text": "Dos: un botón de WhatsApp a un toque, en todas las páginas.",
+   "words": [
+    {
+     "w": "Dos:",
+     "t": 31.2
+    },
+    {
+     "w": "un",
+     "t": 32.1
+    },
+    {
+     "w": "botón",
+     "t": 32.265
+    },
+    {
+     "w": "de",
+     "t": 32.595
+    },
+    {
+     "w": "WhatsApp",
+     "t": 32.76
+    },
+    {
+     "w": "a",
+     "t": 33.09
+    },
+    {
+     "w": "un",
+     "t": 33.255
+    },
+    {
+     "w": "toque,",
+     "t": 33.42
+    },
+    {
+     "w": "en",
+     "t": 34.26
+    },
+    {
+     "w": "todas",
+     "t": 34.434
+    },
+    {
+     "w": "las",
+     "t": 34.783
+    },
+    {
+     "w": "páginas.",
+     "t": 34.957
+    }
+   ],
+   "phrases": [
+    [
+     31.2,
+     31.62
+    ],
+    [
+     32.1,
+     33.75
+    ],
+    [
+     34.26,
+     35.48
+    ]
+   ]
   },
   {
    "id": "L09",
    "t": 36.0,
    "d": 3.25,
-   "text": "Tres: que Google la encuentre cuando alguien busca lo que vendes."
+   "text": "Tres: que Google la encuentre cuando alguien busca lo que vendes.",
+   "words": [
+    {
+     "w": "Tres:",
+     "t": 36.0
+    },
+    {
+     "w": "que",
+     "t": 36.7
+    },
+    {
+     "w": "Google",
+     "t": 36.849
+    },
+    {
+     "w": "la",
+     "t": 37.148
+    },
+    {
+     "w": "encuentre",
+     "t": 37.298
+    },
+    {
+     "w": "cuando",
+     "t": 37.746
+    },
+    {
+     "w": "alguien",
+     "t": 38.045
+    },
+    {
+     "w": "busca",
+     "t": 38.344
+    },
+    {
+     "w": "lo",
+     "t": 38.642
+    },
+    {
+     "w": "que",
+     "t": 38.792
+    },
+    {
+     "w": "vendes.",
+     "t": 38.941
+    }
+   ],
+   "phrases": [
+    [
+     36.0,
+     36.3
+    ],
+    [
+     36.7,
+     39.24
+    ]
+   ]
   },
   {
    "id": "L10",
    "t": 39.8,
    "d": 2.38,
-   "text": "Y pide el precio por escrito, antes de empezar."
+   "text": "Y pide el precio por escrito, antes de empezar.",
+   "words": [
+    {
+     "w": "Y",
+     "t": 39.8
+    },
+    {
+     "w": "pide",
+     "t": 39.932
+    },
+    {
+     "w": "el",
+     "t": 40.196
+    },
+    {
+     "w": "precio",
+     "t": 40.328
+    },
+    {
+     "w": "por",
+     "t": 40.592
+    },
+    {
+     "w": "escrito,",
+     "t": 40.724
+    },
+    {
+     "w": "antes",
+     "t": 41.51
+    },
+    {
+     "w": "de",
+     "t": 41.73
+    },
+    {
+     "w": "empezar.",
+     "t": 41.84
+    }
+   ],
+   "phrases": [
+    [
+     39.8,
+     41.12
+    ],
+    [
+     41.51,
+     42.17
+    ]
+   ]
   },
   {
    "id": "L11",
    "t": 43.4,
    "d": 2.24,
-   "text": "Tener web no significa tener clientes."
+   "text": "Tener web no significa tener clientes.",
+   "words": [
+    {
+     "w": "Tener",
+     "t": 43.4
+    },
+    {
+     "w": "web",
+     "t": 43.772
+    },
+    {
+     "w": "no",
+     "t": 43.957
+    },
+    {
+     "w": "significa",
+     "t": 44.143
+    },
+    {
+     "w": "tener",
+     "t": 44.887
+    },
+    {
+     "w": "clientes.",
+     "t": 45.258
+    }
+   ],
+   "phrases": [
+    [
+     43.4,
+     45.63
+    ]
+   ]
   },
   {
    "id": "L12",
    "t": 47.0,
    "d": 5.71,
-   "text": "En Meridian Digital hacemos webs que te traen clientes. Escríbenos por WhatsApp y cotiza en segundos."
+   "text": "En Meridian Digital hacemos webs que te traen clientes. Escríbenos por WhatsApp y cotiza en segundos.",
+   "words": [
+    {
+     "w": "En",
+     "t": 47.0
+    },
+    {
+     "w": "Meridian",
+     "t": 47.168
+    },
+    {
+     "w": "Digital",
+     "t": 47.672
+    },
+    {
+     "w": "hacemos",
+     "t": 48.177
+    },
+    {
+     "w": "webs",
+     "t": 48.681
+    },
+    {
+     "w": "que",
+     "t": 48.849
+    },
+    {
+     "w": "te",
+     "t": 49.017
+    },
+    {
+     "w": "traen",
+     "t": 49.186
+    },
+    {
+     "w": "clientes.",
+     "t": 49.354
+    },
+    {
+     "w": "Escríbenos",
+     "t": 50.28
+    },
+    {
+     "w": "por",
+     "t": 50.928
+    },
+    {
+     "w": "WhatsApp",
+     "t": 51.09
+    },
+    {
+     "w": "y",
+     "t": 51.414
+    },
+    {
+     "w": "cotiza",
+     "t": 51.576
+    },
+    {
+     "w": "en",
+     "t": 52.062
+    },
+    {
+     "w": "segundos.",
+     "t": 52.224
+    }
+   ],
+   "phrases": [
+    [
+     47.0,
+     49.69
+    ],
+    [
+     50.28,
+     52.71
+    ]
+   ]
   }
  ],
  "sfx": [
@@ -118,37 +822,44 @@
    "k": "hit"
   },
   {
-   "t": 0.62,
+   "t": 0.55,
    "k": "whoosh"
   },
   {
-   "t": 2.05,
+   "at": "L01:Quedó",
+   "off": -0.02,
    "k": "click"
   },
   {
-   "t": 2.73,
+   "at": "L01:publicaste.",
+   "off": 0,
    "k": "stamp"
   },
   {
-   "t": 3.37,
+   "at": "L01:compartiste",
+   "off": -0.25,
    "k": "whoosh"
   },
   {
-   "t": 5.15,
+   "at": "L01:estados.",
+   "off": 0.35,
    "k": "pop"
   },
   {
-   "t": 6.45,
+   "t": 6.55,
    "k": "swoosh_big"
   },
   {
-   "t": 7.3,
+   "at": "L02:Pasa",
+   "off": 0,
    "k": "ticks",
    "n": 29,
-   "span": 1.6
+   "to": "L02:mes,",
+   "to_off": 0.35
   },
   {
-   "t": 8.95,
+   "at": "L02:mensaje.",
+   "off": 0,
    "k": "thud"
   },
   {
@@ -156,17 +867,21 @@
    "k": "whoosh"
   },
   {
-   "t": 10.45,
+   "at": "L03:busca",
+   "off": 0,
    "k": "type",
    "n": 18,
-   "span": 1.1
+   "to": "L03:busca",
+   "to_off": 1.0
   },
   {
-   "t": 11.75,
+   "at": "L03:encuentra",
+   "off": 0,
    "k": "reveal"
   },
   {
-   "t": 12.55,
+   "at": "L03:competencia.",
+   "off": 0,
    "k": "error"
   },
   {
@@ -174,18 +889,22 @@
    "k": "whoosh"
   },
   {
-   "t": 14.2,
+   "at": "L04:espera",
+   "off": 0,
    "k": "ticks",
    "n": 16,
-   "span": 2.0,
-   "soft": true
+   "soft": true,
+   "to": "L04:va.",
+   "to_off": -0.15
   },
   {
-   "t": 16.35,
+   "at": "L04:va.",
+   "off": 0,
    "k": "error"
   },
   {
-   "t": 16.6,
+   "at": "L04:va.",
+   "off": 0.25,
    "k": "cut"
   },
   {
@@ -193,13 +912,16 @@
    "k": "riser_down"
   },
   {
-   "t": 18.6,
+   "at": "L05:cobrando",
+   "off": 0,
    "k": "coin",
    "n": 4,
-   "span": 2.4
+   "to": "L05:cliente.",
+   "to_off": -0.3
   },
   {
-   "t": 21.6,
+   "at": "L05:cliente.",
+   "off": 0,
    "k": "thud"
   },
   {
@@ -207,28 +929,29 @@
    "k": "swoosh_big"
   },
   {
-   "t": 24.3,
+   "at": "L06:tres",
+   "off": 0,
    "k": "hit"
-  },
-  {
-   "t": 25.9,
-   "k": "click"
   },
   {
    "t": 27.35,
    "k": "whoosh"
   },
   {
-   "t": 27.7,
+   "at": "L07:Uno:",
+   "off": 0,
    "k": "thunk"
   },
   {
-   "t": 28.4,
+   "at": "L07:menos",
+   "off": 0,
    "k": "fill",
-   "span": 1.0
+   "to": "L07:segundos",
+   "to_off": 0.25
   },
   {
-   "t": 29.45,
+   "at": "L07:teléfono.",
+   "off": 0,
    "k": "ding"
   },
   {
@@ -236,27 +959,33 @@
    "k": "swoosh_big"
   },
   {
-   "t": 31.3,
+   "at": "L08:Dos:",
+   "off": 0,
    "k": "thunk"
   },
   {
-   "t": 33.0,
+   "at": "L08:toque,",
+   "off": 0,
    "k": "click"
   },
   {
-   "t": 33.15,
+   "at": "L08:toque,",
+   "off": 0.12,
    "k": "pop"
   },
   {
-   "t": 34.1,
+   "at": "L08:todas",
+   "off": 0,
    "k": "pop"
   },
   {
-   "t": 34.35,
+   "at": "L08:todas",
+   "off": 0.25,
    "k": "pop"
   },
   {
-   "t": 34.6,
+   "at": "L08:todas",
+   "off": 0.5,
    "k": "pop"
   },
   {
@@ -264,17 +993,21 @@
    "k": "whoosh"
   },
   {
-   "t": 36.1,
+   "at": "L09:Tres:",
+   "off": 0,
    "k": "thunk"
   },
   {
-   "t": 36.6,
+   "at": "L09:Google",
+   "off": 0,
    "k": "type",
    "n": 18,
-   "span": 1.1
+   "to": "L09:Google",
+   "to_off": 1.0
   },
   {
-   "t": 38.1,
+   "at": "L09:encuentre",
+   "off": 0,
    "k": "reveal"
   },
   {
@@ -282,19 +1015,23 @@
    "k": "whoosh"
   },
   {
-   "t": 40.2,
+   "at": "L10:precio",
+   "off": 0,
    "k": "tick_pen"
   },
   {
-   "t": 40.65,
+   "at": "L10:precio",
+   "off": 0.4,
    "k": "tick_pen"
   },
   {
-   "t": 41.1,
+   "at": "L10:precio",
+   "off": 0.8,
    "k": "tick_pen"
   },
   {
-   "t": 41.55,
+   "at": "L10:precio",
+   "off": 1.2,
    "k": "tick_pen"
   },
   {
@@ -307,7 +1044,8 @@
    "span": 3.6
   },
   {
-   "t": 44.55,
+   "at": "L11:tener#2",
+   "off": 0,
    "k": "hit_big"
   },
   {
@@ -320,15 +1058,22 @@
    "k": "hit_big"
   },
   {
-   "t": 50.2,
+   "at": "L12:Escríbenos",
+   "off": 0,
    "k": "click"
   },
   {
-   "t": 50.3,
+   "at": "L12:WhatsApp",
+   "off": 0,
    "k": "reveal"
   },
   {
-   "t": 53.1,
+   "at": "L12:cotiza",
+   "off": 0,
+   "k": "click"
+  },
+  {
+   "t": 53.4,
    "k": "shutter"
   }
  ],

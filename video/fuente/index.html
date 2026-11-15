@@ -6,295 +6,312 @@
 @font-face{font-family:IT;font-weight:800;src:url(fonts/intertight-800.woff2) format('woff2')}
 @font-face{font-family:IS;font-style:italic;src:url(fonts/instrumentserif-italic.woff2) format('woff2')}
 @font-face{font-family:JB;font-weight:500;src:url(fonts/jbmono-500.woff2) format('woff2')}
-:root{--page:#EEF2EA;--navy:#03071F;--red:#FF1E0F}
-html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:var(--page)}
+/* Paleta Meridian Digital (tokens de meridian-digital-v8.html) */
+:root{--bg:#03071F;--fg:#FFFFFF;--mut:#A3ADC2;--cy:#DFE5FF;--bl:#0428CB;--sky:#7FB0FF}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--bg)}
 #stage{position:absolute;inset:0;overflow:hidden}
 .ab{position:absolute}
 .ch{position:absolute;inset:0;overflow:hidden}
-.mono{font-family:JB;font-weight:500;font-size:24px;letter-spacing:.14em;text-transform:uppercase}
-.st{font-family:IT;font-weight:800;font-size:88px;line-height:1.0;letter-spacing:-.035em}
-.st .row{display:block;white-space:nowrap}
-.w{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .02em .12em;margin-bottom:-.12em}
+.mono{font-family:JB;font-weight:500;font-size:24px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}
+.st{font-family:IT;font-weight:800;line-height:1.08;letter-spacing:-.035em}
+.st .row{display:block;white-space:nowrap;height:1.08em}
+.w{display:inline-block;overflow:hidden;vertical-align:top;height:1.08em}
 .wi{display:inline-block;will-change:transform}
-.acc{font-family:IS;font-style:italic;font-weight:400;font-size:1.16em;letter-spacing:-.01em;line-height:.86}
-.anton{font-family:Anton;line-height:.86;letter-spacing:-.005em}
-.card{background:#fff;border-radius:28px}
+.acc{font-family:IS;font-style:italic;font-weight:400;letter-spacing:-.01em}
+.acc .wi{font-size:1.12em;line-height:.96}
+.anton{font-family:Anton;line-height:1;white-space:nowrap}
+.media{position:absolute;overflow:hidden}
+.media img{display:block;width:100%;height:100%;object-fit:cover}
+.dg{display:inline-block;text-align:center;letter-spacing:0}
+.ink{overflow:hidden;height:1em;line-height:1}
 </style></head>
 <body><div id="stage"></div>
 <script>
-const W=1080,H=1920, P='#EEF2EA', N='#03071F', R='#FF1E0F';
+const C={bg:'#03071F',fg:'#FFFFFF',mut:'#A3ADC2',cy:'#DFE5FF',bl:'#0428CB',sky:'#7FB0FF'};
 const stage=document.getElementById('stage');
 const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
 const seg=(t,a,b)=>clamp((t-a)/(b-a));
-const E=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;          // precise snap ease
+const E=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
 const k=(t,a,d=.45)=>E(seg(t,a,a+d));
 const lerp=(a,b,x)=>a+(b-a)*x;
 function mk(parent,css='',html='',cls='ab'){const e=document.createElement('div');e.className=cls;e.style.cssText=css;e.innerHTML=html;parent.appendChild(e);return e}
-const updaters=[];
-const on=f=>updaters.push(f);
-
-/* ---------- kinetic statement: words rise out of a clip, leave upward ---------- */
-// spec: rows separated by '/', accent words wrapped in |..|
-function statement(parent,spec,t0,dur,{x=72,y=210,size=88,color=N,acc=R,tOut=null,spread=.85}={}){
-  const box=mk(parent,`left:${x}px;top:${y}px;color:${color};font-size:${size}px`,'' ,'ab st');
-  let inAcc=false; const words=[];
+const updaters=[];const on=f=>updaters.push(f);
+let TL,LINES;
+/* ---------- sincronía: cada evento se ancla a una palabra hablada (timeline.json · words) ---------- */
+const norm=s=>s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]/g,'');
+function Wt(ref){const i0=ref.indexOf(':'),id=ref.slice(0,i0),wq=ref.slice(i0+1);const [w,n]=wq.split('#');const want=norm(w);let c=0;
+  for(const x of LINES[id].words)if(norm(x.w)===want&&++c===(+n||1))return x.t;
+  throw new Error('palabra no encontrada: '+ref)}
+/* ---------- media sin deformar: contenedor con aspect-ratio + <img> object-fit:cover ---------- */
+function photo(parent,src,x,y,w,h,pos='center',extra=''){const m=mk(parent,`left:${x}px;top:${y}px;width:${w}px;aspect-ratio:${w}/${h};${extra}`,'','media');
+  const i=document.createElement('img');i.src=src;i.alt='';i.style.objectPosition=pos;m.appendChild(i);return m}
+/* ---------- dígitos de ancho fijo: los contadores no empujan el layout ---------- */
+function counter(el){const cache={};const ls=parseFloat(getComputedStyle(el).letterSpacing)||0;
+  const pr=document.createElement('span');pr.style.cssText='position:absolute;visibility:hidden;white-space:pre;letter-spacing:0';el.appendChild(pr);
+  const wOf=ch=>{if(cache[ch]==null){el.appendChild(pr);pr.textContent=ch;cache[ch]=pr.getBoundingClientRect().width;pr.remove()}return cache[ch]};
+  const dW=Math.max(...[...'0123456789'].map(wOf));[...'.:/S '].forEach(wOf);   // medir todo al construir (con la escena visible)
+  return s=>{if(el.dataset.v===s)return;el.dataset.v=s;
+    el.innerHTML=[...s].map(ch=>`<span class="dg" style="width:${(/[0-9]/.test(ch)?dW:wOf(ch))+ls}px">${ch}</span>`).join('')}}
+/* ---------- frases cinéticas: entran palabra a palabra con la voz y salen completas ---------- */
+const LEAD=.12, IN=.32, OUT=.3;
+const placed=[];
+function statement(parent,spec,lineId,{x=72,y=210,size=88,color=C.bg,acc=C.bl,tOut=null,from=0}={}){
+  const box=mk(parent,`left:${x}px;top:${y}px;color:${color};font-size:${size}px`,'','ab st');
+  const lw=LINES[lineId].words;let p=from,inAcc=false;const words=[];
   spec.split('/').forEach(rowTxt=>{
     const row=document.createElement('span');row.className='row';box.appendChild(row);
     rowTxt.trim().split(/\s+/).forEach((wd,i,arr)=>{
-      let a=inAcc; if(wd.startsWith('|')){a=true;wd=wd.slice(1);inAcc=true}
+      let a=inAcc;if(wd.startsWith('|')){a=true;wd=wd.slice(1);inAcc=true}
       const m=wd.match(/\|([.,:;]?)$/);if(m){wd=wd.slice(0,m.index)+m[1];inAcc=false}
       const w=document.createElement('span');w.className='w'+(a?' acc':'');
       const wi=document.createElement('span');wi.className='wi';wi.textContent=wd;if(a)wi.style.color=acc;
       w.appendChild(wi);row.appendChild(w);if(i<arr.length-1)row.appendChild(document.createTextNode(' '));
-      words.push({wi,len:wd.length+1});
+      const nw=norm(wd.replace(/^3$/,'tres'));let t=null;
+      for(let q=p;q<Math.min(lw.length,p+6);q++){const lv=norm(lw[q].w);if(lv===nw||(nw.length>=3&&lv.startsWith(nw))){t=lw[q].t;p=q+1;break}}
+      words.push({wi,t});
     });
   });
-  const tot=words.reduce((s,w)=>s+w.len,0);let c=0;
-  words.forEach(w=>{w.t=t0+dur*spread*(c/tot);c+=w.len});
-  on(t=>{words.forEach((w,i)=>{let y=(1-k(t,w.t,.32))*112;
-    if(tOut!=null)y-=k(t,tOut+i*.012,.3)*112;
-    w.wi.style.transform=`translateY(${y}%)`})});
-  return {box,words,at:i=>words[i].t};
+  words.forEach((w,i)=>{if(w.t==null)w.t=(i?words[i-1].t:LINES[lineId].t)+.12});
+  const tIn=words[0].t-LEAD,last=words[words.length-1].t;
+  const tEnd=tOut==null?1e9:tOut+OUT+.012*words.length;
+  if(tOut!=null&&tOut<last+.25)console.warn(`[sync] "${spec}" sale antes de terminar de decirse`);
+  placed.push({parent,y,tIn,tEnd,spec});
+  on(t=>{words.forEach((w,i)=>{let yy=(1-k(t,w.t-LEAD,IN))*130;
+    if(tOut!=null)yy-=k(t,tOut+i*.012,OUT)*130;
+    w.wi.style.transform=`translateY(${yy}%)`});
+    box.style.visibility=(t<tIn||t>=tEnd)?'hidden':'visible'});
+  return {box,words};
 }
-/* ---------- wipe-in panel (clip from bottom) ---------- */
+function assertNoStacking(){
+  for(const a of placed)for(const b of placed)if(a!==b&&a.parent===b.parent&&Math.abs(a.y-b.y)<200&&a.tIn<b.tIn&&a.tEnd>b.tIn)
+    console.warn(`[overlap] "${a.spec}" sigue en pantalla cuando entra "${b.spec}"`);
+}
+/* ---------- cortinas por clip-path y apariciones por transform/opacity (sin mover el layout) ---------- */
 function wipe(el,t0,d=.45,dir='up'){on(t=>{const p=k(t,t0,d);
-  el.style.clipPath=dir==='up'?`inset(${(1-p)*100}% 0 0 0)`:dir==='left'?`inset(0 0 0 ${(1-p)*100}%)`:`inset(0 ${(1-p)*100}% 0 0)`;})}
-/* ---------- chapter shells ---------- */
-let TL;
+  el.style.clipPath=dir==='up'?`inset(${(1-p)*100}% 0 0 0)`:`inset(0 ${(1-p)*100}% 0 0)`;
+  el.style.visibility=p<=0?'hidden':'visible'})}
+function appear(el,t0,d=.3){on(t=>{const p=k(t,t0,d);el.style.opacity=p;el.style.transform=`translateY(${(1-p)*24}px)`;el.style.visibility=p<=0?'hidden':'visible'})}
 function chapter(i){
-  const c=TL.chapters[i], nx=TL.chapters[i+1];
-  const bg=c.bg==='page'?P:c.bg==='navy'?N:R, fg=c.bg==='page'?N:P;
-  const el=mk(stage,`background:${bg};color:${fg}`,'','ch');
-  // grid: 6 columns, faint
+  const c=TL.chapters[i],nx=TL.chapters[i+1];
+  const bg={light:C.cy,dark:C.bg,blue:C.bl}[c.bg],fg=c.bg==='light'?C.bg:C.fg;
+  const el=mk(stage,`background:${bg};color:${fg}`,'','ch');el.dataset.layer=1;
   for(let j=0;j<=6;j++)mk(el,`left:${72+j*156}px;top:150px;width:1px;height:1640px;background:${fg};opacity:.07`);
   mk(el,`left:72px;top:150px;width:936px;height:1px;background:${fg};opacity:.25`);
   mk(el,`left:72px;top:1790px;width:936px;height:1px;background:${fg};opacity:.25`);
   const hdr=mk(el,`left:72px;top:96px;color:${fg}`,`${c.n} · ${c.name}`,'ab mono');
   mk(el,`right:72px;top:96px;color:${fg}`,'MERIDIAN DIGITAL ©','ab mono');
-  mk(el,`left:72px;top:1812px;color:${fg};opacity:.6`,'PÁGINAS WEB · VENEZUELA','ab mono');
-  const tc=mk(el,`right:72px;top:1812px;color:${fg};opacity:.6`,'','ab mono');
-  const end=nx?nx.t+.5:1e9;
+  mk(el,`left:72px;top:1812px;color:${fg};opacity:.65`,'PÁGINAS WEB · VENEZUELA','ab mono');
+  const tcBox=mk(el,`right:72px;top:1812px;color:${fg};opacity:.65`,'','ab mono');const tc=counter(tcBox);
+  const end=nx?nx.t+.3:1e9;
   on(t=>{el.style.display=(t>=c.t-.3&&t<end)?'block':'none';
     if(i>0){const p=k(t,c.t-.25,.5);el.style.clipPath=`inset(${(1-p)*100}% 0 0 0)`}
-    tc.textContent=`00:${String(Math.floor(t)).padStart(2,'0')} / 00:${TL.dur}`;
+    tc(`00:${String(Math.floor(t)).padStart(2,'0')}/00:${TL.dur}`);
     hdr.style.clipPath=`inset(0 ${(1-k(t,c.t,.4))*100}% 0 0)`;});
-  return el;
+  return {el};
 }
-/* ---------- small icons ---------- */
-const check=(c,s=40)=>`<svg width="${s}" height="${s}" viewBox="0 0 40 40"><path d="M8 21l8 8 16-18" fill="none" stroke="${c}" stroke-width="5" stroke-linecap="square"/></svg>`;
-const bubble=(c,s=56)=>`<svg width="${s}" height="${s}" viewBox="0 0 56 56"><path d="M28 6a22 22 0 0 0-19 33l-3 11 11-3A22 22 0 1 0 28 6z" fill="none" stroke="${c}" stroke-width="4.5"/><path d="M20 22c0 8 6 14 14 14l3-3-5-3-2 2c-3-1-5-3-6-6l2-2-3-5z" fill="${c}"/></svg>`;
-const search=(c)=>`<svg width="34" height="34" viewBox="0 0 34 34"><circle cx="14" cy="14" r="10" fill="none" stroke="${c}" stroke-width="4"/><path d="M22 22l9 9" stroke="${c}" stroke-width="4"/></svg>`;
+const check=(c,s=40)=>`<svg width="${s}" height="${s}" viewBox="0 0 40 40" style="display:block"><path d="M8 21l8 8 16-18" fill="none" stroke="${c}" stroke-width="5" stroke-linecap="square"/></svg>`;
+const bubble=(c,s=56)=>`<svg width="${s}" height="${s}" viewBox="0 0 56 56" style="display:block;flex:none"><path d="M28 6a22 22 0 0 0-19 33l-3 11 11-3A22 22 0 1 0 28 6z" fill="none" stroke="${c}" stroke-width="4.5"/><path d="M20 22c0 8 6 14 14 14l3-3-5-3-2 2c-3-1-5-3-6-6l2-2-3-5z" fill="${c}"/></svg>`;
+const lens=c=>`<svg width="34" height="34" viewBox="0 0 34 34" style="display:block"><circle cx="14" cy="14" r="10" fill="none" stroke="${c}" stroke-width="4"/><path d="M22 22l9 9" stroke="${c}" stroke-width="4"/></svg>`;
+function searchBar(parent,y,t0,qtxt){
+  const sb=mk(parent,`left:72px;top:${y}px;width:936px;height:110px;border-radius:55px;background:${C.fg};color:${C.bg};overflow:hidden`);
+  mk(sb,'left:36px;top:38px',lens(C.bg));
+  const q=mk(sb,`left:96px;top:30px;height:50px;font:500 36px/50px IT;white-space:pre`,'');
+  const txt=document.createElement('span');const caret=document.createElement('span');
+  caret.style.cssText=`display:inline-block;width:3px;height:40px;margin-left:3px;vertical-align:-6px;background:${C.bl}`;q.append(txt,caret);
+  on(t=>{const n=Math.round(qtxt.length*seg(t,t0,t0+1.0));txt.textContent=qtxt.slice(0,n);caret.style.opacity=(t%.5<.25&&t<t0+1.5)?1:0});
+  return sb;
+}
+const SHOP='assets/panaderia.jpg';
 
 function build(){
-TL=window.TL_DATA;
-const L=Object.fromEntries(TL.lines.map(l=>[l.id,l]));
+LINES=Object.fromEntries(TL.lines.map(l=>[l.id,l]));
 /* ===== 01 · EL PROYECTO ===== */
-{const ch=chapter(0);
- statement(ch,'Por fin tienes / tu |página web.|',L.L00.t,L.L00.d,{tOut:1.78});
- // L01 as a growing stack
- const s=statement(ch,'Quedó bonita. / La publicaste. / La compartiste / en tus |estados.|',L.L01.t,L.L01.d,{tOut:6.25,spread:.8});
- // browser mockup
- const br=mk(ch,'left:72px;top:690px;width:936px;height:820px;background:#fff;border-radius:26px;overflow:hidden;box-shadow:0 0 0 2px '+N);
- mk(br,`left:0;top:0;width:936px;height:64px;background:${N}`);
- [0,1,2].forEach(j=>mk(br,`left:${28+j*26}px;top:24px;width:14px;height:14px;border-radius:50%;background:${P};opacity:.5`));
- mk(br,`left:140px;top:14px;width:520px;height:36px;border-radius:18px;background:rgba(238,242,234,.14);color:${P};font:500 20px JB;line-height:36px;padding-left:22px;letter-spacing:.04em`,'panaderiaaurora.com');
- // hero: bloque de marca (paleta del video) + foto real de la panadería
- const hero=mk(br,`left:0;top:64px;width:936px;height:560px;background:${N}`);
- mk(hero,`left:40px;top:44px;color:${R}`,'PANADERÍA ARTESANAL','ab mono');
- mk(hero,`left:36px;top:100px;font-size:100px;color:${P}`,'PANADERÍA<br>AURORA','ab anton');
- mk(hero,`left:40px;top:330px;width:330px;color:${P};opacity:.75;font:500 24px/1.3 IT`,'Pan dulce recién horneado todos los días.');
- mk(hero,`left:40px;top:446px;padding:16px 26px;border-radius:40px;background:${R};color:${P};font:800 24px IT`,'Ver el menú →');
- const imgw=mk(hero,'left:436px;top:0;width:500px;height:560px;overflow:hidden');
- const img=mk(imgw,`left:0;top:0;width:500px;height:560px;background:url(assets/panaderia.jpg) center 40%/cover`);
- mk(br,`left:40px;top:660px;color:${N}`,'INICIO &nbsp; MENÚ &nbsp; NOSOTROS &nbsp; CONTACTO','ab mono');
- mk(br,`left:40px;top:712px;width:420px;height:22px;background:${N};opacity:.1`);
- mk(br,`left:40px;top:748px;width:300px;height:22px;background:${N};opacity:.1`);
+{const {el:ch}=chapter(0);
+ statement(ch,'Por fin tienes / tu |página web.|','L00',{tOut:1.9});
+ statement(ch,'Quedó bonita. / La publicaste. / La compartiste / en tus |estados.|','L01',{tOut:6.5});
+ const br=mk(ch,`left:72px;top:690px;width:936px;height:820px;background:${C.fg};border-radius:26px;overflow:hidden;box-shadow:0 0 0 2px ${C.bg}`);
+ mk(br,`left:0;top:0;width:936px;height:64px;background:${C.bg}`);
+ [0,1,2].forEach(j=>mk(br,`left:${28+j*26}px;top:24px;width:14px;height:14px;border-radius:50%;background:${C.cy};opacity:.5`));
+ mk(br,`left:140px;top:14px;width:520px;height:36px;border-radius:18px;background:rgba(223,229,255,.14);color:${C.cy};font:500 20px/36px JB;padding-left:22px;letter-spacing:.04em`,'panaderiaaurora.com');
+ const hero=mk(br,`left:0;top:64px;width:936px;height:560px;background:${C.bg};overflow:hidden`);
+ mk(hero,`left:40px;top:36px;color:${C.sky}`,'PANADERÍA ARTESANAL','ab mono');
+ mk(hero,`left:36px;top:96px;width:390px;height:210px;overflow:hidden;font-size:96px;line-height:1.05;color:${C.fg}`,'PANADERÍA<br>AURORA','ab anton');
+ mk(hero,`left:40px;top:330px;width:330px;color:${C.mut};font:500 24px/1.3 IT`,'Pan dulce recién horneado todos los días.');
+ mk(hero,`left:40px;top:446px;padding:16px 26px;border-radius:40px;background:${C.bl};color:${C.fg};font:800 24px IT;white-space:nowrap`,'Ver el menú →');
+ const shopImg=photo(hero,SHOP,436,0,500,560,'center 40%').firstChild;
+ mk(br,`left:40px;top:660px;color:${C.bg}`,'INICIO &nbsp; MENÚ &nbsp; NOSOTROS &nbsp; CONTACTO','ab mono');
+ mk(br,`left:40px;top:712px;width:420px;height:22px;background:${C.bg};opacity:.1`);
+ mk(br,`left:40px;top:748px;width:300px;height:22px;background:${C.bg};opacity:.1`);
  wipe(br,.55,.5);
- on(t=>{img.style.transform=`scale(${1+.06*seg(t,.5,4.2)})`;});
- const stamp=mk(ch,`left:560px;top:1060px;padding:10px 26px;border:7px solid ${R};color:${R};font-size:86px;border-radius:10px;background:rgba(238,242,234,.9)`,'PUBLICADA','ab anton');
- on(t=>{const p=seg(t,s.at(2)-.05,s.at(2)+.07);stamp.style.opacity=t<s.at(2)-.05?0:1;stamp.style.transform=`rotate(-9deg) scale(${lerp(1.7,1,E(p))})`;});
- // phone photo panel (status share)
- const pp=mk(ch,'left:0;top:640px;width:1080px;height:1280px;overflow:hidden');
- const ph=mk(pp,'left:0;top:-300px;width:1080px;height:1920px;background:url(assets/phone.jpg) center/cover');
- const scr=mk(pp,`left:359px;top:322px;width:388px;height:802px;border-radius:40px;background:#111;overflow:hidden`);
- const bars=[0,1,2].map(j=>{const b=mk(scr,`left:${18+j*120}px;top:22px;width:110px;height:5px;border-radius:3px;background:rgba(255,255,255,.3);overflow:hidden`);return mk(b,'left:0;top:0;height:5px;background:#fff;width:0')});
- mk(scr,`left:18px;top:44px;width:46px;height:46px;border-radius:50%;background:url(assets/panaderia.jpg) center/cover`);
- mk(scr,`left:76px;top:46px;color:#fff;font:800 20px IT`,'Mi estado');
- mk(scr,`left:76px;top:70px;color:rgba(255,255,255,.6);font:500 16px IT`,'hace 1 min');
- const mini=mk(scr,`left:24px;top:170px;width:340px;height:420px;background:#fff;border-radius:16px;overflow:hidden`);
- mk(mini,`left:0;top:0;width:340px;height:230px;background:url(assets/panaderia.jpg) center/cover`);
- mk(mini,`left:18px;top:248px;color:${N};font-size:40px`,'PANADERÍA AURORA','ab anton');
- mk(mini,`left:18px;top:298px;width:300px;color:${N};font:500 20px/1.25 IT`,'Ya tenemos página web. Entra y mira el menú.');
- mk(mini,`left:18px;top:368px;color:${R};font:500 16px JB;letter-spacing:.08em`,'PANADERIAAURORA.COM');
- const seen=mk(scr,`left:0;width:388px;top:720px;text-align:center;color:#fff;font:500 20px IT`,'Visto por 12');
- wipe(pp,s.at(4)-.25,.5);
- on(t=>{const a=s.at(4);ph.style.transform=`scale(${1.04-.04*seg(t,a,6.6)})`;
-   bars.forEach((b,j)=>b.style.width=(j===0?seg(t,a+.2,6.6)*100:0)+'%');
-   const p=k(t,5.15,.25);seen.style.opacity=p;seen.style.transform=`translateY(${(1-p)*20}px)`;});
+ on(t=>{shopImg.style.transform=`scale(${1+.05*seg(t,.5,4.8)})`});
+ const stamp=mk(ch,`left:72px;top:1560px;padding:8px 26px;border:6px solid ${C.bl};color:${C.bl};font-size:80px;border-radius:12px;visibility:hidden`,'PUBLICADA ✓','ab anton');
+ const tSt=Wt('L01:publicaste.');
+ on(t=>{const p=seg(t,tSt,tSt+.12);stamp.style.visibility=t<tSt?'hidden':'visible';stamp.style.transform=`rotate(-4deg) scale(${lerp(1.5,1,E(p))})`;});
+ const tPh=Wt('L01:compartiste')-.25;
+ const pp=mk(ch,'left:0;top:640px;width:1080px;height:1280px;overflow:hidden;visibility:hidden');pp.dataset.layer=1;
+ const ph=photo(pp,'assets/phone.jpg',0,-300,1080,1920,'center');
+ const scr=mk(pp,`left:359px;top:322px;width:388px;height:802px;border-radius:40px;background:#111;overflow:hidden`);scr.dataset.layer=1;
+ const bar=mk(scr,`left:18px;top:22px;width:352px;height:5px;border-radius:3px;background:rgba(255,255,255,.3);overflow:hidden`);
+ const barF=mk(bar,`left:0;top:0;width:352px;height:5px;background:${C.fg};transform-origin:0 0`);
+ photo(scr,SHOP,18,44,46,46,'center','border-radius:50%');
+ mk(scr,`left:76px;top:44px;color:${C.fg};font:800 20px/24px IT`,'Mi estado');
+ mk(scr,`left:76px;top:70px;color:${C.mut};font:500 16px/20px IT`,'hace 1 min');
+ const mini=mk(scr,`left:24px;top:170px;width:340px;height:420px;background:${C.fg};border-radius:16px;overflow:hidden`);
+ photo(mini,SHOP,0,0,340,230,'center 30%');
+ mk(mini,`left:18px;top:248px;color:${C.bg};font-size:40px`,'PANADERÍA AURORA','ab anton');
+ mk(mini,`left:18px;top:300px;width:300px;color:${C.bg};font:500 20px/1.25 IT`,'Ya tenemos página web. Entra y mira el menú.');
+ mk(mini,`left:18px;top:372px;color:${C.bl};font:500 16px JB;letter-spacing:.08em`,'PANADERIAAURORA.COM');
+ const seen=mk(scr,`left:0;width:388px;top:720px;text-align:center;color:${C.fg};font:500 20px IT`,'Visto por 12');
+ wipe(pp,tPh,.5);appear(seen,Wt('L01:estados.')+.35);
+ on(t=>{ph.firstChild.style.transform=`scale(${1.04-.04*seg(t,tPh,6.6)})`;barF.style.transform=`scaleX(${seg(t,tPh+.2,6.6)})`;});
 }
 /* ===== 02 · EL SILENCIO ===== */
-{const ch=chapter(1);
- // three "pages" panned horizontally: A (mes), B (google), C (8 s), then D (hosting) wipes in
+{const {el:ch}=chapter(1);
  const rail=mk(ch,'left:0;top:0;width:3240px;height:1920px');
- on(t=>{const x=-1080*k(t,9.8,.5)-1080*k(t,13.55,.5);rail.style.transform=`translateX(${x}px)`});
- const A=mk(rail,'left:0;top:0;width:1080px;height:1920px'),B=mk(rail,'left:1080px;top:0;width:1080px;height:1920px'),C=mk(rail,'left:2160px;top:0;width:1080px;height:1920px');
- // A
- statement(A,'Pasa un mes, / y no te llega / ni un |mensaje.|',L.L02.t,L.L02.d,{color:P});
- const cal=mk(A,`left:72px;top:720px;width:444px;height:620px;border:2px solid rgba(238,242,234,.3);border-radius:26px;color:${P}`);
+ on(t=>{rail.style.transform=`translateX(${-1080*k(t,9.8,.5)-1080*k(t,13.55,.5)}px)`});
+ const A=mk(rail,'left:0;top:0;width:1080px;height:1920px;overflow:hidden'),B=mk(rail,'left:1080px;top:0;width:1080px;height:1920px;overflow:hidden'),Cc=mk(rail,'left:2160px;top:0;width:1080px;height:1920px;overflow:hidden');
+ statement(A,'Pasa un mes, / y no te llega / ni un |mensaje.|','L02',{color:C.fg,acc:C.sky});
+ const cal=mk(A,`left:72px;top:720px;width:444px;height:620px;border:2px solid rgba(223,229,255,.3);border-radius:26px;color:${C.fg};overflow:hidden`);
  mk(cal,'left:32px;top:30px','CALENDARIO','ab mono');
- mk(cal,'left:32px;top:90px;font-size:64px;opacity:.5','DÍA','ab anton');
- const day=mk(cal,'left:26px;top:170px;font-size:380px','01','ab anton');
- const inbox=mk(A,`left:564px;top:720px;width:444px;height:620px;border-radius:26px;background:${P};color:${N}`);
+ mk(cal,`left:32px;top:90px;font-size:64px;color:${C.mut}`,'DÍA','ab anton');
+ const dayEl=mk(cal,'left:26px;top:220px;font-size:330px','','ab anton ink');const day=counter(dayEl);
+ const inbox=mk(A,`left:564px;top:720px;width:444px;height:620px;border-radius:26px;background:${C.cy};color:${C.bg};overflow:hidden`);
  mk(inbox,'left:32px;top:30px','MENSAJES','ab mono');
- const zero=mk(inbox,`left:26px;top:170px;font-size:380px;color:${R}`,'00','ab anton');
- [0,1,2].forEach(j=>mk(inbox,`left:32px;top:${90+j*0}px;width:0`));
+ const zero=mk(inbox,`left:26px;top:220px;font-size:330px;color:${C.bl}`,'00','ab anton ink');
  wipe(cal,7.0,.45);wipe(inbox,7.15,.45);
- on(t=>{const n=1+Math.floor(29*seg(t,7.3,8.9));day.textContent=String(n).padStart(2,'0');
-   zero.style.transform=`scale(${1+.06*Math.sin(Math.PI*seg(t,8.95,9.15))})`;});
- const note=mk(A,`left:72px;top:1400px;color:${P};opacity:.7`,'30 DÍAS · 0 CONVERSACIONES','ab mono');
- wipe(note,9.0,.4,'left');
- // B · google
- statement(B,'Un cliente te busca / en Google y / encuentra a tu / |competencia.|',L.L03.t,L.L03.d,{color:P});
- const sb=mk(B,`left:72px;top:720px;width:936px;height:110px;border-radius:55px;background:#fff;color:${N}`);
- mk(sb,'left:36px;top:38px',search(N));
- const q=mk(sb,`left:96px;top:34px;font:500 36px IT;white-space:pre`,'');
- const qtxt='panadería cerca de mí';
- on(t=>{const n=Math.round(qtxt.length*seg(t,10.45,11.55));q.textContent=qtxt.slice(0,n)+((t%0.5<.25&&t<11.9)?'|':' ')});
- const res=[['Panadería La Esquina','tu competencia'],['Dulce Horno','tu competencia'],['Pan & Café Central','tu competencia']];
- res.forEach((r,j)=>{const row=mk(B,`left:72px;top:${880+j*170}px;width:936px;height:146px;border-radius:22px;background:${j?'rgba(238,242,234,.08)':P};color:${j?P:N}`);
-   mk(row,'left:36px;top:30px;font:800 40px IT;letter-spacing:-.02em',r[0]);
-   mk(row,`left:36px;top:88px;font-size:20px;opacity:.6`,'4,8 ★ · Abierto · 400 m','ab mono');
-   mk(row,`right:30px;top:44px;padding:8px 16px;border-radius:30px;font-size:20px;background:${j?'transparent':R};color:${j?P:P};border:${j?'2px solid rgba(238,242,234,.3)':'none'}`,j?'#'+(j+1):'#1 · '+r[1].toUpperCase(),'ab mono');
-   wipe(row,11.75+j*.08,.4);});
- const miss=mk(B,`left:72px;top:1420px;font-size:120px;color:${R}`,'TU NEGOCIO: PÁGINA 2','ab anton');
- wipe(miss,12.5,.35,'left');
- // C · 8 seconds
- statement(C,'Otro abre tu web / en el teléfono, / espera |ocho segundos| / y se va.',L.L04.t,L.L04.d,{color:P});
- const timer=mk(C,`left:72px;top:760px;font-size:300px;color:${P}`,'0.0','ab anton');
- mk(C,`left:72px;top:1040px;color:${P};opacity:.6`,'SEGUNDOS DE CARGA','ab mono');
- const phone=mk(C,`left:640px;top:730px;width:368px;height:700px;border:4px solid ${P};border-radius:52px`);
- mk(phone,`left:134px;top:18px;width:100px;height:16px;border-radius:8px;background:${P};opacity:.6`);
- const spin=mk(phone,`left:144px;top:290px;width:80px;height:80px;border-radius:50%;border:8px solid rgba(238,242,234,.2);border-top-color:${P};box-sizing:border-box`);
- const lb=mk(phone,`left:44px;top:420px;width:280px;height:10px;border-radius:5px;background:rgba(238,242,234,.2);overflow:hidden`);
- const lbf=mk(lb,`left:0;top:0;height:10px;background:${P};width:0`);
- const lost=mk(C,`left:640px;top:1470px;padding:14px 22px;background:${R};color:${P}`,'VISITANTE PERDIDO','ab mono');
- const knife=mk(C,`left:600px;top:1080px;height:6px;background:${R};width:0`);
- on(t=>{const v=8*seg(t,14.2,16.2);timer.textContent=v.toFixed(1);timer.style.color=v>3?R:P;
-   spin.style.transform=`rotate(${t*400}deg)`;lbf.style.width=(35*E(seg(t,14.2,16.2)))+'%';
-   lost.style.clipPath=`inset(0 ${(1-k(t,16.3,.3))*100}% 0 0)`;
-   knife.style.width=(448*seg(t,16.6,16.85))+'px';knife.style.opacity=1-seg(t,17.1,17.2);
-   const col=k(t,16.9,.35);phone.style.transform=`scaleY(${1-col})`;phone.style.opacity=col>.98?0:1;});
- // D · hosting (wipe over)
- const D=mk(ch,`left:0;top:150px;width:1080px;height:1640px;background:${N}`);
+ const tA=Wt('L02:Pasa'),tB=Wt('L02:mes,')+.35,tZ=Wt('L02:mensaje.');
+ on(t=>{day(String(1+Math.floor(29*seg(t,tA,tB))).padStart(2,'0'));
+   zero.style.transform=`scale(${1+.06*Math.sin(Math.PI*seg(t,tZ,tZ+.2))})`;});
+ const note=mk(A,`left:72px;top:1400px;color:${C.mut}`,'30 DÍAS · 0 CONVERSACIONES','ab mono');wipe(note,tZ,.4,'left');
+ statement(B,'Un cliente te busca / en Google y / encuentra a tu / |competencia.|','L03',{color:C.fg,acc:C.sky});
+ searchBar(B,720,Wt('L03:busca'),'panadería cerca de mí');
+ const tR=Wt('L03:encuentra');
+ ['Panadería La Esquina','Dulce Horno','Pan & Café Central'].forEach((n,j)=>{
+   const row=mk(B,`left:72px;top:${880+j*170}px;width:936px;height:146px;border-radius:22px;overflow:hidden;background:${j?'rgba(223,229,255,.08)':C.cy};color:${j?C.fg:C.bg}`);
+   mk(row,'left:36px;top:28px;font:800 40px/48px IT;letter-spacing:-.02em',n);
+   mk(row,`left:36px;top:90px;font-size:20px;opacity:.65`,'4,8 ★ · Abierto · 400 m','ab mono');
+   mk(row,`right:30px;top:46px;padding:8px 16px;border-radius:30px;font-size:20px;background:${j?'transparent':C.bl};color:${j?C.fg:C.fg};border:2px solid ${j?'rgba(223,229,255,.3)':C.bl}`,j?'#'+(j+1):'#1 · TU COMPETENCIA','ab mono');
+   wipe(row,tR+j*.08,.4);});
+ const miss=mk(B,`left:72px;top:1420px;font-size:116px;color:${C.sky}`,'TU NEGOCIO: PÁGINA 2','ab anton');wipe(miss,Wt('L03:competencia.'),.35,'left');
+ statement(Cc,'Otro abre tu web / en el teléfono, / espera |ocho segundos| / y se va.','L04',{color:C.fg,acc:C.sky,tOut:17.65});
+ const tE=Wt('L04:espera'),tV=Wt('L04:va.');
+ const timerEl=mk(Cc,`left:72px;top:740px;font-size:280px;color:${C.fg}`,'','ab anton ink');const timer=counter(timerEl);
+ mk(Cc,`left:72px;top:1050px;color:${C.mut}`,'SEGUNDOS DE CARGA','ab mono');
+ const phone=mk(Cc,`left:640px;top:730px;width:368px;height:700px;border:4px solid ${C.cy};border-radius:52px`);
+ mk(phone,`left:130px;top:18px;width:100px;height:16px;border-radius:8px;background:${C.cy};opacity:.6`);
+ const spin=mk(phone,`left:140px;top:290px;width:80px;height:80px;border-radius:50%;border:8px solid rgba(223,229,255,.2);border-top-color:${C.cy}`);
+ const lb=mk(phone,`left:40px;top:420px;width:280px;height:10px;border-radius:5px;background:rgba(223,229,255,.2);overflow:hidden`);
+ const lbf=mk(lb,`left:0;top:0;width:280px;height:10px;background:${C.cy};transform-origin:0 0`);
+ const lost=mk(Cc,`left:640px;top:1470px;padding:14px 22px;background:${C.bl};color:${C.fg}`,'VISITANTE PERDIDO','ab mono');
+ const knife=mk(Cc,`left:600px;top:1077px;width:448px;height:6px;background:${C.sky};transform-origin:0 0`);
+ on(t=>{const v=8*seg(t,tE,tV-.15);timer(v.toFixed(1));timerEl.style.color=v>3?C.sky:C.fg;
+   spin.style.transform=`rotate(${t*400}deg)`;lbf.style.transform=`scaleX(${.35*E(seg(t,tE,tV))})`;
+   lost.style.clipPath=`inset(0 ${(1-k(t,tV,.3))*100}% 0 0)`;
+   knife.style.transform=`scaleX(${seg(t,tV+.25,tV+.5)})`;knife.style.opacity=1-seg(t,tV+.7,tV+.8);
+   const col=k(t,tV+.5,.35);phone.style.clipPath=`inset(${col*50}% 0 ${col*50}% 0)`;});
+ const D=mk(ch,`left:0;top:150px;width:1080px;height:1640px;background:${C.bg};overflow:hidden;visibility:hidden`);D.dataset.layer=1;
  wipe(D,18.05,.5);
- statement(D,'Y tu web sigue ahí, / cobrando |hosting|, / sin traerte un / solo cliente.',L.L05.t,L.L05.d,{color:P,y:60});
- for(let j=0;j<4;j++){const row=mk(D,`left:72px;top:${560+j*86}px;width:936px;height:70px;border-bottom:1px solid rgba(238,242,234,.25);color:${P}`);
-   mk(row,'left:0;top:20px',`MES 0${j+1}`,'ab mono');mk(row,'left:300px;top:20px','HOSTING','ab mono');
-   mk(row,`right:0;top:8px;font-size:52px;color:${R}`,'−$','ab anton');wipe(row,18.6+j*.8,.3,'left');}
- const cl=mk(D,`left:72px;top:960px;color:${P}`,'CLIENTES NUEVOS','ab mono');
- const big0=mk(D,`left:50px;top:990px;font-size:600px;color:${R}`,'0','ab anton');
- wipe(cl,21.5,.3,'left');
- on(t=>{const p=seg(t,21.6,21.75);big0.style.opacity=t<21.6?0:1;big0.style.transform=`translateY(${(1-E(p))*-80}px)`;});
+ statement(D,'Y tu web sigue ahí, / cobrando |hosting|, / sin traerte un / solo cliente.','L05',{color:C.fg,acc:C.sky,y:60,tOut:23.1});
+ const t0=Wt('L05:cobrando'),t1=Wt('L05:cliente.')-.3;
+ for(let j=0;j<4;j++){const row=mk(D,`left:72px;top:${560+j*86}px;width:936px;height:70px;border-bottom:1px solid rgba(223,229,255,.25);color:${C.fg}`);
+   mk(row,'left:0;top:22px',`MES 0${j+1}`,'ab mono');mk(row,'left:300px;top:22px','HOSTING','ab mono');
+   mk(row,`right:0;top:8px;font-size:52px;color:${C.sky}`,'−$','ab anton');wipe(row,t0+(t1-t0)*j/3,.3,'left');}
+ const tC=Wt('L05:cliente.');
+ const cl=mk(D,`left:72px;top:960px;color:${C.mut}`,'CLIENTES NUEVOS','ab mono');wipe(cl,tC-.2,.3,'left');
+ const big0=mk(D,`left:50px;top:1030px;font-size:560px;color:${C.sky}`,'0','ab anton ink');wipe(big0,tC,.25);
 }
 /* ===== 03 · LAS REGLAS ===== */
-{const ch=chapter(2);
- statement(ch,'Antes de pagar / por una web, / exige |tres cosas.|',L.L06.t,L.L06.d);
- const three=mk(ch,`left:430px;top:620px;font-size:1150px;color:${R}`,'3','ab anton');
- on(t=>{const p=k(t,24.3,.5);three.style.clipPath=`inset(${(1-p)*100}% 0 0 0)`;three.style.transform=`translateY(${(1-p)*120}px)`});
- ['01','02','03'].forEach((n,j)=>{const b=mk(ch,`left:72px;top:${700+j*130}px;width:300px;height:104px;border:2px solid ${N};border-radius:16px`);
-   mk(b,'left:24px;top:30px',`REGLA ${n}`,'ab mono');wipe(b,25.9+j*.08,.3,'left');});
- // rule panels
- function panel(t0,bg,fg){const p=mk(ch,`left:0;top:150px;width:1080px;height:1640px;background:${bg};color:${fg}`);wipe(p,t0,.5);return p}
- // R1
- {const p=panel(27.35,P,N);mk(p,'left:72px;top:40px','REGLA 01 / 03','ab mono');
-  const num=mk(p,`right:72px;top:20px;font-size:300px;color:${R}`,'01','ab anton');
-  statement(p,'Que cargue en / |menos de 3 seg.| / en el teléfono.',L.L07.t,L.L07.d,{y:330});
-  const tr=mk(p,`left:72px;top:880px;width:936px;height:120px;border-radius:20px;background:#fff`);
-  const fill=mk(tr,`left:0;top:0;height:120px;border-radius:20px;background:${N};width:0`);
-  const lim=mk(p,`left:${72+936*3/8}px;top:850px;width:0;height:180px;border-left:4px dashed ${R}`);
-  mk(p,`left:${72+936*3/8+14}px;top:1050px;color:${R}`,'LÍMITE · 3 S','ab mono');
-  [0,2,4,6,8].forEach(s=>mk(p,`left:${72+936*s/8-8}px;top:1010px;opacity:.5`,s+'s','ab mono'));
-  const val=mk(p,`left:72px;top:1140px;font-size:260px;color:${N}`,'0.0 S','ab anton');
-  const ok=mk(p,`left:640px;top:1200px;width:120px;height:120px;border-radius:50%;background:${R};display:flex;align-items:center;justify-content:center`,check(P,64));
-  on(t=>{const v=2.4*E(seg(t,28.4,29.4));fill.style.width=(936*v/8)+'px';val.textContent=v.toFixed(1)+' S';
-    const q=seg(t,29.45,29.6);ok.style.opacity=t<29.45?0:1;ok.style.transform=`scale(${lerp(1.5,1,E(q))})`;});}
- // R2 · red panel
- {const p=panel(30.95,R,N);mk(p,'left:72px;top:40px','REGLA 02 / 03','ab mono');
-  mk(p,`right:72px;top:20px;font-size:300px;color:${P}`,'02','ab anton');
-  statement(p,'Un botón de / |WhatsApp| a un / toque, en todas / las páginas.',L.L08.t,L.L08.d,{y:330,acc:P});
-  const btn=mk(p,`left:72px;top:850px;width:936px;height:150px;border-radius:75px;background:${N};color:${P};display:flex;align-items:center;gap:26px;padding-left:56px;box-sizing:border-box;font:800 50px IT;letter-spacing:-.02em`,bubble(P,64)+'Escríbenos por WhatsApp');
-  const rip=mk(p,`left:780px;top:925px;width:20px;height:20px;border-radius:50%;border:4px solid ${P};margin:-10px 0 0 -10px`);
-  on(t=>{const q=seg(t,33.0,33.5);rip.style.opacity=t<33||q>=1?0:1-q;rip.style.transform=`scale(${1+q*9})`;
-    btn.style.transform=`scale(${1-.035*Math.sin(Math.PI*seg(t,32.95,33.2))})`;});
-  ['INICIO','MENÚ','CONTACTO'].forEach((n,j)=>{const m=mk(p,`left:${72+j*318}px;top:1080px;width:300px;height:470px;border-radius:22px;background:${P};overflow:hidden`);
-    mk(m,`left:0;top:0;width:300px;height:150px;background:url(assets/panaderia.jpg) ${30*j}% center/cover`);
-    mk(m,`left:22px;top:176px;color:${N}`,n,'ab mono');
-    [0,1,2].forEach(r=>mk(m,`left:22px;top:${224+r*34}px;width:${220-r*40}px;height:16px;background:${N};opacity:.12`));
-    mk(m,`left:22px;top:380px;width:256px;height:62px;border-radius:31px;background:${N};display:flex;align-items:center;justify-content:center;color:${P};font:800 22px IT;gap:10px`,bubble(P,30)+'WhatsApp');
-    const st=34.1+j*.25;on(t=>{const q=k(t,st,.3);m.style.clipPath=`inset(${(1-q)*100}% 0 0 0)`});});}
- // R3 · navy panel, google echo
- {const p=panel(35.75,N,P);mk(p,'left:72px;top:40px','REGLA 03 / 03','ab mono');
-  mk(p,`right:72px;top:20px;font-size:300px;color:${R}`,'03','ab anton');
-  statement(p,'Que Google la / |encuentre| cuando / alguien busca / lo que vendes.',L.L09.t,L.L09.d,{y:330,color:P});
-  const sb=mk(p,`left:72px;top:900px;width:936px;height:110px;border-radius:55px;background:#fff;color:${N}`);
-  mk(sb,'left:36px;top:38px',search(N));const q=mk(sb,`left:96px;top:34px;font:500 36px IT;white-space:pre`,'');
-  const qt='panadería cerca de mí';on(t=>{const n=Math.round(qt.length*seg(t,36.6,37.7));q.textContent=qt.slice(0,n)+((t%0.5<.25&&t<38)?'|':' ')});
-  const row=mk(p,`left:72px;top:1060px;width:936px;height:200px;border-radius:24px;background:${P};color:${N};overflow:hidden`);
-  mk(row,`left:0;top:0;width:200px;height:200px;background:url(assets/panaderia.jpg) center/cover`);
-  mk(row,'left:236px;top:40px;font:800 46px IT;letter-spacing:-.02em','Panadería Aurora');
-  mk(row,'left:236px;top:106px;font-size:20px;opacity:.6','panaderiaaurora.com · 4,9 ★','ab mono');
-  mk(row,`left:236px;top:142px;padding:6px 14px;border-radius:30px;font-size:20px;background:${R};color:${P}`,'#1 · TU NEGOCIO','ab mono');
-  wipe(row,38.1,.4);
-  [1,2].forEach(j=>{const r=mk(p,`left:72px;top:${1100+j*180}px;width:936px;height:150px;border-radius:22px;border:2px solid rgba(238,242,234,.2)`);
-    mk(r,`left:36px;top:52px;font:800 36px IT;color:${P};opacity:.5`,j===1?'Dulce Horno':'Pan & Café Central');wipe(r,38.2+j*.08,.4);});}
- // R4 · contract
- {const p=panel(39.55,P,N);mk(p,'left:72px;top:40px','+ EXTRA','ab mono');
-  statement(p,'Y pide el precio / |por escrito|, antes / de empezar.',L.L10.t,L.L10.d,{y:330});
-  const doc=mk(p,`left:72px;top:820px;width:936px;height:720px;border-radius:24px;background:#fff`);
+{const {el:ch}=chapter(2);
+ statement(ch,'Antes de pagar / por una web, / exige |tres cosas.|','L06',{tOut:27.15});
+ const tT=Wt('L06:tres');
+ const three=mk(ch,`left:470px;top:640px;font-size:1080px;color:${C.bl}`,'3','ab anton ink');
+ on(t=>{const p=k(t,tT,.5);three.style.clipPath=`inset(${(1-p)*100}% 0 0 0)`;three.style.visibility=p<=0?'hidden':'visible'});
+ function panel(t0,bg,fg){const p=mk(ch,`left:0;top:150px;width:1080px;height:1640px;background:${bg};color:${fg};overflow:hidden;visibility:hidden`);p.dataset.layer=1;wipe(p,t0,.5);return p}
+ {const p=panel(27.35,C.cy,C.bg);mk(p,'left:72px;top:40px','REGLA 01 / 03','ab mono');
+  mk(p,`right:72px;top:24px;font-size:280px;color:${C.bl}`,'01','ab anton ink');
+  statement(p,'Que cargue en / |menos de 3 seg.| / en el teléfono.','L07',{y:330,tOut:30.72});
+  const tr=mk(p,`left:72px;top:880px;width:936px;height:120px;border-radius:20px;background:${C.fg};overflow:hidden`);
+  const fill=mk(tr,`left:0;top:0;width:936px;height:120px;background:${C.bg};transform-origin:0 0`);
+  mk(p,`left:${72+936*3/8}px;top:850px;width:0;height:180px;border-left:4px dashed ${C.bl}`);
+  mk(p,`left:${72+936*3/8+14}px;top:1060px;color:${C.bl}`,'LÍMITE · 3 S','ab mono');
+  mk(p,`left:72px;top:1020px;color:${C.mut}`,'0 S','ab mono');mk(p,`right:72px;top:1020px;color:${C.mut}`,'8 S','ab mono');
+  const valEl=mk(p,`left:72px;top:1160px;font-size:240px;color:${C.bg}`,'','ab anton ink');const val=counter(valEl);
+  const ok=mk(p,`left:820px;top:1210px;width:130px;height:130px;border-radius:50%;background:${C.bl};display:flex;align-items:center;justify-content:center;visibility:hidden`,check(C.fg,64));
+  const a=Wt('L07:menos'),b=Wt('L07:segundos')+.25,tOk=Wt('L07:telefono.');
+  on(t=>{const v=2.4*E(seg(t,a,b));fill.style.transform=`scaleX(${v/8})`;val(v.toFixed(1)+'S');
+    ok.style.visibility=t<tOk?'hidden':'visible';ok.style.transform=`scale(${lerp(1.4,1,E(seg(t,tOk,tOk+.12)))})`;});}
+ {const p=panel(30.95,C.bl,C.fg);mk(p,'left:72px;top:40px','REGLA 02 / 03','ab mono');
+  mk(p,`right:72px;top:24px;font-size:280px;color:${C.cy}`,'02','ab anton ink');
+  statement(p,'Un botón de / |WhatsApp| a un / toque, en todas / las páginas.','L08',{y:330,color:C.fg,acc:C.cy,tOut:35.5});
+  const btn=mk(p,`left:72px;top:850px;width:936px;height:150px;border-radius:75px;background:${C.bg};color:${C.fg};display:flex;align-items:center;gap:26px;padding-left:56px;font:800 50px IT;letter-spacing:-.02em;white-space:nowrap`,bubble(C.fg,64)+'Escríbenos por WhatsApp');
+  const rip=mk(p,`left:770px;top:915px;width:20px;height:20px;border-radius:50%;border:4px solid ${C.cy};visibility:hidden`);
+  const tTap=Wt('L08:toque,');
+  on(t=>{const q=seg(t,tTap,tTap+.5);rip.style.visibility=(t<tTap||q>=1)?'hidden':'visible';rip.style.opacity=1-q;rip.style.transform=`scale(${1+q*9})`;
+    btn.style.transform=`scale(${1-.03*Math.sin(Math.PI*seg(t,tTap-.05,tTap+.2))})`;});
+  const tAll=Wt('L08:todas');
+  ['INICIO','MENÚ','CONTACTO'].forEach((n,j)=>{const m=mk(p,`left:${72+j*318}px;top:1080px;width:300px;height:470px;border-radius:22px;background:${C.cy};overflow:hidden;visibility:hidden`);
+    photo(m,SHOP,0,0,300,150,`center ${20+30*j}%`);
+    mk(m,`left:22px;top:176px;color:${C.bg}`,n,'ab mono');
+    [0,1,2].forEach(r=>mk(m,`left:22px;top:${224+r*34}px;width:${220-r*40}px;height:16px;background:${C.bg};opacity:.12`));
+    mk(m,`left:22px;top:380px;width:256px;height:62px;border-radius:31px;background:${C.bg};display:flex;align-items:center;justify-content:center;color:${C.fg};font:800 22px IT;gap:10px`,bubble(C.fg,30)+'WhatsApp');
+    wipe(m,tAll+j*.25,.3);});}
+ {const p=panel(35.75,C.bg,C.fg);mk(p,'left:72px;top:40px','REGLA 03 / 03','ab mono');
+  mk(p,`right:72px;top:24px;font-size:280px;color:${C.sky}`,'03','ab anton ink');
+  statement(p,'Que Google la / |encuentre| cuando / alguien busca / lo que vendes.','L09',{y:330,color:C.fg,acc:C.sky,tOut:39.28});
+  searchBar(p,900,Wt('L09:Google'),'panadería cerca de mí');
+  const tF=Wt('L09:encuentre');
+  const row=mk(p,`left:72px;top:1060px;width:936px;height:200px;border-radius:24px;background:${C.cy};color:${C.bg};overflow:hidden`);
+  photo(row,SHOP,0,0,200,200,'center 35%');
+  mk(row,'left:236px;top:36px;font:800 46px/54px IT;letter-spacing:-.02em','Panadería Aurora');
+  mk(row,`left:236px;top:104px;font-size:20px;color:${C.bg};opacity:.65`,'panaderiaaurora.com · 4,9 ★','ab mono');
+  mk(row,`left:236px;top:142px;padding:6px 14px;border-radius:30px;font-size:20px;background:${C.bl};color:${C.fg}`,'#1 · TU NEGOCIO','ab mono');
+  wipe(row,tF,.4);
+  [1,2].forEach(j=>{const r=mk(p,`left:72px;top:${1100+j*180}px;width:936px;height:150px;border-radius:22px;border:2px solid rgba(223,229,255,.2);overflow:hidden`);
+    mk(r,`left:36px;top:50px;font:800 36px/44px IT;color:${C.mut}`,j===1?'Dulce Horno':'Pan & Café Central');wipe(r,tF+.1+j*.08,.4);});}
+ {const p=panel(39.55,C.cy,C.bg);mk(p,'left:72px;top:40px','+ EXTRA','ab mono');
+  statement(p,'Y pide el precio / |por escrito|, antes / de empezar.','L10',{y:330,tOut:42.2});
+  const doc=mk(p,`left:72px;top:820px;width:936px;height:720px;border-radius:24px;background:${C.fg};overflow:hidden`);
   mk(doc,'left:48px;top:44px','ACUERDO DE PROYECTO','ab mono');
-  mk(doc,`left:48px;top:84px;width:840px;height:2px;background:${N}`);
+  mk(doc,`left:48px;top:86px;width:840px;height:2px;background:${C.bg}`);
+  const tP=Wt('L10:precio');
   ['Precio total','Páginas incluidas','Revisiones incluidas','Fecha de entrega'].forEach((n,j)=>{
-    mk(doc,`left:48px;top:${130+j*120}px;font:800 44px IT;letter-spacing:-.02em`,n);
-    mk(doc,`left:48px;top:${226+j*120}px;width:840px;height:1px;background:${N};opacity:.15`);
-    const c=mk(doc,`right:48px;top:${132+j*120}px;width:64px;height:64px;border-radius:12px;background:${R};display:flex;align-items:center;justify-content:center`,check(P,44));
-    const st=40.2+j*.45;on(t=>{c.style.opacity=t<st?0:1;c.style.transform=`scale(${lerp(1.5,1,E(seg(t,st,st+.12)))})`;});});
+    mk(doc,`left:48px;top:${132+j*120}px;font:800 44px/56px IT;letter-spacing:-.02em`,n);
+    mk(doc,`left:48px;top:${226+j*120}px;width:840px;height:1px;background:${C.bg};opacity:.15`);
+    const c=mk(doc,`right:48px;top:${128+j*120}px;width:64px;height:64px;border-radius:12px;background:${C.bl};display:flex;align-items:center;justify-content:center;visibility:hidden`,check(C.fg,44));
+    const st=tP+j*.4;on(t=>{c.style.visibility=t<st?'hidden':'visible';c.style.transform=`scale(${lerp(1.4,1,E(seg(t,st,st+.12)))})`;});});
   wipe(doc,39.9,.45);}
 }
 /* ===== 04 · LA CONCLUSIÓN ===== */
-{const ch=chapter(3);
- statement(ch,'Tener web / no significa',L.L11.t,L.L11.d*.55,{y:560,size:150,color:P,spread:1});
- statement(ch,'|tener| / |clientes.|',44.5,.4,{y:900,size:230,color:P,spread:1});
+{const {el:ch}=chapter(3);
+ statement(ch,'Tener web / no significa','L11',{y:560,size:150,color:C.fg,tOut:46.0});
+ statement(ch,'|tener| / |clientes.|','L11',{y:920,size:210,color:C.fg,acc:C.sky,from:4,tOut:46.0});
 }
-/* ===== END CARD ===== */
-{const ch=chapter(4);
- const m1=mk(ch,`left:60px;top:250px;font-size:340px;color:${P}`,'MERIDIAN','ab anton');
- const m2=mk(ch,`left:60px;top:560px;font-size:340px;color:${N}`,'DIGITAL','ab anton');
- [m1,m2].forEach(m=>{m.style.transformOrigin='0 0';m.dataset.fit=Math.min(1,950/m.offsetWidth)});
- [m1,m2].forEach((m,j)=>on(t=>{const p=k(t,46.6+j*.12,.5);m.style.clipPath=`inset(${(1-p)*100}% 0 0 0)`;m.style.transform=`translateY(${(1-p)*140}px) scaleX(${m.dataset.fit})`;}));
- statement(ch,'Hacemos webs que / te traen |clientes.|',L.L12.t,2.6,{y:930,size:76,color:P,acc:N,spread:1});
- const btn=mk(ch,`left:72px;top:1230px;width:936px;height:150px;border-radius:75px;background:${N};color:${P};display:flex;align-items:center;gap:26px;padding-left:56px;box-sizing:border-box;font:800 50px IT;letter-spacing:-.02em`,bubble(P,64)+'+58 422 633 5576');
- wipe(btn,50.1,.4,'left');
- const cot=mk(ch,`left:72px;top:1420px;color:${P};font:800 64px IT;letter-spacing:-.03em`,'Cotiza en segundos →');
- wipe(cot,50.5,.4,'left');
- const plans=mk(ch,`left:72px;top:1560px;width:936px;color:${N};line-height:1.7`,'PRESENCIA DIGITAL · NEGOCIO ACTIVO<br>CATÁLOGO PRO · E-COMMERCE','ab mono');
- wipe(plans,51.2,.5,'left');
- // corner brackets snap on shutter
- const br=mk(ch,'left:40px;top:40px;width:1000px;height:1840px');
+/* ===== CIERRE (azul Meridian) ===== */
+{const {el:ch}=chapter(4);
+ const m1=mk(ch,`left:60px;top:230px;font-size:340px;color:${C.fg}`,'MERIDIAN','ab anton ink');
+ const m2=mk(ch,`left:60px;top:600px;font-size:340px;color:${C.sky}`,'DIGITAL','ab anton ink');
+ [m1,m2].forEach(m=>{const w=m.scrollWidth;if(w>956)m.style.fontSize=(340*956/w)+'px'});   // ajuste por tamaño, no por scaleX
+ [m1,m2].forEach((m,j)=>on(t=>{const p=k(t,46.6+j*.12,.5);m.style.clipPath=`inset(${(1-p)*100}% 0 0 0)`;}));
+ statement(ch,'Hacemos webs que / te traen |clientes.|','L12',{y:960,size:76,color:C.fg,acc:C.cy});
+ const btn=mk(ch,`left:72px;top:1230px;width:936px;height:150px;border-radius:75px;background:${C.bg};color:${C.fg};display:flex;align-items:center;gap:26px;padding-left:56px;font:800 50px IT;letter-spacing:-.02em;white-space:nowrap`,bubble(C.fg,64)+'+58 422 633 5576');
+ wipe(btn,Wt('L12:Escribenos'),.4,'left');
+ const cot=mk(ch,`left:72px;top:1420px;color:${C.fg};font:800 64px/76px IT;letter-spacing:-.03em;white-space:nowrap`,'Cotiza en segundos →');wipe(cot,Wt('L12:cotiza'),.4,'left');
+ const plans=mk(ch,`left:72px;top:1580px;color:${C.cy};line-height:1.7`,'PRESENCIA DIGITAL · NEGOCIO ACTIVO<br>CATÁLOGO PRO · E-COMMERCE','ab mono');wipe(plans,Wt('L12:segundos.')+.3,.5,'left');
+ const br=mk(ch,'left:40px;top:40px;width:1000px;height:1840px;visibility:hidden');
  [[0,0,'border-left','border-top'],[1,0,'border-right','border-top'],[0,1,'border-left','border-bottom'],[1,1,'border-right','border-bottom']].forEach(([x,y,a,b])=>
-   mk(br,`${x?'right':'left'}:0;${y?'bottom':'top'}:0;width:70px;height:70px;${a}:5px solid ${P};${b}:5px solid ${P}`));
- on(t=>{const q=seg(t,53.1,53.25);br.style.opacity=t<53.1?0:1;br.style.transform=`scale(${lerp(1.06,1,E(q))})`;});
+   mk(br,`${x?'right':'left'}:0;${y?'bottom':'top'}:0;width:70px;height:70px;${a}:5px solid ${C.cy};${b}:5px solid ${C.cy}`));
+ on(t=>{const q=seg(t,53.4,53.55);br.style.visibility=t<53.4?'hidden':'visible';br.style.transform=`scale(${lerp(1.04,1,E(q))})`;});
 }
+assertNoStacking();
 }
 window.render=t=>{for(const f of updaters)f(t)};
-</script>
-<script>
 (async()=>{
-  const tl=await (await fetch('timeline.json')).json();
-  window.TL_DATA=tl; window.DUR=tl.dur;
-  // rebind TL used by build()
+  TL=await (await fetch('timeline.json')).json();window.DUR=TL.dur;
   await Promise.all([['Anton',''],['IT','500'],['IT','800'],['IS','italic'],['JB','500']].map(([f,w])=>document.fonts.load(`${w==='italic'?'italic ':w+' '}40px ${f}`)));
-  await Promise.all(['assets/panaderia.jpg','assets/phone.jpg'].map(s=>new Promise(r=>{const i=new Image();i.onload=i.onerror=r;i.src=s})));
-  build(); window.render(0); window.READY=true;
+  build();
+  await Promise.all([...document.images].map(i=>i.decode().catch(()=>{})));
+  window.render(0);window.READY=true;
 })();
 </script>
 </body></html>
