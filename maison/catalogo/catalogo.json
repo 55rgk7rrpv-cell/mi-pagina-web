@@ -62,7 +62,7 @@
       "nombre": "Conjunto top corto y falda sirena con lunares",
       "categoria": "Conjuntos",
       "precio_usd": 45,
-      "imagen_principal": "catalogo/conjunto-top-falda-sirena__azul-marino-ia.webp",
+      "imagen_principal": "catalogo/conjunto-top-falda-sirena__azul-marino-sola.webp",
       "imagenes_secundarias": [
         "catalogo/conjunto-top-falda-sirena__azul-marino.webp"
       ],
@@ -74,7 +74,7 @@
             "M"
           ],
           "foto": "b6999bf0-image.jpg",
-          "foto_web": "catalogo/conjunto-top-falda-sirena__azul-marino-ia.webp",
+          "foto_web": "catalogo/conjunto-top-falda-sirena__azul-marino-sola.webp",
           "con_modelo": false
         }
       ],
@@ -111,8 +111,8 @@
       "imagen_principal": "catalogo/vestido-largo-un-hombro__amarillo-claro-sola.webp",
       "imagenes_secundarias": [
         "catalogo/vestido-largo-un-hombro__negro-sola.webp",
-        "catalogo/vestido-largo-un-hombro__negro.webp",
-        "catalogo/vestido-largo-un-hombro__amarillo-claro.webp"
+        "catalogo/vestido-largo-un-hombro__amarillo-claro.webp",
+        "catalogo/vestido-largo-un-hombro__negro.webp"
       ],
       "variantes": [
         {
@@ -145,8 +145,8 @@
       "imagenes_secundarias": [
         "catalogo/vestido-halter-lunares-escote__negro-sola.webp",
         "catalogo/vestido-halter-lunares-escote__crema-sola.webp",
-        "catalogo/vestido-halter-lunares-escote__negro.webp",
         "catalogo/vestido-halter-lunares-escote__vinotinto.webp",
+        "catalogo/vestido-halter-lunares-escote__negro.webp",
         "catalogo/vestido-halter-lunares-escote__crema.webp"
       ],
       "variantes": [
@@ -394,8 +394,8 @@
     },
     {
       "id": "falda-saten-encaje",
-      "nombre": "Falda de satén con encaje",
-      "categoria": "Faldas",
+      "nombre": "Conjunto de satén con encaje",
+      "categoria": "Conjuntos",
       "precio_usd": 30,
       "imagen_principal": "catalogo/falda-saten-encaje__negro-sola.webp",
       "imagenes_secundarias": [
@@ -423,7 +423,7 @@
       "imagen_principal": "catalogo/top-saten-cruzado__marron-sola.webp",
       "imagenes_secundarias": [
         "catalogo/top-saten-cruzado__champana-sola.webp",
-        "catalogo/top-saten-cruzado__negro.webp"
+        "catalogo/top-saten-cruzado__negro-sola.webp"
       ],
       "variantes": [
         {
@@ -453,7 +453,7 @@
           ],
           "foto": "e3a7e40b-image.jpg",
           "recorte": "panel inferior",
-          "foto_web": "catalogo/top-saten-cruzado__negro.webp",
+          "foto_web": "catalogo/top-saten-cruzado__negro-sola.webp",
           "con_modelo": false
         }
       ],
@@ -501,9 +501,9 @@
       "imagen_principal": "catalogo/top-saten-lazo__rojo-sola.webp",
       "imagenes_secundarias": [
         "catalogo/top-saten-lazo__amarillo-sola.webp",
-        "catalogo/top-saten-lazo__verde.webp",
+        "catalogo/top-saten-lazo__verde-sola.webp",
         "catalogo/top-saten-lazo__marron-sola.webp",
-        "catalogo/top-saten-lazo__champana.webp"
+        "catalogo/top-saten-lazo__champana-sola.webp"
       ],
       "variantes": [
         {
@@ -533,7 +533,7 @@
           ],
           "foto": "b5dc6738-image.jpg",
           "recorte": "fila 2, panel 1",
-          "foto_web": "catalogo/top-saten-lazo__verde.webp",
+          "foto_web": "catalogo/top-saten-lazo__verde-sola.webp",
           "con_modelo": false
         },
         {
@@ -553,7 +553,7 @@
           ],
           "foto": "b5dc6738-image.jpg",
           "recorte": "fila 1, panel 2",
-          "foto_web": "catalogo/top-saten-lazo__champana.webp",
+          "foto_web": "catalogo/top-saten-lazo__champana-sola.webp",
           "con_modelo": false
         }
       ],
@@ -989,9 +989,9 @@
       "nombre": "Cinturón elegante con hebilla dorada",
       "categoria": "Accesorios",
       "precio_usd": 13,
-      "imagen_principal": "catalogo/cinturon-elegante__marron.webp",
+      "imagen_principal": "catalogo/cinturon-elegante__marron-sola.webp",
       "imagenes_secundarias": [
-        "catalogo/cinturon-elegante__negro.webp"
+        "catalogo/cinturon-elegante__negro-sola.webp"
       ],
       "variantes": [
         {
@@ -1001,7 +1001,7 @@
           ],
           "foto": "59538a0a-image.jpg",
           "recorte": "cinturón de arriba",
-          "foto_web": "catalogo/cinturon-elegante__marron.webp",
+          "foto_web": "catalogo/cinturon-elegante__marron-sola.webp",
           "con_modelo": false
         },
         {
@@ -1011,7 +1011,7 @@
           ],
           "foto": "59538a0a-image.jpg",
           "recorte": "cinturón de abajo",
-          "foto_web": "catalogo/cinturon-elegante__negro.webp",
+          "foto_web": "catalogo/cinturon-elegante__negro-sola.webp",
           "con_modelo": false
         }
       ],

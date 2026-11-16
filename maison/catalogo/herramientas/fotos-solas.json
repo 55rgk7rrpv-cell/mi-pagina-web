@@ -79,5 +79,27 @@
  "top-saten-cuello-alto__vinotinto": "787d7445-image.jpg",
  "top-saten-lazo__marron": "9f4ede4e-image.jpg",
  "top-saten-cruzado__champana": "35e90b91-image.jpg",
- "top-saten-lazo__amarillo": "36323502-image.jpg"
+ "top-saten-lazo__amarillo": "36323502-image.jpg",
+ "top-saten-cruzado__negro": "1cf6afa8-image.jpg",
+ "top-saten-lazo__champana": "758ceca3-image.jpg",
+ "top-saten-lazo__verde": "c661ce01-image.jpg",
+ "cinturon-elegante__marron": {
+  "file": "211b3c5a-image.jpg",
+  "crop": [
+   0,
+   0,
+   896,
+   561
+  ]
+ },
+ "cinturon-elegante__negro": {
+  "file": "211b3c5a-image.jpg",
+  "crop": [
+   0,
+   561,
+   896,
+   1200
+  ]
+ },
+ "conjunto-top-falda-sirena__azul-marino": "922c6721-image.jpg"
 }

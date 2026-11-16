@@ -51,10 +51,10 @@ Tienda de ropa femenina de Puerto Ordaz (Instagram @otrapintapzo). Next.js + Tai
 - Pegar `framer-motion` y `motion-dom` en la misma versión (12.42.2): si no, no compila.
 
 ## Pendiente
-- Fotos que faltan (fondo blanco, prenda sola): top satén cruzado **negro**; top satén con lazo **verde** y **champaña**; cinturón elegante **marrón** y **negro** (hoy tienen foto vieja sobre mármol/piso). Única imagen de IA: conjunto top y falda sirena azul marino.
+- **Todas las portadas y colores tienen foto de prenda sola real** (36/36, sin imágenes de IA). No faltan fotos.
 - Foto negra de top de cuello alto (captura con barras negras, guardada en `maison/catalogo/fotos-sin-asignar/`): no hay color negro de ese top en el catálogo; preguntar a la dueña si es un color nuevo (y con qué talla) antes de agregarlo.
-- Fotos con fondo gris claro de origen (se dejan, regla de no quitar fondos): vestido strapless de encaje (portada), top lazo rojo y marrón, top cruzado champaña, top cuello alto marrón.
-- Falda de satén con encaje: la foto se ve con el top (vendido aparte); hay nota en la vista rápida. Pedir foto de la falda sola.
+- Fotos con fondo gris claro de origen (se dejan, regla de no quitar fondos): vestido strapless de encaje (portada), top lazo rojo, marrón y champaña, top cruzado champaña y negro, top cuello alto marrón.
+- "Conjunto de satén con encaje" (id `falda-saten-encaje`, categoría Conjuntos): se vende junto (top + falda) como en la foto; no tocar su foto. Su precio sigue en $30 (el de la falda): confirmar con la dueña si el conjunto cuesta otro. Aparte existe "Top de encaje tipo corsé" ($20).
 - Falta el WhatsApp de la tienda (`WHATSAPP` en `tienda.ts`); sin él solo aparece el botón de Instagram.
 - Confirmar con la dueña: color "Rojo" del vestido halter suelto (se ve vinotinto) y que el top de encaje corsé es la misma prenda; la cédula está como V-.
 

@@ -36,13 +36,13 @@ EXTRA={"vestido-floral-manga-globo":["blanco-floral-2"],"vestido-largo-halter-pl
  "conjunto-chaleco-short":["amarillo","crema-lunares"],"cinturon-cadena-corazones":["dorado-modelo"]}
 # Garment-only images generated with AI (Canva) from the real model photo. They become the colour's photo;
 # the real photo stays in the gallery. The page marks them as illustrative.
-GENERATED={"conjunto-top-falda-sirena__azul-marino"}
+GENERATED=set()   # no AI renders left: every colour now has a real garment-only photo
 # Real garment-only photos sent later by the shop (catalogo/fotos-solas-originales, copied by fotos-solas.py).
 # They become the colour's photo. The older photo stays in the gallery only if it shows the garment worn;
 # an older garment-only shot of the same piece (hanger, floor, low resolution) is replaced.
 SOLAS=set(json.load(open("catalogo/herramientas/fotos-solas.json")))
 # A note shown over the photo in the quick view, for photos that need an explanation.
-NOTAS={"falda-saten-encaje__negro":"En la foto se ve con el top de encaje, que se vende por separado"}
+NOTAS={}
 # Photos that show only the garment: no person, not even a hand. Everything else counts as "with model".
 GARMENT_ONLY={
  "vestido-strapless-encaje-rosa__vinotinto","falda-volantes-bicolor__negro-blanco","chaqueta-capucha-lunares__rosa",
@@ -77,7 +77,7 @@ DESC={
  "falda-volantes-bicolor":"Falda corta negra con volantes blancos en capas. Contraste puro.",
  "chaqueta-capucha-lunares":"Chaqueta ligera con capucha, cierre y puños elásticos, en lunares.",
  "top-encaje-corse":"Top tipo corsé de encaje con copas, tirantes finos y abertura al centro.",
- "falda-saten-encaje":"Falda midi de satén con ruedo en picos de encaje. En la foto se ve con el top de encaje tipo corsé, que se vende por separado.",
+ "falda-saten-encaje":"Conjunto de top de encaje tipo corsé y falda midi de satén con ruedo en picos de encaje. Se vende junto, como en la foto.",
  "top-saten-cruzado":"Top de satén con cuello halter cruzado y ruedo asimétrico de encaje.",
  "top-saten-cuello-alto":"Top de satén con cuello alto, sin mangas y ruedo asimétrico de encaje.",
  "top-saten-lazo":"Top de satén que se amarra al cuello con lazo, con ruedo de encaje. Cinco colores para elegir.",

@@ -21,13 +21,13 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   890,
   1019
  ],
- "catalogo/cinturon-elegante__marron.webp": [
-  899,
-  507
+ "catalogo/cinturon-elegante__marron-sola.webp": [
+  844,
+  391
  ],
- "catalogo/cinturon-elegante__negro.webp": [
-  899,
-  486
+ "catalogo/cinturon-elegante__negro-sola.webp": [
+  860,
+  422
  ],
  "catalogo/conjunto-chaleco-short__amarillo-plano-sola.webp": [
   616,
@@ -45,9 +45,9 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   286,
   658
  ],
- "catalogo/conjunto-top-falda-sirena__azul-marino-ia.webp": [
-  1080,
-  1080
+ "catalogo/conjunto-top-falda-sirena__azul-marino-sola.webp": [
+  413,
+  1121
  ],
  "catalogo/conjunto-top-falda-sirena__azul-marino.webp": [
   381,
@@ -121,9 +121,9 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   634,
   1170
  ],
- "catalogo/top-saten-cruzado__negro.webp": [
-  364,
-  508
+ "catalogo/top-saten-cruzado__negro-sola.webp": [
+  759,
+  1155
  ],
  "catalogo/top-saten-cuello-alto__marron-sola.webp": [
   519,
@@ -137,9 +137,9 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   564,
   1129
  ],
- "catalogo/top-saten-lazo__champana.webp": [
-  276,
-  362
+ "catalogo/top-saten-lazo__champana-sola.webp": [
+  861,
+  1149
  ],
  "catalogo/top-saten-lazo__marron-sola.webp": [
   548,
@@ -149,9 +149,9 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   555,
   1096
  ],
- "catalogo/top-saten-lazo__verde.webp": [
-  280,
-  345
+ "catalogo/top-saten-lazo__verde-sola.webp": [
+  656,
+  1066
  ],
  "catalogo/top-tul-volantes__negro-sola.webp": [
   415,
@@ -405,13 +405,13 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   769,
   880
  ],
- "catalogo/m/cinturon-elegante__marron.webp": [
-  880,
-  496
+ "catalogo/m/cinturon-elegante__marron-sola.webp": [
+  844,
+  391
  ],
- "catalogo/m/cinturon-elegante__negro.webp": [
-  880,
-  476
+ "catalogo/m/cinturon-elegante__negro-sola.webp": [
+  860,
+  422
  ],
  "catalogo/m/conjunto-chaleco-short__amarillo-plano-sola.webp": [
   528,
@@ -429,8 +429,8 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   286,
   658
  ],
- "catalogo/m/conjunto-top-falda-sirena__azul-marino-ia.webp": [
-  880,
+ "catalogo/m/conjunto-top-falda-sirena__azul-marino-sola.webp": [
+  324,
   880
  ],
  "catalogo/m/conjunto-top-falda-sirena__azul-marino.webp": [
@@ -505,9 +505,9 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   477,
   880
  ],
- "catalogo/m/top-saten-cruzado__negro.webp": [
-  364,
-  508
+ "catalogo/m/top-saten-cruzado__negro-sola.webp": [
+  578,
+  880
  ],
  "catalogo/m/top-saten-cuello-alto__marron-sola.webp": [
   433,
@@ -521,9 +521,9 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   440,
   880
  ],
- "catalogo/m/top-saten-lazo__champana.webp": [
-  276,
-  362
+ "catalogo/m/top-saten-lazo__champana-sola.webp": [
+  659,
+  880
  ],
  "catalogo/m/top-saten-lazo__marron-sola.webp": [
   452,
@@ -533,9 +533,9 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   446,
   880
  ],
- "catalogo/m/top-saten-lazo__verde.webp": [
-  280,
-  345
+ "catalogo/m/top-saten-lazo__verde-sola.webp": [
+  542,
+  880
  ],
  "catalogo/m/top-tul-volantes__negro-sola.webp": [
   344,

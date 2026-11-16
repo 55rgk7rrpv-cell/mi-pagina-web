@@ -124,14 +124,14 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Azul marino con lunares",
-        "hex": "#193750",
+        "hex": "#052339",
         "sizes": [
           "S",
           "M"
         ],
-        "image": "catalogo/conjunto-top-falda-sirena__azul-marino-ia.webp",
+        "image": "catalogo/conjunto-top-falda-sirena__azul-marino-sola.webp",
         "withModel": false,
-        "aiGenerated": true,
+        "aiGenerated": false,
         "note": null
       }
     ],
@@ -207,11 +207,11 @@ export const PRODUCTS: Product[] = [
     ],
     "gallery": [
       {
-        "src": "catalogo/vestido-largo-un-hombro__negro.webp",
+        "src": "catalogo/vestido-largo-un-hombro__amarillo-claro.webp",
         "withModel": true
       },
       {
-        "src": "catalogo/vestido-largo-un-hombro__amarillo-claro.webp",
+        "src": "catalogo/vestido-largo-un-hombro__negro.webp",
         "withModel": true
       }
     ],
@@ -263,11 +263,11 @@ export const PRODUCTS: Product[] = [
     ],
     "gallery": [
       {
-        "src": "catalogo/vestido-halter-lunares-escote__negro.webp",
+        "src": "catalogo/vestido-halter-lunares-escote__vinotinto.webp",
         "withModel": true
       },
       {
-        "src": "catalogo/vestido-halter-lunares-escote__vinotinto.webp",
+        "src": "catalogo/vestido-halter-lunares-escote__negro.webp",
         "withModel": true
       },
       {
@@ -550,10 +550,10 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "falda-saten-encaje",
-    "name": "Falda de satén con encaje",
-    "category": "Faldas",
+    "name": "Conjunto de satén con encaje",
+    "category": "Conjuntos",
     "price": 30,
-    "description": "Falda midi de satén con ruedo en picos de encaje. En la foto se ve con el top de encaje tipo corsé, que se vende por separado.",
+    "description": "Conjunto de top de encaje tipo corsé y falda midi de satén con ruedo en picos de encaje. Se vende junto, como en la foto.",
     "colors": [
       {
         "name": "Negro",
@@ -565,7 +565,7 @@ export const PRODUCTS: Product[] = [
         "image": "catalogo/falda-saten-encaje__negro-sola.webp",
         "withModel": false,
         "aiGenerated": false,
-        "note": "En la foto se ve con el top de encaje, que se vende por separado"
+        "note": null
       }
     ],
     "gallery": [
@@ -609,11 +609,11 @@ export const PRODUCTS: Product[] = [
       },
       {
         "name": "Negro",
-        "hex": "#101111",
+        "hex": "#1D1D1A",
         "sizes": [
           "XS"
         ],
-        "image": "catalogo/top-saten-cruzado__negro.webp",
+        "image": "catalogo/top-saten-cruzado__negro-sola.webp",
         "withModel": false,
         "aiGenerated": false,
         "note": null
@@ -690,11 +690,11 @@ export const PRODUCTS: Product[] = [
       },
       {
         "name": "Verde",
-        "hex": "#0C2E1E",
+        "hex": "#082F1F",
         "sizes": [
           "M"
         ],
-        "image": "catalogo/top-saten-lazo__verde.webp",
+        "image": "catalogo/top-saten-lazo__verde-sola.webp",
         "withModel": false,
         "aiGenerated": false,
         "note": null
@@ -712,11 +712,11 @@ export const PRODUCTS: Product[] = [
       },
       {
         "name": "Champaña",
-        "hex": "#E3D5C5",
+        "hex": "#EBE0D3",
         "sizes": [
           "XS"
         ],
-        "image": "catalogo/top-saten-lazo__champana.webp",
+        "image": "catalogo/top-saten-lazo__champana-sola.webp",
         "withModel": false,
         "aiGenerated": false,
         "note": null
@@ -1292,22 +1292,22 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Marrón",
-        "hex": "#523328",
+        "hex": "#432F23",
         "sizes": [
           "Única"
         ],
-        "image": "catalogo/cinturon-elegante__marron.webp",
+        "image": "catalogo/cinturon-elegante__marron-sola.webp",
         "withModel": false,
         "aiGenerated": false,
         "note": null
       },
       {
         "name": "Negro",
-        "hex": "#24211C",
+        "hex": "#22221B",
         "sizes": [
           "Única"
         ],
-        "image": "catalogo/cinturon-elegante__negro.webp",
+        "image": "catalogo/cinturon-elegante__negro-sola.webp",
         "withModel": false,
         "aiGenerated": false,
         "note": null
