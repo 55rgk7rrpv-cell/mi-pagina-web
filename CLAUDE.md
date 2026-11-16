@@ -54,7 +54,7 @@ Tienda de ropa femenina de Puerto Ordaz (Instagram @otrapintapzo). Next.js + Tai
 ## Pendiente
 - **Todas las portadas y colores tienen foto de prenda sola real** (36/36, sin imágenes de IA). No faltan fotos.
 - Foto negra de top de cuello alto (captura con barras negras, guardada en `maison/catalogo/fotos-sin-asignar/`): no hay color negro de ese top en el catálogo; preguntar a la dueña si es un color nuevo (y con qué talla) antes de agregarlo.
-- Fotos con fondo gris claro de origen: top lazo rojo, marrón y champaña, top cruzado champaña y negro, top cuello alto marrón. Se pueden pasar a fondo blanco con `"whiten": true` en `fotos-solas.json` (solo pinta de blanco los píxeles de fondo; ya aplicado al vestido strapless). Hacerlo solo si la dueña lo aprueba (ella pidió no quitar fondos).
+- Fondo gris blanqueado (con aprobación de la dueña, 2º pedido) en 8 fotos. Solo queda gris el top cruzado champaña: pedirle una foto con fondo blanco.
 - "Conjunto de satén con encaje" (id `falda-saten-encaje`, categoría Conjuntos): se vende junto (top + falda) como en la foto; no tocar su foto. Su precio sigue en $30 (el de la falda): confirmar con la dueña si el conjunto cuesta otro. Aparte existe "Top de encaje tipo corsé" ($20).
 - Confirmar con la dueña: color "Rojo" del vestido halter suelto (se ve vinotinto) y que el top de encaje corsé es la misma prenda; la cédula está como V-.
 
