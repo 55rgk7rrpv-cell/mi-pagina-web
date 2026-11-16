@@ -382,7 +382,7 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   859
  ],
  "catalogo/vestido-strapless-encaje-rosa__vinotinto-sola.webp": [
-  619,
+  618,
   1146
  ],
  "catalogo/m/chaqueta-capucha-lunares__amarillo-sola.webp": [

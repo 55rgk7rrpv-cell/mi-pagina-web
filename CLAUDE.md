@@ -25,7 +25,7 @@ Tienda de ropa femenina de Puerto Ordaz (Instagram @otrapintapzo). Next.js + Tai
 - Medir rendimiento: `maison/scripts/bench/` (`scroll.js` scroll con CPU 4x más lento; `frames.js` encuadre en 6 pantallas; `trace.js` qué dispara estilos/layout). Necesitan `npx -y serve out -l 3217` y `node` con playwright (ya instalado).
 
 ## Reglas de fotos (de la dueña)
-- Integridad primero: **no quitar fondos, no borrar personas con código, no deformar**. Solo se recorta el margen blanco y los paneles de collage.
+- Integridad primero: **no quitar fondos, no borrar personas con código, no deformar**. Solo se recorta el margen blanco y los paneles de collage. Excepción aprobada por ella: aclarar a blanco un fondo gris liso con `whiten` (vestido strapless).
 - Portada de cada producto = foto de la **prenda sola**; entre colores, el más vivo primero (saturación·√brillo). Fotos con modelo solo en la galería de la vista rápida.
 - Si un producto solo tiene foto con modelo: **avisarle**, no inventar. Render de IA solo si ella lo pide, marcado "Imagen ilustrativa".
 - El encuadre es por CSS (`object-contain` en marco cuadrado blanco, `inset-[7%]`). No cambiar a otro aspecto sin consultar.
@@ -53,7 +53,7 @@ Tienda de ropa femenina de Puerto Ordaz (Instagram @otrapintapzo). Next.js + Tai
 ## Pendiente
 - **Todas las portadas y colores tienen foto de prenda sola real** (36/36, sin imágenes de IA). No faltan fotos.
 - Foto negra de top de cuello alto (captura con barras negras, guardada en `maison/catalogo/fotos-sin-asignar/`): no hay color negro de ese top en el catálogo; preguntar a la dueña si es un color nuevo (y con qué talla) antes de agregarlo.
-- Fotos con fondo gris claro de origen (se dejan, regla de no quitar fondos): vestido strapless de encaje (portada), top lazo rojo, marrón y champaña, top cruzado champaña y negro, top cuello alto marrón.
+- Fotos con fondo gris claro de origen: top lazo rojo, marrón y champaña, top cruzado champaña y negro, top cuello alto marrón. Se pueden pasar a fondo blanco con `"whiten": true` en `fotos-solas.json` (solo pinta de blanco los píxeles de fondo; ya aplicado al vestido strapless). Hacerlo solo si la dueña lo aprueba (ella pidió no quitar fondos).
 - "Conjunto de satén con encaje" (id `falda-saten-encaje`, categoría Conjuntos): se vende junto (top + falda) como en la foto; no tocar su foto. Su precio sigue en $30 (el de la falda): confirmar con la dueña si el conjunto cuesta otro. Aparte existe "Top de encaje tipo corsé" ($20).
 - Falta el WhatsApp de la tienda (`WHATSAPP` en `tienda.ts`); sin él solo aparece el botón de Instagram.
 - Confirmar con la dueña: color "Rojo" del vestido halter suelto (se ve vinotinto) y que el top de encaje corsé es la misma prenda; la cédula está como V-.

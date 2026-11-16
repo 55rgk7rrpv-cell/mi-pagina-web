@@ -43,6 +43,18 @@ def trim_box(rgb):
     h, w = mask.shape
     return max(0, x0 - pad), max(0, y0 - pad), min(w, x1 + pad), min(h, y1 + pad)
 
+# --- WHITEN (opt-in per photo, "whiten": true in fotos-solas.json) -------------------------------------------
+# For photos whose flat grey backdrop shows as a box on the white card: backdrop-coloured pixels fade to white.
+# Pixels within W_LOW of the backdrop colour become white, pixels farther than W_HIGH than it are left exactly as they are,
+# and the ones in between are blended, so the garment's edges stay smooth. Garment pixels are never changed.
+W_LOW, W_HIGH = 9, 30
+def whiten_backdrop(rgb):
+    bg = background_color(rgb).astype(np.float32)
+    d = np.abs(rgb.astype(np.float32) - bg).max(axis=2)
+    w = np.clip((W_HIGH - d) / (W_HIGH - W_LOW), 0, 1)[..., None]
+    w = w * w * (3 - 2 * w)                      # smoothstep
+    return np.rint(rgb * (1 - w) + 255 * w).astype(np.uint8)
+
 report = []
 for key, src in SOLAS.items():
     spec = src if isinstance(src, dict) else {"file": src}
@@ -54,6 +66,8 @@ for key, src in SOLAS.items():
         a = cv2.inpaint(a, m, 9, cv2.INPAINT_TELEA)
     if "crop" in spec:
         x0, y0, x1, y1 = spec["crop"]; a = a[y0:y1, x0:x1]
+    if spec.get("whiten"):
+        a = whiten_backdrop(a)
     full = a.shape[1] * a.shape[0]
     if spec.get("trim", True):
         box = trim_box(a)
