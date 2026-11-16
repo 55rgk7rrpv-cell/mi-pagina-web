@@ -108,12 +108,22 @@
       "nombre": "Vestido largo de un hombro fruncido",
       "categoria": "Vestidos",
       "precio_usd": 45,
-      "imagen_principal": "catalogo/vestido-largo-un-hombro__negro-sola.webp",
+      "imagen_principal": "catalogo/vestido-largo-un-hombro__amarillo-claro-sola.webp",
       "imagenes_secundarias": [
-        "catalogo/vestido-largo-un-hombro__amarillo-claro.webp",
-        "catalogo/vestido-largo-un-hombro__negro.webp"
+        "catalogo/vestido-largo-un-hombro__negro-sola.webp",
+        "catalogo/vestido-largo-un-hombro__negro.webp",
+        "catalogo/vestido-largo-un-hombro__amarillo-claro.webp"
       ],
       "variantes": [
+        {
+          "color": "Amarillo claro",
+          "tallas": [
+            "S"
+          ],
+          "foto": "e2acbed6-image.jpg",
+          "foto_web": "catalogo/vestido-largo-un-hombro__amarillo-claro-sola.webp",
+          "con_modelo": false
+        },
         {
           "color": "Negro",
           "tallas": [
@@ -122,15 +132,6 @@
           "foto": "01796384-image.jpg",
           "foto_web": "catalogo/vestido-largo-un-hombro__negro-sola.webp",
           "con_modelo": false
-        },
-        {
-          "color": "Amarillo claro",
-          "tallas": [
-            "S"
-          ],
-          "foto": "e2acbed6-image.jpg",
-          "foto_web": "catalogo/vestido-largo-un-hombro__amarillo-claro.webp",
-          "con_modelo": true
         }
       ],
       "portada_con_modelo": false
@@ -140,13 +141,25 @@
       "nombre": "Vestido halter con lunares y escote profundo",
       "categoria": "Vestidos",
       "precio_usd": 28,
-      "imagen_principal": "catalogo/vestido-halter-lunares-escote__negro-sola.webp",
+      "imagen_principal": "catalogo/vestido-halter-lunares-escote__vinotinto-sola.webp",
       "imagenes_secundarias": [
+        "catalogo/vestido-halter-lunares-escote__negro-sola.webp",
+        "catalogo/vestido-halter-lunares-escote__crema-sola.webp",
+        "catalogo/vestido-halter-lunares-escote__negro.webp",
         "catalogo/vestido-halter-lunares-escote__vinotinto.webp",
-        "catalogo/vestido-halter-lunares-escote__crema.webp",
-        "catalogo/vestido-halter-lunares-escote__negro.webp"
+        "catalogo/vestido-halter-lunares-escote__crema.webp"
       ],
       "variantes": [
+        {
+          "color": "Vinotinto con lunares",
+          "tallas": [
+            "S"
+          ],
+          "foto": "882b7294-image.jpg",
+          "recorte": "panel izquierdo",
+          "foto_web": "catalogo/vestido-halter-lunares-escote__vinotinto-sola.webp",
+          "con_modelo": false
+        },
         {
           "color": "Negro con lunares",
           "tallas": [
@@ -158,24 +171,14 @@
           "con_modelo": false
         },
         {
-          "color": "Vinotinto con lunares",
-          "tallas": [
-            "S"
-          ],
-          "foto": "882b7294-image.jpg",
-          "recorte": "panel izquierdo",
-          "foto_web": "catalogo/vestido-halter-lunares-escote__vinotinto.webp",
-          "con_modelo": true
-        },
-        {
           "color": "Crema con lunares",
           "tallas": [
             "M"
           ],
           "foto": "882b7294-image.jpg",
           "recorte": "panel derecho",
-          "foto_web": "catalogo/vestido-halter-lunares-escote__crema.webp",
-          "con_modelo": true
+          "foto_web": "catalogo/vestido-halter-lunares-escote__crema-sola.webp",
+          "con_modelo": false
         }
       ],
       "portada_con_modelo": false
@@ -417,9 +420,9 @@
       "nombre": "Top de satén halter cruzado con encaje",
       "categoria": "Tops",
       "precio_usd": 18,
-      "imagen_principal": "catalogo/top-saten-cruzado__marron.webp",
+      "imagen_principal": "catalogo/top-saten-cruzado__marron-sola.webp",
       "imagenes_secundarias": [
-        "catalogo/top-saten-cruzado__champana.webp",
+        "catalogo/top-saten-cruzado__champana-sola.webp",
         "catalogo/top-saten-cruzado__negro.webp"
       ],
       "variantes": [
@@ -430,7 +433,7 @@
           ],
           "foto": "e3a7e40b-image.jpg",
           "recorte": "panel superior derecho",
-          "foto_web": "catalogo/top-saten-cruzado__marron.webp",
+          "foto_web": "catalogo/top-saten-cruzado__marron-sola.webp",
           "con_modelo": false
         },
         {
@@ -440,7 +443,7 @@
           ],
           "foto": "e3a7e40b-image.jpg",
           "recorte": "panel superior izquierdo",
-          "foto_web": "catalogo/top-saten-cruzado__champana.webp",
+          "foto_web": "catalogo/top-saten-cruzado__champana-sola.webp",
           "con_modelo": false
         },
         {
@@ -461,9 +464,9 @@
       "nombre": "Top de satén cuello alto con encaje",
       "categoria": "Tops",
       "precio_usd": 18,
-      "imagen_principal": "catalogo/top-saten-cuello-alto__vinotinto.webp",
+      "imagen_principal": "catalogo/top-saten-cuello-alto__vinotinto-sola.webp",
       "imagenes_secundarias": [
-        "catalogo/top-saten-cuello-alto__marron.webp"
+        "catalogo/top-saten-cuello-alto__marron-sola.webp"
       ],
       "variantes": [
         {
@@ -473,7 +476,7 @@
           ],
           "foto": "0d218c7e-image.jpg",
           "recorte": "panel derecho",
-          "foto_web": "catalogo/top-saten-cuello-alto__vinotinto.webp",
+          "foto_web": "catalogo/top-saten-cuello-alto__vinotinto-sola.webp",
           "con_modelo": false
         },
         {
@@ -483,7 +486,7 @@
           ],
           "foto": "0d218c7e-image.jpg",
           "recorte": "panel izquierdo",
-          "foto_web": "catalogo/top-saten-cuello-alto__marron.webp",
+          "foto_web": "catalogo/top-saten-cuello-alto__marron-sola.webp",
           "con_modelo": false
         }
       ],
@@ -495,11 +498,11 @@
       "nombre": "Top de satén con lazo al cuello y encaje",
       "categoria": "Tops",
       "precio_usd": 18,
-      "imagen_principal": "catalogo/top-saten-lazo__rojo.webp",
+      "imagen_principal": "catalogo/top-saten-lazo__rojo-sola.webp",
       "imagenes_secundarias": [
-        "catalogo/top-saten-lazo__amarillo.webp",
+        "catalogo/top-saten-lazo__amarillo-sola.webp",
         "catalogo/top-saten-lazo__verde.webp",
-        "catalogo/top-saten-lazo__marron.webp",
+        "catalogo/top-saten-lazo__marron-sola.webp",
         "catalogo/top-saten-lazo__champana.webp"
       ],
       "variantes": [
@@ -510,7 +513,7 @@
           ],
           "foto": "b5dc6738-image.jpg",
           "recorte": "fila 1, panel 3",
-          "foto_web": "catalogo/top-saten-lazo__rojo.webp",
+          "foto_web": "catalogo/top-saten-lazo__rojo-sola.webp",
           "con_modelo": false
         },
         {
@@ -520,7 +523,7 @@
           ],
           "foto": "b5dc6738-image.jpg",
           "recorte": "fila 2, panel 2",
-          "foto_web": "catalogo/top-saten-lazo__amarillo.webp",
+          "foto_web": "catalogo/top-saten-lazo__amarillo-sola.webp",
           "con_modelo": false
         },
         {
@@ -540,7 +543,7 @@
           ],
           "foto": "b5dc6738-image.jpg",
           "recorte": "fila 1, panel 1",
-          "foto_web": "catalogo/top-saten-lazo__marron.webp",
+          "foto_web": "catalogo/top-saten-lazo__marron-sola.webp",
           "con_modelo": false
         },
         {

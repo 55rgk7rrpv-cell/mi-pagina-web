@@ -183,6 +183,17 @@ export const PRODUCTS: Product[] = [
     "description": "Un solo hombro, cuerpo fruncido hasta la cadera y falda larga y vaporosa. Elegante sin esfuerzo.",
     "colors": [
       {
+        "name": "Amarillo claro",
+        "hex": "#E0DFC5",
+        "sizes": [
+          "S"
+        ],
+        "image": "catalogo/vestido-largo-un-hombro__amarillo-claro-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      },
+      {
         "name": "Negro",
         "hex": "#1A1A1A",
         "sizes": [
@@ -192,22 +203,15 @@ export const PRODUCTS: Product[] = [
         "withModel": false,
         "aiGenerated": false,
         "note": null
-      },
-      {
-        "name": "Amarillo claro",
-        "hex": "#E8E9CD",
-        "sizes": [
-          "S"
-        ],
-        "image": "catalogo/vestido-largo-un-hombro__amarillo-claro.webp",
-        "withModel": true,
-        "aiGenerated": false,
-        "note": null
       }
     ],
     "gallery": [
       {
         "src": "catalogo/vestido-largo-un-hombro__negro.webp",
+        "withModel": true
+      },
+      {
+        "src": "catalogo/vestido-largo-un-hombro__amarillo-claro.webp",
         "withModel": true
       }
     ],
@@ -223,6 +227,17 @@ export const PRODUCTS: Product[] = [
     "description": "Corto, con escote en V profundo, espalda descubierta y falda con vuelo. Lunares que nunca pasan de moda.",
     "colors": [
       {
+        "name": "Vinotinto con lunares",
+        "hex": "#710B19",
+        "sizes": [
+          "S"
+        ],
+        "image": "catalogo/vestido-halter-lunares-escote__vinotinto-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      },
+      {
         "name": "Negro con lunares",
         "hex": "#091214",
         "sizes": [
@@ -235,24 +250,13 @@ export const PRODUCTS: Product[] = [
         "note": null
       },
       {
-        "name": "Vinotinto con lunares",
-        "hex": "#680713",
-        "sizes": [
-          "S"
-        ],
-        "image": "catalogo/vestido-halter-lunares-escote__vinotinto.webp",
-        "withModel": true,
-        "aiGenerated": false,
-        "note": null
-      },
-      {
         "name": "Crema con lunares",
-        "hex": "#D3C6B1",
+        "hex": "#DFD5BF",
         "sizes": [
           "M"
         ],
-        "image": "catalogo/vestido-halter-lunares-escote__crema.webp",
-        "withModel": true,
+        "image": "catalogo/vestido-halter-lunares-escote__crema-sola.webp",
+        "withModel": false,
         "aiGenerated": false,
         "note": null
       }
@@ -260,6 +264,14 @@ export const PRODUCTS: Product[] = [
     "gallery": [
       {
         "src": "catalogo/vestido-halter-lunares-escote__negro.webp",
+        "withModel": true
+      },
+      {
+        "src": "catalogo/vestido-halter-lunares-escote__vinotinto.webp",
+        "withModel": true
+      },
+      {
+        "src": "catalogo/vestido-halter-lunares-escote__crema.webp",
         "withModel": true
       }
     ],
@@ -425,7 +437,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Vinotinto",
-        "hex": "#5C1420",
+        "hex": "#58131E",
         "sizes": [
           "XS",
           "S"
@@ -575,22 +587,22 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Marrón",
-        "hex": "#2C1810",
+        "hex": "#3C251B",
         "sizes": [
           "S"
         ],
-        "image": "catalogo/top-saten-cruzado__marron.webp",
+        "image": "catalogo/top-saten-cruzado__marron-sola.webp",
         "withModel": false,
         "aiGenerated": false,
         "note": null
       },
       {
         "name": "Champaña",
-        "hex": "#D2C2B5",
+        "hex": "#E2DCD3",
         "sizes": [
           "XXS"
         ],
-        "image": "catalogo/top-saten-cruzado__champana.webp",
+        "image": "catalogo/top-saten-cruzado__champana-sola.webp",
         "withModel": false,
         "aiGenerated": false,
         "note": null
@@ -621,22 +633,22 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Vinotinto",
-        "hex": "#53141B",
+        "hex": "#451313",
         "sizes": [
           "M"
         ],
-        "image": "catalogo/top-saten-cuello-alto__vinotinto.webp",
+        "image": "catalogo/top-saten-cuello-alto__vinotinto-sola.webp",
         "withModel": false,
         "aiGenerated": false,
         "note": null
       },
       {
         "name": "Marrón",
-        "hex": "#432F21",
+        "hex": "#50392C",
         "sizes": [
           "S"
         ],
-        "image": "catalogo/top-saten-cuello-alto__marron.webp",
+        "image": "catalogo/top-saten-cuello-alto__marron-sola.webp",
         "withModel": false,
         "aiGenerated": false,
         "note": null
@@ -656,22 +668,22 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Rojo",
-        "hex": "#7D0210",
+        "hex": "#A5161D",
         "sizes": [
           "S"
         ],
-        "image": "catalogo/top-saten-lazo__rojo.webp",
+        "image": "catalogo/top-saten-lazo__rojo-sola.webp",
         "withModel": false,
         "aiGenerated": false,
         "note": null
       },
       {
         "name": "Amarillo",
-        "hex": "#CFB35F",
+        "hex": "#E9D281",
         "sizes": [
           "XXS"
         ],
-        "image": "catalogo/top-saten-lazo__amarillo.webp",
+        "image": "catalogo/top-saten-lazo__amarillo-sola.webp",
         "withModel": false,
         "aiGenerated": false,
         "note": null
@@ -689,11 +701,11 @@ export const PRODUCTS: Product[] = [
       },
       {
         "name": "Marrón",
-        "hex": "#312018",
+        "hex": "#39261C",
         "sizes": [
           "M"
         ],
-        "image": "catalogo/top-saten-lazo__marron.webp",
+        "image": "catalogo/top-saten-lazo__marron-sola.webp",
         "withModel": false,
         "aiGenerated": false,
         "note": null

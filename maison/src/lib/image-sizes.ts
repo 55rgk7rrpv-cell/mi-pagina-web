@@ -86,8 +86,8 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   972
  ],
  "catalogo/falda-volantes-bicolor__negro-blanco-sola.webp": [
-  928,
-  939
+  923,
+  938
  ],
  "catalogo/top-encaje-corse__negro-sola.webp": [
   599,
@@ -113,41 +113,41 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   827,
   1080
  ],
- "catalogo/top-saten-cruzado__champana.webp": [
-  363,
-  508
+ "catalogo/top-saten-cruzado__champana-sola.webp": [
+  730,
+  1157
  ],
- "catalogo/top-saten-cruzado__marron.webp": [
-  363,
-  508
+ "catalogo/top-saten-cruzado__marron-sola.webp": [
+  634,
+  1170
  ],
  "catalogo/top-saten-cruzado__negro.webp": [
   364,
   508
  ],
- "catalogo/top-saten-cuello-alto__marron.webp": [
-  424,
-  842
+ "catalogo/top-saten-cuello-alto__marron-sola.webp": [
+  519,
+  1055
  ],
- "catalogo/top-saten-cuello-alto__vinotinto.webp": [
-  425,
-  842
+ "catalogo/top-saten-cuello-alto__vinotinto-sola.webp": [
+  587,
+  1123
  ],
- "catalogo/top-saten-lazo__amarillo.webp": [
-  276,
-  345
+ "catalogo/top-saten-lazo__amarillo-sola.webp": [
+  564,
+  1129
  ],
  "catalogo/top-saten-lazo__champana.webp": [
   276,
   362
  ],
- "catalogo/top-saten-lazo__marron.webp": [
-  280,
-  362
+ "catalogo/top-saten-lazo__marron-sola.webp": [
+  548,
+  1066
  ],
- "catalogo/top-saten-lazo__rojo.webp": [
-  281,
-  362
+ "catalogo/top-saten-lazo__rojo-sola.webp": [
+  555,
+  1096
  ],
  "catalogo/top-saten-lazo__verde.webp": [
   280,
@@ -237,6 +237,10 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   830,
   1080
  ],
+ "catalogo/vestido-halter-lunares-escote__crema-sola.webp": [
+  686,
+  1120
+ ],
  "catalogo/vestido-halter-lunares-escote__crema.webp": [
   230,
   512
@@ -249,13 +253,17 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   413,
   810
  ],
+ "catalogo/vestido-halter-lunares-escote__vinotinto-sola.webp": [
+  663,
+  1173
+ ],
  "catalogo/vestido-halter-lunares-escote__vinotinto.webp": [
   229,
   512
  ],
  "catalogo/vestido-halter-suelto-tul__blanco-lunares-sola.webp": [
   698,
-  988
+  987
  ],
  "catalogo/vestido-halter-suelto-tul__blanco-lunares.webp": [
   310,
@@ -333,6 +341,10 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   794,
   1080
  ],
+ "catalogo/vestido-largo-un-hombro__amarillo-claro-sola.webp": [
+  388,
+  1029
+ ],
  "catalogo/vestido-largo-un-hombro__amarillo-claro.webp": [
   380,
   897
@@ -370,8 +382,8 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   859
  ],
  "catalogo/vestido-strapless-encaje-rosa__vinotinto-sola.webp": [
-  928,
-  1146
+  595,
+  1096
  ],
  "catalogo/m/chaqueta-capucha-lunares__amarillo-sola.webp": [
   767,
@@ -458,7 +470,7 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   880
  ],
  "catalogo/m/falda-volantes-bicolor__negro-blanco-sola.webp": [
-  870,
+  866,
   880
  ],
  "catalogo/m/top-encaje-corse__negro-sola.webp": [
@@ -485,41 +497,41 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   674,
   880
  ],
- "catalogo/m/top-saten-cruzado__champana.webp": [
-  363,
-  508
+ "catalogo/m/top-saten-cruzado__champana-sola.webp": [
+  555,
+  880
  ],
- "catalogo/m/top-saten-cruzado__marron.webp": [
-  363,
-  508
+ "catalogo/m/top-saten-cruzado__marron-sola.webp": [
+  477,
+  880
  ],
  "catalogo/m/top-saten-cruzado__negro.webp": [
   364,
   508
  ],
- "catalogo/m/top-saten-cuello-alto__marron.webp": [
-  424,
-  842
+ "catalogo/m/top-saten-cuello-alto__marron-sola.webp": [
+  433,
+  880
  ],
- "catalogo/m/top-saten-cuello-alto__vinotinto.webp": [
-  425,
-  842
+ "catalogo/m/top-saten-cuello-alto__vinotinto-sola.webp": [
+  460,
+  880
  ],
- "catalogo/m/top-saten-lazo__amarillo.webp": [
-  276,
-  345
+ "catalogo/m/top-saten-lazo__amarillo-sola.webp": [
+  440,
+  880
  ],
  "catalogo/m/top-saten-lazo__champana.webp": [
   276,
   362
  ],
- "catalogo/m/top-saten-lazo__marron.webp": [
-  280,
-  362
+ "catalogo/m/top-saten-lazo__marron-sola.webp": [
+  452,
+  880
  ],
- "catalogo/m/top-saten-lazo__rojo.webp": [
-  281,
-  362
+ "catalogo/m/top-saten-lazo__rojo-sola.webp": [
+  446,
+  880
  ],
  "catalogo/m/top-saten-lazo__verde.webp": [
   280,
@@ -609,6 +621,10 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   676,
   880
  ],
+ "catalogo/m/vestido-halter-lunares-escote__crema-sola.webp": [
+  539,
+  880
+ ],
  "catalogo/m/vestido-halter-lunares-escote__crema.webp": [
   230,
   512
@@ -620,6 +636,10 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
  "catalogo/m/vestido-halter-lunares-escote__negro.webp": [
   413,
   810
+ ],
+ "catalogo/m/vestido-halter-lunares-escote__vinotinto-sola.webp": [
+  497,
+  880
  ],
  "catalogo/m/vestido-halter-lunares-escote__vinotinto.webp": [
   229,
@@ -705,6 +725,10 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   647,
   880
  ],
+ "catalogo/m/vestido-largo-un-hombro__amarillo-claro-sola.webp": [
+  332,
+  880
+ ],
  "catalogo/m/vestido-largo-un-hombro__amarillo-claro.webp": [
   373,
   880
@@ -742,7 +766,7 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   859
  ],
  "catalogo/m/vestido-strapless-encaje-rosa__vinotinto-sola.webp": [
-  713,
+  478,
   880
  ]
 };

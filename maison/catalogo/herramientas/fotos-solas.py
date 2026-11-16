@@ -15,12 +15,18 @@ UP = sys.argv[1]
 SOLAS = json.load(open("catalogo/herramientas/fotos-solas.json"))
 
 # --- TRIM: bounding box of everything that is not background white, plus a safety margin ----------------
-THRESH = 10      # distance from white (0-255) that counts as "not background" after a light blur
+THRESH = 10      # distance from the backdrop colour (0-255) that counts as "not background" after a light blur
 MIN_BLOB = 60    # specks smaller than this (JPEG dust) are ignored when measuring the box
 PAD_MIN, PAD_PCT = 16, 0.035   # margin kept around the garment: at least 16 px or 3.5% of its longer side
 
+def background_color(rgb):
+    """Colour of the backdrop: median of a thin ring along the photo's border (white for most, light grey for some)."""
+    ring = np.concatenate([rgb[:4].reshape(-1, 3), rgb[-4:].reshape(-1, 3), rgb[:, :4].reshape(-1, 3), rgb[:, -4:].reshape(-1, 3)])
+    return np.median(ring, axis=0)
+
 def trim_box(rgb):
-    diff = (255 - rgb.astype(np.int16)).max(axis=2).astype(np.uint8)
+    bg = background_color(rgb)
+    diff = np.abs(rgb.astype(np.int16) - bg.astype(np.int16)).max(axis=2).astype(np.uint8)
     diff = cv2.GaussianBlur(diff, (0, 0), 1.2)
     mask = (diff > THRESH).astype(np.uint8)
     n, lab, stats, _ = cv2.connectedComponentsWithStats(cv2.dilate(mask, np.ones((7, 7), np.uint8)), connectivity=8)
