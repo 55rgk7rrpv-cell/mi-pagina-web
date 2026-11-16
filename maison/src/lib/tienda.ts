@@ -34,7 +34,11 @@ export interface TasaBcv {
 export const TASA_MAX_DIAS = 4;
 
 /** WhatsApp de la tienda en formato internacional sin "+" ni espacios, por ejemplo "584141234567". */
-export const WHATSAPP: string | null = null;
+export const WHATSAPP: string | null = "584249489024";
+/** Como se muestra al público */
+export const WHATSAPP_VISIBLE = "+58 424-9489024";
+/** Enlace a la conversación de WhatsApp de la tienda (con un mensaje inicial opcional) */
+export const whatsappChat = (texto?: string) => (WHATSAPP ? `https://wa.me/${WHATSAPP}${texto ? `?text=${encodeURIComponent(texto)}` : ""}` : null);
 
 /** Usuario de Instagram (sin @). */
 export const INSTAGRAM = "otrapintapzo";

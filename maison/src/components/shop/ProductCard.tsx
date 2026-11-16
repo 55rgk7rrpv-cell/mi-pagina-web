@@ -96,7 +96,7 @@ export function ProductCard({ product, index }: { product: Product; index: numbe
           transitionDuration={900}
           armed={glare}
         >
-          <button type="button" onClick={open} data-cursor="Ver" aria-label={`Vista rápida: ${product.name}`} className="absolute inset-[7%] block cursor-pointer">
+          <button type="button" onClick={open} data-cursor="Ver" aria-label={`Vista rápida: ${product.name}`} className="absolute inset-[5%] block cursor-pointer">
             <span className="card-photo absolute inset-0 block">
               <ProductVisual
                 product={product}

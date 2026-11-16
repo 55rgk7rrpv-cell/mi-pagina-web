@@ -11,7 +11,7 @@ Tienda de ropa femenina de Puerto Ordaz (Instagram @otrapintapzo). Next.js + Tai
 
 ## Estructura (la app está en `maison/`)
 - `maison/src/lib/products.ts` — **GENERADO**, no editar a mano. Se regenera con `genproducts.py`.
-- `maison/src/lib/tienda.ts` — datos de cobro (Pago Móvil), WhatsApp (aún `null`), Instagram. Único sitio donde cambiarlos.
+- `maison/src/lib/tienda.ts` — datos de cobro (Pago Móvil), WhatsApp (+58 424-9489024, ya puesto; sale en el pie de página y en el botón del pedido), Instagram. Único sitio donde cambiarlos.
 - `maison/src/lib/pedido.ts` + `components/checkout/` — pago: SOLO Pago Móvil y efectivo; no hay servidor, el pedido es un mensaje (WhatsApp/Instagram).
 - `maison/src/lib/catalog.ts` (filtros/orden), `components/shop/` (ProductCard, Collection, CatalogToolbar, QuickView), `components/bits/` (React Bits).
 - `maison/catalogo/catalogo.json` — catálogo maestro (precio = "Ref" en USD, colores, tallas). `maison/catalogo/herramientas/` — scripts del catálogo. `maison/catalogo/fotos-solas-originales/` — fotos originales: **nunca se tocan**.
@@ -28,7 +28,8 @@ Tienda de ropa femenina de Puerto Ordaz (Instagram @otrapintapzo). Next.js + Tai
 - Integridad primero: **no quitar fondos, no borrar personas con código, no deformar**. Solo se recorta el margen blanco y los paneles de collage. Excepción aprobada por ella: aclarar a blanco un fondo gris liso con `whiten` (vestido strapless).
 - Portada de cada producto = foto de la **prenda sola**; entre colores, el más vivo primero (saturación·√brillo). Fotos con modelo solo en la galería de la vista rápida.
 - Si un producto solo tiene foto con modelo: **avisarle**, no inventar. Render de IA solo si ella lo pide, marcado "Imagen ilustrativa".
-- El encuadre es por CSS (`object-contain` en marco cuadrado blanco, `inset-[7%]`). No cambiar a otro aspecto sin consultar.
+- El encuadre es por CSS (`object-contain` en marco cuadrado blanco, `inset-[5%]`). No cambiar a otro aspecto sin consultar.
+- `fotos-solas.py` deja cada foto con el MISMO margen en los 4 lados (lienzo = prenda + margen igual) y blanquea solo el fondo gris liso automáticamente (flags en `fotos-solas.json`: `whiten`, `holes:false` para prendas claras). `top-saten-cruzado__champana` conserva su gris (la tela crema se confunde con el fondo): pedir a la dueña una foto con fondo blanco.
 
 ## Reglas de la tienda
 - Precios en USD. Pago: Pago Móvil (monto en Bs con tasa BCV) o efectivo. Solo Puerto Ordaz: delivery $5 (gratis desde $80) o retiro gratis. Sin envío nacional.
@@ -55,7 +56,6 @@ Tienda de ropa femenina de Puerto Ordaz (Instagram @otrapintapzo). Next.js + Tai
 - Foto negra de top de cuello alto (captura con barras negras, guardada en `maison/catalogo/fotos-sin-asignar/`): no hay color negro de ese top en el catálogo; preguntar a la dueña si es un color nuevo (y con qué talla) antes de agregarlo.
 - Fotos con fondo gris claro de origen: top lazo rojo, marrón y champaña, top cruzado champaña y negro, top cuello alto marrón. Se pueden pasar a fondo blanco con `"whiten": true` en `fotos-solas.json` (solo pinta de blanco los píxeles de fondo; ya aplicado al vestido strapless). Hacerlo solo si la dueña lo aprueba (ella pidió no quitar fondos).
 - "Conjunto de satén con encaje" (id `falda-saten-encaje`, categoría Conjuntos): se vende junto (top + falda) como en la foto; no tocar su foto. Su precio sigue en $30 (el de la falda): confirmar con la dueña si el conjunto cuesta otro. Aparte existe "Top de encaje tipo corsé" ($20).
-- Falta el WhatsApp de la tienda (`WHATSAPP` en `tienda.ts`); sin él solo aparece el botón de Instagram.
 - Confirmar con la dueña: color "Rojo" del vestido halter suelto (se ve vinotinto) y que el top de encaje corsé es la misma prenda; la cédula está como V-.
 
 ## Ahorrar tokens al empezar de nuevo o cambiar de modelo

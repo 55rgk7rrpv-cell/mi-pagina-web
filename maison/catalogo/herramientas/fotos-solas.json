@@ -5,7 +5,11 @@
  "vestido-halter-volantes__blanco-lunares-grandes": "642edb1a-image.jpg",
  "chaqueta-capucha-lunares__amarillo": "8dfc6bfb-image.jpg",
  "chaqueta-capucha-lunares__rosa": "54e3d0c4-image.jpg",
- "falda-volantes-bicolor__negro-blanco": "6ec08a1e-image.jpg",
+ "falda-volantes-bicolor__negro-blanco": {
+  "file": "6ec08a1e-image.jpg",
+  "whiten": true,
+  "holes": false
+ },
  "vestido-largo-lunares-panuelo__amarillo": "712c0e1b-image.jpg",
  "vestido-largo-halter-plisado__vinotinto": "fe1676b5-image.jpg",
  "conjunto-chaleco-short__amarillo-plano": "e8215091-image.jpg",
@@ -28,7 +32,11 @@
  },
  "vestido-encaje-hombros-descubiertos__amarillo": "d15176f2-image.jpg",
  "top-encaje-hombro-descubierto__negro": "74d830a6-image.jpg",
- "vestido-halter-suelto-tul__blanco-lunares": "2dc5e241-image.jpg",
+ "vestido-halter-suelto-tul__blanco-lunares": {
+  "file": "2dc5e241-image.jpg",
+  "whiten": true,
+  "holes": false
+ },
  "vestido-blazer-manga-larga__rojo": "5bd6b8d4-image.jpg",
  "vestido-otra-pinta-lenceria__marron-negro": "5ec48ae8-image.jpg",
  "vestido-asimetrico-volantes__vinotinto": "00a8ea39-image.jpg",
@@ -81,10 +89,16 @@
  "top-saten-cuello-alto__marron": "d23a54b5-image.jpg",
  "top-saten-cuello-alto__vinotinto": "787d7445-image.jpg",
  "top-saten-lazo__marron": "9f4ede4e-image.jpg",
- "top-saten-cruzado__champana": "35e90b91-image.jpg",
+ "top-saten-cruzado__champana": {
+  "file": "35e90b91-image.jpg",
+  "whiten": false
+ },
  "top-saten-lazo__amarillo": "36323502-image.jpg",
  "top-saten-cruzado__negro": "1cf6afa8-image.jpg",
- "top-saten-lazo__champana": "758ceca3-image.jpg",
+ "top-saten-lazo__champana": {
+  "file": "758ceca3-image.jpg",
+  "holes": false
+ },
  "top-saten-lazo__verde": "c661ce01-image.jpg",
  "cinturon-elegante__marron": {
   "file": "211b3c5a-image.jpg",
