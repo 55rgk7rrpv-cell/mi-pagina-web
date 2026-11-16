@@ -437,7 +437,7 @@ export const PRODUCTS: Product[] = [
     "colors": [
       {
         "name": "Vinotinto",
-        "hex": "#58131E",
+        "hex": "#55141D",
         "sizes": [
           "XS",
           "S"
