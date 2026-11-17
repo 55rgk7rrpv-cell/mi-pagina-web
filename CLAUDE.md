@@ -53,7 +53,7 @@ Tienda de ropa femenina de Puerto Ordaz (Instagram @otrapintapzo). Next.js + Tai
 
 ## Pendiente
 - **Todas las portadas y colores tienen foto de prenda sola real** (36/36, sin imágenes de IA). No faltan fotos.
-- Foto negra de top de cuello alto (captura con barras negras, guardada en `maison/catalogo/fotos-sin-asignar/`): no hay color negro de ese top en el catálogo; preguntar a la dueña si es un color nuevo (y con qué talla) antes de agregarlo.
+- En espera (`"pendiente": true` en catalogo.json; genproducts los omite): "Vestido midi de tirantes fruncido con abertura" (falta precio y talla), color Negro del top satén cuello alto ($18) y Negro con lunares del conjunto sirena ($45): faltan tallas. Al completarlos: quitar `pendiente`, añadir a IMG/DESC/GARMENT_ONLY en genproducts.py y a E en audit.py.
 - Fondo gris blanqueado (con aprobación de la dueña, 2º pedido) en 8 fotos. Solo queda gris el top cruzado champaña: pedirle una foto con fondo blanco.
 - "Conjunto de satén con encaje" (id `falda-saten-encaje`, categoría Conjuntos): se vende junto (top + falda) como en la foto; no tocar su foto. Su precio sigue en $30 (el de la falda): confirmar con la dueña si el conjunto cuesta otro. Aparte existe "Top de encaje tipo corsé" ($20).
 - Confirmar con la dueña: color "Rojo" del vestido halter suelto (se ve vinotinto) y que el top de encaje corsé es la misma prenda; la cédula está como V-.

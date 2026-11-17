@@ -1317,6 +1317,148 @@ export const PRODUCTS: Product[] = [
     "coverHasModel": false,
     "badge": null,
     "featured": 36
+  },
+  {
+    "id": "falda-mini-lunares",
+    "name": "Falda mini con lunares",
+    "category": "Faldas",
+    "price": 25,
+    "description": "Falda mini de talle alto con lunares y cierre atrás. Tres colores.",
+    "colors": [
+      {
+        "name": "Marrón con lunares",
+        "hex": "#432915",
+        "sizes": [
+          "M"
+        ],
+        "image": "catalogo/falda-mini-lunares__marron-lunares-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      },
+      {
+        "name": "Azul claro con lunares",
+        "hex": "#8A909E",
+        "sizes": [
+          "M"
+        ],
+        "image": "catalogo/falda-mini-lunares__azul-claro-lunares-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      },
+      {
+        "name": "Blanco con lunares",
+        "hex": "#E7E7E3",
+        "sizes": [
+          "M"
+        ],
+        "image": "catalogo/falda-mini-lunares__blanco-lunares-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      }
+    ],
+    "gallery": [],
+    "coverHasModel": false,
+    "badge": null,
+    "featured": 37
+  },
+  {
+    "id": "vestido-strapless-volantes-rosa",
+    "name": "Vestido corto strapless con volantes y rosa",
+    "category": "Vestidos",
+    "price": 30,
+    "description": "Strapless corto, fruncido en la cintura, con volantes en cascada y una rosa aplicada.",
+    "colors": [
+      {
+        "name": "Negro",
+        "hex": "#151611",
+        "sizes": [
+          "S"
+        ],
+        "image": "catalogo/vestido-strapless-volantes-rosa__negro-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      }
+    ],
+    "gallery": [],
+    "coverHasModel": false,
+    "badge": "Última pieza",
+    "featured": 38
+  },
+  {
+    "id": "top-un-hombro-capa-tul",
+    "name": "Top de un hombro con capa de tul",
+    "category": "Tops",
+    "price": 15,
+    "description": "Top fruncido de un hombro con capa de tul transparente que cae a un lado.",
+    "colors": [
+      {
+        "name": "Negro",
+        "hex": "#1B1B1A",
+        "sizes": [
+          "S"
+        ],
+        "image": "catalogo/top-un-hombro-capa-tul__negro-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      }
+    ],
+    "gallery": [],
+    "coverHasModel": false,
+    "badge": "Última pieza",
+    "featured": 39
+  },
+  {
+    "id": "vestido-blazer-perlas-volantes",
+    "name": "Vestido blazer con perlas y volantes",
+    "category": "Vestidos",
+    "price": 50,
+    "description": "Vestido blazer negro con perlas, botones joya y volantes blancos en el ruedo y las mangas.",
+    "colors": [
+      {
+        "name": "Negro y blanco",
+        "hex": "#0A0B0D",
+        "sizes": [
+          "M"
+        ],
+        "image": "catalogo/vestido-blazer-perlas-volantes__negro-blanco-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      }
+    ],
+    "gallery": [],
+    "coverHasModel": false,
+    "badge": "Última pieza",
+    "featured": 40
+  },
+  {
+    "id": "falda-midi-saten-picos-encaje",
+    "name": "Falda midi de satén con picos de encaje",
+    "category": "Faldas",
+    "price": 25,
+    "description": "Falda midi de satén con ruedo asimétrico en picos de encaje.",
+    "colors": [
+      {
+        "name": "Negro",
+        "hex": "#242622",
+        "sizes": [
+          "S"
+        ],
+        "image": "catalogo/falda-midi-saten-picos-encaje__negro-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      }
+    ],
+    "gallery": [],
+    "coverHasModel": false,
+    "badge": "Última pieza",
+    "featured": 41
   }
 ];
 

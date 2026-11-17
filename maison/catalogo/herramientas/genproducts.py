@@ -35,6 +35,8 @@ IMG={
  "vestido-corto-lunares-panuelo":["amarillo","marron","crema","negro"],"top-encaje-hombro-descubierto":["negro"],
  "vestido-mangas-acampanadas":["rojo"],"conjunto-chaleco-short":["amarillo-plano","crema-lunares-plano"],"falda-larga-encaje":["negro"],
  "falda-plisada-short":["gris"],"cinturon-cadena-corazones":["dorado"],"cinturon-elegante":["marron","negro"],
+ "falda-mini-lunares":["marron-lunares","blanco-lunares","azul-claro-lunares"],"vestido-strapless-volantes-rosa":["negro"],
+ "top-un-hombro-capa-tul":["negro"],"vestido-blazer-perlas-volantes":["negro-blanco"],"falda-midi-saten-picos-encaje":["negro"],
 }
 EXTRA={"vestido-floral-manga-globo":["blanco-floral-2"],"vestido-largo-halter-plisado":["vinotinto-modelo"],
  "conjunto-chaleco-short":["amarillo","crema-lunares"],"cinturon-cadena-corazones":["dorado-modelo"]}
@@ -54,7 +56,10 @@ GARMENT_ONLY={
  "top-saten-cuello-alto__vinotinto","top-saten-cuello-alto__marron",
  "top-saten-lazo__rojo","top-saten-lazo__amarillo","top-saten-lazo__verde","top-saten-lazo__marron","top-saten-lazo__champana",
  "vestido-largo-halter-plisado__vinotinto","cinturon-cadena-corazones__dorado","cinturon-elegante__marron","cinturon-elegante__negro",
- "conjunto-chaleco-short__amarillo-plano","conjunto-chaleco-short__crema-lunares-plano"}
+ "conjunto-chaleco-short__amarillo-plano","conjunto-chaleco-short__crema-lunares-plano",
+ "falda-mini-lunares__marron-lunares","falda-mini-lunares__blanco-lunares","falda-mini-lunares__azul-claro-lunares",
+ "vestido-strapless-volantes-rosa__negro","top-un-hombro-capa-tul__negro","vestido-blazer-perlas-volantes__negro-blanco",
+ "falda-midi-saten-picos-encaje__negro"}
 import colorsys, numpy as np
 from PIL import Image
 def vivid(path):
@@ -102,6 +107,11 @@ DESC={
  "falda-larga-encaje":"Falda de encaje con volantes, corta al frente y larga atrás.",
  "falda-plisada-short":"Falda corta plisada con short por dentro, para moverte con tranquilidad.",
  "cinturon-cadena-corazones":"Cinturón de cadena dorada con medallones y corazones.",
+ "falda-mini-lunares":"Falda mini de talle alto con lunares y cierre atrás. Tres colores.",
+ "vestido-strapless-volantes-rosa":"Strapless corto, fruncido en la cintura, con volantes en cascada y una rosa aplicada.",
+ "top-un-hombro-capa-tul":"Top fruncido de un hombro con capa de tul transparente que cae a un lado.",
+ "vestido-blazer-perlas-volantes":"Vestido blazer negro con perlas, botones joya y volantes blancos en el ruedo y las mangas.",
+ "falda-midi-saten-picos-encaje":"Falda midi de satén con ruedo asimétrico en picos de encaje.",
  "cinturon-elegante":"Cinturón de cuero sintético con hebilla y puntera doradas. Precio por unidad.",
 }
 CATMAP={"Conjuntos":"Conjuntos"}

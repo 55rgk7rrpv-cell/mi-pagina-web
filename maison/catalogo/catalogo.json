@@ -1037,68 +1037,82 @@
       "id": "falda-mini-lunares",
       "nombre": "Falda mini con lunares",
       "categoria": "Faldas",
-      "precio_usd": null,
-      "pendiente": true,
+      "precio_usd": 25,
       "variantes": [
         {
           "color": "Marrón con lunares",
-          "tallas": [],
+          "tallas": [
+            "M"
+          ],
           "foto": "329b4162-image.jpg",
           "foto_web": "catalogo/falda-mini-lunares__marron-lunares-sola.webp",
-          "con_modelo": false,
-          "pendiente": true
-        },
-        {
-          "color": "Blanco con lunares",
-          "tallas": [],
-          "foto": "7729389d-image.jpg",
-          "foto_web": "catalogo/falda-mini-lunares__blanco-lunares-sola.webp",
-          "con_modelo": false,
-          "pendiente": true
+          "con_modelo": false
         },
         {
           "color": "Azul claro con lunares",
-          "tallas": [],
+          "tallas": [
+            "M"
+          ],
           "foto": "9f9d2267-image.jpg",
           "foto_web": "catalogo/falda-mini-lunares__azul-claro-lunares-sola.webp",
-          "con_modelo": false,
-          "pendiente": true
+          "con_modelo": false
+        },
+        {
+          "color": "Blanco con lunares",
+          "tallas": [
+            "M"
+          ],
+          "foto": "7729389d-image.jpg",
+          "foto_web": "catalogo/falda-mini-lunares__blanco-lunares-sola.webp",
+          "con_modelo": false
         }
+      ],
+      "imagen_principal": "catalogo/falda-mini-lunares__marron-lunares-sola.webp",
+      "portada_con_modelo": false,
+      "imagenes_secundarias": [
+        "catalogo/falda-mini-lunares__azul-claro-lunares-sola.webp",
+        "catalogo/falda-mini-lunares__blanco-lunares-sola.webp"
       ]
     },
     {
       "id": "vestido-strapless-volantes-rosa",
       "nombre": "Vestido corto strapless con volantes y rosa",
       "categoria": "Vestidos",
-      "precio_usd": null,
-      "pendiente": true,
+      "precio_usd": 30,
       "variantes": [
         {
           "color": "Negro",
-          "tallas": [],
+          "tallas": [
+            "S"
+          ],
           "foto": "f2d3f015-image.jpg",
           "foto_web": "catalogo/vestido-strapless-volantes-rosa__negro-sola.webp",
-          "con_modelo": false,
-          "pendiente": true
+          "con_modelo": false
         }
-      ]
+      ],
+      "imagen_principal": "catalogo/vestido-strapless-volantes-rosa__negro-sola.webp",
+      "portada_con_modelo": false,
+      "imagenes_secundarias": []
     },
     {
       "id": "top-un-hombro-capa-tul",
       "nombre": "Top de un hombro con capa de tul",
       "categoria": "Tops",
-      "precio_usd": null,
-      "pendiente": true,
+      "precio_usd": 15,
       "variantes": [
         {
           "color": "Negro",
-          "tallas": [],
+          "tallas": [
+            "S"
+          ],
           "foto": "eea7ac56-image.jpg",
           "foto_web": "catalogo/top-un-hombro-capa-tul__negro-sola.webp",
-          "con_modelo": false,
-          "pendiente": true
+          "con_modelo": false
         }
-      ]
+      ],
+      "imagen_principal": "catalogo/top-un-hombro-capa-tul__negro-sola.webp",
+      "portada_con_modelo": false,
+      "imagenes_secundarias": []
     },
     {
       "id": "vestido-midi-tirantes-abertura",
@@ -1121,35 +1135,41 @@
       "id": "vestido-blazer-perlas-volantes",
       "nombre": "Vestido blazer con perlas y volantes",
       "categoria": "Vestidos",
-      "precio_usd": null,
-      "pendiente": true,
+      "precio_usd": 50,
       "variantes": [
         {
           "color": "Negro y blanco",
-          "tallas": [],
+          "tallas": [
+            "M"
+          ],
           "foto": "b8e118b5-image.jpg",
           "foto_web": "catalogo/vestido-blazer-perlas-volantes__negro-blanco-sola.webp",
-          "con_modelo": false,
-          "pendiente": true
+          "con_modelo": false
         }
-      ]
+      ],
+      "imagen_principal": "catalogo/vestido-blazer-perlas-volantes__negro-blanco-sola.webp",
+      "portada_con_modelo": false,
+      "imagenes_secundarias": []
     },
     {
       "id": "falda-midi-saten-picos-encaje",
       "nombre": "Falda midi de satén con picos de encaje",
       "categoria": "Faldas",
-      "precio_usd": null,
-      "pendiente": true,
+      "precio_usd": 25,
       "variantes": [
         {
           "color": "Negro",
-          "tallas": [],
+          "tallas": [
+            "S"
+          ],
           "foto": "90d01413-image.jpg",
           "foto_web": "catalogo/falda-midi-saten-picos-encaje__negro-sola.webp",
-          "con_modelo": false,
-          "pendiente": true
+          "con_modelo": false
         }
-      ]
+      ],
+      "imagen_principal": "catalogo/falda-midi-saten-picos-encaje__negro-sola.webp",
+      "portada_con_modelo": false,
+      "imagenes_secundarias": []
     }
   ]
 }

@@ -38,6 +38,11 @@ E={ # id: (price, {colour prefix: [sizes]}, cover prefix)
  "falda-larga-encaje":(30,{"Negro":["XXS","S"]},None),
  "falda-plisada-short":(28,{"Gris":["S"]},None),
  "cinturon-cadena-corazones":(15,{"Dorado":["Única"]},None),
+ "falda-mini-lunares":(25,{"Marrón con lunares":["M"],"Blanco con lunares":["M"],"Azul claro con lunares":["M"]},None),
+ "vestido-strapless-volantes-rosa":(30,{"Negro":["S"]},None),
+ "top-un-hombro-capa-tul":(15,{"Negro":["S"]},None),
+ "vestido-blazer-perlas-volantes":(50,{"Negro y blanco":["M"]},None),
+ "falda-midi-saten-picos-encaje":(25,{"Negro":["S"]},None),
  "cinturon-elegante":(13,{"Marrón":["Única"],"Negro":["Única"]},"Marrón"),
 }
 errors=[]; got={p["id"]:p for p in P}
