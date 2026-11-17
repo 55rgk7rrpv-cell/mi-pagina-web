@@ -1413,6 +1413,30 @@ export const PRODUCTS: Product[] = [
     "featured": 39
   },
   {
+    "id": "vestido-midi-tirantes-abertura",
+    "name": "Vestido midi de tirantes fruncido con abertura",
+    "category": "Vestidos",
+    "price": 30,
+    "description": "Midi de tirantes finos, fruncido que marca la figura y abertura lateral.",
+    "colors": [
+      {
+        "name": "Negro",
+        "hex": "#181917",
+        "sizes": [
+          "M"
+        ],
+        "image": "catalogo/vestido-midi-tirantes-abertura__negro-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      }
+    ],
+    "gallery": [],
+    "coverHasModel": false,
+    "badge": "Última pieza",
+    "featured": 40
+  },
+  {
     "id": "vestido-blazer-perlas-volantes",
     "name": "Vestido blazer con perlas y volantes",
     "category": "Vestidos",
@@ -1434,7 +1458,7 @@ export const PRODUCTS: Product[] = [
     "gallery": [],
     "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 40
+    "featured": 41
   },
   {
     "id": "falda-midi-saten-picos-encaje",
@@ -1458,7 +1482,55 @@ export const PRODUCTS: Product[] = [
     "gallery": [],
     "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 41
+    "featured": 42
+  },
+  {
+    "id": "top-saten-cuello-alto-negro",
+    "name": "Top de satén cuello alto con encaje negro",
+    "category": "Tops",
+    "price": 20,
+    "description": "Top de satén negro con cuello alto, sin mangas y ruedo asimétrico de encaje.",
+    "colors": [
+      {
+        "name": "Negro",
+        "hex": "#212121",
+        "sizes": [
+          "XS"
+        ],
+        "image": "catalogo/top-saten-cuello-alto-negro__negro-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      }
+    ],
+    "gallery": [],
+    "coverHasModel": false,
+    "badge": "Última pieza",
+    "featured": 43
+  },
+  {
+    "id": "conjunto-top-falda-sirena-negro",
+    "name": "Conjunto top corto y falda sirena con lunares negro",
+    "category": "Conjuntos",
+    "price": 50,
+    "description": "Top corto de cuello alto y falda larga tipo sirena, en tul negro con lunares. Se vende el conjunto.",
+    "colors": [
+      {
+        "name": "Negro con lunares",
+        "hex": "#101211",
+        "sizes": [
+          "M"
+        ],
+        "image": "catalogo/conjunto-top-falda-sirena-negro__negro-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      }
+    ],
+    "gallery": [],
+    "coverHasModel": false,
+    "badge": "Última pieza",
+    "featured": 44
   }
 ];
 

@@ -152,7 +152,9 @@
    1202
   ]
  },
- "top-saten-cuello-alto__negro": {
+ "vestido-blazer-perlas-volantes__negro-blanco": "b8e118b5-image.jpg",
+ "falda-midi-saten-picos-encaje__negro": "90d01413-image.jpg",
+ "top-saten-cuello-alto-negro__negro": {
   "file": "c9d71601-image.jpg",
   "crop": [
    0,
@@ -161,7 +163,5 @@
    1226
   ]
  },
- "conjunto-top-falda-sirena__negro": "a2cb84dd-image.jpg",
- "vestido-blazer-perlas-volantes__negro-blanco": "b8e118b5-image.jpg",
- "falda-midi-saten-picos-encaje__negro": "90d01413-image.jpg"
+ "conjunto-top-falda-sirena-negro__negro": "a2cb84dd-image.jpg"
 }

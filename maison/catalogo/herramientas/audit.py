@@ -42,6 +42,9 @@ E={ # id: (price, {colour prefix: [sizes]}, cover prefix)
  "vestido-strapless-volantes-rosa":(30,{"Negro":["S"]},None),
  "top-un-hombro-capa-tul":(15,{"Negro":["S"]},None),
  "vestido-blazer-perlas-volantes":(50,{"Negro y blanco":["M"]},None),
+ "vestido-midi-tirantes-abertura":(30,{"Negro":["M"]},None),
+ "top-saten-cuello-alto-negro":(20,{"Negro":["XS"]},None),
+ "conjunto-top-falda-sirena-negro":(50,{"Negro con lunares":["M"]},None),
  "falda-midi-saten-picos-encaje":(25,{"Negro":["S"]},None),
  "cinturon-elegante":(13,{"Marrón":["Única"],"Negro":["Única"]},"Marrón"),
 }

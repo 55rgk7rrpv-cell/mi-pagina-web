@@ -76,14 +76,6 @@
           "foto": "b6999bf0-image.jpg",
           "foto_web": "catalogo/conjunto-top-falda-sirena__azul-marino-sola.webp",
           "con_modelo": false
-        },
-        {
-          "color": "Negro con lunares",
-          "tallas": [],
-          "foto": "a2cb84dd-image.jpg",
-          "foto_web": "catalogo/conjunto-top-falda-sirena__negro-sola.webp",
-          "con_modelo": false,
-          "pendiente": true
         }
       ],
       "portada_con_modelo": false
@@ -496,14 +488,6 @@
           "recorte": "panel izquierdo",
           "foto_web": "catalogo/top-saten-cuello-alto__marron-sola.webp",
           "con_modelo": false
-        },
-        {
-          "color": "Negro",
-          "tallas": [],
-          "foto": "c9d71601-image.jpg",
-          "foto_web": "catalogo/top-saten-cuello-alto__negro-sola.webp",
-          "con_modelo": false,
-          "pendiente": true
         }
       ],
       "nota_precio": "La foto no traía Ref; se usa 18, el precio de los otros tops de satén de la misma línea.",
@@ -1118,18 +1102,21 @@
       "id": "vestido-midi-tirantes-abertura",
       "nombre": "Vestido midi de tirantes fruncido con abertura",
       "categoria": "Vestidos",
-      "precio_usd": null,
-      "pendiente": true,
+      "precio_usd": 30,
       "variantes": [
         {
           "color": "Negro",
-          "tallas": [],
+          "tallas": [
+            "M"
+          ],
           "foto": "1c073c8d-image.jpg",
           "foto_web": "catalogo/vestido-midi-tirantes-abertura__negro-sola.webp",
-          "con_modelo": false,
-          "pendiente": true
+          "con_modelo": false
         }
-      ]
+      ],
+      "imagen_principal": "catalogo/vestido-midi-tirantes-abertura__negro-sola.webp",
+      "portada_con_modelo": false,
+      "imagenes_secundarias": []
     },
     {
       "id": "vestido-blazer-perlas-volantes",
@@ -1168,6 +1155,46 @@
         }
       ],
       "imagen_principal": "catalogo/falda-midi-saten-picos-encaje__negro-sola.webp",
+      "portada_con_modelo": false,
+      "imagenes_secundarias": []
+    },
+    {
+      "id": "top-saten-cuello-alto-negro",
+      "nombre": "Top de satén cuello alto con encaje negro",
+      "categoria": "Tops",
+      "precio_usd": 20,
+      "variantes": [
+        {
+          "color": "Negro",
+          "tallas": [
+            "XS"
+          ],
+          "foto": "c9d71601-image.jpg",
+          "foto_web": "catalogo/top-saten-cuello-alto-negro__negro-sola.webp",
+          "con_modelo": false
+        }
+      ],
+      "imagen_principal": "catalogo/top-saten-cuello-alto-negro__negro-sola.webp",
+      "portada_con_modelo": false,
+      "imagenes_secundarias": []
+    },
+    {
+      "id": "conjunto-top-falda-sirena-negro",
+      "nombre": "Conjunto top corto y falda sirena con lunares negro",
+      "categoria": "Conjuntos",
+      "precio_usd": 50,
+      "variantes": [
+        {
+          "color": "Negro con lunares",
+          "tallas": [
+            "M"
+          ],
+          "foto": "a2cb84dd-image.jpg",
+          "foto_web": "catalogo/conjunto-top-falda-sirena-negro__negro-sola.webp",
+          "con_modelo": false
+        }
+      ],
+      "imagen_principal": "catalogo/conjunto-top-falda-sirena-negro__negro-sola.webp",
       "portada_con_modelo": false,
       "imagenes_secundarias": []
     }

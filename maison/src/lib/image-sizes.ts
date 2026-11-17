@@ -45,6 +45,10 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   286,
   658
  ],
+ "catalogo/conjunto-top-falda-sirena-negro__negro-sola.webp": [
+  569,
+  1266
+ ],
  "catalogo/conjunto-top-falda-sirena__azul-marino-sola.webp": [
   393,
   1101
@@ -52,10 +56,6 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
  "catalogo/conjunto-top-falda-sirena__azul-marino.webp": [
   381,
   951
- ],
- "catalogo/conjunto-top-falda-sirena__negro-sola.webp": [
-  569,
-  1266
  ],
  "catalogo/enterizo-tul-manga-larga__negro-sola.webp": [
   734,
@@ -145,13 +145,13 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   735,
   1144
  ],
+ "catalogo/top-saten-cuello-alto-negro__negro-sola.webp": [
+  490,
+  871
+ ],
  "catalogo/top-saten-cuello-alto__marron-sola.webp": [
   500,
   1037
- ],
- "catalogo/top-saten-cuello-alto__negro-sola.webp": [
-  490,
-  871
  ],
  "catalogo/top-saten-cuello-alto__vinotinto-sola.webp": [
   567,
@@ -469,16 +469,16 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   286,
   658
  ],
+ "catalogo/m/conjunto-top-falda-sirena-negro__negro-sola.webp": [
+  396,
+  880
+ ],
  "catalogo/m/conjunto-top-falda-sirena__azul-marino-sola.webp": [
   314,
   880
  ],
  "catalogo/m/conjunto-top-falda-sirena__azul-marino.webp": [
   353,
-  880
- ],
- "catalogo/m/conjunto-top-falda-sirena__negro-sola.webp": [
-  396,
   880
  ],
  "catalogo/m/enterizo-tul-manga-larga__negro-sola.webp": [
@@ -569,13 +569,13 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   565,
   880
  ],
+ "catalogo/m/top-saten-cuello-alto-negro__negro-sola.webp": [
+  490,
+  871
+ ],
  "catalogo/m/top-saten-cuello-alto__marron-sola.webp": [
   424,
   880
- ],
- "catalogo/m/top-saten-cuello-alto__negro-sola.webp": [
-  490,
-  871
  ],
  "catalogo/m/top-saten-cuello-alto__vinotinto-sola.webp": [
   453,

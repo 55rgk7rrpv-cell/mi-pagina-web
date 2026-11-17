@@ -36,7 +36,7 @@ IMG={
  "vestido-mangas-acampanadas":["rojo"],"conjunto-chaleco-short":["amarillo-plano","crema-lunares-plano"],"falda-larga-encaje":["negro"],
  "falda-plisada-short":["gris"],"cinturon-cadena-corazones":["dorado"],"cinturon-elegante":["marron","negro"],
  "falda-mini-lunares":["marron-lunares","blanco-lunares","azul-claro-lunares"],"vestido-strapless-volantes-rosa":["negro"],
- "top-un-hombro-capa-tul":["negro"],"vestido-blazer-perlas-volantes":["negro-blanco"],"falda-midi-saten-picos-encaje":["negro"],
+ "top-un-hombro-capa-tul":["negro"],"vestido-midi-tirantes-abertura":["negro"],"top-saten-cuello-alto-negro":["negro"],"conjunto-top-falda-sirena-negro":["negro"],"vestido-blazer-perlas-volantes":["negro-blanco"],"falda-midi-saten-picos-encaje":["negro"],
 }
 EXTRA={"vestido-floral-manga-globo":["blanco-floral-2"],"vestido-largo-halter-plisado":["vinotinto-modelo"],
  "conjunto-chaleco-short":["amarillo","crema-lunares"],"cinturon-cadena-corazones":["dorado-modelo"]}
@@ -59,7 +59,7 @@ GARMENT_ONLY={
  "conjunto-chaleco-short__amarillo-plano","conjunto-chaleco-short__crema-lunares-plano",
  "falda-mini-lunares__marron-lunares","falda-mini-lunares__blanco-lunares","falda-mini-lunares__azul-claro-lunares",
  "vestido-strapless-volantes-rosa__negro","top-un-hombro-capa-tul__negro","vestido-blazer-perlas-volantes__negro-blanco",
- "falda-midi-saten-picos-encaje__negro"}
+ "falda-midi-saten-picos-encaje__negro","vestido-midi-tirantes-abertura__negro","top-saten-cuello-alto-negro__negro","conjunto-top-falda-sirena-negro__negro"}
 import colorsys, numpy as np
 from PIL import Image
 def vivid(path):
@@ -111,6 +111,9 @@ DESC={
  "vestido-strapless-volantes-rosa":"Strapless corto, fruncido en la cintura, con volantes en cascada y una rosa aplicada.",
  "top-un-hombro-capa-tul":"Top fruncido de un hombro con capa de tul transparente que cae a un lado.",
  "vestido-blazer-perlas-volantes":"Vestido blazer negro con perlas, botones joya y volantes blancos en el ruedo y las mangas.",
+ "vestido-midi-tirantes-abertura":"Midi de tirantes finos, fruncido que marca la figura y abertura lateral.",
+ "top-saten-cuello-alto-negro":"Top de satén negro con cuello alto, sin mangas y ruedo asimétrico de encaje.",
+ "conjunto-top-falda-sirena-negro":"Top corto de cuello alto y falda larga tipo sirena, en tul negro con lunares. Se vende el conjunto.",
  "falda-midi-saten-picos-encaje":"Falda midi de satén con ruedo asimétrico en picos de encaje.",
  "cinturon-elegante":"Cinturón de cuero sintético con hebilla y puntera doradas. Precio por unidad.",
 }
