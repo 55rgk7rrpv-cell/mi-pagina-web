@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><title>No solo hacemos páginas web</title>
+<style>
+@font-face{font-family:IT;font-weight:500;src:url(fonts/intertight-500.woff2) format('woff2')}
+@font-face{font-family:IT;font-weight:800;src:url(fonts/intertight-800.woff2) format('woff2')}
+@font-face{font-family:JB;font-weight:500;src:url(fonts/jbmono-500.woff2) format('woff2')}
+/* Paleta Meridian Digital */
+:root{--navy:#03071F;--white:#FFFFFF;--gray:#A3ADC2;--cy:#DFE5FF;--bl:#0428CB;--sky:#7FB0FF}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--navy)}
+#stage{position:absolute;inset:0;overflow:hidden}
+.ab{position:absolute}
+.bg{position:absolute;inset:0}
+.word{position:absolute;left:0;top:0;width:1080px;height:1920px;display:flex;align-items:center;justify-content:center}
+.wt{font-family:IT;font-weight:800;letter-spacing:-.055em;line-height:1;white-space:nowrap;will-change:transform}
+.mono{font-family:JB;font-weight:500;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}
+</style></head>
+<body><div id="stage"></div>
+<script>
+/* 110 BPM: un golpe cada 0,5454 s. Todo el reel se cuenta en golpes. */
+const BPM=110, BEAT=60/BPM, DUR=14.8;
+const C={navy:'#03071F',white:'#FFFFFF',gray:'#A3ADC2',cy:'#DFE5FF',bl:'#0428CB',sky:'#7FB0FF'};
+const BG={
+  light:`radial-gradient(120% 80% at 15% 8%,#F4F6FF 0%,${C.cy} 40%,${C.sky} 100%)`,
+  dark:`radial-gradient(90% 60% at 80% 95%,rgba(4,40,203,.55) 0%,rgba(4,40,203,0) 70%),${C.navy}`,
+  blue:`radial-gradient(110% 80% at 20% 10%,${C.sky} 0%,${C.bl} 55%,#021A8A 100%)`};
+const stage=document.getElementById('stage');
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x)), seg=(t,a,b)=>clamp((t-a)/(b-a));
+const EO=x=>1-Math.pow(1-x,4), EIO=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+function mk(p,css='',html='',cls='ab'){const e=document.createElement('div');e.className=cls;e.style.cssText=css;e.innerHTML=html;p.appendChild(e);return e}
+const ups=[];const on=f=>ups.push(f);
+const b=n=>n*BEAT;
+
+/* guion en golpes: [golpe, texto, fondo, color, tamaño] — cada palabra dura hasta la siguiente (corte seco al compás) */
+const W=[
+ [0,'nosotros','light',C.navy,230],
+ [1,'no solo','light',C.navy,230],
+ [2,'hacemos','light',C.navy,230,3],
+ // golpes 3–5: "páginas web." con marco de navegador y corte (escena propia)
+ [6,'creamos','dark',C.sky,240],
+ [7,'clientes.','dark',C.white,240],
+ // golpes 8.5–12.5: ráfaga de corcheas
+ [8.5,'rápidas','light',C.navy,220],[9,'seguras','dark',C.white,220],[9.5,'con SEO','light',C.navy,220],[10,'con WhatsApp','dark',C.sky,200],
+ [10.5,'a tu medida','light',C.navy,200],[11,'que venden','dark',C.white,200],[11.5,'24/7','light',C.bl,300],[12,'tuyas.','dark',C.sky,240],
+ [13,'para','light',C.navy,230],[14,'negocios','light',C.navy,230],[15,'que quieren','light',C.navy,210],[16,'crecer.','blue',C.white,250],
+];
+const ENDW=18;   // "crecer." se agranda hasta cubrir la pantalla y entra la marca
+
+function fit(el,size){el.style.fontSize=size+'px';const w=el.scrollWidth;if(w>900)el.style.fontSize=(size*900/w)+'px'}
+
+function build(){
+  const bgs={};for(const k in BG){bgs[k]=mk(stage,`background:${BG[k]};visibility:hidden`,'','bg')}
+  // fondo activo por tramo
+  const bgPlan=[[0,'light'],[b(5.75),'dark'],[b(8.5),'light'],[b(9),'dark'],[b(9.5),'light'],[b(10),'dark'],[b(10.5),'light'],[b(11),'dark'],[b(11.5),'light'],[b(12),'dark'],[b(13),'light'],[b(16),'blue'],[b(18),'navyEnd']];
+  bgs.navyEnd=mk(stage,`background:${BG.dark};visibility:hidden`,'','bg');
+  on(t=>{let cur='light';for(const [s,k] of bgPlan)if(t>=s)cur=k;for(const k in bgs)bgs[k].style.visibility=k===cur?'visible':'hidden'});
+
+  // palabras sueltas
+  W.forEach(([bt,tx,bg,col,size,stop],i)=>{
+    const next=stop??(i+1<W.length?W[i+1][0]:ENDW);const t0=b(bt),t1=b(next);
+    const box=mk(stage,'visibility:hidden','','word');const wt=mk(box,`color:${col}`,tx,'wt');fit(wt,size);
+    const last=i===W.length-1;
+    on(t=>{const vis=t>=t0-.001&&t<t1;box.style.visibility=vis?'visible':'hidden';if(!vis)return;
+      const p=EO(seg(t,t0,t0+.16));               // golpe de entrada: llega grande y se asienta
+      let s=1.12-.12*p, y=(1-p)*40;
+      if(last){const z=EIO(seg(t,b(16.75),t1));s*=1+z*9;y=0}   // "crecer." crece hasta cubrir la pantalla
+      wt.style.transform=`translateY(${y}px) scale(${s})`;});
+  });
+
+  // golpes 3–5: "páginas web." dentro de un navegador, y el corte
+  {const t3=b(3),t4=b(4),t5=b(5),t6=b(5.75);
+   const box=mk(stage,'visibility:hidden','','word');
+   const grp=mk(box,'position:relative;width:900px;height:660px','', '');
+   const frame=mk(grp,`left:0;top:0;width:900px;height:660px;border:6px solid ${C.navy};border-radius:34px`);
+   const bar=mk(grp,`left:0;top:0;width:900px;height:70px;border-bottom:6px solid ${C.navy}`);
+   [0,1,2].forEach(j=>mk(bar,`left:${34+j*34}px;top:24px;width:18px;height:18px;border-radius:50%;background:${C.navy}`));
+   const l1=mk(grp,`left:0;top:96px;width:900px;text-align:center;color:${C.navy}`,'páginas','ab wt');fit(l1,190);
+   const l2=mk(grp,`left:0;top:370px;width:900px;text-align:center;color:${C.navy}`,'web.','ab wt');fit(l2,190);
+   const knife=mk(stage,`left:0;top:958px;width:1080px;height:12px;background:${C.bl};transform-origin:0 50%;visibility:hidden`);
+   on(t=>{const vis=t>=t3&&t<t6;box.style.visibility=vis?'visible':'hidden';
+     const fr=EO(seg(t,t3,t3+.3));frame.style.clipPath=`inset(0 ${(1-fr)*100}% 0 0)`;bar.style.clipPath=frame.style.clipPath;
+     const p1=EO(seg(t,t3,t3+.16));l1.style.transform=`translateY(${(1-p1)*40}px) scale(${1.12-.12*p1})`;
+     l2.style.visibility=(t>=t4&&t<t6)?'visible':'hidden';const p2=EO(seg(t,t4,t4+.16));l2.style.transform=`translateY(${(1-p2)*40}px) scale(${1.12-.12*p2})`;
+     // corte: una línea cruza y todo colapsa a su línea media
+     const kn=seg(t,t5,t5+.12);knife.style.visibility=(t>=t5&&t<t6)?'visible':'hidden';knife.style.transform=`scaleX(${kn})`;
+     const col=EIO(seg(t,t5+.14,t6));grp.style.clipPath=`inset(${col*50}% 0 ${col*50}% 0)`;});
+  }
+
+  // marca + cierre
+  {const t18=b(18),t20=b(20);
+   const m=mk(stage,'visibility:hidden','','word');
+   const st=mk(m,'display:flex;flex-direction:column;align-items:flex-start;gap:56px','', '');
+   const m1=mk(st,`position:relative;color:${C.white}`,'meridian','wt');fit(m1,250);
+   const m2=mk(st,`position:relative;color:${C.sky}`,'digital','wt');fit(m2,250);
+   on(t=>{const vis=t>=t18&&t<t20;m.style.visibility=vis?'visible':'hidden';
+     const p1=EO(seg(t,t18,t18+.16)),p2=EO(seg(t,t18+BEAT,t18+BEAT+.16));
+     m1.style.transform=`translateY(${(1-p1)*40}px) scale(${1.12-.12*p1})`;
+     m2.style.visibility=(t>=t18+BEAT&&t<t20)?'visible':'hidden';m2.style.transform=`translateY(${(1-p2)*40}px) scale(${1.12-.12*p2})`;});
+   const end=mk(stage,'left:0;top:0;width:1080px;height:1920px;visibility:hidden');
+   mk(end,`left:96px;top:560px;width:72px;height:72px;border-radius:50%;border:6px solid ${C.white}`);
+   mk(end,`left:126px;top:560px;width:12px;height:72px;border-radius:6px;background:${C.sky}`);
+   mk(end,`left:192px;top:566px;font:800 32px/1.05 IT;color:${C.white};letter-spacing:-.02em`,'MERIDIAN<br><span style="color:'+C.gray+'">DIGITAL</span>');
+   const e1=mk(end,`left:96px;top:740px;font-size:76px;color:${C.cy}`,'No solo hacemos<br>páginas web.','ab wt');e1.style.lineHeight='1.08';e1.style.letterSpacing='-.04em';
+   const e2=mk(end,`left:90px;top:960px;font-size:150px;color:${C.sky}`,'Creamos<br>clientes.','ab wt');e2.style.lineHeight='1.02';
+   const e3=mk(end,`left:96px;top:1330px;font-size:24px;color:${C.gray}`,'Páginas web desde Venezuela','ab mono');
+   const parts=[[e1,t20],[e2,t20+BEAT],[e3,t20+2*BEAT]];
+   on(t=>{end.style.visibility=t>=t20?'visible':'hidden';
+     parts.forEach(([e,s])=>{const p=EO(seg(t,s,s+.22));e.style.visibility=t>=s?'visible':'hidden';e.style.opacity=p;e.style.transform=`translateY(${(1-p)*40}px)`});});
+  }
+}
+window.render=t=>{for(const f of ups)f(t)};
+window.DUR=DUR;
+(async()=>{await Promise.all([['IT','500'],['IT','800'],['JB','500']].map(([f,w])=>document.fonts.load(`${w} 40px ${f}`)));
+  build();window.render(0);window.READY=true;})();
+</script>
+</body></html>
