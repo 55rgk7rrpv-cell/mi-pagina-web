@@ -118,5 +118,50 @@
    1200
   ]
  },
- "conjunto-top-falda-sirena__azul-marino": "922c6721-image.jpg"
+ "conjunto-top-falda-sirena__azul-marino": "922c6721-image.jpg",
+ "falda-mini-lunares__marron-lunares": "329b4162-image.jpg",
+ "falda-mini-lunares__blanco-lunares": {
+  "file": "7729389d-image.jpg",
+  "whiten": false
+ },
+ "falda-mini-lunares__azul-claro-lunares": {
+  "file": "9f9d2267-image.jpg",
+  "crop": [
+   0,
+   301,
+   688,
+   1178
+  ]
+ },
+ "vestido-strapless-volantes-rosa__negro": {
+  "file": "f2d3f015-image.jpg",
+  "crop": [
+   0,
+   64,
+   688,
+   1490
+  ]
+ },
+ "top-un-hombro-capa-tul__negro": "eea7ac56-image.jpg",
+ "vestido-midi-tirantes-abertura__negro": {
+  "file": "1c073c8d-image.jpg",
+  "crop": [
+   0,
+   296,
+   688,
+   1202
+  ]
+ },
+ "top-saten-cuello-alto__negro": {
+  "file": "c9d71601-image.jpg",
+  "crop": [
+   0,
+   301,
+   688,
+   1226
+  ]
+ },
+ "conjunto-top-falda-sirena__negro": "a2cb84dd-image.jpg",
+ "vestido-blazer-perlas-volantes__negro-blanco": "b8e118b5-image.jpg",
+ "falda-midi-saten-picos-encaje__negro": "90d01413-image.jpg"
 }

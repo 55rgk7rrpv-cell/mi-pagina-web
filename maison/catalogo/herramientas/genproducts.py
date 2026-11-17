@@ -1,5 +1,9 @@
 import json, re, unicodedata
-cat=json.load(open("catalogo/catalogo.json"))["productos"]
+ALL=json.load(open("catalogo/catalogo.json"))["productos"]
+# "pendiente": true = prendas/colores ya cargados pero sin precio o tallas: no salen en la tienda hasta completarlos
+cat=[p for p in ALL if not p.get("pendiente")]
+HELD={p["id"]:[v for v in p["variantes"] if v.get("pendiente")] for p in cat}
+for p in cat: p["variantes"]=[v for v in p["variantes"] if not v.get("pendiente")]
 MEASURED=json.load(open("catalogo/herramientas/colores-medidos.json"))  # swatch = real colour measured on the photo
 PRICE_FIX={}  # prices now live only in catalogo.json
 def slug(s):
@@ -145,9 +149,10 @@ for i,p in enumerate(cat):
         c=next(c for c in colors if c["name"]==v["color"]); v["foto_web"]=c["image"]; v["con_modelo"]=c["withModel"]
     p["imagen_principal"]=colors[0]["image"]; p["portada_con_modelo"]=colors[0]["withModel"]
     p["imagenes_secundarias"]=[c["image"] for c in colors[1:]]+[g["src"] for g in gallery]
+for p in cat: p["variantes"]+=HELD[p["id"]]
 # "Destacados": products with a garment-only cover first, keeping catalogue order inside each group
 for n,o in enumerate(sorted(out,key=lambda o:(o["coverHasModel"],cat.index(next(c for c in cat if c["id"]==o["id"]))))): o["featured"]=n+1
-json.dump({"tienda":"Otra Pinta","moneda":"USD","productos":cat},open("catalogo/catalogo.json","w"),ensure_ascii=False,indent=2)
+json.dump({"tienda":"Otra Pinta","moneda":"USD","productos":ALL},open("catalogo/catalogo.json","w"),ensure_ascii=False,indent=2)
 js=json.dumps(out,ensure_ascii=False,indent=2)
 ts='''// Catálogo de Otra Pinta. Generado a partir de catalogo/catalogo.json.
 // Cada color tiene su propia foto (prenda sobre fondo blanco) y sus tallas.

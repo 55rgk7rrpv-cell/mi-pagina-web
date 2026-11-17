@@ -53,6 +53,10 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   381,
   951
  ],
+ "catalogo/conjunto-top-falda-sirena__negro-sola.webp": [
+  569,
+  1266
+ ],
  "catalogo/enterizo-tul-manga-larga__negro-sola.webp": [
   734,
   1027
@@ -68,6 +72,22 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
  "catalogo/falda-larga-encaje__negro.webp": [
   959,
   1080
+ ],
+ "catalogo/falda-midi-saten-picos-encaje__negro-sola.webp": [
+  422,
+  954
+ ],
+ "catalogo/falda-mini-lunares__azul-claro-lunares-sola.webp": [
+  702,
+  623
+ ],
+ "catalogo/falda-mini-lunares__blanco-lunares-sola.webp": [
+  715,
+  657
+ ],
+ "catalogo/falda-mini-lunares__marron-lunares-sola.webp": [
+  717,
+  671
  ],
  "catalogo/falda-plisada-short__gris-sola.webp": [
   870,
@@ -129,6 +149,10 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   500,
   1037
  ],
+ "catalogo/top-saten-cuello-alto__negro-sola.webp": [
+  490,
+  871
+ ],
  "catalogo/top-saten-cuello-alto__vinotinto-sola.webp": [
   567,
   1102
@@ -161,6 +185,10 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   512,
   1080
  ],
+ "catalogo/top-un-hombro-capa-tul__negro-sola.webp": [
+  470,
+  737
+ ],
  "catalogo/vestido-asimetrico-volantes__vinotinto-sola.webp": [
   415,
   1018
@@ -184,6 +212,10 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
  "catalogo/vestido-blazer-manga-larga__rojo.webp": [
   576,
   757
+ ],
+ "catalogo/vestido-blazer-perlas-volantes__negro-blanco-sola.webp": [
+  806,
+  918
  ],
  "catalogo/vestido-corto-lunares-panuelo__amarillo-sola.webp": [
   250,
@@ -373,6 +405,10 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   893,
   1080
  ],
+ "catalogo/vestido-midi-tirantes-abertura__negro-sola.webp": [
+  294,
+  834
+ ],
  "catalogo/vestido-otra-pinta-lenceria__marron-negro-sola.webp": [
   689,
   866
@@ -384,6 +420,10 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
  "catalogo/vestido-strapless-encaje-rosa__vinotinto-sola.webp": [
   598,
   1156
+ ],
+ "catalogo/vestido-strapless-volantes-rosa__negro-sola.webp": [
+  508,
+  1123
  ],
  "catalogo/m/chaqueta-capucha-lunares__amarillo-sola.webp": [
   765,
@@ -437,6 +477,10 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   353,
   880
  ],
+ "catalogo/m/conjunto-top-falda-sirena__negro-sola.webp": [
+  396,
+  880
+ ],
  "catalogo/m/enterizo-tul-manga-larga__negro-sola.webp": [
   629,
   880
@@ -452,6 +496,22 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
  "catalogo/m/falda-larga-encaje__negro.webp": [
   781,
   880
+ ],
+ "catalogo/m/falda-midi-saten-picos-encaje__negro-sola.webp": [
+  389,
+  880
+ ],
+ "catalogo/m/falda-mini-lunares__azul-claro-lunares-sola.webp": [
+  702,
+  623
+ ],
+ "catalogo/m/falda-mini-lunares__blanco-lunares-sola.webp": [
+  715,
+  657
+ ],
+ "catalogo/m/falda-mini-lunares__marron-lunares-sola.webp": [
+  717,
+  671
  ],
  "catalogo/m/falda-plisada-short__gris-sola.webp": [
   870,
@@ -513,6 +573,10 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   424,
   880
  ],
+ "catalogo/m/top-saten-cuello-alto__negro-sola.webp": [
+  490,
+  871
+ ],
  "catalogo/m/top-saten-cuello-alto__vinotinto-sola.webp": [
   453,
   880
@@ -545,6 +609,10 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   417,
   880
  ],
+ "catalogo/m/top-un-hombro-capa-tul__negro-sola.webp": [
+  470,
+  737
+ ],
  "catalogo/m/vestido-asimetrico-volantes__vinotinto-sola.webp": [
   359,
   880
@@ -568,6 +636,10 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
  "catalogo/m/vestido-blazer-manga-larga__rojo.webp": [
   576,
   757
+ ],
+ "catalogo/m/vestido-blazer-perlas-volantes__negro-blanco-sola.webp": [
+  773,
+  880
  ],
  "catalogo/m/vestido-corto-lunares-panuelo__amarillo-sola.webp": [
   250,
@@ -757,6 +829,10 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
   728,
   880
  ],
+ "catalogo/m/vestido-midi-tirantes-abertura__negro-sola.webp": [
+  294,
+  834
+ ],
  "catalogo/m/vestido-otra-pinta-lenceria__marron-negro-sola.webp": [
   689,
   866
@@ -767,6 +843,10 @@ export const IMAGE_SIZES: Record<string, [number, number]> = {
  ],
  "catalogo/m/vestido-strapless-encaje-rosa__vinotinto-sola.webp": [
   455,
+  880
+ ],
+ "catalogo/m/vestido-strapless-volantes-rosa__negro-sola.webp": [
+  398,
   880
  ]
 };
