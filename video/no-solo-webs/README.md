@@ -6,7 +6,7 @@ Versión en español del reel de @starkmediainc ("We Don't Just Edit. We Create.
 
 - **Audio:** el sonido original del reel de referencia, sin cambios salvo el nivel.
 - **Ritmo:** los 22 cortes están en los mismos frames que el original (0, 22, 42, 60, 76, 91, 105…267 a 30 fps), así que cada palabra cae en el mismo golpe del sonido. Verificado comparando los cortes de ambos videos.
-- **Texto:** nosotros · no solo · hacemos · hacemos webs · nosotros · creamos · diseño · marca · impacto · ventas · clientes · precisión · SEO · confianza · catálogos · WhatsApp · ideas · resultados · re · repe · repeti · repetir. Termina como el original: "repetir." se desintegra y queda el fondo hasta que acaba el audio, sin tarjeta extra.
+- **Texto:** nosotros · no solo · hacemos · hacemos webs · nosotros · creamos · diseño · marca · impacto · ventas · clientes · precisión · SEO · confianza · catálogos · WhatsApp · ideas · resultados · Me · Meri · Merid · Meridian. Termina como el original: "Meridian." se desintegra y queda el fondo hasta que acaba el audio, sin tarjeta extra.
 - **Paleta Meridian:** el fondo verde pasa a degradado celeste (`#F7F8FF → #DFE5FF → #7FB0FF`) y el gris-lavanda a azul (`#7FB0FF → #0428CB → #03071F`).
 - `fuente/check_overlap.mjs`: ninguna superposición de texto en ningún frame.
 
