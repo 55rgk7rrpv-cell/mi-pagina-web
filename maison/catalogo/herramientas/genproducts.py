@@ -79,7 +79,7 @@ DESC={
  "vestido-halter-lunares-escote":"Corto, con escote en V profundo, espalda descubierta y falda con vuelo. Lunares que nunca pasan de moda.",
  "vestido-floral-manga-globo":"Estampado floral, mangas globo, escote en V y falda con vuelo. Romántico y fresco.",
  "top-tul-volantes":"Top de tirantes con tul semitransparente, lazo al frente y volantes que caen a los lados.",
- "vestido-otra-pinta-lenceria":"Nuestro vestido insignia: franela marrón con encaje negro encima, en tendencia lingerie look. Tela: poliamida.",
+ "vestido-otra-pinta-lenceria":"Nuestro vestido insignia: franela marrón con encaje negro encima, en tendencia lingerie look.",
  "vestido-midi-asimetrico":"Midi ajustado, con hombro asimétrico, drapeado lateral y abertura en la pierna.",
  "top-halter-aberturas":"Top halter fruncido con aberturas al frente y ruedo con volante.",
  "vestido-strapless-encaje-rosa":"Strapless de encaje con cintura fruncida, falda de volantes en capas y una rosa con cinta caída.",

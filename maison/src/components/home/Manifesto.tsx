@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import { useRef } from "react";
 import CountUp from "@/components/bits/CountUp";
+import { CATEGORIES, PRODUCTS } from "@/lib/products";
 
 const TEXT =
   "Elegimos cada prenda una a una, pensando en ti. Pocas unidades por talla, para que no te vistas igual que todo el mundo. Porque vestirte distinto también es decir quién eres.";
@@ -39,9 +40,10 @@ export function Manifesto() {
         </div>
         <div className="mt-20 grid gap-10 border-t border-sand/20 pt-10 sm:grid-cols-3">
           {[
-            [36, "", "piezas en la colección"],
-            [6, "", "categorías: vestidos, conjuntos, tops, faldas, chaquetas y accesorios"],
-            [13, "$", "es el precio de entrada, en accesorios"],
+            // computed from the catalogue, so these numbers are never out of date
+            [PRODUCTS.length, "", "piezas en la colección"],
+            [CATEGORIES.length - 1, "", `categorías: ${CATEGORIES.slice(1).join(", ").toLowerCase().replace(/, ([^,]+)$/, " y $1")}`],
+            [Math.min(...PRODUCTS.map((p) => p.price)), "$", "es el precio más bajo de la tienda"],
           ].map(([n, prefix, l]) => (
             <div key={l as string}>
               <p className="font-serif text-5xl text-sand md:text-6xl">

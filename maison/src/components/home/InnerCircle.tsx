@@ -1,18 +1,20 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
-import { useState, type FormEvent } from "react";
+import { useState } from "react";
 import { Magnetic } from "@/components/ui/Magnetic";
 import { ArrowIcon, CheckIcon } from "@/components/ui/Icons";
+import { whatsappChat } from "@/lib/tienda";
 
+/* The shop has no mailing list (no server), so this section only promises what is real:
+   the welcome code, and WhatsApp to hear about new pieces. */
 export function InnerCircle() {
-  const [email, setEmail] = useState("");
-  const [state, setState] = useState<"idle" | "error" | "done">("idle");
-
-  const submit = (e: FormEvent) => {
-    e.preventDefault();
-    setState(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) ? "done" : "error");
-  };
+  const [copied, setCopied] = useState(false);
+  const copy = () =>
+    navigator.clipboard?.writeText("BIENVENIDA").then(() => {
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1800);
+    });
+  const wa = whatsappChat("Hola Otra Pinta, quiero enterarme cuando lleguen piezas nuevas.");
 
   return (
     <section id="inner-circle" className="relative overflow-hidden bg-champagne px-5 py-28 text-wine md:px-10 md:py-40">
@@ -23,53 +25,40 @@ export function InnerCircle() {
           Primero tú. <em className="text-burgundy">Siempre.</em>
         </h2>
         <p className="mx-auto mt-6 max-w-lg text-base leading-relaxed text-maroon/80">
-          Las miembros ven cada lanzamiento 48 horas antes y reciben invitaciones a asesorías privadas. Únete y llévate 10% de descuento en tu primera pieza.
+          En tu primera compra llévate 10% de descuento con este código. Y si quieres enterarte primero cuando lleguen piezas nuevas, escríbenos por WhatsApp.
         </p>
 
-        <form onSubmit={submit} noValidate className="mx-auto mt-12 max-w-xl">
-          <AnimatePresence mode="wait">
-            {state === "done" ? (
-              <motion.p
-                key="done"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="flex items-center justify-center gap-3 font-serif text-2xl italic text-burgundy"
-                role="status"
+        <div className="mx-auto mt-12 flex max-w-xl flex-col items-center justify-center gap-4 sm:flex-row">
+          <button
+            type="button"
+            onClick={copy}
+            aria-label="Copiar el código BIENVENIDA"
+            className="inline-flex h-14 items-center gap-4 rounded-full border border-dashed border-burgundy/50 bg-white/50 px-7 transition-colors hover:border-burgundy"
+          >
+            <span className="font-sans text-base font-semibold tracking-[0.3em] text-burgundy">BIENVENIDA</span>
+            <span className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-maroon/70" role="status">
+              {copied ? (
+                <>
+                  <CheckIcon width={12} height={12} /> Copiado
+                </>
+              ) : (
+                "Copiar"
+              )}
+            </span>
+          </button>
+          {wa && (
+            <Magnetic>
+              <a
+                href={wa}
+                target="_blank"
+                rel="noreferrer"
+                className="group inline-flex h-14 items-center gap-2 rounded-full bg-burgundy px-7 text-[11px] font-semibold uppercase tracking-[0.22em] text-champagne transition-colors hover:bg-wine"
               >
-                <CheckIcon /> Bienvenida. Tu código es <span className="not-italic font-sans text-base font-semibold tracking-[0.2em]">BIENVENIDA</span>
-              </motion.p>
-            ) : (
-              <motion.div key="form" exit={{ opacity: 0, y: -10 }}>
-                <div className={`flex items-center gap-3 border-b pb-3 transition-colors ${state === "error" ? "border-burgundy" : "border-wine/30 focus-within:border-wine"}`}>
-                  <label htmlFor="ic-email" className="sr-only">Correo electrónico</label>
-                  <input
-                    id="ic-email"
-                    type="email"
-                    inputMode="email"
-                    autoComplete="email"
-                    placeholder="Tu correo electrónico"
-                    value={email}
-                    onChange={(e) => {
-                      setEmail(e.target.value);
-                      if (state === "error") setState("idle");
-                    }}
-                    aria-invalid={state === "error"}
-                    aria-describedby={state === "error" ? "ic-err" : undefined}
-                    className="min-w-0 flex-1 bg-transparent py-3 text-lg text-wine placeholder:text-maroon/45 focus:outline-none"
-                  />
-                  <Magnetic>
-                    <button type="submit" className="group inline-flex h-12 items-center gap-2 rounded-full bg-burgundy px-6 text-[11px] font-semibold uppercase tracking-[0.22em] text-champagne transition-colors hover:bg-wine">
-                      Unirme <ArrowIcon width={14} height={14} className="transition-transform group-hover:translate-x-1" />
-                    </button>
-                  </Magnetic>
-                </div>
-                {state === "error" && (
-                  <p id="ic-err" className="mt-3 text-left text-sm text-burgundy">Escribe un correo válido, por ejemplo nombre@ejemplo.com.</p>
-                )}
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </form>
+                Avísame por WhatsApp <ArrowIcon width={14} height={14} className="transition-transform group-hover:translate-x-1" />
+              </a>
+            </Magnetic>
+          )}
+        </div>
       </div>
     </section>
   );

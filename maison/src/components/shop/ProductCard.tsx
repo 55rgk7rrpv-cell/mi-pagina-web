@@ -83,11 +83,11 @@ export function ProductCard({ product, index }: { product: Product; index: numbe
       {/* framer-motion owns the article's opacity; the dimming of the other cards happens on this wrapper */}
       <div className="card-inner">
         <GlareHover
-          className="product-frame relative aspect-square overflow-hidden rounded-2xl bg-white"
+          className="product-frame relative aspect-square overflow-hidden rounded-md bg-white"
           width="100%"
           height="auto"
           background="#FFFFFF"
-          borderRadius="1rem"
+          borderRadius="0.375rem"
           borderColor="transparent"
           glareColor="#F2D9A0"
           glareOpacity={0.22}
@@ -141,7 +141,7 @@ export function ProductCard({ product, index }: { product: Product; index: numbe
 
 function Tag({ className, children }: { className: string; children: React.ReactNode }) {
   return (
-    <span className={`pointer-events-none absolute top-3 rounded-full bg-wine/85 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.2em] text-sand ${className}`}>
+    <span className={`pointer-events-none absolute top-3 rounded-sm bg-white/95 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.24em] text-wine ring-1 ring-wine/15 ${className}`}>
       {children}
     </span>
   );

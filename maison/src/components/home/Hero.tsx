@@ -9,8 +9,13 @@ import { ArrowIcon } from "@/components/ui/Icons";
 import { useShop } from "@/context/ShopContext";
 import { HeroAurora } from "./HeroAurora";
 import { imgSize, thumbOf } from "@/lib/image-sizes";
+import { getProduct } from "@/lib/products";
+import { allSizes } from "@/lib/catalog";
 
 const HERO_IMG = thumbOf("catalogo/vestido-strapless-encaje-rosa__vinotinto-sola.webp");
+// price and sizes come from the catalogue, so the label can never drift from the real product
+const HERO = getProduct("vestido-strapless-encaje-rosa")!;
+const HERO_SIZES = allSizes(HERO).join(", ").replace(/, ([^,]+)$/, " y $1");
 import ShinyText from "@/components/bits/ShinyText";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -138,16 +143,18 @@ export function Hero() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={HERO_IMG} {...imgSize(HERO_IMG)} fetchPriority="high" loading="eager" decoding="async" alt="Vestido corto strapless de encaje con rosa, color vinotinto" className="h-full w-full bg-white object-contain object-center px-[10%] pb-[6%] pt-[20%]" />
             <span className="pointer-events-none absolute inset-0 bg-[linear-gradient(115deg,transparent_40%,rgba(242,217,160,0.12)_50%,transparent_60%)]" />
+            {/* fine gold inner frame, like a jewellery-box window */}
+            <span aria-hidden className="pointer-events-none absolute inset-3 rounded-t-full border border-[#C9A35C]/45" />
           </motion.button>
 
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease, delay: 1.3 }}
-            className="absolute -left-4 bottom-10 rounded-2xl border border-sand/20 bg-wine/70 px-5 py-4 backdrop-blur-md md:-left-10"
+            className="absolute -left-4 bottom-10 rounded-md border border-sand/25 bg-wine/70 px-5 py-4 backdrop-blur-md md:-left-10"
           >
             <p className="text-[10px] uppercase tracking-[0.28em] text-sand/80">Vestido strapless de encaje</p>
-            <p className="mt-1 font-serif text-2xl text-champagne">$35 · Tallas XS y S</p>
+            <p className="mt-1 font-serif text-2xl text-champagne">${HERO.price} · Tallas {HERO_SIZES}</p>
           </motion.div>
 
           <motion.div

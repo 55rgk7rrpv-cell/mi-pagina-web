@@ -46,6 +46,11 @@ Tienda de ropa femenina de Puerto Ordaz (Instagram @otrapintapzo). Next.js + Tai
 - **La tarea compila desde la rama en GitHub: siempre hacer push antes de las 5:47**, o publicaría la versión anterior.
 - Entorno de nube `mi-pagina-web` (`env_013Qkqg2u3c9GTgtUTXWH8k4`) permite: ui.shadcn.com, reactbits.dev, www.canva.com, export-download.canva.com, ve.dolarapi.com.
 
+## Lecciones de contenido (no repetir)
+- Nada de datos escritos a mano que puedan quedar viejos o ser falsos: cifras del manifiesto y precio/tallas de la portada se calculan del catálogo. No prometer cosas que la tienda no hace (sin lista de correo, sin "48 h antes", sin plazos de entrega, sin enlaces a páginas que no existen).
+- El orden de catalogo.json = orden "Destacados": prendas parecidas juntas (halter, strapless, blazer, satén...). Producto nuevo: ponerlo junto a sus parecidas.
+- Lookbook: cada foto con su proporción y misma altura; la fila se desliza exactamente lo que sobra (se mide), así nunca se corta.
+
 ## Lecciones de rendimiento (no repetir)
 - Nada con `:has()` que dependa de `:hover` en la parrilla (atenuar "las demás" recalculaba 36 tarjetas). Evitar `will-change` permanente, `mix-blend-mode` por tarjeta y `backdrop-filter` grande en elementos fijos.
 - Con el ratón quieto las tarjetas pasan debajo al hacer scroll: `html[data-scrolling]` congela sus efectos (`SmoothScroll.tsx`). Lenis solo con mouse y se apaga si el equipo va lento. GSAP fue eliminado; solo Framer Motion.

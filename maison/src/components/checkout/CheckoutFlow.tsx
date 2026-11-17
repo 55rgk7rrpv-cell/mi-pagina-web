@@ -21,7 +21,7 @@ const STEPS = ["Datos", "Envío", "Pago"] as const;
 
 // Otra Pinta only sells in Puerto Ordaz.
 const METHODS = [
-  { id: "express", label: "Delivery", note: "A tu dirección en Puerto Ordaz, de 1 a 2 días hábiles", cost: 5 },
+  { id: "express", label: "Delivery", note: "A tu dirección en Puerto Ordaz. Coordinamos el día por mensaje", cost: 5 },
   { id: "pickup", label: "Retiro en persona", note: "En Puerto Ordaz, coordinamos el punto por mensaje", cost: 0 },
 ] as const;
 

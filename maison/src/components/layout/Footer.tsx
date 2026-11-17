@@ -1,9 +1,13 @@
 import { whatsappChat, WHATSAPP_VISIBLE } from "@/lib/tienda";
 
-const COLS = [
-  { title: "Otra Pinta", items: ["La colección", "Lookbook", "El Círculo"] },
-  { title: "Atención", items: ["Delivery y envíos", "Guía de tallas", "Pago Móvil y efectivo", "Contacto por WhatsApp e Instagram"] },
-  ];
+// Only real places on the page and real shop rules (no pages that do not exist)
+const COLS: { title: string; items: { label: string; href?: string }[] }[] = [
+  { title: "Otra Pinta", items: [{ label: "La colección", href: "#collection" }, { label: "Lookbook", href: "#lookbook" }, { label: "El Círculo", href: "#inner-circle" }] },
+  {
+    title: "Atención",
+    items: [{ label: "Solo Puerto Ordaz" }, { label: "Delivery $5 · gratis desde $80" }, { label: "Retiro en persona gratis" }, { label: "Pago Móvil o efectivo" }],
+  },
+];
 
 export function Footer() {
   return (
@@ -25,8 +29,14 @@ export function Footer() {
               <h3 className="text-[11px] font-medium uppercase tracking-[0.24em] text-sand">{c.title}</h3>
               <ul className="mt-5 space-y-3">
                 {c.items.map((i) => (
-                  <li key={i}>
-                    <span className="text-sm text-champagne/70">{i}</span>
+                  <li key={i.label}>
+                    {i.href ? (
+                      <a href={i.href} className="text-sm text-champagne/80 transition-colors hover:text-champagne">
+                        {i.label}
+                      </a>
+                    ) : (
+                      <span className="text-sm text-champagne/60">{i.label}</span>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -65,7 +75,7 @@ export function Footer() {
         <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-sand/15 pt-6 text-[11px] uppercase tracking-[0.2em] text-champagne/50 md:flex-row">
           <span>© {new Date().getFullYear()} Otra Pinta</span>
           <span>Puerto Ordaz · Venezuela</span>
-          <span>Privacidad · Términos · Accesibilidad</span>
+          <span>Precios en dólares · Pago Móvil o efectivo</span>
         </div>
       </div>
     </footer>

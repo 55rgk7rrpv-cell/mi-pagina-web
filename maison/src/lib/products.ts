@@ -116,20 +116,19 @@ export const PRODUCTS: Product[] = [
     "featured": 1
   },
   {
-    "id": "conjunto-top-falda-sirena",
-    "name": "Conjunto top corto y falda sirena con lunares",
-    "category": "Conjuntos",
-    "price": 45,
-    "description": "Top corto drapeado y falda larga tipo sirena con fruncido en la cadera. Dos piezas que juntas son un look completo.",
+    "id": "vestido-halter-suelto",
+    "name": "Vestido halter suelto con volantes",
+    "category": "Vestidos",
+    "price": 35,
+    "description": "Halter suelto con lazo en la espalda y falda corta de volantes. Ligero y coqueto.",
     "colors": [
       {
-        "name": "Azul marino con lunares",
-        "hex": "#052339",
+        "name": "Rojo",
+        "hex": "#690A1B",
         "sizes": [
-          "S",
-          "M"
+          "S"
         ],
-        "image": "catalogo/conjunto-top-falda-sirena__azul-marino-sola.webp",
+        "image": "catalogo/vestido-halter-suelto__rojo-sola.webp",
         "withModel": false,
         "aiGenerated": false,
         "note": null
@@ -137,29 +136,28 @@ export const PRODUCTS: Product[] = [
     ],
     "gallery": [
       {
-        "src": "catalogo/conjunto-top-falda-sirena__azul-marino.webp",
+        "src": "catalogo/vestido-halter-suelto__rojo.webp",
         "withModel": true
       }
     ],
     "coverHasModel": false,
-    "badge": null,
+    "badge": "Última pieza",
     "featured": 2
   },
   {
-    "id": "vestido-largo-strapless-rosa",
-    "name": "Vestido largo strapless con rosa",
+    "id": "vestido-halter-suelto-tul",
+    "name": "Vestido halter suelto con lunares y tul",
     "category": "Vestidos",
-    "price": 45,
-    "description": "Strapless ajustado con rosa aplicada, abertura lateral y volantes en el ruedo. Incluye gargantilla de rosa.",
+    "price": 40,
+    "description": "Halter suelto con lunares, lazo en la espalda y falda de volantes con borde de tul.",
     "colors": [
       {
-        "name": "Vinotinto",
-        "hex": "#58122B",
+        "name": "Blanco con lunares negros",
+        "hex": "#DAD9DC",
         "sizes": [
-          "XS",
-          "S"
+          "XS"
         ],
-        "image": "catalogo/vestido-largo-strapless-rosa__vinotinto-sola.webp",
+        "image": "catalogo/vestido-halter-suelto-tul__blanco-lunares-sola.webp",
         "withModel": false,
         "aiGenerated": false,
         "note": null
@@ -167,57 +165,13 @@ export const PRODUCTS: Product[] = [
     ],
     "gallery": [
       {
-        "src": "catalogo/vestido-largo-strapless-rosa__vinotinto.webp",
+        "src": "catalogo/vestido-halter-suelto-tul__blanco-lunares.webp",
         "withModel": true
       }
     ],
     "coverHasModel": false,
-    "badge": null,
+    "badge": "Última pieza",
     "featured": 3
-  },
-  {
-    "id": "vestido-largo-un-hombro",
-    "name": "Vestido largo de un hombro fruncido",
-    "category": "Vestidos",
-    "price": 45,
-    "description": "Un solo hombro, cuerpo fruncido hasta la cadera y falda larga y vaporosa. Elegante sin esfuerzo.",
-    "colors": [
-      {
-        "name": "Amarillo claro",
-        "hex": "#E0DFC5",
-        "sizes": [
-          "S"
-        ],
-        "image": "catalogo/vestido-largo-un-hombro__amarillo-claro-sola.webp",
-        "withModel": false,
-        "aiGenerated": false,
-        "note": null
-      },
-      {
-        "name": "Negro",
-        "hex": "#1A1A1A",
-        "sizes": [
-          "S"
-        ],
-        "image": "catalogo/vestido-largo-un-hombro__negro-sola.webp",
-        "withModel": false,
-        "aiGenerated": false,
-        "note": null
-      }
-    ],
-    "gallery": [
-      {
-        "src": "catalogo/vestido-largo-un-hombro__amarillo-claro.webp",
-        "withModel": true
-      },
-      {
-        "src": "catalogo/vestido-largo-un-hombro__negro.webp",
-        "withModel": true
-      }
-    ],
-    "coverHasModel": false,
-    "badge": null,
-    "featured": 4
   },
   {
     "id": "vestido-halter-lunares-escote",
@@ -277,658 +231,7 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": null,
-    "featured": 5
-  },
-  {
-    "id": "vestido-floral-manga-globo",
-    "name": "Vestido floral manga globo",
-    "category": "Vestidos",
-    "price": 40,
-    "description": "Estampado floral, mangas globo, escote en V y falda con vuelo. Romántico y fresco.",
-    "colors": [
-      {
-        "name": "Blanco con flores amarillas",
-        "hex": "#EBE6D2",
-        "sizes": [
-          "S"
-        ],
-        "image": "catalogo/vestido-floral-manga-globo__blanco-floral-sola.webp",
-        "withModel": false,
-        "aiGenerated": false,
-        "note": null
-      }
-    ],
-    "gallery": [
-      {
-        "src": "catalogo/vestido-floral-manga-globo__blanco-floral.webp",
-        "withModel": true
-      },
-      {
-        "src": "catalogo/vestido-floral-manga-globo__blanco-floral-2.webp",
-        "withModel": true
-      }
-    ],
-    "coverHasModel": false,
-    "badge": "Última pieza",
-    "featured": 6
-  },
-  {
-    "id": "top-tul-volantes",
-    "name": "Top de tul con volantes",
-    "category": "Tops",
-    "price": 20,
-    "description": "Top de tirantes con tul semitransparente, lazo al frente y volantes que caen a los lados.",
-    "colors": [
-      {
-        "name": "Negro",
-        "hex": "#4B4B48",
-        "sizes": [
-          "XXS"
-        ],
-        "image": "catalogo/top-tul-volantes__negro-sola.webp",
-        "withModel": false,
-        "aiGenerated": false,
-        "note": null
-      }
-    ],
-    "gallery": [
-      {
-        "src": "catalogo/top-tul-volantes__negro.webp",
-        "withModel": true
-      }
-    ],
-    "coverHasModel": false,
-    "badge": "Última pieza",
-    "featured": 7
-  },
-  {
-    "id": "vestido-otra-pinta-lenceria",
-    "name": "Vestido Otra Pinta estilo lencería",
-    "category": "Vestidos",
-    "price": 28,
-    "description": "Nuestro vestido insignia: franela marrón con encaje negro encima, en tendencia lingerie look. Tela: poliamida.",
-    "colors": [
-      {
-        "name": "Marrón y negro",
-        "hex": "#201A19",
-        "sizes": [
-          "S"
-        ],
-        "image": "catalogo/vestido-otra-pinta-lenceria__marron-negro-sola.webp",
-        "withModel": false,
-        "aiGenerated": false,
-        "note": null
-      }
-    ],
-    "gallery": [
-      {
-        "src": "catalogo/vestido-otra-pinta-lenceria__marron-negro.webp",
-        "withModel": true
-      }
-    ],
-    "coverHasModel": false,
-    "badge": "Última pieza",
-    "featured": 8
-  },
-  {
-    "id": "vestido-midi-asimetrico",
-    "name": "Vestido midi asimétrico con abertura",
-    "category": "Vestidos",
-    "price": 38,
-    "description": "Midi ajustado, con hombro asimétrico, drapeado lateral y abertura en la pierna.",
-    "colors": [
-      {
-        "name": "Negro",
-        "hex": "#1D232A",
-        "sizes": [
-          "XXS"
-        ],
-        "image": "catalogo/vestido-midi-asimetrico__negro-sola.webp",
-        "withModel": false,
-        "aiGenerated": false,
-        "note": null
-      }
-    ],
-    "gallery": [
-      {
-        "src": "catalogo/vestido-midi-asimetrico__negro.webp",
-        "withModel": true
-      }
-    ],
-    "coverHasModel": false,
-    "badge": "Última pieza",
-    "featured": 9
-  },
-  {
-    "id": "top-halter-aberturas",
-    "name": "Top halter fruncido con aberturas",
-    "category": "Tops",
-    "price": 16,
-    "description": "Top halter fruncido con aberturas al frente y ruedo con volante.",
-    "colors": [
-      {
-        "name": "Negro",
-        "hex": "#1B1B1B",
-        "sizes": [
-          "XS"
-        ],
-        "image": "catalogo/top-halter-aberturas__negro-sola.webp",
-        "withModel": false,
-        "aiGenerated": false,
-        "note": null
-      }
-    ],
-    "gallery": [
-      {
-        "src": "catalogo/top-halter-aberturas__negro.webp",
-        "withModel": true
-      }
-    ],
-    "coverHasModel": false,
-    "badge": "Última pieza",
-    "featured": 10
-  },
-  {
-    "id": "vestido-strapless-encaje-rosa",
-    "name": "Vestido corto strapless de encaje con rosa",
-    "category": "Vestidos",
-    "price": 35,
-    "description": "Strapless de encaje con cintura fruncida, falda de volantes en capas y una rosa con cinta caída.",
-    "colors": [
-      {
-        "name": "Vinotinto",
-        "hex": "#57151E",
-        "sizes": [
-          "XS",
-          "S"
-        ],
-        "image": "catalogo/vestido-strapless-encaje-rosa__vinotinto-sola.webp",
-        "withModel": false,
-        "aiGenerated": false,
-        "note": null
-      }
-    ],
-    "gallery": [],
-    "coverHasModel": false,
-    "badge": null,
-    "featured": 11
-  },
-  {
-    "id": "falda-volantes-bicolor",
-    "name": "Falda corta con volantes",
-    "category": "Faldas",
-    "price": 28,
-    "description": "Falda corta negra con volantes blancos en capas. Contraste puro.",
-    "colors": [
-      {
-        "name": "Negro y blanco",
-        "hex": "#040605",
-        "sizes": [
-          "S",
-          "M"
-        ],
-        "image": "catalogo/falda-volantes-bicolor__negro-blanco-sola.webp",
-        "withModel": false,
-        "aiGenerated": false,
-        "note": null
-      }
-    ],
-    "gallery": [],
-    "coverHasModel": false,
-    "badge": null,
-    "featured": 12
-  },
-  {
-    "id": "chaqueta-capucha-lunares",
-    "name": "Chaqueta con capucha y lunares",
-    "category": "Chaquetas",
-    "price": 38,
-    "description": "Chaqueta ligera con capucha, cierre y puños elásticos, en lunares.",
-    "colors": [
-      {
-        "name": "Amarillo con lunares",
-        "hex": "#E2D6A1",
-        "sizes": [
-          "L"
-        ],
-        "image": "catalogo/chaqueta-capucha-lunares__amarillo-sola.webp",
-        "withModel": false,
-        "aiGenerated": false,
-        "note": null
-      },
-      {
-        "name": "Rosa con lunares",
-        "hex": "#E4C4CC",
-        "sizes": [
-          "M"
-        ],
-        "image": "catalogo/chaqueta-capucha-lunares__rosa-sola.webp",
-        "withModel": false,
-        "aiGenerated": false,
-        "note": null
-      }
-    ],
-    "gallery": [
-      {
-        "src": "catalogo/chaqueta-capucha-lunares__amarillo.webp",
-        "withModel": true
-      }
-    ],
-    "coverHasModel": false,
-    "badge": null,
-    "featured": 13
-  },
-  {
-    "id": "top-encaje-corse",
-    "name": "Top de encaje tipo corsé",
-    "category": "Tops",
-    "price": 20,
-    "description": "Top tipo corsé de encaje con copas, tirantes finos y abertura al centro.",
-    "colors": [
-      {
-        "name": "Negro",
-        "hex": "#413B38",
-        "sizes": [
-          "XS",
-          "M"
-        ],
-        "image": "catalogo/top-encaje-corse__negro-sola.webp",
-        "withModel": false,
-        "aiGenerated": false,
-        "note": null
-      }
-    ],
-    "gallery": [
-      {
-        "src": "catalogo/top-encaje-corse__negro.webp",
-        "withModel": true
-      }
-    ],
-    "coverHasModel": false,
-    "badge": null,
-    "featured": 14
-  },
-  {
-    "id": "falda-saten-encaje",
-    "name": "Conjunto de satén con encaje",
-    "category": "Conjuntos",
-    "price": 30,
-    "description": "Conjunto de top de encaje tipo corsé y falda midi de satén con ruedo en picos de encaje. Se vende junto, como en la foto.",
-    "colors": [
-      {
-        "name": "Negro",
-        "hex": "#292929",
-        "sizes": [
-          "XS",
-          "S"
-        ],
-        "image": "catalogo/falda-saten-encaje__negro-sola.webp",
-        "withModel": false,
-        "aiGenerated": false,
-        "note": null
-      }
-    ],
-    "gallery": [
-      {
-        "src": "catalogo/falda-saten-encaje__negro.webp",
-        "withModel": true
-      }
-    ],
-    "coverHasModel": false,
-    "badge": null,
-    "featured": 15
-  },
-  {
-    "id": "top-saten-cruzado",
-    "name": "Top de satén halter cruzado con encaje",
-    "category": "Tops",
-    "price": 18,
-    "description": "Top de satén con cuello halter cruzado y ruedo asimétrico de encaje.",
-    "colors": [
-      {
-        "name": "Marrón",
-        "hex": "#3C261B",
-        "sizes": [
-          "S"
-        ],
-        "image": "catalogo/top-saten-cruzado__marron-sola.webp",
-        "withModel": false,
-        "aiGenerated": false,
-        "note": null
-      },
-      {
-        "name": "Champaña",
-        "hex": "#E0DAD1",
-        "sizes": [
-          "XXS"
-        ],
-        "image": "catalogo/top-saten-cruzado__champana-sola.webp",
-        "withModel": false,
-        "aiGenerated": false,
-        "note": null
-      },
-      {
-        "name": "Negro",
-        "hex": "#1D1D1B",
-        "sizes": [
-          "XS"
-        ],
-        "image": "catalogo/top-saten-cruzado__negro-sola.webp",
-        "withModel": false,
-        "aiGenerated": false,
-        "note": null
-      }
-    ],
-    "gallery": [],
-    "coverHasModel": false,
-    "badge": null,
-    "featured": 16
-  },
-  {
-    "id": "top-saten-cuello-alto",
-    "name": "Top de satén cuello alto con encaje",
-    "category": "Tops",
-    "price": 18,
-    "description": "Top de satén con cuello alto, sin mangas y ruedo asimétrico de encaje.",
-    "colors": [
-      {
-        "name": "Vinotinto",
-        "hex": "#451313",
-        "sizes": [
-          "M"
-        ],
-        "image": "catalogo/top-saten-cuello-alto__vinotinto-sola.webp",
-        "withModel": false,
-        "aiGenerated": false,
-        "note": null
-      },
-      {
-        "name": "Marrón",
-        "hex": "#50392C",
-        "sizes": [
-          "S"
-        ],
-        "image": "catalogo/top-saten-cuello-alto__marron-sola.webp",
-        "withModel": false,
-        "aiGenerated": false,
-        "note": null
-      }
-    ],
-    "gallery": [],
-    "coverHasModel": false,
-    "badge": null,
-    "featured": 17
-  },
-  {
-    "id": "top-saten-lazo",
-    "name": "Top de satén con lazo al cuello y encaje",
-    "category": "Tops",
-    "price": 18,
-    "description": "Top de satén que se amarra al cuello con lazo, con ruedo de encaje. Cinco colores para elegir.",
-    "colors": [
-      {
-        "name": "Rojo",
-        "hex": "#A6161D",
-        "sizes": [
-          "S"
-        ],
-        "image": "catalogo/top-saten-lazo__rojo-sola.webp",
-        "withModel": false,
-        "aiGenerated": false,
-        "note": null
-      },
-      {
-        "name": "Amarillo",
-        "hex": "#E9D381",
-        "sizes": [
-          "XXS"
-        ],
-        "image": "catalogo/top-saten-lazo__amarillo-sola.webp",
-        "withModel": false,
-        "aiGenerated": false,
-        "note": null
-      },
-      {
-        "name": "Verde",
-        "hex": "#082F1F",
-        "sizes": [
-          "M"
-        ],
-        "image": "catalogo/top-saten-lazo__verde-sola.webp",
-        "withModel": false,
-        "aiGenerated": false,
-        "note": null
-      },
-      {
-        "name": "Marrón",
-        "hex": "#3A271C",
-        "sizes": [
-          "M"
-        ],
-        "image": "catalogo/top-saten-lazo__marron-sola.webp",
-        "withModel": false,
-        "aiGenerated": false,
-        "note": null
-      },
-      {
-        "name": "Champaña",
-        "hex": "#EADED0",
-        "sizes": [
-          "XS"
-        ],
-        "image": "catalogo/top-saten-lazo__champana-sola.webp",
-        "withModel": false,
-        "aiGenerated": false,
-        "note": null
-      }
-    ],
-    "gallery": [],
-    "coverHasModel": false,
-    "badge": null,
-    "featured": 18
-  },
-  {
-    "id": "vestido-blazer-manga-larga",
-    "name": "Vestido blazer manga larga con falda plisada",
-    "category": "Vestidos",
-    "price": 70,
-    "description": "Vestido blazer de manga larga, cuello solapa y falda con pliegues. Poder y feminidad.",
-    "colors": [
-      {
-        "name": "Rojo",
-        "hex": "#750C1A",
-        "sizes": [
-          "M"
-        ],
-        "image": "catalogo/vestido-blazer-manga-larga__rojo-sola.webp",
-        "withModel": false,
-        "aiGenerated": false,
-        "note": null
-      }
-    ],
-    "gallery": [
-      {
-        "src": "catalogo/vestido-blazer-manga-larga__rojo.webp",
-        "withModel": true
-      }
-    ],
-    "coverHasModel": false,
-    "badge": "Última pieza",
-    "featured": 19
-  },
-  {
-    "id": "vestido-encaje-hombros-descubiertos",
-    "name": "Vestido corto de encaje con hombros descubiertos",
-    "category": "Vestidos",
-    "price": 35,
-    "description": "Encaje con hombros descubiertos, mangas largas transparentes y falda de volantes.",
-    "colors": [
-      {
-        "name": "Amarillo",
-        "hex": "#E5D283",
-        "sizes": [
-          "S"
-        ],
-        "image": "catalogo/vestido-encaje-hombros-descubiertos__amarillo-sola.webp",
-        "withModel": false,
-        "aiGenerated": false,
-        "note": null
-      }
-    ],
-    "gallery": [
-      {
-        "src": "catalogo/vestido-encaje-hombros-descubiertos__amarillo.webp",
-        "withModel": true
-      }
-    ],
-    "coverHasModel": false,
-    "badge": "Última pieza",
-    "featured": 20
-  },
-  {
-    "id": "vestido-blazer-halter",
-    "name": "Vestido blazer halter con botones",
-    "category": "Vestidos",
-    "price": 60,
-    "description": "Vestido blazer halter con solapas, botones al frente y falda con pliegues.",
-    "colors": [
-      {
-        "name": "Vinotinto",
-        "hex": "#48101A",
-        "sizes": [
-          "S"
-        ],
-        "image": "catalogo/vestido-blazer-halter__vinotinto-sola.webp",
-        "withModel": false,
-        "aiGenerated": false,
-        "note": null
-      }
-    ],
-    "gallery": [
-      {
-        "src": "catalogo/vestido-blazer-halter__vinotinto.webp",
-        "withModel": true
-      }
-    ],
-    "coverHasModel": false,
-    "badge": "Última pieza",
-    "featured": 21
-  },
-  {
-    "id": "vestido-largo-espalda-descubierta",
-    "name": "Vestido largo con espalda descubierta",
-    "category": "Vestidos",
-    "price": 43,
-    "description": "Largo, con escote y abertura al frente, espalda descubierta y fruncido que marca la figura.",
-    "colors": [
-      {
-        "name": "Amarillo claro",
-        "hex": "#E0DDBA",
-        "sizes": [
-          "S"
-        ],
-        "image": "catalogo/vestido-largo-espalda-descubierta__amarillo-claro-sola.webp",
-        "withModel": false,
-        "aiGenerated": false,
-        "note": null
-      }
-    ],
-    "gallery": [
-      {
-        "src": "catalogo/vestido-largo-espalda-descubierta__amarillo-claro.webp",
-        "withModel": true
-      }
-    ],
-    "coverHasModel": false,
-    "badge": "Última pieza",
-    "featured": 22
-  },
-  {
-    "id": "enterizo-tul-manga-larga",
-    "name": "Enterizo corto de tul manga larga",
-    "category": "Conjuntos",
-    "price": 30,
-    "description": "Enterizo corto de tul fruncido, cuello alto y manga larga.",
-    "colors": [
-      {
-        "name": "Negro",
-        "hex": "#181818",
-        "sizes": [
-          "S"
-        ],
-        "image": "catalogo/enterizo-tul-manga-larga__negro-sola.webp",
-        "withModel": false,
-        "aiGenerated": false,
-        "note": null
-      }
-    ],
-    "gallery": [
-      {
-        "src": "catalogo/enterizo-tul-manga-larga__negro.webp",
-        "withModel": true
-      }
-    ],
-    "coverHasModel": false,
-    "badge": "Última pieza",
-    "featured": 23
-  },
-  {
-    "id": "vestido-largo-lunares-panuelo",
-    "name": "Vestido largo con lunares y pañuelo",
-    "category": "Vestidos",
-    "price": 40,
-    "description": "Largo y ajustado, de tirantes, con lunares y un pañuelo a juego para el cuello.",
-    "colors": [
-      {
-        "name": "Amarillo con lunares marrones",
-        "hex": "#E9D59E",
-        "sizes": [
-          "S"
-        ],
-        "image": "catalogo/vestido-largo-lunares-panuelo__amarillo-sola.webp",
-        "withModel": false,
-        "aiGenerated": false,
-        "note": null
-      }
-    ],
-    "gallery": [
-      {
-        "src": "catalogo/vestido-largo-lunares-panuelo__amarillo.webp",
-        "withModel": true
-      }
-    ],
-    "coverHasModel": false,
-    "badge": "Última pieza",
-    "featured": 24
-  },
-  {
-    "id": "vestido-halter-suelto",
-    "name": "Vestido halter suelto con volantes",
-    "category": "Vestidos",
-    "price": 35,
-    "description": "Halter suelto con lazo en la espalda y falda corta de volantes. Ligero y coqueto.",
-    "colors": [
-      {
-        "name": "Rojo",
-        "hex": "#690A1B",
-        "sizes": [
-          "S"
-        ],
-        "image": "catalogo/vestido-halter-suelto__rojo-sola.webp",
-        "withModel": false,
-        "aiGenerated": false,
-        "note": null
-      }
-    ],
-    "gallery": [
-      {
-        "src": "catalogo/vestido-halter-suelto__rojo.webp",
-        "withModel": true
-      }
-    ],
-    "coverHasModel": false,
-    "badge": "Última pieza",
-    "featured": 25
+    "featured": 4
   },
   {
     "id": "vestido-largo-halter-plisado",
@@ -957,51 +260,72 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 26
+    "featured": 5
   },
   {
-    "id": "vestido-asimetrico-volantes",
-    "name": "Vestido asimétrico de un hombro con volantes",
+    "id": "vestido-strapless-encaje-rosa",
+    "name": "Vestido corto strapless de encaje con rosa",
     "category": "Vestidos",
-    "price": 38,
-    "description": "Un solo hombro, cuerpo fruncido y ruedo asimétrico de volantes.",
+    "price": 35,
+    "description": "Strapless de encaje con cintura fruncida, falda de volantes en capas y una rosa con cinta caída.",
     "colors": [
       {
         "name": "Vinotinto",
-        "hex": "#4B0C18",
+        "hex": "#57151E",
+        "sizes": [
+          "XS",
+          "S"
+        ],
+        "image": "catalogo/vestido-strapless-encaje-rosa__vinotinto-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      }
+    ],
+    "gallery": [],
+    "coverHasModel": false,
+    "badge": null,
+    "featured": 6
+  },
+  {
+    "id": "vestido-strapless-volantes-rosa",
+    "name": "Vestido corto strapless con volantes y rosa",
+    "category": "Vestidos",
+    "price": 30,
+    "description": "Strapless corto, fruncido en la cintura, con volantes en cascada y una rosa aplicada.",
+    "colors": [
+      {
+        "name": "Negro",
+        "hex": "#151611",
         "sizes": [
           "S"
         ],
-        "image": "catalogo/vestido-asimetrico-volantes__vinotinto-sola.webp",
+        "image": "catalogo/vestido-strapless-volantes-rosa__negro-sola.webp",
         "withModel": false,
         "aiGenerated": false,
         "note": null
       }
     ],
-    "gallery": [
-      {
-        "src": "catalogo/vestido-asimetrico-volantes__vinotinto.webp",
-        "withModel": true
-      }
-    ],
+    "gallery": [],
     "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 27
+    "featured": 7
   },
   {
-    "id": "vestido-halter-suelto-tul",
-    "name": "Vestido halter suelto con lunares y tul",
+    "id": "vestido-largo-strapless-rosa",
+    "name": "Vestido largo strapless con rosa",
     "category": "Vestidos",
-    "price": 40,
-    "description": "Halter suelto con lunares, lazo en la espalda y falda de volantes con borde de tul.",
+    "price": 45,
+    "description": "Strapless ajustado con rosa aplicada, abertura lateral y volantes en el ruedo. Incluye gargantilla de rosa.",
     "colors": [
       {
-        "name": "Blanco con lunares negros",
-        "hex": "#DAD9DC",
+        "name": "Vinotinto",
+        "hex": "#58122B",
         "sizes": [
-          "XS"
+          "XS",
+          "S"
         ],
-        "image": "catalogo/vestido-halter-suelto-tul__blanco-lunares-sola.webp",
+        "image": "catalogo/vestido-largo-strapless-rosa__vinotinto-sola.webp",
         "withModel": false,
         "aiGenerated": false,
         "note": null
@@ -1009,13 +333,95 @@ export const PRODUCTS: Product[] = [
     ],
     "gallery": [
       {
-        "src": "catalogo/vestido-halter-suelto-tul__blanco-lunares.webp",
+        "src": "catalogo/vestido-largo-strapless-rosa__vinotinto.webp",
+        "withModel": true
+      }
+    ],
+    "coverHasModel": false,
+    "badge": null,
+    "featured": 8
+  },
+  {
+    "id": "vestido-blazer-manga-larga",
+    "name": "Vestido blazer manga larga con falda plisada",
+    "category": "Vestidos",
+    "price": 70,
+    "description": "Vestido blazer de manga larga, cuello solapa y falda con pliegues. Poder y feminidad.",
+    "colors": [
+      {
+        "name": "Rojo",
+        "hex": "#750C1A",
+        "sizes": [
+          "M"
+        ],
+        "image": "catalogo/vestido-blazer-manga-larga__rojo-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      }
+    ],
+    "gallery": [
+      {
+        "src": "catalogo/vestido-blazer-manga-larga__rojo.webp",
         "withModel": true
       }
     ],
     "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 28
+    "featured": 9
+  },
+  {
+    "id": "vestido-blazer-halter",
+    "name": "Vestido blazer halter con botones",
+    "category": "Vestidos",
+    "price": 60,
+    "description": "Vestido blazer halter con solapas, botones al frente y falda con pliegues.",
+    "colors": [
+      {
+        "name": "Vinotinto",
+        "hex": "#48101A",
+        "sizes": [
+          "S"
+        ],
+        "image": "catalogo/vestido-blazer-halter__vinotinto-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      }
+    ],
+    "gallery": [
+      {
+        "src": "catalogo/vestido-blazer-halter__vinotinto.webp",
+        "withModel": true
+      }
+    ],
+    "coverHasModel": false,
+    "badge": "Última pieza",
+    "featured": 10
+  },
+  {
+    "id": "vestido-blazer-perlas-volantes",
+    "name": "Vestido blazer con perlas y volantes",
+    "category": "Vestidos",
+    "price": 50,
+    "description": "Vestido blazer negro con perlas, botones joya y volantes blancos en el ruedo y las mangas.",
+    "colors": [
+      {
+        "name": "Negro y blanco",
+        "hex": "#0A0B0D",
+        "sizes": [
+          "M"
+        ],
+        "image": "catalogo/vestido-blazer-perlas-volantes__negro-blanco-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      }
+    ],
+    "gallery": [],
+    "coverHasModel": false,
+    "badge": "Última pieza",
+    "featured": 11
   },
   {
     "id": "vestido-corto-lunares-panuelo",
@@ -1089,22 +495,22 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": null,
-    "featured": 29
+    "featured": 12
   },
   {
-    "id": "top-encaje-hombro-descubierto",
-    "name": "Top de encaje con hombro descubierto",
-    "category": "Tops",
-    "price": 16,
-    "description": "Top de encaje con un hombro descubierto, manga larga y ruedo asimétrico.",
+    "id": "vestido-largo-lunares-panuelo",
+    "name": "Vestido largo con lunares y pañuelo",
+    "category": "Vestidos",
+    "price": 40,
+    "description": "Largo y ajustado, de tirantes, con lunares y un pañuelo a juego para el cuello.",
     "colors": [
       {
-        "name": "Negro",
-        "hex": "#181B16",
+        "name": "Amarillo con lunares marrones",
+        "hex": "#E9D59E",
         "sizes": [
-          "XS"
+          "S"
         ],
-        "image": "catalogo/top-encaje-hombro-descubierto__negro-sola.webp",
+        "image": "catalogo/vestido-largo-lunares-panuelo__amarillo-sola.webp",
         "withModel": false,
         "aiGenerated": false,
         "note": null
@@ -1112,13 +518,226 @@ export const PRODUCTS: Product[] = [
     ],
     "gallery": [
       {
-        "src": "catalogo/top-encaje-hombro-descubierto__negro.webp",
+        "src": "catalogo/vestido-largo-lunares-panuelo__amarillo.webp",
         "withModel": true
       }
     ],
     "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 30
+    "featured": 13
+  },
+  {
+    "id": "vestido-midi-asimetrico",
+    "name": "Vestido midi asimétrico con abertura",
+    "category": "Vestidos",
+    "price": 38,
+    "description": "Midi ajustado, con hombro asimétrico, drapeado lateral y abertura en la pierna.",
+    "colors": [
+      {
+        "name": "Negro",
+        "hex": "#1D232A",
+        "sizes": [
+          "XXS"
+        ],
+        "image": "catalogo/vestido-midi-asimetrico__negro-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      }
+    ],
+    "gallery": [
+      {
+        "src": "catalogo/vestido-midi-asimetrico__negro.webp",
+        "withModel": true
+      }
+    ],
+    "coverHasModel": false,
+    "badge": "Última pieza",
+    "featured": 14
+  },
+  {
+    "id": "vestido-midi-tirantes-abertura",
+    "name": "Vestido midi de tirantes fruncido con abertura",
+    "category": "Vestidos",
+    "price": 30,
+    "description": "Midi de tirantes finos, fruncido que marca la figura y abertura lateral.",
+    "colors": [
+      {
+        "name": "Negro",
+        "hex": "#181917",
+        "sizes": [
+          "M"
+        ],
+        "image": "catalogo/vestido-midi-tirantes-abertura__negro-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      }
+    ],
+    "gallery": [],
+    "coverHasModel": false,
+    "badge": "Última pieza",
+    "featured": 15
+  },
+  {
+    "id": "vestido-asimetrico-volantes",
+    "name": "Vestido asimétrico de un hombro con volantes",
+    "category": "Vestidos",
+    "price": 38,
+    "description": "Un solo hombro, cuerpo fruncido y ruedo asimétrico de volantes.",
+    "colors": [
+      {
+        "name": "Vinotinto",
+        "hex": "#4B0C18",
+        "sizes": [
+          "S"
+        ],
+        "image": "catalogo/vestido-asimetrico-volantes__vinotinto-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      }
+    ],
+    "gallery": [
+      {
+        "src": "catalogo/vestido-asimetrico-volantes__vinotinto.webp",
+        "withModel": true
+      }
+    ],
+    "coverHasModel": false,
+    "badge": "Última pieza",
+    "featured": 16
+  },
+  {
+    "id": "vestido-largo-un-hombro",
+    "name": "Vestido largo de un hombro fruncido",
+    "category": "Vestidos",
+    "price": 45,
+    "description": "Un solo hombro, cuerpo fruncido hasta la cadera y falda larga y vaporosa. Elegante sin esfuerzo.",
+    "colors": [
+      {
+        "name": "Amarillo claro",
+        "hex": "#E0DFC5",
+        "sizes": [
+          "S"
+        ],
+        "image": "catalogo/vestido-largo-un-hombro__amarillo-claro-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      },
+      {
+        "name": "Negro",
+        "hex": "#1A1A1A",
+        "sizes": [
+          "S"
+        ],
+        "image": "catalogo/vestido-largo-un-hombro__negro-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      }
+    ],
+    "gallery": [
+      {
+        "src": "catalogo/vestido-largo-un-hombro__amarillo-claro.webp",
+        "withModel": true
+      },
+      {
+        "src": "catalogo/vestido-largo-un-hombro__negro.webp",
+        "withModel": true
+      }
+    ],
+    "coverHasModel": false,
+    "badge": null,
+    "featured": 17
+  },
+  {
+    "id": "vestido-largo-espalda-descubierta",
+    "name": "Vestido largo con espalda descubierta",
+    "category": "Vestidos",
+    "price": 43,
+    "description": "Largo, con escote y abertura al frente, espalda descubierta y fruncido que marca la figura.",
+    "colors": [
+      {
+        "name": "Amarillo claro",
+        "hex": "#E0DDBA",
+        "sizes": [
+          "S"
+        ],
+        "image": "catalogo/vestido-largo-espalda-descubierta__amarillo-claro-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      }
+    ],
+    "gallery": [
+      {
+        "src": "catalogo/vestido-largo-espalda-descubierta__amarillo-claro.webp",
+        "withModel": true
+      }
+    ],
+    "coverHasModel": false,
+    "badge": "Última pieza",
+    "featured": 18
+  },
+  {
+    "id": "vestido-otra-pinta-lenceria",
+    "name": "Vestido Otra Pinta estilo lencería",
+    "category": "Vestidos",
+    "price": 28,
+    "description": "Nuestro vestido insignia: franela marrón con encaje negro encima, en tendencia lingerie look. Tela: poliamida.",
+    "colors": [
+      {
+        "name": "Marrón y negro",
+        "hex": "#201A19",
+        "sizes": [
+          "S"
+        ],
+        "image": "catalogo/vestido-otra-pinta-lenceria__marron-negro-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      }
+    ],
+    "gallery": [
+      {
+        "src": "catalogo/vestido-otra-pinta-lenceria__marron-negro.webp",
+        "withModel": true
+      }
+    ],
+    "coverHasModel": false,
+    "badge": "Última pieza",
+    "featured": 19
+  },
+  {
+    "id": "vestido-encaje-hombros-descubiertos",
+    "name": "Vestido corto de encaje con hombros descubiertos",
+    "category": "Vestidos",
+    "price": 35,
+    "description": "Encaje con hombros descubiertos, mangas largas transparentes y falda de volantes.",
+    "colors": [
+      {
+        "name": "Amarillo",
+        "hex": "#E5D283",
+        "sizes": [
+          "S"
+        ],
+        "image": "catalogo/vestido-encaje-hombros-descubiertos__amarillo-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      }
+    ],
+    "gallery": [
+      {
+        "src": "catalogo/vestido-encaje-hombros-descubiertos__amarillo.webp",
+        "withModel": true
+      }
+    ],
+    "coverHasModel": false,
+    "badge": "Última pieza",
+    "featured": 20
   },
   {
     "id": "vestido-mangas-acampanadas",
@@ -1147,7 +766,124 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 31
+    "featured": 21
+  },
+  {
+    "id": "vestido-floral-manga-globo",
+    "name": "Vestido floral manga globo",
+    "category": "Vestidos",
+    "price": 40,
+    "description": "Estampado floral, mangas globo, escote en V y falda con vuelo. Romántico y fresco.",
+    "colors": [
+      {
+        "name": "Blanco con flores amarillas",
+        "hex": "#EBE6D2",
+        "sizes": [
+          "S"
+        ],
+        "image": "catalogo/vestido-floral-manga-globo__blanco-floral-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      }
+    ],
+    "gallery": [
+      {
+        "src": "catalogo/vestido-floral-manga-globo__blanco-floral.webp",
+        "withModel": true
+      },
+      {
+        "src": "catalogo/vestido-floral-manga-globo__blanco-floral-2.webp",
+        "withModel": true
+      }
+    ],
+    "coverHasModel": false,
+    "badge": "Última pieza",
+    "featured": 22
+  },
+  {
+    "id": "conjunto-top-falda-sirena",
+    "name": "Conjunto top corto y falda sirena con lunares",
+    "category": "Conjuntos",
+    "price": 45,
+    "description": "Top corto drapeado y falda larga tipo sirena con fruncido en la cadera. Dos piezas que juntas son un look completo.",
+    "colors": [
+      {
+        "name": "Azul marino con lunares",
+        "hex": "#052339",
+        "sizes": [
+          "S",
+          "M"
+        ],
+        "image": "catalogo/conjunto-top-falda-sirena__azul-marino-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      }
+    ],
+    "gallery": [
+      {
+        "src": "catalogo/conjunto-top-falda-sirena__azul-marino.webp",
+        "withModel": true
+      }
+    ],
+    "coverHasModel": false,
+    "badge": null,
+    "featured": 23
+  },
+  {
+    "id": "conjunto-top-falda-sirena-negro",
+    "name": "Conjunto top corto y falda sirena con lunares negro",
+    "category": "Conjuntos",
+    "price": 50,
+    "description": "Top corto de cuello alto y falda larga tipo sirena, en tul negro con lunares. Se vende el conjunto.",
+    "colors": [
+      {
+        "name": "Negro con lunares",
+        "hex": "#101211",
+        "sizes": [
+          "M"
+        ],
+        "image": "catalogo/conjunto-top-falda-sirena-negro__negro-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      }
+    ],
+    "gallery": [],
+    "coverHasModel": false,
+    "badge": "Última pieza",
+    "featured": 24
+  },
+  {
+    "id": "falda-saten-encaje",
+    "name": "Conjunto de satén con encaje",
+    "category": "Conjuntos",
+    "price": 30,
+    "description": "Conjunto de top de encaje tipo corsé y falda midi de satén con ruedo en picos de encaje. Se vende junto, como en la foto.",
+    "colors": [
+      {
+        "name": "Negro",
+        "hex": "#292929",
+        "sizes": [
+          "XS",
+          "S"
+        ],
+        "image": "catalogo/falda-saten-encaje__negro-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      }
+    ],
+    "gallery": [
+      {
+        "src": "catalogo/falda-saten-encaje__negro.webp",
+        "withModel": true
+      }
+    ],
+    "coverHasModel": false,
+    "badge": null,
+    "featured": 25
   },
   {
     "id": "conjunto-chaleco-short",
@@ -1193,23 +929,22 @@ export const PRODUCTS: Product[] = [
     ],
     "coverHasModel": false,
     "badge": null,
-    "featured": 32
+    "featured": 26
   },
   {
-    "id": "falda-larga-encaje",
-    "name": "Falda larga asimétrica de encaje con volantes",
-    "category": "Faldas",
+    "id": "enterizo-tul-manga-larga",
+    "name": "Enterizo corto de tul manga larga",
+    "category": "Conjuntos",
     "price": 30,
-    "description": "Falda de encaje con volantes, corta al frente y larga atrás.",
+    "description": "Enterizo corto de tul fruncido, cuello alto y manga larga.",
     "colors": [
       {
         "name": "Negro",
-        "hex": "#5D5E5F",
+        "hex": "#181818",
         "sizes": [
-          "XXS",
           "S"
         ],
-        "image": "catalogo/falda-larga-encaje__negro-sola.webp",
+        "image": "catalogo/enterizo-tul-manga-larga__negro-sola.webp",
         "withModel": false,
         "aiGenerated": false,
         "note": null
@@ -1217,97 +952,72 @@ export const PRODUCTS: Product[] = [
     ],
     "gallery": [
       {
-        "src": "catalogo/falda-larga-encaje__negro.webp",
-        "withModel": true
-      }
-    ],
-    "coverHasModel": false,
-    "badge": null,
-    "featured": 33
-  },
-  {
-    "id": "falda-plisada-short",
-    "name": "Falda plisada con short interno",
-    "category": "Faldas",
-    "price": 28,
-    "description": "Falda corta plisada con short por dentro, para moverte con tranquilidad.",
-    "colors": [
-      {
-        "name": "Gris carbón",
-        "hex": "#3E3E3D",
-        "sizes": [
-          "S"
-        ],
-        "image": "catalogo/falda-plisada-short__gris-sola.webp",
-        "withModel": false,
-        "aiGenerated": false,
-        "note": null
-      }
-    ],
-    "gallery": [
-      {
-        "src": "catalogo/falda-plisada-short__gris.webp",
+        "src": "catalogo/enterizo-tul-manga-larga__negro.webp",
         "withModel": true
       }
     ],
     "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 34
+    "featured": 27
   },
   {
-    "id": "cinturon-cadena-corazones",
-    "name": "Cinturón de cadena con corazones",
-    "category": "Accesorios",
-    "price": 15,
-    "description": "Cinturón de cadena dorada con medallones y corazones.",
+    "id": "top-saten-lazo",
+    "name": "Top de satén con lazo al cuello y encaje",
+    "category": "Tops",
+    "price": 18,
+    "description": "Top de satén que se amarra al cuello con lazo, con ruedo de encaje. Cinco colores para elegir.",
     "colors": [
       {
-        "name": "Dorado",
-        "hex": "#FFFFFF",
+        "name": "Rojo",
+        "hex": "#A6161D",
         "sizes": [
-          "Única"
+          "S"
         ],
-        "image": "catalogo/cinturon-cadena-corazones__dorado-sola.webp",
-        "withModel": false,
-        "aiGenerated": false,
-        "note": null
-      }
-    ],
-    "gallery": [
-      {
-        "src": "catalogo/cinturon-cadena-corazones__dorado-modelo.webp",
-        "withModel": true
-      }
-    ],
-    "coverHasModel": false,
-    "badge": "Última pieza",
-    "featured": 35
-  },
-  {
-    "id": "cinturon-elegante",
-    "name": "Cinturón elegante con hebilla dorada",
-    "category": "Accesorios",
-    "price": 13,
-    "description": "Cinturón de cuero sintético con hebilla y puntera doradas. Precio por unidad.",
-    "colors": [
-      {
-        "name": "Marrón",
-        "hex": "#422F22",
-        "sizes": [
-          "Única"
-        ],
-        "image": "catalogo/cinturon-elegante__marron-sola.webp",
+        "image": "catalogo/top-saten-lazo__rojo-sola.webp",
         "withModel": false,
         "aiGenerated": false,
         "note": null
       },
       {
-        "name": "Negro",
-        "hex": "#22211B",
+        "name": "Amarillo",
+        "hex": "#E9D381",
         "sizes": [
-          "Única"
+          "XXS"
         ],
-        "image": "catalogo/cinturon-elegante__negro-sola.webp",
+        "image": "catalogo/top-saten-lazo__amarillo-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      },
+      {
+        "name": "Verde",
+        "hex": "#082F1F",
+        "sizes": [
+          "M"
+        ],
+        "image": "catalogo/top-saten-lazo__verde-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      },
+      {
+        "name": "Marrón",
+        "hex": "#3A271C",
+        "sizes": [
+          "M"
+        ],
+        "image": "catalogo/top-saten-lazo__marron-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      },
+      {
+        "name": "Champaña",
+        "hex": "#EADED0",
+        "sizes": [
+          "XS"
+        ],
+        "image": "catalogo/top-saten-lazo__champana-sola.webp",
         "withModel": false,
         "aiGenerated": false,
         "note": null
@@ -1316,6 +1026,252 @@ export const PRODUCTS: Product[] = [
     "gallery": [],
     "coverHasModel": false,
     "badge": null,
+    "featured": 28
+  },
+  {
+    "id": "top-saten-cruzado",
+    "name": "Top de satén halter cruzado con encaje",
+    "category": "Tops",
+    "price": 18,
+    "description": "Top de satén con cuello halter cruzado y ruedo asimétrico de encaje.",
+    "colors": [
+      {
+        "name": "Marrón",
+        "hex": "#3C261B",
+        "sizes": [
+          "S"
+        ],
+        "image": "catalogo/top-saten-cruzado__marron-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      },
+      {
+        "name": "Champaña",
+        "hex": "#E0DAD1",
+        "sizes": [
+          "XXS"
+        ],
+        "image": "catalogo/top-saten-cruzado__champana-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      },
+      {
+        "name": "Negro",
+        "hex": "#1D1D1B",
+        "sizes": [
+          "XS"
+        ],
+        "image": "catalogo/top-saten-cruzado__negro-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      }
+    ],
+    "gallery": [],
+    "coverHasModel": false,
+    "badge": null,
+    "featured": 29
+  },
+  {
+    "id": "top-saten-cuello-alto",
+    "name": "Top de satén cuello alto con encaje",
+    "category": "Tops",
+    "price": 18,
+    "description": "Top de satén con cuello alto, sin mangas y ruedo asimétrico de encaje.",
+    "colors": [
+      {
+        "name": "Vinotinto",
+        "hex": "#451313",
+        "sizes": [
+          "M"
+        ],
+        "image": "catalogo/top-saten-cuello-alto__vinotinto-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      },
+      {
+        "name": "Marrón",
+        "hex": "#50392C",
+        "sizes": [
+          "S"
+        ],
+        "image": "catalogo/top-saten-cuello-alto__marron-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      }
+    ],
+    "gallery": [],
+    "coverHasModel": false,
+    "badge": null,
+    "featured": 30
+  },
+  {
+    "id": "top-saten-cuello-alto-negro",
+    "name": "Top de satén cuello alto con encaje negro",
+    "category": "Tops",
+    "price": 20,
+    "description": "Top de satén negro con cuello alto, sin mangas y ruedo asimétrico de encaje.",
+    "colors": [
+      {
+        "name": "Negro",
+        "hex": "#212121",
+        "sizes": [
+          "XS"
+        ],
+        "image": "catalogo/top-saten-cuello-alto-negro__negro-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      }
+    ],
+    "gallery": [],
+    "coverHasModel": false,
+    "badge": "Última pieza",
+    "featured": 31
+  },
+  {
+    "id": "top-encaje-corse",
+    "name": "Top de encaje tipo corsé",
+    "category": "Tops",
+    "price": 20,
+    "description": "Top tipo corsé de encaje con copas, tirantes finos y abertura al centro.",
+    "colors": [
+      {
+        "name": "Negro",
+        "hex": "#413B38",
+        "sizes": [
+          "XS",
+          "M"
+        ],
+        "image": "catalogo/top-encaje-corse__negro-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      }
+    ],
+    "gallery": [
+      {
+        "src": "catalogo/top-encaje-corse__negro.webp",
+        "withModel": true
+      }
+    ],
+    "coverHasModel": false,
+    "badge": null,
+    "featured": 32
+  },
+  {
+    "id": "top-encaje-hombro-descubierto",
+    "name": "Top de encaje con hombro descubierto",
+    "category": "Tops",
+    "price": 16,
+    "description": "Top de encaje con un hombro descubierto, manga larga y ruedo asimétrico.",
+    "colors": [
+      {
+        "name": "Negro",
+        "hex": "#181B16",
+        "sizes": [
+          "XS"
+        ],
+        "image": "catalogo/top-encaje-hombro-descubierto__negro-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      }
+    ],
+    "gallery": [
+      {
+        "src": "catalogo/top-encaje-hombro-descubierto__negro.webp",
+        "withModel": true
+      }
+    ],
+    "coverHasModel": false,
+    "badge": "Última pieza",
+    "featured": 33
+  },
+  {
+    "id": "top-tul-volantes",
+    "name": "Top de tul con volantes",
+    "category": "Tops",
+    "price": 20,
+    "description": "Top de tirantes con tul semitransparente, lazo al frente y volantes que caen a los lados.",
+    "colors": [
+      {
+        "name": "Negro",
+        "hex": "#4B4B48",
+        "sizes": [
+          "XXS"
+        ],
+        "image": "catalogo/top-tul-volantes__negro-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      }
+    ],
+    "gallery": [
+      {
+        "src": "catalogo/top-tul-volantes__negro.webp",
+        "withModel": true
+      }
+    ],
+    "coverHasModel": false,
+    "badge": "Última pieza",
+    "featured": 34
+  },
+  {
+    "id": "top-un-hombro-capa-tul",
+    "name": "Top de un hombro con capa de tul",
+    "category": "Tops",
+    "price": 15,
+    "description": "Top fruncido de un hombro con capa de tul transparente que cae a un lado.",
+    "colors": [
+      {
+        "name": "Negro",
+        "hex": "#1B1B1A",
+        "sizes": [
+          "S"
+        ],
+        "image": "catalogo/top-un-hombro-capa-tul__negro-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      }
+    ],
+    "gallery": [],
+    "coverHasModel": false,
+    "badge": "Última pieza",
+    "featured": 35
+  },
+  {
+    "id": "top-halter-aberturas",
+    "name": "Top halter fruncido con aberturas",
+    "category": "Tops",
+    "price": 16,
+    "description": "Top halter fruncido con aberturas al frente y ruedo con volante.",
+    "colors": [
+      {
+        "name": "Negro",
+        "hex": "#1B1B1B",
+        "sizes": [
+          "XS"
+        ],
+        "image": "catalogo/top-halter-aberturas__negro-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      }
+    ],
+    "gallery": [
+      {
+        "src": "catalogo/top-halter-aberturas__negro.webp",
+        "withModel": true
+      }
+    ],
+    "coverHasModel": false,
+    "badge": "Última pieza",
     "featured": 36
   },
   {
@@ -1365,91 +1321,49 @@ export const PRODUCTS: Product[] = [
     "featured": 37
   },
   {
-    "id": "vestido-strapless-volantes-rosa",
-    "name": "Vestido corto strapless con volantes y rosa",
-    "category": "Vestidos",
-    "price": 30,
-    "description": "Strapless corto, fruncido en la cintura, con volantes en cascada y una rosa aplicada.",
+    "id": "falda-plisada-short",
+    "name": "Falda plisada con short interno",
+    "category": "Faldas",
+    "price": 28,
+    "description": "Falda corta plisada con short por dentro, para moverte con tranquilidad.",
     "colors": [
       {
-        "name": "Negro",
-        "hex": "#151611",
+        "name": "Gris carbón",
+        "hex": "#3E3E3D",
         "sizes": [
           "S"
         ],
-        "image": "catalogo/vestido-strapless-volantes-rosa__negro-sola.webp",
+        "image": "catalogo/falda-plisada-short__gris-sola.webp",
         "withModel": false,
         "aiGenerated": false,
         "note": null
       }
     ],
-    "gallery": [],
+    "gallery": [
+      {
+        "src": "catalogo/falda-plisada-short__gris.webp",
+        "withModel": true
+      }
+    ],
     "coverHasModel": false,
     "badge": "Última pieza",
     "featured": 38
   },
   {
-    "id": "top-un-hombro-capa-tul",
-    "name": "Top de un hombro con capa de tul",
-    "category": "Tops",
-    "price": 15,
-    "description": "Top fruncido de un hombro con capa de tul transparente que cae a un lado.",
-    "colors": [
-      {
-        "name": "Negro",
-        "hex": "#1B1B1A",
-        "sizes": [
-          "S"
-        ],
-        "image": "catalogo/top-un-hombro-capa-tul__negro-sola.webp",
-        "withModel": false,
-        "aiGenerated": false,
-        "note": null
-      }
-    ],
-    "gallery": [],
-    "coverHasModel": false,
-    "badge": "Última pieza",
-    "featured": 39
-  },
-  {
-    "id": "vestido-midi-tirantes-abertura",
-    "name": "Vestido midi de tirantes fruncido con abertura",
-    "category": "Vestidos",
-    "price": 30,
-    "description": "Midi de tirantes finos, fruncido que marca la figura y abertura lateral.",
-    "colors": [
-      {
-        "name": "Negro",
-        "hex": "#181917",
-        "sizes": [
-          "M"
-        ],
-        "image": "catalogo/vestido-midi-tirantes-abertura__negro-sola.webp",
-        "withModel": false,
-        "aiGenerated": false,
-        "note": null
-      }
-    ],
-    "gallery": [],
-    "coverHasModel": false,
-    "badge": "Última pieza",
-    "featured": 40
-  },
-  {
-    "id": "vestido-blazer-perlas-volantes",
-    "name": "Vestido blazer con perlas y volantes",
-    "category": "Vestidos",
-    "price": 50,
-    "description": "Vestido blazer negro con perlas, botones joya y volantes blancos en el ruedo y las mangas.",
+    "id": "falda-volantes-bicolor",
+    "name": "Falda corta con volantes",
+    "category": "Faldas",
+    "price": 28,
+    "description": "Falda corta negra con volantes blancos en capas. Contraste puro.",
     "colors": [
       {
         "name": "Negro y blanco",
-        "hex": "#0A0B0D",
+        "hex": "#040605",
         "sizes": [
+          "S",
           "M"
         ],
-        "image": "catalogo/vestido-blazer-perlas-volantes__negro-blanco-sola.webp",
+        "image": "catalogo/falda-volantes-bicolor__negro-blanco-sola.webp",
         "withModel": false,
         "aiGenerated": false,
         "note": null
@@ -1457,8 +1371,8 @@ export const PRODUCTS: Product[] = [
     ],
     "gallery": [],
     "coverHasModel": false,
-    "badge": "Última pieza",
-    "featured": 41
+    "badge": null,
+    "featured": 39
   },
   {
     "id": "falda-midi-saten-picos-encaje",
@@ -1482,22 +1396,103 @@ export const PRODUCTS: Product[] = [
     "gallery": [],
     "coverHasModel": false,
     "badge": "Última pieza",
-    "featured": 42
+    "featured": 40
   },
   {
-    "id": "top-saten-cuello-alto-negro",
-    "name": "Top de satén cuello alto con encaje negro",
-    "category": "Tops",
-    "price": 20,
-    "description": "Top de satén negro con cuello alto, sin mangas y ruedo asimétrico de encaje.",
+    "id": "falda-larga-encaje",
+    "name": "Falda larga asimétrica de encaje con volantes",
+    "category": "Faldas",
+    "price": 30,
+    "description": "Falda de encaje con volantes, corta al frente y larga atrás.",
     "colors": [
       {
         "name": "Negro",
-        "hex": "#212121",
+        "hex": "#5D5E5F",
         "sizes": [
-          "XS"
+          "XXS",
+          "S"
         ],
-        "image": "catalogo/top-saten-cuello-alto-negro__negro-sola.webp",
+        "image": "catalogo/falda-larga-encaje__negro-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      }
+    ],
+    "gallery": [
+      {
+        "src": "catalogo/falda-larga-encaje__negro.webp",
+        "withModel": true
+      }
+    ],
+    "coverHasModel": false,
+    "badge": null,
+    "featured": 41
+  },
+  {
+    "id": "chaqueta-capucha-lunares",
+    "name": "Chaqueta con capucha y lunares",
+    "category": "Chaquetas",
+    "price": 38,
+    "description": "Chaqueta ligera con capucha, cierre y puños elásticos, en lunares.",
+    "colors": [
+      {
+        "name": "Amarillo con lunares",
+        "hex": "#E2D6A1",
+        "sizes": [
+          "L"
+        ],
+        "image": "catalogo/chaqueta-capucha-lunares__amarillo-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      },
+      {
+        "name": "Rosa con lunares",
+        "hex": "#E4C4CC",
+        "sizes": [
+          "M"
+        ],
+        "image": "catalogo/chaqueta-capucha-lunares__rosa-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      }
+    ],
+    "gallery": [
+      {
+        "src": "catalogo/chaqueta-capucha-lunares__amarillo.webp",
+        "withModel": true
+      }
+    ],
+    "coverHasModel": false,
+    "badge": null,
+    "featured": 42
+  },
+  {
+    "id": "cinturon-elegante",
+    "name": "Cinturón elegante con hebilla dorada",
+    "category": "Accesorios",
+    "price": 13,
+    "description": "Cinturón de cuero sintético con hebilla y puntera doradas. Precio por unidad.",
+    "colors": [
+      {
+        "name": "Marrón",
+        "hex": "#422F22",
+        "sizes": [
+          "Única"
+        ],
+        "image": "catalogo/cinturon-elegante__marron-sola.webp",
+        "withModel": false,
+        "aiGenerated": false,
+        "note": null
+      },
+      {
+        "name": "Negro",
+        "hex": "#22211B",
+        "sizes": [
+          "Única"
+        ],
+        "image": "catalogo/cinturon-elegante__negro-sola.webp",
         "withModel": false,
         "aiGenerated": false,
         "note": null
@@ -1505,29 +1500,34 @@ export const PRODUCTS: Product[] = [
     ],
     "gallery": [],
     "coverHasModel": false,
-    "badge": "Última pieza",
+    "badge": null,
     "featured": 43
   },
   {
-    "id": "conjunto-top-falda-sirena-negro",
-    "name": "Conjunto top corto y falda sirena con lunares negro",
-    "category": "Conjuntos",
-    "price": 50,
-    "description": "Top corto de cuello alto y falda larga tipo sirena, en tul negro con lunares. Se vende el conjunto.",
+    "id": "cinturon-cadena-corazones",
+    "name": "Cinturón de cadena con corazones",
+    "category": "Accesorios",
+    "price": 15,
+    "description": "Cinturón de cadena dorada con medallones y corazones.",
     "colors": [
       {
-        "name": "Negro con lunares",
-        "hex": "#101211",
+        "name": "Dorado",
+        "hex": "#FFFFFF",
         "sizes": [
-          "M"
+          "Única"
         ],
-        "image": "catalogo/conjunto-top-falda-sirena-negro__negro-sola.webp",
+        "image": "catalogo/cinturon-cadena-corazones__dorado-sola.webp",
         "withModel": false,
         "aiGenerated": false,
         "note": null
       }
     ],
-    "gallery": [],
+    "gallery": [
+      {
+        "src": "catalogo/cinturon-cadena-corazones__dorado-modelo.webp",
+        "withModel": true
+      }
+    ],
     "coverHasModel": false,
     "badge": "Última pieza",
     "featured": 44

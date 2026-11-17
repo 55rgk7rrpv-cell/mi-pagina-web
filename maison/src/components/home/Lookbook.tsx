@@ -3,7 +3,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { imgSize, thumbOf } from "@/lib/image-sizes";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useShop } from "@/context/ShopContext";
 
 const LOOKS = [
@@ -19,10 +19,31 @@ export function Lookbook() {
   const reduce = useReducedMotion();
   const { openQuickView } = useShop();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-62%"]);
+  // slide exactly as far as the row is wider than the screen, so the last look always ends fully in view
+  const row = useRef<HTMLUListElement>(null);
+  const [travel, setTravel] = useState(0);
+  useEffect(() => {
+    const measure = () => row.current && setTravel(Math.max(0, row.current.scrollWidth - window.innerWidth));
+    measure();
+    // re-measure when fonts or photos change the row's width
+    const ro = new ResizeObserver(measure);
+    if (row.current) ro.observe(row.current);
+    window.addEventListener("resize", measure);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, []);
+  const x = useTransform(scrollYProgress, [0, 1], [0, -travel]);
 
   return (
-    <section id="lookbook" ref={ref} className={reduce ? "bg-wine py-24" : "relative h-[300vh] bg-wine"}>
+    <section
+      id="lookbook"
+      ref={ref}
+      className={reduce ? "bg-wine py-24" : "relative bg-wine"}
+      // pinned only as long as the row needs to slide (on a wide screen every look already fits)
+      style={reduce ? undefined : { height: `calc(100svh + ${Math.round(travel * 1.6)}px)` }}
+    >
       <div className={reduce ? "" : "sticky top-0 flex h-[100svh] flex-col justify-center overflow-hidden"}>
         <div className="mx-auto mb-10 flex w-full max-w-[1600px] items-end justify-between px-5 md:px-10">
           <h2 className="font-serif text-[clamp(2.6rem,7vw,6rem)] leading-[0.9] text-champagne">
@@ -31,27 +52,30 @@ export function Lookbook() {
           <p className="hidden max-w-xs text-sm text-champagne/60 md:block">Cinco looks de la colección. Elige uno para ver la pieza.</p>
         </div>
         <motion.ul
+          ref={row}
           style={reduce ? undefined : { x }}
-          className={`flex gap-6 px-5 md:gap-10 md:px-10 ${reduce ? "no-scrollbar overflow-x-auto" : ""}`}
+          className={`flex gap-6 px-5 md:gap-10 md:px-10 ${reduce ? "no-scrollbar overflow-x-auto" : "w-max"}`}
         >
           {LOOKS.map((look, i) => (
-            <li key={look.id} className={`shrink-0 ${i % 2 ? "md:mt-16" : ""}`}>
-              <button type="button" onClick={() => openQuickView(look.id)} data-cursor="Ver" className="group block w-[72vw] text-left sm:w-[44vw] lg:w-[30vw]">
-                <div className="relative aspect-square overflow-hidden rounded-2xl bg-white p-[6%]">
+            <li key={look.id} className={`shrink-0 ${i % 2 ? "md:mt-10" : ""}`}>
+              <button type="button" onClick={() => openQuickView(look.id)} data-cursor="Ver" className="group block w-min text-left">
+                {/* each look keeps its own proportions: same height for all, no bars, nothing cropped */}
+                <div
+                  className="relative h-[min(58svh,120vw)] overflow-hidden rounded-md ring-1 ring-sand/25 lg:h-[min(640px,calc(100svh-20rem))]"
+                  style={{ aspectRatio: `${imgSize(thumbOf(look.image)).width} / ${imgSize(thumbOf(look.image)).height}` }}
+                >
                   <img
                     src={thumbOf(look.image)}
                     {...imgSize(thumbOf(look.image))}
                     decoding="async"
                     alt={`${look.title}: ${look.note}`}
                     loading="lazy"
-                    className="h-full w-full object-contain object-center transition-transform duration-700 ease-lux group-hover:scale-[1.02]"
+                    className="h-full w-full object-contain transition-transform duration-700 ease-lux group-hover:scale-[1.03]"
                   />
-                  <span className="absolute left-4 top-4 font-serif text-sm text-wine/70">0{i + 1}</span>
+                  <span className="absolute left-3 top-3 rounded-sm bg-wine/80 px-2 py-0.5 font-serif text-xs text-champagne">0{i + 1}</span>
                 </div>
-                <div className="mt-5 flex items-baseline justify-between gap-4">
-                  <h3 className="font-serif text-3xl italic text-champagne">{look.title}</h3>
-                  <span className="text-right text-[11px] uppercase tracking-[0.2em] text-sand/70">{look.note}</span>
-                </div>
+                <h3 className="mt-4 font-serif text-2xl italic text-champagne md:text-3xl">{look.title}</h3>
+                <p className="mt-1 text-[11px] uppercase tracking-[0.2em] text-sand/70">{look.note}</p>
               </button>
             </li>
           ))}
