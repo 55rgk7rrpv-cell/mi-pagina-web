@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><title>Negocios en 2030</title>
+<style>
+@font-face{font-family:Anton;src:url(fonts/anton.woff2) format('woff2')}
+@font-face{font-family:IT;font-weight:500;src:url(fonts/intertight-500.woff2) format('woff2')}
+@font-face{font-family:IT;font-weight:800;src:url(fonts/intertight-800.woff2) format('woff2')}
+@font-face{font-family:IS;font-style:italic;src:url(fonts/instrumentserif-italic.woff2) format('woff2')}
+@font-face{font-family:JB;font-weight:500;src:url(fonts/jbmono-500.woff2) format('woff2')}
+/* Paleta Meridian Digital */
+:root{--navy:#03071F;--white:#FFFFFF;--gray:#A3ADC2;--cy:#DFE5FF;--bl:#0428CB;--sky:#7FB0FF}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--navy)}
+#stage{position:absolute;inset:0;overflow:hidden;color:#fff;font-family:IT}
+.ab{position:absolute}
+.mono{font-family:JB;font-weight:500;font-size:24px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}
+.st{font-family:IT;font-weight:800;line-height:1.08;letter-spacing:-.035em}
+.st .row{display:block;white-space:nowrap;height:1.08em}
+.w{display:inline-block;overflow:hidden;vertical-align:top;height:1.08em}
+.wi{display:inline-block;will-change:transform}
+.acc{font-family:IS;font-style:italic;font-weight:400;letter-spacing:-.01em}
+.acc .wi{font-size:1.12em;line-height:.96}
+.anton{font-family:Anton;line-height:1;white-space:nowrap}
+.ink{overflow:hidden;height:1em;line-height:1}
+.dg{display:inline-block;text-align:center;letter-spacing:0}
+.b{font-family:IT;font-weight:800;letter-spacing:-.025em;white-space:nowrap}
+.m{font-family:IT;font-weight:500;white-space:nowrap}
+</style></head>
+<body><div id="stage"></div>
+<script>
+const C={navy:'#03071F',panel:'#0B1336',gray:'#A3ADC2',white:'#FFFFFF',cy:'#DFE5FF',bl:'#0428CB',sky:'#7FB0FF',green:'#1FAF5A'};
+const stage=document.getElementById('stage');
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x)), seg=(t,a,b)=>clamp((t-a)/(b-a));
+const E=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2, k=(t,a,d=.45)=>E(seg(t,a,a+d)), lerp=(a,b,x)=>a+(b-a)*x;
+function mk(p,css='',html='',cls='ab'){const e=document.createElement('div');e.className=cls;e.style.cssText=css;e.innerHTML=html;p.appendChild(e);return e}
+const ups=[];const on=f=>ups.push(f);
+let TL,LINES;
+const norm=s=>s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]/g,'');
+function Wt(ref){const i0=ref.indexOf(':'),id=ref.slice(0,i0);const [w,n]=ref.slice(i0+1).split('#');const want=norm(w);let c=0;
+  for(const x of LINES[id].words)if(norm(x.w)===want&&++c===(+n||1))return x.t;throw new Error('palabra no encontrada: '+ref)}
+/* frases cinéticas sincronizadas palabra a palabra con la voz */
+const LEAD=.12,IN=.32,OUT=.3;
+function statement(parent,spec,lineId,{x=72,y=230,size=80,color=C.white,acc=C.sky,tOut=null}={}){
+  const box=mk(parent,`left:${x}px;top:${y}px;color:${color};font-size:${size}px`,'','ab st');
+  const lw=LINES[lineId].words;let p=0,inAcc=false;const words=[];
+  spec.split('/').forEach(rowTxt=>{const row=document.createElement('span');row.className='row';box.appendChild(row);
+    rowTxt.trim().split(/\s+/).forEach((wd,i,arr)=>{let a=inAcc;if(wd.startsWith('|')){a=true;wd=wd.slice(1);inAcc=true}
+      const m=wd.match(/\|([.,:;]?)$/);if(m){wd=wd.slice(0,m.index)+m[1];inAcc=false}
+      const w=document.createElement('span');w.className='w'+(a?' acc':'');const wi=document.createElement('span');wi.className='wi';wi.textContent=wd;if(a)wi.style.color=acc;
+      w.appendChild(wi);row.appendChild(w);if(i<arr.length-1)row.appendChild(document.createTextNode(' '));
+      const nw=norm(wd.replace(/^24$/,'veinticuatro'));let t=null;
+      for(let q=p;q<lw.length;q++){const lv=norm(lw[q].w);if(lv===nw||(nw.length>=3&&lv.startsWith(nw))){t=lw[q].t;p=q+1;break}}
+      words.push({wi,t});});});
+  words.forEach((w,i)=>{if(w.t==null)w.t=(i?words[i-1].t:LINES[lineId].t)+.12});
+  const tIn=words[0].t-LEAD,tEnd=tOut==null?1e9:tOut+OUT+.012*words.length;
+  on(t=>{words.forEach((w,i)=>{let yy=(1-k(t,w.t-LEAD,IN))*130;if(tOut!=null)yy-=k(t,tOut+i*.012,OUT)*130;w.wi.style.transform=`translateY(${yy}%)`});
+    box.style.visibility=(t<tIn||t>=tEnd)?'hidden':'visible'});
+  return box;
+}
+function show(el,t0,t1=1e9,d=.3){el.style.visibility='hidden';on(t=>{const a=k(t,t0,d),b=k(t,t1,d*.8);
+  el.style.visibility=(t<t0||t>=t1+d*.8)?'hidden':'visible';el.style.opacity=a*(1-b);el.style.transform=`translateY(${(1-a)*30-b*20}px)`})}
+function wipe(el,t0,d=.4,t1=1e9){el.style.visibility='hidden';on(t=>{const p=k(t,t0,d),q=k(t,t1,d);
+  el.style.visibility=(p<=0||q>=1)?'hidden':'visible';el.style.clipPath=`inset(${q*100}% 0 0 0)`;if(q<=0)el.style.clipPath=`inset(${(1-p)*100}% 0 0 0)`})}
+function counter(el){const cache={};const pr=document.createElement('span');pr.style.cssText='position:absolute;visibility:hidden;white-space:pre;letter-spacing:0';
+  const wOf=ch=>{if(cache[ch]==null){el.appendChild(pr);pr.textContent=ch;cache[ch]=pr.getBoundingClientRect().width;pr.remove()}return cache[ch]};
+  const dW=Math.max(...[...'0123456789'].map(wOf));
+  return s=>{if(el.dataset.v===s)return;el.dataset.v=s;el.innerHTML=[...s].map(ch=>`<span class="dg" style="width:${/[0-9]/.test(ch)?dW:wOf(ch)}px">${ch}</span>`).join('')}}
+/* iconos */
+const icoClock=c=>`<svg width="56" height="56" viewBox="0 0 56 56" style="display:block"><circle cx="28" cy="28" r="22" fill="none" stroke="${c}" stroke-width="4.5"/><path d="M28 15v14l9 6" fill="none" stroke="${c}" stroke-width="4.5" stroke-linecap="round"/></svg>`;
+const icoTag=c=>`<svg width="56" height="56" viewBox="0 0 56 56" style="display:block"><path d="M8 28V9h19l21 21-19 19z" fill="none" stroke="${c}" stroke-width="4.5" stroke-linejoin="round"/><circle cx="19" cy="20" r="4" fill="${c}"/></svg>`;
+const icoMoon=c=>`<svg width="56" height="56" viewBox="0 0 56 56" style="display:block"><path d="M40 38A18 18 0 0 1 24 10a18 18 0 1 0 22 22 18 18 0 0 1-6 6z" fill="none" stroke="${c}" stroke-width="4.5" stroke-linejoin="round"/></svg>`;
+const icoChat=(c,s=26)=>`<svg width="${s}" height="${s}" viewBox="0 0 26 26" style="display:block;flex:none"><path d="M13 3a10 10 0 0 0-8.6 15.1L3 23l5-1.3A10 10 0 1 0 13 3z" fill="none" stroke="${c}" stroke-width="2.4"/></svg>`;
+const lens=c=>`<svg width="30" height="30" viewBox="0 0 34 34" style="display:block"><circle cx="14" cy="14" r="10" fill="none" stroke="${c}" stroke-width="4"/><path d="M22 22l9 9" stroke="${c}" stroke-width="4"/></svg>`;
+/* tienda vectorial */
+function shop(p,x,y,w,name,awn){const s=mk(p,`left:${x}px;top:${y}px;width:${w}px;height:360px`);
+  mk(s,`left:0;top:60px;width:${w}px;height:300px;background:#141C45;border:3px solid #2A3870`);
+  const st=[];for(let i=0;i<6;i++)st.push(`<div style="flex:1;background:${i%2?awn:'#DFE5FF'}"></div>`);
+  mk(s,`left:-10px;top:40px;width:${w+20}px;height:56px;display:flex;border-radius:0 0 14px 14px;overflow:hidden`,st.join(''));
+  mk(s,`left:0;top:0;width:${w}px;text-align:center;font:800 26px IT;color:${C.cy}`,name);
+  mk(s,`left:22px;top:130px;width:${w*.48}px;height:150px;background:#22306A;border:3px solid #2A3870`);
+  mk(s,`left:${w*.62}px;top:150px;width:${w*.28}px;height:207px;background:#0B1336;border:3px solid #2A3870`);
+  return s}
+/* teléfono vectorial */
+function phone(p,x,y,w=420,h=820){const ph=mk(p,`left:${x}px;top:${y}px;width:${w}px;height:${h}px;border-radius:58px;background:#0E0E12;box-shadow:0 0 0 4px #2A3870,0 0 80px rgba(127,176,255,.25)`);
+  mk(ph,`left:${w/2-50}px;top:16px;width:100px;height:22px;border-radius:11px;background:#000;z-index:3`);
+  return mk(ph,`left:12px;top:12px;width:${w-24}px;height:${h-24}px;border-radius:46px;overflow:hidden;background:#F4F6FF`)}
+
+function build(){
+LINES=Object.fromEntries(TL.lines.map(l=>[l.id,l]));const L=LINES;
+const T1=L.L01.t-.25, T2=L.L02.t-.2, T3=L.L03.t-.25, T4=L.L04.t-.25, T5=L.L05.t-.25, T6=L.L06.t-.15;
+
+/* fondo: degradado nocturno + rejilla en perspectiva */
+mk(stage,`left:0;top:0;width:1080px;height:1920px;background:radial-gradient(90% 55% at 50% 72%,rgba(4,40,203,.55) 0%,rgba(3,7,31,0) 70%),${C.navy}`);
+const grid=mk(stage,'left:0;top:1180px;width:1080px;height:740px;overflow:hidden');
+{let s='';for(let i=-12;i<=12;i++)s+=`<line x1="${540+i*45}" y1="0" x2="${540+i*260}" y2="740" stroke="${C.sky}" stroke-opacity=".28" stroke-width="2"/>`;
+ grid.innerHTML=`<svg width="1080" height="740" style="display:block">${s}<g id="hl"></g></svg>`;}
+const hl=grid.querySelector('#hl');
+on(t=>{let s='';for(let i=0;i<9;i++){const f=((i+t*0.6)%9)/9,y=Math.pow(f,2.2)*740;s+=`<line x1="0" y1="${y}" x2="1080" y2="${y}" stroke="${C.sky}" stroke-opacity="${.08+.3*f}" stroke-width="2"/>`}hl.innerHTML=s});
+/* marca discreta arriba */
+mk(stage,`left:72px;top:150px;color:${C.gray}`,'MERIDIAN DIGITAL','ab mono');
+
+/* ===== 1 · 2030 ===== */
+{const g=mk(stage,'left:0;top:0;width:1080px;height:1920px');on(t=>g.style.visibility=t<T1+.4?'visible':'hidden');
+ // skyline
+ const sky=mk(g,'left:0;top:900px;width:1080px;height:300px');
+ [[0,190,60],[70,240,90],[170,150,70],[250,280,110],[370,200,80],[460,320,120],[590,230,90],[690,270,100],[800,180,80],[890,250,110],[1010,170,70]].forEach(([x,h,w],i)=>{
+   const b=mk(sky,`left:${x}px;top:${300-h}px;width:${w}px;height:${h}px;background:linear-gradient(#18235A,#0B1336);border-top:3px solid ${C.sky}55`);
+   let win='';for(let r=0;r<Math.floor(h/34);r++)for(let c=0;c<Math.floor(w/26);c++)if((r*7+c*3+i)%4)win+=`<div style="position:absolute;left:${10+c*26}px;top:${14+r*34}px;width:10px;height:14px;background:${(r+c+i)%5?C.sky:C.cy};opacity:.55"></div>`;
+   b.innerHTML=win;});
+ on(t=>{const p=k(t,0,.8);sky.style.transform=`translateY(${(1-p)*120}px)`;sky.style.opacity=p*(1-k(t,T1,.4))});
+ const lab=mk(g,`left:72px;top:300px;color:${C.sky}`,'AÑO','ab mono');show(lab,.25,T1-.4);
+ const yEl=mk(g,`left:60px;top:380px;font-size:400px;color:${C.white}`,'','ab anton ink');const year=counter(yEl);
+ const tY=Wt('L00:treinta.');
+ on(t=>{const v=2026+Math.round(4*E(seg(t,.35,tY)));year(String(v));yEl.style.color=v===2030?C.white:C.gray;
+   yEl.style.visibility=(t<.25||t>=T1-.05)?'hidden':'visible';yEl.style.transform=`scale(${1+.04*Math.sin(Math.PI*seg(t,tY,tY+.25))})`;yEl.style.opacity=1-k(t,T1-.35,.3)});
+}
+/* ===== 2 · tiendas → teléfono ===== */
+{statement(stage,'Tu cliente ya no / sale a buscar / una |tienda.|','L01',{tOut:4.2});
+ statement(stage,'Te busca desde / el |teléfono.|','L01',{tOut:T2-.4});
+ const street=mk(stage,'left:0;top:720px;width:1080px;height:500px');
+ shop(street,60,40,280,'Panadería','#0428CB');shop(street,400,40,280,'Ferretería','#7FB0FF');shop(street,740,40,280,'Boutique','#0428CB');
+ mk(street,`left:0;top:402px;width:1080px;height:4px;background:#2A3870`);
+ const tOff=Wt('L01:no');
+ on(t=>{const vis=t>=T1-.1&&t<Wt('L01:Te')+.2;street.style.visibility=vis?'visible':'hidden';
+   const a=k(t,T1-.1,.4);const g=k(t,tOff,.8);street.style.opacity=a*(1-.65*g)*(1-k(t,Wt('L01:Te')-.1,.3));street.style.filter=`grayscale(${g})`;
+   street.style.transform=`translateY(${(1-a)*40}px)`;});
+ // teléfono (escena 2 y 3)
+ const scr=phone(stage,330,640);const ph=scr.parentElement;
+ on(t=>{const a=k(t,Wt('L01:Te')-.05,.45),b=k(t,T3-.1,.4);ph.style.visibility=(a<=0||b>=1)?'hidden':'visible';
+   ph.style.transform=`translateY(${(1-a)*120-b*80}px)`;ph.style.opacity=a*(1-b)});
+ // pantalla A: búsqueda
+ const sA=mk(scr,'left:0;top:0;width:396px;height:796px;background:#F4F6FF');sA.dataset.layer=1;
+ mk(sA,`left:24px;top:60px;width:348px;height:64px;border-radius:32px;background:#fff;box-shadow:0 2px 0 #DFE5FF`);
+ mk(sA,'left:44px;top:77px',lens(C.navy));
+ const q=mk(sA,`left:88px;top:76px;font:500 24px/32px IT;color:${C.navy};white-space:pre`,'');const qt='pan dulce cerca de mí',tq=Wt('L01:busca');
+ on(t=>{const n=Math.round(qt.length*seg(t,tq,tq+.9));q.textContent=qt.slice(0,n)});
+ [0,1,2].forEach(j=>{const r=mk(sA,`left:24px;top:${160+j*120}px;width:348px;height:100px;border-radius:18px;background:#fff`);
+   mk(r,`left:18px;top:18px;width:64px;height:64px;border-radius:14px;background:${[C.bl,C.sky,C.cy][j]}`);
+   mk(r,`left:98px;top:22px;width:${200-j*30}px;height:18px;border-radius:9px;background:${C.navy};opacity:.8`);
+   mk(r,`left:98px;top:56px;width:${150-j*20}px;height:14px;border-radius:7px;background:${C.gray};opacity:.6`);
+   wipe(r,tq+.9+j*.08,.3);});
+ // pantalla B: asistente
+ const sB=mk(scr,'left:0;top:0;width:396px;height:796px;background:#F4F6FF');sB.dataset.layer=1;wipe(sB,T2,.4);
+ mk(sB,`left:0;top:0;width:396px;height:110px;background:${C.navy}`);mk(sB,`left:28px;top:56px;font:800 22px IT;color:#fff`,'Asistente');
+ mk(sB,`left:120px;top:60px;width:12px;height:12px;border-radius:50%;background:${C.sky}`);
+ const q1=mk(sB,`left:110px;top:140px;width:262px;padding:14px 16px;border-radius:18px 18px 4px 18px;background:${C.bl};color:#fff;font:500 20px/1.3 IT;white-space:normal`,'¿Dónde compro pan dulce para hoy?');show(q1,Wt('L02:asistente')-.1);
+ const opts=[['Panadería Sol','$6'],['Horno Real','$5'],['Pan & Más','$7']];
+ const tC=Wt('L02:compara');
+ opts.forEach(([n,p],j)=>{const r=mk(sB,`left:24px;top:${300+j*86}px;width:348px;height:72px;border-radius:16px;background:#fff;border:2px solid ${j===1?C.bl:'#DFE5FF'}`);
+   mk(r,`left:18px;top:22px;font:800 21px IT;color:${C.navy}`,n);mk(r,`right:18px;top:20px;font:800 24px IT;color:${C.bl}`,p);wipe(r,tC+j*.12,.3);});
+ const best=mk(sB,`left:24px;top:566px;font:500 18px IT;color:${C.gray}`,'El más barato: Horno Real');show(best,Wt('L02:segundos,'));
+ const ord=mk(sB,`left:24px;top:620px;width:348px;height:132px;border-radius:18px;background:${C.navy};color:#fff`);
+ mk(ord,'left:22px;top:20px;font:800 22px IT','Pedido en camino');
+ const bar=mk(ord,`left:22px;top:66px;width:304px;height:10px;border-radius:5px;background:rgba(223,229,255,.2);overflow:hidden`);
+ const barF=mk(bar,`left:0;top:0;width:304px;height:10px;background:${C.sky};transform-origin:0 0`);
+ mk(ord,`left:22px;top:90px;font:500 18px IT;color:${C.gray}`,'Llega en 25 min');
+ const tP=Wt('L02:pide');wipe(ord,tP-.05,.35);on(t=>barF.style.transform=`scaleX(${.15+.6*seg(t,tP,T3)})`);
+ statement(stage,'Le pregunta a su / |asistente| dónde / comprar, compara / precios en segundos,','L02',{size:70,tOut:Wt('L02:pide')-.45});
+ statement(stage,'y pide sin salir / de |casa.|','L02',{size:70,tOut:T3-.35});
+}
+/* ===== 3 · el negocio que no está en internet ===== */
+{statement(stage,'Si tu negocio no / está en internet, / para ese cliente / |no existe.|','L03',{tOut:T4-.3});
+ const g=mk(stage,'left:0;top:0;width:1080px;height:1920px');
+ const s=shop(g,330,760,420,'Tu negocio','#0428CB');
+ const outline=mk(g,`left:330px;top:820px;width:420px;height:300px;border:4px dashed ${C.gray};visibility:hidden`);
+ const tag=mk(g,`left:330px;top:1200px;padding:12px 20px;border:2px solid ${C.gray};border-radius:12px;color:${C.gray}`,'SIN PÁGINA WEB','ab mono');
+ const tX=Wt('L03:existe.');
+ const NZ=[];let r=11;for(let i=0;i<40*36;i++){r=(r*16807)%2147483647;NZ.push(r/2147483647)}
+ const cache={};const mask=d=>{const kk=d.toFixed(2);if(cache[kk])return cache[kk];const c=document.createElement('canvas');c.width=40;c.height=36;const x=c.getContext('2d');
+   NZ.forEach((v,i)=>{x.fillStyle=v>d?'#000':'rgba(0,0,0,0)';x.fillRect(i%40,Math.floor(i/40),1,1)});return cache[kk]=c.toDataURL()};
+ on(t=>{const vis=t>=T3-.1&&t<T4+.2;g.style.visibility=vis?'visible':'hidden';const a=k(t,T3-.1,.4);
+   s.style.opacity=a;s.style.transform=`translateY(${(1-a)*40}px)`;
+   const d=seg(t,tX-.15,tX+.45);s.style.webkitMaskImage=s.style.maskImage=d>0?`url(${mask(d)})`:'none';s.style.maskSize='100% 100%';
+   s.style.visibility=d>=1?'hidden':'';outline.style.visibility=(vis&&t>=tX+.2)?'visible':'hidden';outline.style.opacity=k(t,tX+.2,.3);
+   g.style.opacity=1-k(t,T4-.2,.35);});
+ show(tag,Wt('L03:internet,'),T4-.3);
+}
+/* ===== 4 · la web trabaja por ti ===== */
+{statement(stage,'Una buena página web / abre las |24 horas|, / muestra tus precios / y recibe pedidos / mientras |duermes.|','L04',{size:66,tOut:T5-.4});
+ const g=mk(stage,'left:0;top:0;width:1080px;height:1920px');on(t=>g.style.visibility=(t>=T4-.1&&t<T5+.3)?'visible':'hidden');
+ const br=mk(g,`left:72px;top:640px;width:900px;height:470px;border-radius:26px;background:#F4F6FF;overflow:hidden;box-shadow:0 0 0 3px #2A3870,0 0 90px rgba(127,176,255,.2)`);
+ mk(br,`left:0;top:0;width:900px;height:58px;background:#0B1336`);[0,1,2].forEach(j=>mk(br,`left:${26+j*26}px;top:22px;width:14px;height:14px;border-radius:50%;background:${C.cy};opacity:.5`));
+ mk(br,`left:130px;top:12px;width:420px;height:34px;border-radius:17px;background:rgba(223,229,255,.14);color:${C.cy};font:500 18px/34px JB;padding-left:20px`,'tunegocio.com');
+ mk(br,`left:40px;top:96px;font:800 44px IT;color:${C.navy};letter-spacing:-.02em`,'Tu negocio');
+ const open=mk(br,`left:40px;top:160px;padding:6px 14px;border-radius:20px;background:${C.bl};color:#fff;font:800 18px IT`,'Abierto ahora');
+ [['Producto 1','$12'],['Producto 2','$18'],['Producto 3','$25']].forEach(([n,p],j)=>{const c=mk(br,`left:${40+j*280}px;top:226px;width:260px;height:210px;border-radius:18px;background:#fff`);
+   mk(c,`left:16px;top:16px;width:228px;height:110px;border-radius:12px;background:${[C.cy,'#C9D6FF',C.sky][j]}`);
+   mk(c,`left:16px;top:140px;font:800 20px IT;color:${C.navy}`,n);const pr=mk(c,`left:16px;top:170px;font:800 24px IT;color:${C.bl}`,p);show(pr,Wt('L04:muestra')+j*.1);});
+ wipe(br,T4,.45);show(open,Wt('L04:abre'));
+ const tags=[['24/7','Abierta siempre',icoClock,'L04:abre'],['$','Precios visibles',icoTag,'L04:muestra'],['3:12 am','Pedido nuevo',icoMoon,'L04:pedidos']];
+ tags.forEach(([big,txt,ico,w],j)=>{const c=mk(g,`left:${72+j*300}px;top:1160px;width:280px;height:240px;border-radius:24px;background:${C.panel};border:2px solid #2A3870`);
+   mk(c,'left:26px;top:26px',ico(C.sky));mk(c,`left:26px;top:100px;font-size:62px;color:#fff`,big,'ab anton');mk(c,`left:26px;top:186px;font-size:24px;color:${C.cy}`,txt,'ab m');
+   wipe(c,Wt(w)-.05,.35);});
+ on(t=>g.style.opacity=1-k(t,T5-.25,.35));
+}
+/* ===== 5 · el futuro es online + cierre ===== */
+{statement(stage,'El futuro / es |online.|','L05',{y:560,size:150,tOut:Wt('L05:Tu')-.45});
+ statement(stage,'Tu negocio también / puede |serlo.|','L05',{y:560,size:86});
+ const mark=mk(stage,'left:72px;top:330px;width:400px;height:80px');
+ mk(mark,`left:0;top:0;width:72px;height:72px;border-radius:50%;border:6px solid ${C.white}`);mk(mark,`left:30px;top:0;width:12px;height:72px;border-radius:6px;background:${C.sky}`);
+ mk(mark,'left:96px;top:6px;font:800 30px/1.05 IT;color:#fff;letter-spacing:-.02em','MERIDIAN<br><span style="color:'+C.gray+'">DIGITAL</span>');
+ show(mark,Wt('L05:Tu')-.1);
+ const btn=mk(stage,`left:72px;top:900px;width:860px;height:140px;border-radius:70px;background:${C.green};display:flex;align-items:center;gap:22px;padding-left:52px;font:800 50px IT;color:#fff;letter-spacing:-.02em;white-space:nowrap`,icoChat('#fff',60)+'+58 422 633 5576');
+ wipe(btn,Wt('L06:WhatsApp,')-.1,.4);
+ const go=mk(stage,`left:72px;top:1090px;font-size:60px;color:${C.cy}`,'Escríbenos y empieza hoy.','ab b');show(go,Wt('L06:empieza')-.1);
+}
+}
+window.render=t=>{for(const f of ups)f(t)};
+(async()=>{TL=await (await fetch('timeline.json')).json();window.DUR=TL.dur;
+  await Promise.all([['Anton',''],['IT','500'],['IT','800'],['IS','italic'],['JB','500']].map(([f,w])=>document.fonts.load(`${w==='italic'?'italic ':w+' '}40px ${f}`)));
+  build();window.render(0);window.READY=true;})();
+</script>
+</body></html>

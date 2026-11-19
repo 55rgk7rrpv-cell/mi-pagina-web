@@ -1,0 +1,614 @@
+{
+ "dur": 31.09,
+ "lines": [
+  {
+   "id": "L00",
+   "t": 0.6,
+   "d": 1.099,
+   "text": "Año dos mil treinta.",
+   "words": [
+    {
+     "w": "Año",
+     "t": 0.6
+    },
+    {
+     "w": "dos",
+     "t": 0.963
+    },
+    {
+     "w": "mil",
+     "t": 1.145
+    },
+    {
+     "w": "treinta.",
+     "t": 1.327
+    }
+   ],
+   "phrases": [
+    [
+     0.6,
+     1.69
+    ]
+   ]
+  },
+  {
+   "id": "L01",
+   "t": 2.149,
+   "d": 3.772,
+   "text": "Tu cliente ya no sale a buscar una tienda. Te busca desde el teléfono.",
+   "words": [
+    {
+     "w": "Tu",
+     "t": 2.149
+    },
+    {
+     "w": "cliente",
+     "t": 2.298
+    },
+    {
+     "w": "ya",
+     "t": 2.597
+    },
+    {
+     "w": "no",
+     "t": 2.746
+    },
+    {
+     "w": "sale",
+     "t": 2.895
+    },
+    {
+     "w": "a",
+     "t": 3.194
+    },
+    {
+     "w": "buscar",
+     "t": 3.343
+    },
+    {
+     "w": "una",
+     "t": 3.642
+    },
+    {
+     "w": "tienda.",
+     "t": 3.94
+    },
+    {
+     "w": "Te",
+     "t": 4.719
+    },
+    {
+     "w": "busca",
+     "t": 4.839
+    },
+    {
+     "w": "desde",
+     "t": 5.079
+    },
+    {
+     "w": "el",
+     "t": 5.319
+    },
+    {
+     "w": "teléfono.",
+     "t": 5.439
+    }
+   ],
+   "phrases": [
+    [
+     2.149,
+     4.239
+    ],
+    [
+     4.719,
+     5.919
+    ]
+   ]
+  },
+  {
+   "id": "L02",
+   "t": 6.221,
+   "d": 5.546,
+   "text": "Le pregunta a su asistente dónde comprar, compara precios en segundos, y pide sin salir de casa.",
+   "words": [
+    {
+     "w": "Le",
+     "t": 6.221
+    },
+    {
+     "w": "pregunta",
+     "t": 6.374
+    },
+    {
+     "w": "a",
+     "t": 6.832
+    },
+    {
+     "w": "su",
+     "t": 6.985
+    },
+    {
+     "w": "asistente",
+     "t": 7.138
+    },
+    {
+     "w": "dónde",
+     "t": 7.75
+    },
+    {
+     "w": "comprar,",
+     "t": 8.055
+    },
+    {
+     "w": "compara",
+     "t": 8.701
+    },
+    {
+     "w": "precios",
+     "t": 9.201
+    },
+    {
+     "w": "en",
+     "t": 9.534
+    },
+    {
+     "w": "segundos,",
+     "t": 9.701
+    },
+    {
+     "w": "y",
+     "t": 10.541
+    },
+    {
+     "w": "pide",
+     "t": 10.677
+    },
+    {
+     "w": "sin",
+     "t": 10.948
+    },
+    {
+     "w": "salir",
+     "t": 11.083
+    },
+    {
+     "w": "de",
+     "t": 11.354
+    },
+    {
+     "w": "casa.",
+     "t": 11.49
+    }
+   ],
+   "phrases": [
+    [
+     6.221,
+     8.361
+    ],
+    [
+     8.701,
+     10.201
+    ],
+    [
+     10.541,
+     11.761
+    ]
+   ]
+  },
+  {
+   "id": "L03",
+   "t": 12.217,
+   "d": 3.29,
+   "text": "Si tu negocio no está en internet, para ese cliente no existe.",
+   "words": [
+    {
+     "w": "Si",
+     "t": 12.217
+    },
+    {
+     "w": "tu",
+     "t": 12.36
+    },
+    {
+     "w": "negocio",
+     "t": 12.502
+    },
+    {
+     "w": "no",
+     "t": 12.93
+    },
+    {
+     "w": "está",
+     "t": 13.072
+    },
+    {
+     "w": "en",
+     "t": 13.357
+    },
+    {
+     "w": "internet,",
+     "t": 13.5
+    },
+    {
+     "w": "para",
+     "t": 14.187
+    },
+    {
+     "w": "ese",
+     "t": 14.449
+    },
+    {
+     "w": "cliente",
+     "t": 14.711
+    },
+    {
+     "w": "no",
+     "t": 14.973
+    },
+    {
+     "w": "existe.",
+     "t": 15.104
+    }
+   ],
+   "phrases": [
+    [
+     12.217,
+     13.927
+    ],
+    [
+     14.187,
+     15.497
+    ]
+   ]
+  },
+  {
+   "id": "L04",
+   "t": 16.357,
+   "d": 6.397,
+   "text": "Una buena página web abre las veinticuatro horas, muestra tus precios, y recibe pedidos mientras duermes.",
+   "words": [
+    {
+     "w": "Una",
+     "t": 16.357
+    },
+    {
+     "w": "buena",
+     "t": 16.668
+    },
+    {
+     "w": "página",
+     "t": 16.978
+    },
+    {
+     "w": "web",
+     "t": 17.444
+    },
+    {
+     "w": "abre",
+     "t": 17.599
+    },
+    {
+     "w": "las",
+     "t": 17.91
+    },
+    {
+     "w": "veinticuatro",
+     "t": 18.065
+    },
+    {
+     "w": "horas,",
+     "t": 18.686
+    },
+    {
+     "w": "muestra",
+     "t": 19.527
+    },
+    {
+     "w": "tus",
+     "t": 19.955
+    },
+    {
+     "w": "precios,",
+     "t": 20.169
+    },
+    {
+     "w": "y",
+     "t": 20.997
+    },
+    {
+     "w": "recibe",
+     "t": 21.156
+    },
+    {
+     "w": "pedidos",
+     "t": 21.633
+    },
+    {
+     "w": "mientras",
+     "t": 22.111
+    },
+    {
+     "w": "duermes.",
+     "t": 22.429
+    }
+   ],
+   "phrases": [
+    [
+     16.357,
+     18.997
+    ],
+    [
+     19.527,
+     20.597
+    ],
+    [
+     20.997,
+     22.747
+    ]
+   ]
+  },
+  {
+   "id": "L05",
+   "t": 23.204,
+   "d": 3.639,
+   "text": "El futuro es online. Tu negocio también puede serlo.",
+   "words": [
+    {
+     "w": "El",
+     "t": 23.204
+    },
+    {
+     "w": "futuro",
+     "t": 23.335
+    },
+    {
+     "w": "es",
+     "t": 23.729
+    },
+    {
+     "w": "online.",
+     "t": 23.86
+    },
+    {
+     "w": "Tu",
+     "t": 25.444
+    },
+    {
+     "w": "negocio",
+     "t": 25.583
+    },
+    {
+     "w": "también",
+     "t": 26.0
+    },
+    {
+     "w": "puede",
+     "t": 26.278
+    },
+    {
+     "w": "serlo.",
+     "t": 26.556
+    }
+   ],
+   "phrases": [
+    [
+     23.204,
+     24.254
+    ],
+    [
+     25.444,
+     26.834
+    ]
+   ]
+  },
+  {
+   "id": "L06",
+   "t": 27.143,
+   "d": 2.351,
+   "text": "Escríbenos por WhatsApp, y empieza hoy.",
+   "words": [
+    {
+     "w": "Escríbenos",
+     "t": 27.143
+    },
+    {
+     "w": "por",
+     "t": 27.857
+    },
+    {
+     "w": "WhatsApp,",
+     "t": 28.036
+    },
+    {
+     "w": "y",
+     "t": 28.643
+    },
+    {
+     "w": "empieza",
+     "t": 28.813
+    },
+    {
+     "w": "hoy.",
+     "t": 29.323
+    }
+   ],
+   "phrases": [
+    [
+     27.143,
+     28.393
+    ],
+    [
+     28.643,
+     29.493
+    ]
+   ]
+  }
+ ],
+ "sfx": [
+  {
+   "t": 0.08,
+   "k": "hit"
+  },
+  {
+   "at": "L00:Año",
+   "off": 0,
+   "k": "ticks",
+   "n": 4,
+   "to": "L00:treinta.",
+   "to_off": -0.05
+  },
+  {
+   "at": "L00:treinta.",
+   "off": 0,
+   "k": "thud"
+  },
+  {
+   "t": 1.749,
+   "k": "whoosh"
+  },
+  {
+   "at": "L01:no",
+   "off": 0,
+   "k": "riser_down"
+  },
+  {
+   "at": "L01:Te",
+   "off": -0.1,
+   "k": "whoosh"
+  },
+  {
+   "at": "L01:busca",
+   "off": 0,
+   "k": "type",
+   "n": 14,
+   "to": "L01:busca",
+   "to_off": 0.9
+  },
+  {
+   "t": 5.971,
+   "k": "whoosh"
+  },
+  {
+   "at": "L02:asistente",
+   "off": -0.05,
+   "k": "pop"
+  },
+  {
+   "at": "L02:compara",
+   "off": 0,
+   "k": "reveal"
+  },
+  {
+   "at": "L02:compara",
+   "off": 0,
+   "k": "pop"
+  },
+  {
+   "at": "L02:compara",
+   "off": 0.12,
+   "k": "pop"
+  },
+  {
+   "at": "L02:compara",
+   "off": 0.24,
+   "k": "pop"
+  },
+  {
+   "at": "L02:pide",
+   "off": 0,
+   "k": "click"
+  },
+  {
+   "at": "L02:casa.",
+   "off": 0,
+   "k": "ding"
+  },
+  {
+   "t": 11.817,
+   "k": "swoosh_big"
+  },
+  {
+   "at": "L03:internet,",
+   "off": 0,
+   "k": "pop"
+  },
+  {
+   "at": "L03:existe.",
+   "off": -0.1,
+   "k": "cut"
+  },
+  {
+   "at": "L03:existe.",
+   "off": 0,
+   "k": "error"
+  },
+  {
+   "t": 16.057,
+   "k": "whoosh"
+  },
+  {
+   "at": "L04:abre",
+   "off": 0,
+   "k": "click"
+  },
+  {
+   "at": "L04:muestra",
+   "off": 0,
+   "k": "pop"
+  },
+  {
+   "at": "L04:muestra",
+   "off": 0.1,
+   "k": "pop"
+  },
+  {
+   "at": "L04:muestra",
+   "off": 0.2,
+   "k": "pop"
+  },
+  {
+   "at": "L04:pedidos",
+   "off": 0,
+   "k": "ding"
+  },
+  {
+   "t": 22.454,
+   "k": "riser",
+   "span": 0.5
+  },
+  {
+   "at": "L05:online.",
+   "off": 0,
+   "k": "hit_big"
+  },
+  {
+   "at": "L05:Tu",
+   "off": -0.05,
+   "k": "reveal"
+  },
+  {
+   "at": "L06:WhatsApp,",
+   "off": -0.1,
+   "k": "click"
+  },
+  {
+   "at": "L06:WhatsApp,",
+   "off": 0,
+   "k": "pop"
+  },
+  {
+   "at": "L06:empieza",
+   "off": 0,
+   "k": "reveal"
+  },
+  {
+   "t": 30.39,
+   "k": "shutter"
+  }
+ ],
+ "music": {
+  "duck": 0.24,
+  "full": 0.45,
+  "silences": []
+ }
+}
