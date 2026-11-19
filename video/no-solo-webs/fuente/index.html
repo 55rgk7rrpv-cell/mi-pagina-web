@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><title>No solo hacemos webs</title>
+<style>
+@font-face{font-family:IT;font-weight:800;src:url(fonts/intertight-800.woff2) format('woff2')}
+/* Paleta Meridian Digital */
+:root{--navy:#03071F;--white:#FFFFFF;--cy:#DFE5FF;--bl:#0428CB;--sky:#7FB0FF}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--navy)}
+#stage{position:absolute;inset:0;overflow:hidden}
+.bg{position:absolute;inset:0}
+.wt{position:absolute;left:0;top:0;font-family:IT;font-weight:800;letter-spacing:-.045em;line-height:1;white-space:nowrap;will-change:transform,filter}
+</style></head>
+<body><div id="stage"></div>
+<script>
+/* Cortes copiados frame a frame del reel de referencia (30 fps) para que caigan justo con su audio. */
+const FPS=30, DUR=284/FPS;
+const LIGHT='linear-gradient(160deg,#F7F8FF 0%,#DFE5FF 38%,#7FB0FF 100%)';
+const DARK ='linear-gradient(205deg,#7FB0FF 0%,#0428CB 32%,#03071F 78%)';
+const INK={light:'#03071F',dark:'#FFFFFF'};
+// [frame inicial, fondo, piezas de texto [texto, tamaño px, dx, dy, efecto]]
+const SEG=[
+ [0,  'light',[['nosotros',175,0,0]]],
+ [22, 'dark', [['no',120,-60,-170],['solo',175,0,40]]],
+ [42, 'light',[['hacemos',105,'slide',-300]]],
+ [60, 'dark', [['hacemos',105,-170,-300],['webs',380,0,40]]],
+ [76, 'light',[['nosotros',175,0,0,'grow']]],
+ [91, 'dark', [['creamos',175,0,0,'glitch']]],
+ [105,'light',[['diseño',175,0,0]]],
+ [119,'dark', [['marca',175,0,0]]],
+ [131,'light',[['impacto',175,0,0]]],
+ [142,'dark', [['ventas',175,0,0]]],
+ [155,'light',[['clientes',175,0,0]]],
+ [166,'dark', [['precisión',175,0,0]]],
+ [177,'light',[['SEO',175,0,0]]],
+ [187,'dark', [['confianza',175,0,0]]],
+ [197,'light',[['catálogos',175,0,0]]],
+ [207,'dark', [['WhatsApp',175,0,0]]],
+ [216,'light',[['ideas',175,0,0]]],
+ [225,'dark', [['resultados',175,0,0]]],
+ [234,'light',[['Me',175,0,0]]],
+ [241,'dark', [['Meri',175,0,0]]],
+ [250,'light',[['Merid',175,0,0]]],
+ [258,'dark', [['Meridian.',175,0,0]]],
+ [267,'light',[['Meridian.',235,0,0,'land']]],
+];
+const stage=document.getElementById('stage');
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x)), lerp=(a,b,x)=>a+(b-a)*x, ease=x=>1-Math.pow(1-clamp(x),3);
+function mk(css,html='',cls=''){const e=document.createElement('div');e.className=cls;e.style.cssText=css;e.innerHTML=html;stage.appendChild(e);return e}
+const bgL=mk(`background:${LIGHT}`,'','bg'), bgD=mk(`background:${DARK}`,'','bg');
+const pieces=[];
+SEG.forEach(([f0,bg,parts],i)=>{const f1=i+1<SEG.length?SEG[i+1][0]:284;
+  parts.forEach(([tx,size,dx,dy,fx])=>{const el=mk(`color:${INK[bg]};visibility:hidden;font-size:${size}px`,tx,'wt');
+    pieces.push({el,f0,f1,size,dx,dy,fx})});});
+function layout(){pieces.forEach(p=>{let s=p.size;p.el.style.fontSize=s+'px';const w=p.el.scrollWidth;if(w>920){s=s*920/w;p.el.style.fontSize=s+'px'}
+  p.w=p.el.scrollWidth;p.h=p.el.offsetHeight;})}
+window.render=t=>{const f=Math.round(t*FPS);
+  let cur=SEG[0];for(const s of SEG)if(s[0]<=f)cur=s;
+  bgL.style.visibility=cur[1]==='light'?'visible':'hidden';bgD.style.visibility=cur[1]==='dark'?'visible':'hidden';
+  for(const p of pieces){const on=f>=p.f0&&f<p.f1;p.el.style.visibility=on?'visible':'hidden';if(!on)continue;
+    const k=f-p.f0, n=p.f1-p.f0;
+    let x=540-p.w/2+(typeof p.dx==='number'?p.dx:0), y=930-p.h/2+p.dy, sx=1, sc=1, blur=0, skew=0;
+    if(p.dx==='slide')x=lerp(120,540-p.w/2-150,ease(k/(n-1)));        // "hacemos" entra deslizando hasta su sitio
+    if(k===0){blur=7;sx=1.12}                                          // desenfoque de movimiento en el primer frame de cada corte
+    if(p.fx==='grow')sc=1+.08*k/n;
+    if(p.fx==='glitch'&&k<2){skew=k?-12:18;blur=k?3:5;sx=k?1.05:1.25}
+    if(p.fx==='land'){sc=k<2?1.08:1;const d=clamp((k-5)/3);   // frames 272–275: se desintegra en bloques, como el original
+      p.el.style.webkitMaskImage=p.el.style.maskImage=d>0?`url(${dissolve(d)})`:'none';p.el.style.maskSize='100% 100%';
+      if(k>=9)p.el.style.visibility='hidden'}
+    p.el.style.transform=`translate(${x}px,${y}px) scale(${sc*sx}) skewX(${skew}deg)`;
+    p.el.style.filter=blur?`blur(${blur}px)`:'none';}};
+const NZ=(()=>{const a=[];let r=7;for(let i=0;i<60*14;i++){r=(r*16807)%2147483647;a.push(r/2147483647)}return a})();
+const dcache={};function dissolve(d){const key=d.toFixed(2);if(dcache[key])return dcache[key];
+  const c=document.createElement('canvas');c.width=60;c.height=14;const g=c.getContext('2d');
+  for(let i=0;i<NZ.length;i++){g.fillStyle=NZ[i]>d?'#000':'rgba(0,0,0,0)';g.fillRect(i%60,Math.floor(i/60),1,1)}
+  return dcache[key]=c.toDataURL()}
+window.DUR=DUR;
+(async()=>{await document.fonts.load('800 40px IT');layout();window.render(0);window.READY=true})();
+</script>
+</body></html>

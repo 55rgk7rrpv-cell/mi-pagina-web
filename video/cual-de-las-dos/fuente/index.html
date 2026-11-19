@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><title>¿Cuál de estas dos se queda con el cliente?</title>
+<style>
+@font-face{font-family:IT;font-weight:500;src:url(fonts/intertight-500.woff2) format('woff2')}
+@font-face{font-family:IT;font-weight:800;src:url(fonts/intertight-800.woff2) format('woff2')}
+@font-face{font-family:JB;font-weight:500;src:url(fonts/jbmono-500.woff2) format('woff2')}
+/* Paleta Meridian: azul marino, gris y blanco (+ azul de marca y verde solo para el botón de pedido) */
+:root{--navy:#03071F;--panel:#0B1336;--gray:#A3ADC2;--white:#FFFFFF;--cy:#DFE5FF;--bl:#0428CB;--sky:#7FB0FF;--green:#1FAF5A}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--navy)}
+#stage{position:absolute;inset:0;overflow:hidden;font-family:IT;color:var(--white)}
+.ab{position:absolute}
+.mono{font-family:JB;font-weight:500;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+.b{font-family:IT;font-weight:800;letter-spacing:-.03em}
+.m{font-family:IT;font-weight:500}
+.nw{white-space:nowrap}
+.clip{overflow:hidden}
+</style></head>
+<body><div id="stage"></div>
+<script>
+const C={navy:'#03071F',panel:'#0B1336',gray:'#A3ADC2',white:'#FFFFFF',cy:'#DFE5FF',bl:'#0428CB',sky:'#7FB0FF',green:'#1FAF5A'};
+const stage=document.getElementById('stage');
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x)), seg=(t,a,b)=>clamp((t-a)/(b-a));
+const E=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2, k=(t,a,d=.4)=>E(seg(t,a,a+d)), lerp=(a,b,x)=>a+(b-a)*x;
+function mk(p,css='',html='',cls='ab'){const e=document.createElement('div');e.className=cls;e.style.cssText=css;e.innerHTML=html;p.appendChild(e);return e}
+const ups=[];const on=f=>ups.push(f);
+let TL,LINES;
+const norm=s=>s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]/g,'');
+function Wt(ref){const i0=ref.indexOf(':'),id=ref.slice(0,i0);const [w,n]=ref.slice(i0+1).split('#');const want=norm(w);let c=0;
+  for(const x of LINES[id].words)if(norm(x.w)===want&&++c===(+n||1))return x.t;throw new Error('palabra no encontrada: '+ref)}
+/* aparece (desliza desde abajo dentro de su caja) en t0 y sale en t1; oculto fuera de su ventana */
+function show(el,t0,t1=1e9,d=.3){el.style.visibility='hidden';on(t=>{const a=k(t,t0,d),b=k(t,t1,d*.8);
+  el.style.visibility=(t<t0||t>=t1+d*.8)?'hidden':'visible';el.style.opacity=a*(1-b);el.style.transform=`translateY(${(1-a)*30-b*20}px)`})}
+/* cortina vertical para cambiar de pantalla dentro del teléfono */
+function screenIn(el,t0,d=.35){el.style.visibility='hidden';on(t=>{const p=k(t,t0,d);el.style.visibility=p<=0?'hidden':'visible';el.style.clipPath=`inset(${(1-p)*100}% 0 0 0)`})}
+/* ---------- ilustraciones vectoriales (sin fotos ni IA) ---------- */
+const cake=(top,body,s=100)=>`<svg width="${s}" height="${s}" viewBox="0 0 100 100" style="display:block"><ellipse cx="50" cy="86" rx="40" ry="7" fill="#E9EDF7"/>
+ <rect x="18" y="52" width="64" height="32" rx="6" fill="${body}"/><rect x="28" y="30" width="44" height="26" rx="5" fill="${body}" opacity=".9"/>
+ <path d="M18 58q8 8 16 0t16 0 16 0 16 0v-6H18z" fill="${top}"/><path d="M28 35q5.5 6 11 0t11 0 11 0 11 0v-5H28z" fill="${top}"/>
+ <circle cx="50" cy="24" r="6" fill="#D7263D"/><rect x="49" y="10" width="2" height="9" fill="#7A4A1E"/></svg>`;
+const icoChat=(c,s=26)=>`<svg width="${s}" height="${s}" viewBox="0 0 26 26" style="display:block;flex:none"><path d="M13 3a10 10 0 0 0-8.6 15.1L3 23l5-1.3A10 10 0 1 0 13 3z" fill="none" stroke="${c}" stroke-width="2.4"/></svg>`;
+const icoX=c=>`<svg width="34" height="34" viewBox="0 0 34 34" style="display:block;flex:none"><circle cx="17" cy="17" r="15" fill="none" stroke="${c}" stroke-width="3"/><path d="M11 11l12 12M23 11L11 23" stroke="${c}" stroke-width="3.4" stroke-linecap="round"/></svg>`;
+const icoV=c=>`<svg width="34" height="34" viewBox="0 0 34 34" style="display:block;flex:none"><circle cx="17" cy="17" r="15" fill="${c}"/><path d="M10 17.5l5 5 9-10" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const heart=`<svg width="22" height="22" viewBox="0 0 24 24"><path d="M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.8-8 11-8 11z" fill="none" stroke="#111" stroke-width="2"/></svg>`;
+const bubble=`<svg width="22" height="22" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z" fill="none" stroke="#111" stroke-width="2" stroke-linejoin="round"/></svg>`;
+
+/* ---------- teléfono genérico ---------- */
+function phone(parent,x,y){const ph=mk(parent,`left:${x}px;top:${y}px;width:250px;height:430px;border-radius:36px;background:#0E0E12;box-shadow:0 0 0 3px #2A3156`);
+  mk(ph,'left:95px;top:10px;width:60px;height:14px;border-radius:7px;background:#000;z-index:3');
+  const scr=mk(ph,'left:8px;top:8px;width:234px;height:414px;border-radius:29px;overflow:hidden;background:#fff');return scr}
+function statusBar(s,dark=false,time='9:41'){mk(s,`left:18px;top:8px;font:800 12px IT;color:${dark?'#fff':'#111'}`,time)}
+
+/* ---------- mitades ---------- */
+function half(y,name){const h=mk(stage,`left:48px;top:${y}px;width:892px;height:460px;border-radius:28px;background:${C.panel};overflow:hidden;transform-origin:50% 50%`);
+  mk(h,`left:40px;top:34px;font-size:22px;color:${C.gray}`,name,'ab mono');return h}
+
+function build(){
+LINES=Object.fromEntries(TL.lines.map(l=>[l.id,l]));
+const S2=TL.lines[1].t-.15, S2b=TL.lines[2].t-.08, S3=TL.lines[3].t-.15, S3b=TL.lines[4].t-.08, S4=TL.lines[5].t-.1, S5=TL.lines[7].t-.15;
+
+/* marca fija arriba */
+const brand=mk(stage,`left:72px;top:200px;font-size:22px;color:${C.gray}`,'MERIDIAN DIGITAL','ab mono');
+on(t=>brand.style.visibility=t<S5?'visible':'hidden');
+
+/* banda de títulos grandes (y 250–400) */
+const t1=mk(stage,`left:72px;top:272px;width:868px;font-size:62px;line-height:1.08`,'¿Cuál de estas dos<br>se queda con el cliente?','ab b');
+show(t1,.05,S2-.25);
+const t4=mk(stage,`left:72px;top:262px;width:868px;font-size:110px;line-height:1`,'Se la lleva <span style="color:'+C.sky+'">la B</span>','ab b nw');
+show(t4,S4,S5-.3,.35);
+
+/* ===== mitad A ===== */
+const A=half(430,'Pastelería A');
+const B=half(910,'Pastelería B');
+// escena 1: nombres grandes en cada mitad
+const aBig=mk(A,'left:40px;top:84px;font-size:64px;line-height:1.05','Pastelería<br><span style="color:'+C.sky+'">A</span>','ab b nw');show(aBig,.35,S2-.25);
+const bBig=mk(B,'left:40px;top:84px;font-size:64px;line-height:1.05','Pastelería<br><span style="color:'+C.sky+'">B</span>','ab b nw');show(bBig,.55,S2-.25);
+// columna izquierda A
+const aLab1=mk(A,'left:40px;top:84px;font-size:56px','Solo Instagram','ab b nw');show(aLab1,Wt('L01:Instagram,')-.1,S3-.2);
+const aList=[['Sin precios','L01:precios,'],['¿Hacen entregas?','L01:entregas,'],['¿Cómo pido?','L01:pedir.']].map(([tx,w],i)=>{
+  const r=mk(A,`left:40px;top:${180+i*62}px;display:flex;align-items:center;gap:16px;font-size:36px;color:${C.cy}`,icoX('#FF8A8A')+`<span class="m nw">${tx}</span>`);show(r,Wt(w)-.05,S3-.2);return r});
+const aLab2=mk(A,'left:40px;top:84px;font-size:56px;line-height:1.1','11:40 pm…<br>sin respuesta','ab b nw');show(aLab2,Wt('L03:once')-.1);
+const aLost=mk(A,`left:40px;top:330px;padding:10px 18px;border-radius:12px;border:2px solid ${C.gray};font-size:22px;color:${C.gray}`,'VENTA PERDIDA','ab mono');show(aLost,Wt('L06:perdiste'));
+// teléfono A
+const sa=phone(A,600,15);
+{ // a0: perfil con cuadrícula de fotos
+  const a0=mk(sa,'left:0;top:0;width:234px;height:414px;background:#fff');a0.dataset.layer=1;statusBar(a0);
+  mk(a0,'left:16px;top:34px;width:44px;height:44px;border-radius:50%;background:#F3D9E0;display:flex;align-items:center;justify-content:center',cake('#F7B2C4','#C98A5B',36));
+  mk(a0,'left:70px;top:38px;font:800 15px IT;color:#111','pasteleria_a');mk(a0,'left:70px;top:58px;font:500 12px IT;color:#666','Tortas por encargo');
+  const cols=[['#F7B2C4','#C98A5B'],['#FFFFFF','#8B5A3C'],['#FFE08A','#E8B04B'],['#C9A0DC','#F4E1C1'],['#9ED2B8','#F4E1C1'],['#F7B2C4','#FFF3E0']];
+  cols.forEach((c,i)=>mk(a0,`left:${4+(i%3)*76}px;top:${96+Math.floor(i/3)*76}px;width:74px;height:74px;background:#F6F1EA;display:flex;align-items:center;justify-content:center`,cake(c[0],c[1],62)));
+  mk(a0,'left:16px;top:262px;width:202px;font:500 12px/1.4 IT;color:#666','Hacemos tortas para toda ocasión. Escríbenos por mensaje.');
+  // a1: una sola publicación, sin precios
+  const a1=mk(sa,'left:0;top:0;width:234px;height:414px;background:#fff');a1.dataset.layer=1;statusBar(a1);screenIn(a1,S2);
+  mk(a1,'left:14px;top:34px;width:30px;height:30px;border-radius:50%;background:#F3D9E0');mk(a1,'left:52px;top:40px;font:800 14px IT;color:#111','pasteleria_a');
+  mk(a1,'left:0;top:76px;width:234px;height:234px;background:#F6F1EA;display:flex;align-items:center;justify-content:center',cake('#F7B2C4','#C98A5B',200));
+  mk(a1,'left:14px;top:320px;display:flex;gap:14px',heart+bubble);
+  mk(a1,'left:14px;top:352px;width:206px;font:500 12px/1.4 IT;color:#111','<b>pasteleria_a</b> Torta de fresa para celebrar. Pedidos por mensaje directo.');
+  // a2: chat sin respuesta
+  const a2=mk(sa,'left:0;top:0;width:234px;height:414px;background:#EDE7DF');a2.dataset.layer=1;screenIn(a2,S3);
+  mk(a2,'left:0;top:0;width:234px;height:74px;background:#2E3550');statusBar(a2,true,'11:40');
+  mk(a2,'left:14px;top:34px;width:30px;height:30px;border-radius:50%;background:#F3D9E0');mk(a2,'left:52px;top:40px;font:800 14px IT;color:#fff','Pastelería A');
+  mk(a2,'left:64px;top:96px;width:156px;padding:10px 12px;border-radius:14px 14px 4px 14px;background:#fff;font:500 13px/1.35 IT;color:#111','Hola, ¿tienen torta para el sábado?<div style="text-align:right;font-size:10px;color:#888;margin-top:4px">11:40 pm ✓</div>');
+  const zz=mk(a2,'left:0;top:250px;width:234px;text-align:center;font:500 13px IT;color:#8A8F9E','Sin respuesta');show(zz,Wt('L03:nadie'));
+}
+/* ===== mitad B ===== */
+const bLab1=mk(B,'left:40px;top:84px;font-size:56px','Con web','ab b nw');show(bLab1,Wt('L02:B')-.15,S3-.2);
+const bList=[['Catálogo y precios',0],['Entregas a domicilio',.18],['Pedido por WhatsApp',.36]].map(([tx,o],i)=>{
+  const r=mk(B,`left:40px;top:${180+i*62}px;display:flex;align-items:center;gap:16px;font-size:36px;color:${C.cy}`,icoV(C.green)+`<span class="m nw">${tx}</span>`);show(r,Wt('L02:todo')+o,S3-.2);return r});
+const bLab2=mk(B,'left:40px;top:84px;font-size:56px','Pedido en 1 toque','ab b nw');show(bLab2,Wt('L04:pedido')-.1);
+const sb=phone(B,600,15);
+let tap;
+{ // b0: inicio de la web
+  const b0=mk(sb,'left:0;top:0;width:234px;height:414px;background:#FFF8F2');b0.dataset.layer=1;statusBar(b0);
+  mk(b0,'left:0;top:28px;width:234px;height:40px;border-bottom:1px solid #EADBCB');mk(b0,'left:14px;top:38px;font:800 15px IT;color:#5A3A22','Pastelería B');
+  mk(b0,'left:150px;top:41px;font:500 11px IT;color:#8A6A52','Menú · Contacto');
+  mk(b0,'left:0;top:68px;width:234px;height:150px;background:#F6E7D8;display:flex;align-items:center;justify-content:center',cake('#FFFFFF','#8B5A3C',130));
+  mk(b0,'left:14px;top:230px;width:206px;font:800 19px/1.15 IT;color:#3B2414','Tortas para tu celebración');
+  mk(b0,'left:14px;top:282px;width:206px;font:500 12px/1.35 IT;color:#7A5F4B','Precios publicados y entregas a domicilio.');
+  mk(b0,`left:14px;top:340px;width:206px;height:44px;border-radius:22px;background:${C.green};display:flex;align-items:center;justify-content:center;gap:8px;font:800 14px IT;color:#fff`,icoChat('#fff',20)+'Pedir por WhatsApp');
+  // b1: catálogo con precios
+  const b1=mk(sb,'left:0;top:0;width:234px;height:414px;background:#FFF8F2');b1.dataset.layer=1;statusBar(b1);screenIn(b1,S2b);
+  mk(b1,'left:14px;top:32px;font:800 15px IT;color:#5A3A22','Catálogo de tortas');
+  [['Chocolate','$25','#FFFFFF','#8B5A3C'],['Tres leches','$22','#FFF3E0','#F2D3A2'],['Fresa','$28','#F7B2C4','#C98A5B'],['Vainilla','$20','#FFE08A','#F4E1C1']].forEach(([n,p,a,b],i)=>{
+    const c=mk(b1,`left:${10+(i%2)*110}px;top:${58+Math.floor(i/2)*118}px;width:104px;height:110px;border-radius:12px;background:#fff;box-shadow:0 1px 0 #EADBCB`);
+    mk(c,'left:22px;top:4px',cake(a,b,60));mk(c,'left:8px;top:68px;font:800 12px IT;color:#3B2414',n);mk(c,'left:8px;top:86px;font:800 14px IT;color:'+C.bl,p);});
+  mk(b1,'left:14px;top:300px;font:500 12px IT;color:#7A5F4B','Entregas a domicilio: sáb. y dom.');
+  const btn=mk(b1,`left:14px;top:340px;width:206px;height:44px;border-radius:22px;background:${C.green};display:flex;align-items:center;justify-content:center;gap:8px;font:800 14px IT;color:#fff`,icoChat('#fff',20)+'Pedir por WhatsApp');
+  // dedo / toque
+  tap=mk(sb,`left:150px;top:350px;width:34px;height:34px;border-radius:50%;background:rgba(3,7,31,.35);border:3px solid #fff;visibility:hidden`);
+  const tT=Wt('L04:toca');
+  on(t=>{const q=seg(t,tT-.35,tT);const r=seg(t,tT,tT+.3);tap.style.visibility=(t<tT-.35||t>tT+.45)?'hidden':'visible';
+    tap.style.transform=`translate(${(1-E(q))*40}px,${(1-E(q))*50}px) scale(${1-.25*Math.sin(Math.PI*r)})`;
+    btn.style.transform=`scale(${1-.05*Math.sin(Math.PI*seg(t,tT,tT+.25))})`;});
+  // b2: chat con el mensaje ya escrito
+  const b2=mk(sb,'left:0;top:0;width:234px;height:414px;background:#EDE7DF');b2.dataset.layer=1;screenIn(b2,Wt('L04:boton,')+.1);
+  mk(b2,'left:0;top:0;width:234px;height:74px;background:#0F6B3E');statusBar(b2,true,'11:41');
+  mk(b2,'left:14px;top:34px;width:30px;height:30px;border-radius:50%;background:#FFE3C2');mk(b2,'left:52px;top:40px;font:800 14px IT;color:#fff','Pastelería B');
+  const msg=mk(b2,'left:40px;top:96px;width:180px;padding:10px 12px;border-radius:14px 14px 4px 14px;background:#D9FDD3;font:500 13px/1.35 IT;color:#111','Hola, quiero la torta de chocolate ($25) para el sábado.<div style="text-align:right;font-size:10px;color:#4F8A5B;margin-top:4px">11:41 pm ✓✓</div>');
+  show(msg,Wt('L04:pedido')-.1);
+  const rep=mk(b2,'left:14px;top:212px;width:170px;padding:10px 12px;border-radius:14px 14px 14px 4px;background:#fff;font:500 13px/1.35 IT;color:#111','¡Listo! Te confirmamos mañana a primera hora.');
+  show(rep,Wt('L04:WhatsApp.')+.05);
+}
+/* ---------- foco: cortes entre A y B; escena 4: A gris, B iluminada ---------- */
+const gEl=mk(B,`left:840px;top:24px;width:0;height:0`);   // ancla
+const glow=mk(stage,`left:48px;top:910px;width:892px;height:460px;border-radius:28px;box-shadow:0 0 0 4px ${C.sky},0 0 60px ${C.sky};visibility:hidden`);
+const okB=mk(B,`left:40px;top:330px;display:flex;align-items:center;gap:14px;font-size:30px;color:${C.white}`,icoV(C.green).replace(/34/g,'48')+'<span class="b nw">Le escribió a la B</span>');show(okB,Wt('L05:escribio'),1e9,.3);
+on(t=>{
+  // opacidades por tramo
+  let fa=1,fb=1;
+  if(t>=S2&&t<S2b)fb=.38; else if(t>=S2b&&t<S3)fa=.38; else if(t>=S3&&t<S3b)fb=.38; else if(t>=S3b&&t<S4)fa=.38;
+  const g=k(t,S4,.6);  // escena 4
+  A.style.opacity=t>=S4?lerp(1,.32,g):fa; A.style.filter=t>=S4?`grayscale(${g})`:'none';
+  B.style.opacity=t>=S4?1:fb;
+  const bump=x=>1+.015*Math.sin(Math.PI*seg(t,x,x+.3));
+  A.style.transform=`scale(${bump(S2)*bump(S3)})`;B.style.transform=`scale(${bump(S2b)*bump(S3b)*lerp(1,1.02,g)})`;
+  glow.style.visibility=t>=S4&&t<S5?'visible':'hidden';glow.style.opacity=g;glow.style.transform=B.style.transform;
+  // escena 1: las mitades entran
+  A.style.clipPath=`inset(0 ${(1-k(t,.1,.45))*100}% 0 0)`;B.style.clipPath=`inset(0 0 0 ${(1-k(t,.3,.45))*100}%)`;
+  A.style.visibility=B.style.visibility=t<S5+.4?'visible':'hidden';
+});
+/* ===== escena 5: cierre ===== */
+const end=mk(stage,`left:0;top:0;width:1080px;height:1920px;background:${C.navy};visibility:hidden`);end.dataset.layer=1;screenIn(end,S5,.45);
+{ // logo Meridian (marca tipográfica + símbolo)
+  mk(end,`left:72px;top:250px;width:64px;height:64px;border-radius:50%;border:5px solid ${C.white}`);
+  mk(end,`left:99px;top:250px;width:10px;height:64px;border-radius:5px;background:${C.sky}`);
+  mk(end,'left:156px;top:252px;font-size:30px;line-height:1.05;color:#fff','MERIDIAN<br><span style="color:'+C.gray+'">DIGITAL</span>','ab b nw');
+  const c1=mk(end,'left:66px;top:470px;font-size:170px;line-height:1','Comenta','ab b nw');show(c1,Wt('L07:comenta')-.1,1e9,.3);
+  const c2=mk(end,`left:72px;top:700px;padding:6px 40px 18px;border-radius:36px;background:${C.bl};font-size:230px;line-height:1;color:#fff`,'WEB','ab b nw');show(c2,Wt('L07:WEB,')-.08,1e9,.3);
+  const c3=mk(end,`left:72px;top:1010px;width:860px;font-size:40px;line-height:1.25;color:${C.cy}`,'y recibe el checklist de 7 puntos<br>para la web de tu negocio local.','ab m');show(c3,Wt('L07:checklist')-.1);
+  const c4=mk(end,`left:72px;top:1180px;width:860px;padding-top:26px;border-top:2px solid rgba(163,173,194,.35);font-size:34px;line-height:1.3;color:${C.gray}`,'Diseño web con precio publicado,<br>desde <b style="color:#fff">$250</b>','ab m');show(c4,Wt('L08:Diseno')-.1);
+}
+/* ---------- subtítulos animados (palabra activa resaltada) ---------- */
+const subBox=mk(stage,`left:72px;top:1396px;height:76px;padding:0 22px;border-radius:18px;background:rgba(11,19,54,.92);display:flex;align-items:center;gap:12px;font-size:46px;visibility:hidden`,'','ab b nw');
+const chunks=[];
+TL.lines.forEach(l=>{let cur=[];const flush=()=>{if(cur.length){chunks.push(cur);cur=[]}};
+  l.words.forEach((w,i)=>{const len=cur.reduce((s,x)=>s+x.w.length+1,0);if(len+w.w.length>24)flush();cur.push(w);if(/[.,:?]$/.test(w.w))flush()});flush();
+  chunks[chunks.length-1].lineEnd=l.t+l.d;});
+chunks.forEach((c,i)=>{c.t0=c[0].t-.08;c.t1=i+1<chunks.length?Math.min(chunks[i+1][0].t-.08,(c.lineEnd||1e9)+.35):TL.dur});
+let shown=-1;const spans=[];
+on(t=>{const i=chunks.findIndex(c=>t>=c.t0&&t<c.t1);
+  if(i!==shown){shown=i;subBox.innerHTML='';spans.length=0;if(i>=0)chunks[i].forEach(w=>{const s=document.createElement('span');s.textContent=w.w;subBox.appendChild(s);spans.push([s,w.t])})}
+  subBox.style.visibility=i>=0?'visible':'hidden';
+  spans.forEach(([s,wt],j)=>{const nx=j+1<spans.length?spans[j+1][1]:1e9;s.style.color=(t>=wt-.05&&t<nx-.05)?C.sky:(t>=wt?'#fff':'rgba(255,255,255,.55)')});
+  if(i>=0){const p=k(t,chunks[i].t0,.15);subBox.style.transform=`translateY(${(1-p)*14}px)`;}});
+}
+window.render=t=>{for(const f of ups)f(t)};
+(async()=>{TL=await (await fetch('timeline.json')).json();window.DUR=TL.dur;
+  await Promise.all([['IT','500'],['IT','800'],['JB','500']].map(([f,w])=>document.fonts.load(`${w} 40px ${f}`)));
+  build();window.render(0);window.READY=true;})();
+</script>
+</body></html>
