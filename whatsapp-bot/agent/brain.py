@@ -81,6 +81,14 @@ def obtener_mensaje_error() -> str:
     )
 
 
+def obtener_mensaje_sin_texto() -> str:
+    """Que decirle al cliente cuando manda un audio, una foto o un archivo."""
+    return cargar_config_prompts().get(
+        "media_message",
+        "Por ahora solo puedo leer mensajes de texto. Escribeme tu pregunta y te ayudo.",
+    )
+
+
 def obtener_mensaje_fallback() -> str:
     """Que decirle al cliente cuando no se entendio el mensaje."""
     return cargar_config_prompts().get(

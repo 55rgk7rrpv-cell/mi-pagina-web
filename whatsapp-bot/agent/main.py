@@ -9,6 +9,7 @@ Funciona con cualquier proveedor (Zernio, Meta) gracias a la capa de providers.
 import asyncio
 import logging
 import os
+import time
 from collections import defaultdict
 from contextlib import asynccontextmanager
 
@@ -16,7 +17,7 @@ from dotenv import load_dotenv
 from fastapi import BackgroundTasks, FastAPI, Header, HTTPException, Request
 from fastapi.responses import PlainTextResponse
 
-from agent.brain import generar_respuesta, obtener_mensaje_error
+from agent.brain import generar_respuesta, obtener_mensaje_error, obtener_mensaje_sin_texto
 from agent.derivacion import HORAS_PAUSA, avisar_al_equipo, separar_marca
 from agent.memory import (
     esta_pausada,
@@ -153,8 +154,11 @@ async def webhook_handler(request: Request, tareas: BackgroundTasks):
 
     encolados = 0
     for msg in mensajes:
-        if msg.es_propio or not msg.texto.strip():
+        if msg.es_propio:
             continue
+        # Las notas de voz, fotos y documentos llegan sin texto. No se descartan: el cliente
+        # tiene que saber que el bot solo lee texto (ver procesar_sin_texto).
+        sin_texto = not msg.texto.strip()
 
         # La entrega es "al menos una vez": el mismo evento puede llegar dos veces
         evento_id = msg.contexto.get("evento_id") or msg.mensaje_id
@@ -162,11 +166,34 @@ async def webhook_handler(request: Request, tareas: BackgroundTasks):
             logger.info(f"Evento repetido, se ignora: {evento_id}")
             continue
 
-        logger.info(f"Mensaje de {msg.telefono}: {msg.texto}")
-        tareas.add_task(procesar_mensaje, msg)
+        if sin_texto:
+            logger.info(f"Mensaje sin texto (audio, foto o archivo) de {msg.telefono}")
+            tareas.add_task(procesar_sin_texto, msg)
+        else:
+            logger.info(f"Mensaje de {msg.telefono}: {msg.texto}")
+            tareas.add_task(procesar_mensaje, msg)
         encolados += 1
 
     return {"status": "ok", "encolados": encolados}
+
+
+# Ultima vez que a cada cliente se le dijo "solo leo texto". Sin este freno, alguien que
+# manda cinco fotos seguidas recibiria cinco veces el mismo aviso.
+_aviso_sin_texto: dict[str, float] = {}
+MINUTOS_ENTRE_AVISOS = 10
+
+
+async def procesar_sin_texto(msg: MensajeEntrante):
+    """Responde a un audio, foto o archivo: el bot todavia no los entiende."""
+    if await esta_pausada(msg.telefono):
+        return  # lo esta atendiendo una persona, que si puede ver el archivo en Zernio
+
+    ahora = time.monotonic()
+    if ahora - _aviso_sin_texto.get(msg.telefono, -1e9) < MINUTOS_ENTRE_AVISOS * 60:
+        return
+    _aviso_sin_texto[msg.telefono] = ahora
+
+    await proveedor.enviar_mensaje(msg.telefono, obtener_mensaje_sin_texto(), msg.contexto)
 
 
 async def procesar_mensaje(msg: MensajeEntrante):

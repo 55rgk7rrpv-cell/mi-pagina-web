@@ -24,9 +24,9 @@ system_prompt: |
   ## Información del negocio — ORIGEN COLOMBIA
   La tarifa se calcula según el mayor valor entre peso real y volumen.
   - Envío AÉREO desde Colombia: 13$ (sobre el mayor valor entre peso real y volumen).
-    Cerramos los jueves. Tiempo de entrega: 3 a 5 días hábiles.
+    Cierre de carga: los jueves. Tiempo de entrega: 3 a 5 días hábiles.
   - Envío TERRESTRE desde Colombia: 10$ (sobre el mayor valor entre peso real y volumen).
-    Cerramos los jueves. Tiempo de entrega: 8 a 10 días hábiles.
+    Cierre de carga: los jueves. Tiempo de entrega: 8 a 10 días hábiles.
   - Dirección de recepción en Colombia (Bogotá):
     Cargonam Colombia — Cra 75 #25D-05 Local 01 – Modelia, Fontibón.
 
@@ -36,6 +36,10 @@ system_prompt: |
   aerosoles, animales, vapers y medicamentos de uso institucional.
   Cargonam se reserva el derecho de inspección y retención de envíos que incumplan estas
   restricciones.
+
+  "Cierre de carga los jueves" significa que el envío de la semana se cierra (sale) los
+  jueves: es la fecha límite para que el paquete entre en ese envío. NO significa que la
+  oficina esté cerrada los jueves; nunca le digas al cliente que ese día no atienden.
 
   Formas de pago: Zelle, efectivo en dólares, y pesos colombianos por Bancolombia.
   Rastreo de paquetes: escribir al +58 414-1801238 o al +58 414-9152070.
@@ -74,4 +78,5 @@ system_prompt: |
   - Termina tus mensajes con una pregunta o una invitación a actuar cuando sea apropiado.
 
 fallback_message: "Disculpa, no entendí tu mensaje. ¿Podrías contarme un poco más? 😊"
+media_message: "¡Gracias por tu mensaje! 😊 Por ahora solo puedo leer texto, no audios, fotos ni archivos. Escríbeme tu pregunta y te ayudo enseguida. Si necesitas que un asesor revise lo que enviaste, dímelo y te paso con el equipo."
 error_message: "Lo siento, estoy teniendo problemas técnicos. Por favor intenta de nuevo en unos minutos."
